@@ -85,3 +85,10 @@ void MainWindow::bubbleSortStep() {
         timer->stop();
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    A_window = new Arraywindow(this);
+    A_window->show();
+}
+

@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QTimer>
+#include "arraywindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,8 +23,12 @@ private slots:
     void startSorting();
     void bubbleSortStep();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Arraywindow *A_window;
+
     QGraphicsScene *scene;
     QVector<int> array;
     QVector<QGraphicsRectItem*> bars;

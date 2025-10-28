@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         visualizer.h
         visualizer.cpp
         sorting_algorithm.h sorting_algorithm.cpp
+        arraywindow.h arraywindow.cpp arraywindow.ui
 
     )
 # Define target properties for Android with Qt 6 as:
