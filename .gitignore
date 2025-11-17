@@ -20,3 +20,4 @@ __pycache__/
 # Misc
 .DS_Store
 Thumbs.db
+pyproject.toml.user
