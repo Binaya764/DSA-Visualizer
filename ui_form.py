@@ -24,14 +24,14 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(559, 330)
+        Widget.resize(609, 330)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.frame = QFrame(Widget)
         self.frame.setObjectName(u"frame")
-        self.frame.setMaximumSize(QSize(200, 16777215))
+        self.frame.setMaximumSize(QSize(300, 16777215))
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame)
@@ -50,6 +50,8 @@ class Ui_Widget(object):
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.comboBox_3 = QComboBox(self.groupBox)
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.setObjectName(u"comboBox_3")
 
@@ -96,7 +98,7 @@ class Ui_Widget(object):
         sizePolicy.setVerticalStretch(100)
         sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
         self.graphicsView.setSizePolicy(sizePolicy)
-        self.graphicsView.setMaximumSize(QSize(16777215, 800))
+        self.graphicsView.setMaximumSize(QSize(900, 450))
 
         self.verticalLayout.addWidget(self.graphicsView)
 
@@ -109,10 +111,10 @@ class Ui_Widget(object):
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, 10, -1, -1)
-        self.pushButton_3 = QPushButton(self.widget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.Btnstart = QPushButton(self.widget)
+        self.Btnstart.setObjectName(u"Btnstart")
 
-        self.horizontalLayout.addWidget(self.pushButton_3)
+        self.horizontalLayout.addWidget(self.Btnstart)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -169,10 +171,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_9.addWidget(self.label_2)
 
-        self.lineEdit = QLineEdit(self.groupBox_2)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.size_array_lineEdit = QLineEdit(self.groupBox_2)
+        self.size_array_lineEdit.setObjectName(u"size_array_lineEdit")
 
-        self.verticalLayout_9.addWidget(self.lineEdit)
+        self.verticalLayout_9.addWidget(self.size_array_lineEdit)
 
         self.label_3 = QLabel(self.groupBox_2)
         self.label_3.setObjectName(u"label_3")
@@ -191,10 +193,10 @@ class Ui_Widget(object):
 
         self.horizontalLayout_15.addWidget(self.pushButton)
 
-        self.pushButton_2 = QPushButton(self.groupBox_2)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.Btnrandomize = QPushButton(self.groupBox_2)
+        self.Btnrandomize.setObjectName(u"Btnrandomize")
 
-        self.horizontalLayout_15.addWidget(self.pushButton_2)
+        self.horizontalLayout_15.addWidget(self.Btnrandomize)
 
 
         self.verticalLayout_9.addLayout(self.horizontalLayout_15)
@@ -249,17 +251,19 @@ class Ui_Widget(object):
         self.label.setText(QCoreApplication.translate("Widget", u"Data Structures", None))
         self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Algorithms", None))
         self.comboBox_3.setItemText(0, QCoreApplication.translate("Widget", u"Sorting", None))
+        self.comboBox_3.setItemText(1, QCoreApplication.translate("Widget", u"Bubble Sort", None))
+        self.comboBox_3.setItemText(2, QCoreApplication.translate("Widget", u"Insertion Sort", None))
 
         self.comboBox_2.setItemText(0, QCoreApplication.translate("Widget", u"Searching", None))
 
         self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linked List", None))
 
-        self.pushButton_3.setText(QCoreApplication.translate("Widget", u"Start", None))
+        self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Array Configuration", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.pushButton.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.Btnrandomize.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi
 

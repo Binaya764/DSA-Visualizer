@@ -9,15 +9,19 @@ def bubble_sort(arr):
             if a[j]>a[j+1]:
                 a[j],a[j+1] =a[j+1], a[j]
 
-                steps.append(("swap",j,j+1,a.copy()))
+                steps.append(("swap",j,j+1,a.copy())) #provides swap signal when swapping the elements
+
+
 
     return steps
+
+
 
 def display(arr):
     for i in arr:
         print(i )
 
-arr=[1,4,2,3]
+arr=[1,4,2,5,90,40,20,]
 n= len(arr)
 
 display(arr)
