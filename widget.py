@@ -5,9 +5,12 @@ from PySide6.QtCore import QTimer, Qt
 # Import UI
 from ui_form import Ui_Widget
 
-# Import Visualizer + Algorithms
+# Import Visualizer and  algorithms
+
+#For Bubble sort
 from visualizer.sorting_visualizer import sort_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
+import random
 
 
 class Widget(QWidget):
@@ -24,32 +27,23 @@ class Widget(QWidget):
         # Animation variables
         self.steps = []
         self.current_step = 0
+        self.current_array=[] #Stores the current updated array
 
         # Connect Start Button
-        self.ui.Btnstart.clicked.connect(self.start_sort)
-        self.ui.Btnrandomize.clicked.connect(self.random_array)
-        # NOTE: change button name if yours is different (pushButton_2, startButton, etc.)
+        self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
+        self.ui.Btnrandomize.clicked.connect(self.random_array) #conncts the randomize button
 
-    # ----------------------------------------------------------------------
-    # Start Sorting
-    # ----------------------------------------------------------------------
-    def start_sort(self):
-        # Using sample array for now
-        arr = [4, 1, 3, 2,24,56,32,67,34]
 
-        # Draw initial array
-        self.visualizer.draw_array(arr)
+    def start_sort(self,arr):   #for sorting
 
         # Get bubble sort steps
-        self.steps = bubble_sort(arr)
+        self.steps = bubble_sort(self.current_array)
 
         self.current_step = 0
         self.play_step()
 
-    # ----------------------------------------------------------------------
-    # Play Animation Step-by-Step
-    # ----------------------------------------------------------------------
-    def play_step(self):
+
+    def play_step(self):        #plays animation
         if self.current_step >= len(self.steps):
             return  # animation finished
 
@@ -68,19 +62,20 @@ class Widget(QWidget):
 
         self.current_step += 1
 
-        # Delay for next step (speed control)
+        # Controls the speed of the animation
         QTimer.singleShot(600, self.play_step)
 
 
-    def random_array(self):
+    def random_array(self):  #Generates random array
         size= int(self.ui.size_array_lineEdit.text())
         print(size)
+        arr=[random.randint(1,100) for _ in range(size)]
+        self.visualizer.draw_array(arr)
+        self.current_array = arr
 
 
 
-# --------------------------------------------------------------------------
-# Run Application
-# --------------------------------------------------------------------------
+#Run application
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Widget()

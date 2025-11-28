@@ -12,10 +12,8 @@ class sort_Visualizer:
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
 
-    # ----------------------------------------------------------------------
-    # Draw the complete array (at start)
-    # ----------------------------------------------------------------------
-    def draw_array(self, arr):
+
+    def draw_array(self, arr):          #Draws array
         self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
@@ -23,7 +21,7 @@ class sort_Visualizer:
         n = len(arr)
 
         width = 40  # bar width
-        spacing = 10
+        spacing = 10    #spaing betwee the bars
         max_height = 250  # maximum height of bar
 
         max_val = max(arr)
@@ -45,18 +43,14 @@ class sort_Visualizer:
 
             self.bars.append((bar, text))
 
-    # ----------------------------------------------------------------------
-    # Highlight bars (compare)
-    # ----------------------------------------------------------------------
+    #High lights the coloor of the bar
     def highlight(self, i, j, color):
         if 0 <= i < len(self.bars):
             self.bars[i][0].setBrush(QBrush(color))
         if 0 <= j < len(self.bars):
             self.bars[j][0].setBrush(QBrush(color))
 
-    # ----------------------------------------------------------------------
-    # Update bar positions after a swap
-    # ----------------------------------------------------------------------
+   #Updates the bar position after swapping
     def swap_bars(self, updated_array, i, j):
         """Redraws bars using new array state."""
         self.draw_array(updated_array)

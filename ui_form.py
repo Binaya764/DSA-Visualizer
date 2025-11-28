@@ -54,10 +54,13 @@ class Ui_Widget(object):
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.setObjectName(u"comboBox_3")
+        self.comboBox_3.setEditable(False)
 
         self.verticalLayout_4.addWidget(self.comboBox_3)
 
         self.comboBox_2 = QComboBox(self.groupBox)
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_2.setObjectName(u"comboBox_2")
 
@@ -255,6 +258,8 @@ class Ui_Widget(object):
         self.comboBox_3.setItemText(2, QCoreApplication.translate("Widget", u"Insertion Sort", None))
 
         self.comboBox_2.setItemText(0, QCoreApplication.translate("Widget", u"Searching", None))
+        self.comboBox_2.setItemText(1, QCoreApplication.translate("Widget", u"Linear Search", None))
+        self.comboBox_2.setItemText(2, QCoreApplication.translate("Widget", u"Binary Search", None))
 
         self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linked List", None))
 
