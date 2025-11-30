@@ -32,6 +32,7 @@ class Widget(QWidget):
         # Connect Start Button
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
         self.ui.Btnrandomize.clicked.connect(self.random_array) #conncts the randomize button
+        self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
 
 
     def start_sort(self,arr):   #for sorting
@@ -72,6 +73,29 @@ class Widget(QWidget):
         arr=[random.randint(1,100) for _ in range(size)]
         self.visualizer.draw_array(arr)
         self.current_array = arr
+
+
+    def custom_array(self): #Gets array input from the user
+        size_txt = self.ui.size_array_lineEdit.text()  #gets the size of the array
+        custom_arr = self.ui.custom_array_lineEdit.text() #gets the custom array
+
+        if size_txt == "" or custom_arr == "":
+                return
+
+        size = int(size_txt)
+
+        parts = custom_arr.replace(",", " ").split() #splits the string into individual values
+
+        if len(parts) != size:
+                print("Array size does not match!")
+                return
+        else:
+
+                arr = [int(x) for x in parts]
+
+                self.current_array = arr
+                self.visualizer.draw_array(arr)
+
 
 
 

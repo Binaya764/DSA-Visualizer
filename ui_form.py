@@ -184,17 +184,17 @@ class Ui_Widget(object):
 
         self.verticalLayout_9.addWidget(self.label_3)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_2)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.custom_array_lineEdit = QLineEdit(self.groupBox_2)
+        self.custom_array_lineEdit.setObjectName(u"custom_array_lineEdit")
 
-        self.verticalLayout_9.addWidget(self.lineEdit_2)
+        self.verticalLayout_9.addWidget(self.custom_array_lineEdit)
 
         self.horizontalLayout_15 = QHBoxLayout()
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.pushButton = QPushButton(self.groupBox_2)
-        self.pushButton.setObjectName(u"pushButton")
+        self.BtnGenerate = QPushButton(self.groupBox_2)
+        self.BtnGenerate.setObjectName(u"BtnGenerate")
 
-        self.horizontalLayout_15.addWidget(self.pushButton)
+        self.horizontalLayout_15.addWidget(self.BtnGenerate)
 
         self.Btnrandomize = QPushButton(self.groupBox_2)
         self.Btnrandomize.setObjectName(u"Btnrandomize")
@@ -267,7 +267,7 @@ class Ui_Widget(object):
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Array Configuration", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
-        self.pushButton.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
+        self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
         self.Btnrandomize.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi

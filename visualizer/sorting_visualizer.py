@@ -36,14 +36,14 @@ class sort_Visualizer:
 
             # Add number label
             text = QGraphicsSimpleTextItem(str(val))
-            text.setPos(x + 3, y - 20)
+            text.setPos(x + 5, y - 20)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
 
             self.bars.append((bar, text))
 
-    #High lights the coloor of the bar
+    #High lights the color of the bar
     def highlight(self, i, j, color):
         if 0 <= i < len(self.bars):
             self.bars[i][0].setBrush(QBrush(color))

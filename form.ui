@@ -259,12 +259,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_2"/>
+                <widget class="QLineEdit" name="custom_array_lineEdit"/>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_15">
                  <item>
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="BtnGenerate">
                    <property name="text">
                     <string>+ Generate</string>
                    </property>
