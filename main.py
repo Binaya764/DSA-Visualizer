@@ -11,7 +11,9 @@ class Main(QWidget):
         self.ui.setupUi(self)
 
         self.visualizer = ArrayVisualizer()
+        self.visualizer2 = CodeVisualizer()
         self.ui.visualAreaLayout.addWidget(self.visualizer)
+        self.ui.visualAreaLayout.addWidget(self.visualizer2)
 
         # Connect button
         self.ui.runButton.clicked.connect(self.run_visualization)

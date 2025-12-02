@@ -32,15 +32,15 @@ class sort_Visualizer:
             y = 200 - height
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(Qt.blue))
+            bar.setBrush(QBrush(Qt.red))
 
             # Add number label
             text = QGraphicsSimpleTextItem(str(val))
-            text.setPos(x + 5, y - 20)
+            text.setBrush(Qt.white)
+            text.setPos(x + 10, y - 20)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
-
             self.bars.append((bar, text))
 
     #High lights the color of the bar
@@ -54,4 +54,23 @@ class sort_Visualizer:
     def swap_bars(self, updated_array, i, j):
         """Redraws bars using new array state."""
         self.draw_array(updated_array)
+
+    def completed_sort(self):
+        for bar in self.bars:
+         rect, text = bar
+         rect.setBrush(Qt.green)
+
+
+
+class code_Visualizer:
+        def __init__(self,graphics_View2):
+                self.view = graphics_View2
+                self.scene = QGraphicsScene()
+                self.view.setScene(self.scene)
+                self.codes=[]  #stores code
+
+                text = QGraphicsSimpleTextItem("Hello world")
+                text.setBrush(Qt.white)
+                self.scene.addItem(text)
+
 

@@ -127,7 +127,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QGraphicsView" name="graphicsView">
+           <widget class="QGraphicsView" name="visualizer_graphicsView">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
               <horstretch>0</horstretch>
@@ -300,7 +300,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QGraphicsView" name="graphicsView_2"/>
+                   <widget class="QGraphicsView" name="code_graphicsView"/>
                   </item>
                  </layout>
                 </item>

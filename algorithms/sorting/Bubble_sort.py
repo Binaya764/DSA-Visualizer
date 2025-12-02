@@ -2,7 +2,7 @@ def bubble_sort(arr):
     steps=[]
     a= arr.copy()
     n=len(a)
-    for i in range(n):
+    for i in range(n-1):
         for j in range(0, n-i-1):
 
             steps.append(("compare",j,j+1,a.copy())) #record comparisions for animation or highlight
@@ -17,14 +17,5 @@ def bubble_sort(arr):
 
 
 
-def display(arr):
-    for i in arr:
-        print(i )
 
-arr=[1,4,2,5,90,40,20,]
-n= len(arr)
-
-display(arr)
-steps= bubble_sort(arr)
-display(steps)
 

@@ -94,16 +94,16 @@ class Ui_Widget(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.graphicsView = QGraphicsView(self.widget)
-        self.graphicsView.setObjectName(u"graphicsView")
+        self.visualizer_graphicsView = QGraphicsView(self.widget)
+        self.visualizer_graphicsView.setObjectName(u"visualizer_graphicsView")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(100)
-        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
-        self.graphicsView.setSizePolicy(sizePolicy)
-        self.graphicsView.setMaximumSize(QSize(900, 450))
+        sizePolicy.setHeightForWidth(self.visualizer_graphicsView.sizePolicy().hasHeightForWidth())
+        self.visualizer_graphicsView.setSizePolicy(sizePolicy)
+        self.visualizer_graphicsView.setMaximumSize(QSize(900, 450))
 
-        self.verticalLayout.addWidget(self.graphicsView)
+        self.verticalLayout.addWidget(self.visualizer_graphicsView)
 
 
         self.verticalLayout_6.addLayout(self.verticalLayout)
@@ -220,10 +220,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_14.addWidget(self.label_4)
 
-        self.graphicsView_2 = QGraphicsView(self.frame_3)
-        self.graphicsView_2.setObjectName(u"graphicsView_2")
+        self.code_graphicsView = QGraphicsView(self.frame_3)
+        self.code_graphicsView.setObjectName(u"code_graphicsView")
 
-        self.verticalLayout_14.addWidget(self.graphicsView_2)
+        self.verticalLayout_14.addWidget(self.code_graphicsView)
 
 
         self.verticalLayout_15.addLayout(self.verticalLayout_14)

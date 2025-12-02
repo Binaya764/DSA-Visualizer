@@ -9,6 +9,7 @@ from ui_form import Ui_Widget
 
 #For Bubble sort
 from visualizer.sorting_visualizer import sort_Visualizer
+from visualizer.sorting_visualizer import code_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
 import random
 
@@ -22,7 +23,8 @@ class Widget(QWidget):
         self.ui.setupUi(self)
 
         # Create visualizer for the graphicsView
-        self.visualizer = sort_Visualizer(self.ui.graphicsView)
+        self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
+        self.visualizer2 = code_Visualizer(self.ui.code_graphicsView)
 
         # Animation variables
         self.steps = []
@@ -46,25 +48,26 @@ class Widget(QWidget):
 
     def play_step(self):        #plays animation
         if self.current_step >= len(self.steps):
-            return  # animation finished
+           self.visualizer.completed_sort()
+           return# animation finished
 
         step_type, i, j, state = self.steps[self.current_step]
 
         # Highlight comparisons
         if step_type == "compare":
             self.visualizer.draw_array(state)
-            self.visualizer.highlight(i, j, Qt.yellow)
+            self.visualizer.highlight(i, j, Qt.green)
 
         # Swap bars and highlight them
         elif step_type == "swap":
             self.visualizer.swap_bars(state, i, j)
-            self.visualizer.highlight(i, j, Qt.red)
+            self.visualizer.highlight(i, j, Qt.green)
 
 
         self.current_step += 1
 
         # Controls the speed of the animation
-        QTimer.singleShot(600, self.play_step)
+        QTimer.singleShot(400, self.play_step)
 
 
     def random_array(self):  #Generates random array
