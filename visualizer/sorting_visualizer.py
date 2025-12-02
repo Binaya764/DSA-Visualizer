@@ -20,24 +20,24 @@ class sort_Visualizer:
 
         n = len(arr)
 
-        width = 40  # bar width
-        spacing = 10    #spaing betwee the bars
+        width = 60  # bar width
+        spacing = 1  #spaing betwee the bars
         max_height = 250  # maximum height of bar
 
         max_val = max(arr)
 
         for i, val in enumerate(arr):
-            height = (val / max_val) * max_height
+            height = 60
             x = i * (width + spacing)
             y = 200 - height
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(Qt.red))
 
-            # Add number label
+            # Adding  number label
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 10, y - 20)
+            text.setPos(x + 20, y - 20)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
@@ -55,10 +55,41 @@ class sort_Visualizer:
         """Redraws bars using new array state."""
         self.draw_array(updated_array)
 
-    def completed_sort(self):
+    def completed_sort(self): #colors the bar green once the sorting is completed
         for bar in self.bars:
          rect, text = bar
          rect.setBrush(Qt.green)
+
+    def ref_drawArray(self,arr):
+            self.scene.clear()
+            self.bars.clear()
+            self.values = arr.copy()
+
+            n = len(arr)
+
+            width = 40  # bar width
+            spacing = 1  #spaing betwee the bars
+            max_height = 250  # maximum height of bar
+
+            max_val = max(arr)
+
+            for i, val in enumerate(arr):
+                height = 60
+                x = i * (width + spacing)
+                y = 200
+
+                bar = QGraphicsRectItem(QRectF(x, y, width, height))
+                bar.setBrush(QBrush(Qt.red))
+
+                # Adding  number label
+                text = QGraphicsSimpleTextItem(str(val))
+                text.setBrush(Qt.white)
+                text.setPos(x + 20, y - 20)
+
+                self.scene.addItem(bar)
+                self.scene.addItem(text)
+                self.bars.append((bar, text))
+
 
 
 
