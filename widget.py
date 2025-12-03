@@ -37,10 +37,10 @@ class Widget(QWidget):
         self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
 
 
-    def start_sort(self,arr):   #for sorting
+    def start_sort(self):   #for sorting
 
         # Get bubble sort steps
-        self.steps = bubble_sort(self.current_array)
+        self.steps = bubble_sort(self.current_array.copy())
 
         self.current_step = 0
         self.play_step()
@@ -74,6 +74,7 @@ class Widget(QWidget):
         size= int(self.ui.size_array_lineEdit.text())
         print(size)
         arr=[random.randint(1,100) for _ in range(size)]
+        self.visualizer.ref_drawArray(arr)
         self.visualizer.draw_array(arr)
         self.current_array = arr
 

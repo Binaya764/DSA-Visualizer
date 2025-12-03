@@ -14,8 +14,8 @@ class sort_Visualizer:
 
 
     def draw_array(self, arr):          #Draws array
-        self.scene.clear()
-        self.bars.clear()
+        #self.scene.clear()
+        #self.bars.clear()
         self.values = arr.copy()
 
         n = len(arr)
@@ -32,7 +32,7 @@ class sort_Visualizer:
             y = 200 - height
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(Qt.red))
+            bar.setBrush(QBrush(Qt.lightGray))
 
             # Adding  number label
             text = QGraphicsSimpleTextItem(str(val))
@@ -67,24 +67,24 @@ class sort_Visualizer:
 
             n = len(arr)
 
-            width = 40  # bar width
-            spacing = 1  #spaing betwee the bars
+            width = 50  # bar width
+            spacing = 1  #spcaing between the bars
             max_height = 250  # maximum height of bar
 
             max_val = max(arr)
 
             for i, val in enumerate(arr):
-                height = 60
-                x = i * (width + spacing)
-                y = 200
+                height = 50
+                x = i * (50 + spacing)
+                y = -230
 
                 bar = QGraphicsRectItem(QRectF(x, y, width, height))
-                bar.setBrush(QBrush(Qt.red))
+                bar.setBrush(QBrush(Qt.darkGray))
 
                 # Adding  number label
                 text = QGraphicsSimpleTextItem(str(val))
                 text.setBrush(Qt.white)
-                text.setPos(x + 20, y - 20)
+                text.setPos(x + 20, y + 15)
 
                 self.scene.addItem(bar)
                 self.scene.addItem(text)
