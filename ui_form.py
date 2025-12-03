@@ -94,6 +94,12 @@ class Ui_Widget(object):
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.ref_graphicsView = QGraphicsView(self.widget)
+        self.ref_graphicsView.setObjectName(u"ref_graphicsView")
+        self.ref_graphicsView.setMaximumSize(QSize(900, 100))
+
+        self.verticalLayout.addWidget(self.ref_graphicsView)
+
         self.visualizer_graphicsView = QGraphicsView(self.widget)
         self.visualizer_graphicsView.setObjectName(u"visualizer_graphicsView")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Ignored)

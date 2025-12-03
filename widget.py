@@ -10,6 +10,7 @@ from ui_form import Ui_Widget
 #For Bubble sort
 from visualizer.sorting_visualizer import sort_Visualizer
 from visualizer.sorting_visualizer import code_Visualizer
+from visualizer.sorting_visualizer import ref_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
 import random
 
@@ -24,7 +25,8 @@ class Widget(QWidget):
 
         # Create visualizer for the graphicsView
         self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
-        self.visualizer2 = code_Visualizer(self.ui.code_graphicsView)
+        self.visualizer2 = ref_Visualizer(self.ui.ref_graphicsView)
+        self.visualizer3 = code_Visualizer(self.ui.code_graphicsView)
 
         # Animation variables
         self.steps = []
@@ -74,7 +76,7 @@ class Widget(QWidget):
         size= int(self.ui.size_array_lineEdit.text())
         print(size)
         arr=[random.randint(1,100) for _ in range(size)]
-        self.visualizer.ref_drawArray(arr)
+        self.visualizer2.ref_drawArray(arr)
         self.visualizer.draw_array(arr)
         self.current_array = arr
 

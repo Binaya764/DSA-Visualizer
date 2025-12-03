@@ -127,6 +127,16 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
+           <widget class="QGraphicsView" name="ref_graphicsView">
+            <property name="maximumSize">
+             <size>
+              <width>900</width>
+              <height>100</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QGraphicsView" name="visualizer_graphicsView">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Ignored">

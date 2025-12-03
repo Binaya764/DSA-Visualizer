@@ -14,17 +14,14 @@ class sort_Visualizer:
 
 
     def draw_array(self, arr):          #Draws array
-        #self.scene.clear()
-        #self.bars.clear()
+        self.scene.clear()
+        self.bars.clear()
         self.values = arr.copy()
-
-        n = len(arr)
-
         width = 60  # bar width
         spacing = 1  #spaing betwee the bars
-        max_height = 250  # maximum height of bar
 
-        max_val = max(arr)
+
+
 
         for i, val in enumerate(arr):
             height = 60
@@ -60,18 +57,24 @@ class sort_Visualizer:
          rect, text = bar
          rect.setBrush(Qt.green)
 
+class ref_Visualizer:
+    def __init__(self, graphics_view2):
+            self.view = graphics_view2
+            self.scene = QGraphicsScene()
+            self.view.setScene(self.scene)
+
+            self.bars = []       # stores QGraphicsRectItem
+            self.values = []
+
     def ref_drawArray(self,arr):
             self.scene.clear()
             self.bars.clear()
             self.values = arr.copy()
-
-            n = len(arr)
-
             width = 50  # bar width
             spacing = 1  #spcaing between the bars
-            max_height = 250  # maximum height of bar
 
-            max_val = max(arr)
+
+
 
             for i, val in enumerate(arr):
                 height = 50
@@ -94,8 +97,8 @@ class sort_Visualizer:
 
 
 class code_Visualizer:
-        def __init__(self,graphics_View2):
-                self.view = graphics_View2
+        def __init__(self,graphics_View3):
+                self.view = graphics_View3
                 self.scene = QGraphicsScene()
                 self.view.setScene(self.scene)
                 self.codes=[]  #stores code
