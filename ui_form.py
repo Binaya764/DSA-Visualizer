@@ -17,8 +17,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGraphicsView,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSlider, QSpacerItem,
-    QStackedWidget, QVBoxLayout, QWidget)
+    QPlainTextEdit, QPushButton, QSizePolicy, QSlider,
+    QSpacerItem, QStackedWidget, QTextEdit, QVBoxLayout,
+    QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -259,9 +260,57 @@ class Ui_Widget(object):
         self.stackedWidget.addWidget(self.Linear_search)
         self.Binary_search = QWidget()
         self.Binary_search.setObjectName(u"Binary_search")
-        self.label_7 = QLabel(self.Binary_search)
+        self.verticalLayout_11 = QVBoxLayout(self.Binary_search)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.verticalLayout_8 = QVBoxLayout()
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.groupBox_3 = QGroupBox(self.Binary_search)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.verticalLayout_18 = QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.verticalLayout_17 = QVBoxLayout()
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_7 = QLabel(self.groupBox_3)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(20, 10, 121, 16))
+
+        self.verticalLayout_17.addWidget(self.label_7)
+
+        self.textEdit = QTextEdit(self.groupBox_3)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setMaximumSize(QSize(16777215, 30))
+
+        self.verticalLayout_17.addWidget(self.textEdit)
+
+        self.label_8 = QLabel(self.groupBox_3)
+        self.label_8.setObjectName(u"label_8")
+
+        self.verticalLayout_17.addWidget(self.label_8)
+
+        self.plainTextEdit = QPlainTextEdit(self.groupBox_3)
+        self.plainTextEdit.setObjectName(u"plainTextEdit")
+        self.plainTextEdit.setMaximumSize(QSize(16777215, 30))
+
+        self.verticalLayout_17.addWidget(self.plainTextEdit)
+
+        self.label_9 = QLabel(self.groupBox_3)
+        self.label_9.setObjectName(u"label_9")
+
+        self.verticalLayout_17.addWidget(self.label_9)
+
+        self.graphicsView = QGraphicsView(self.groupBox_3)
+        self.graphicsView.setObjectName(u"graphicsView")
+
+        self.verticalLayout_17.addWidget(self.graphicsView)
+
+
+        self.verticalLayout_18.addLayout(self.verticalLayout_17)
+
+
+        self.verticalLayout_8.addWidget(self.groupBox_3)
+
+
+        self.verticalLayout_11.addLayout(self.verticalLayout_8)
+
         self.stackedWidget.addWidget(self.Binary_search)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
@@ -299,6 +348,9 @@ class Ui_Widget(object):
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))
         self.label_5.setText(QCoreApplication.translate("Widget", u"Insertion Sort", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Linear Search", None))
-        self.label_7.setText(QCoreApplication.translate("Widget", u"Binary Search", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
+        self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
+        self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi
 
