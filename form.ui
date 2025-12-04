@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>609</width>
-    <height>330</height>
+    <width>613</width>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,13 +49,13 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
-                <widget class="QComboBox" name="comboBox_3">
+                <widget class="QComboBox" name="sort_comboBox">
                  <property name="editable">
                   <bool>false</bool>
                  </property>
                  <item>
                   <property name="text">
-                   <string>Sorting</string>
+                   <string>Insertion Sort</string>
                   </property>
                  </item>
                  <item>
@@ -63,20 +63,10 @@
                    <string>Bubble Sort</string>
                   </property>
                  </item>
-                 <item>
-                  <property name="text">
-                   <string>Insertion Sort</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox_2">
-                 <item>
-                  <property name="text">
-                   <string>Searching</string>
-                  </property>
-                 </item>
+                <widget class="QComboBox" name="search_comboBox">
                  <item>
                   <property name="text">
                    <string>Linear Search</string>
@@ -227,7 +217,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QFrame" name="frame_2">
+      <widget class="QStackedWidget" name="stackedWidget">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -240,89 +230,145 @@
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
-          <item>
-           <widget class="QGroupBox" name="groupBox_2">
-            <property name="title">
-             <string>Array Configuration</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_10">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="currentIndex">
+        <number>3</number>
+       </property>
+       <widget class="QWidget" name="Bubble_sort">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_7"/>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="title">
+            <string>Array Configuration</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Array Size</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="size_array_lineEdit"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Custom Array</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="custom_array_lineEdit"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <item>
+                 <widget class="QPushButton" name="BtnGenerate">
+                  <property name="text">
+                   <string>+ Generate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="Btnrandomize">
+                  <property name="text">
+                   <string>Randomize</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_3">
+              <property name="frameShape">
+               <enum>QFrame::Shape::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_15">
                <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Array Size</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="size_array_lineEdit"/>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Custom Array</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="custom_array_lineEdit"/>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <layout class="QVBoxLayout" name="verticalLayout_14">
                  <item>
-                  <widget class="QPushButton" name="BtnGenerate">
+                  <widget class="QLabel" name="label_4">
                    <property name="text">
-                    <string>+ Generate</string>
+                    <string>code</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="Btnrandomize">
-                   <property name="text">
-                    <string>Randomize</string>
+                  <widget class="QGraphicsView" name="code_graphicsView">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>600</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
               </layout>
-             </item>
-             <item>
-              <widget class="QFrame" name="frame_3">
-               <property name="frameShape">
-                <enum>QFrame::Shape::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Shadow::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_15">
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_14">
-                  <item>
-                   <widget class="QLabel" name="label_4">
-                    <property name="text">
-                     <string>code</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QGraphicsView" name="code_graphicsView"/>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="Selection_sort">
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>191</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Insertion Sort</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="Linear_search">
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>161</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Linear Search</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="Binary_search">
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>121</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Binary Search</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </item>
     </layout>

@@ -37,6 +37,29 @@ class Widget(QWidget):
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
         self.ui.Btnrandomize.clicked.connect(self.random_array) #conncts the randomize button
         self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
+        self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
+        self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
+
+    def on_sort_changed(self, algo):
+            mapping = {
+                "Bubble Sort": 0,
+                "Insertion Sort": 1,
+
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
+
+    def on_search_changed(self,algo):
+            mapping = {
+            "Linear Search": 2,
+            "Binary Search": 3,
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
+
+
+
+    def change_algorithm_page(self, index):
+            self.ui.stackedWidget.setCurrentIndex(index)
+
 
 
     def start_sort(self):   #for sorting

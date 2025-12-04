@@ -73,9 +73,9 @@ class ref_Visualizer:
             width = 50  # bar width
             spacing = 1  #spcaing between the bars
 
-            label = QGraphicsSimpleTextItem("Original:")
+            label = QGraphicsSimpleTextItem("Original:") #adds original label to the array
             label.setBrush(Qt.white)
-            label.setPos(-60, -210)   # left of the first bar
+            label.setPos(-60, -210)
             self.scene.addItem(label)
 
 
