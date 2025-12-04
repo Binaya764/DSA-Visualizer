@@ -73,6 +73,11 @@ class ref_Visualizer:
             width = 50  # bar width
             spacing = 1  #spcaing between the bars
 
+            label = QGraphicsSimpleTextItem("Original:")
+            label.setBrush(Qt.white)
+            label.setPos(-60, -210)   # left of the first bar
+            self.scene.addItem(label)
+
 
 
 
@@ -86,12 +91,17 @@ class ref_Visualizer:
 
                 # Adding  number label
                 text = QGraphicsSimpleTextItem(str(val))
+
                 text.setBrush(Qt.white)
                 text.setPos(x + 20, y + 15)
 
+
                 self.scene.addItem(bar)
                 self.scene.addItem(text)
+
                 self.bars.append((bar, text))
+
+
 
 
 

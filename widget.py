@@ -69,7 +69,7 @@ class Widget(QWidget):
         self.current_step += 1
 
         # Controls the speed of the animation
-        QTimer.singleShot(400, self.play_step)
+        QTimer.singleShot(600, self.play_step)
 
 
     def random_array(self):  #Generates random array
@@ -100,6 +100,7 @@ class Widget(QWidget):
                 arr = [int(x) for x in parts]
 
                 self.current_array = arr
+                self.visualizer2.ref_drawArray(arr)
                 self.visualizer.draw_array(arr)
 
 
