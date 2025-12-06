@@ -10,7 +10,11 @@ from ui_form import Ui_Widget
 #For Bubble sort
 from visualizer.sorting_visualizer import sort_Visualizer
 from visualizer.sorting_visualizer import code_Visualizer
+from visualizer.sorting_visualizer import ref_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
+
+#For Binary Search
+from visualizer.searching_viz.BinarySearch_visualizer import Binary_Visualizer
 import random
 
 
@@ -24,7 +28,9 @@ class Widget(QWidget):
 
         # Create visualizer for the graphicsView
         self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
-        self.visualizer2 = code_Visualizer(self.ui.code_graphicsView)
+        self.visualizer2 = ref_Visualizer(self.ui.ref_graphicsView)
+        self.visualizer3 = code_Visualizer(self.ui.code_graphicsView)
+        self.visualizer_BinarySearch = Binary_Visualizer(self.ui.visualizer_graphicsView)
 
         # Animation variables
         self.steps = []
@@ -35,12 +41,35 @@ class Widget(QWidget):
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
         self.ui.Btnrandomize.clicked.connect(self.random_array) #conncts the randomize button
         self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
+        self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
+        self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
+
+    def on_sort_changed(self, algo):
+            mapping = {
+                "Bubble Sort": 0,
+                "Insertion Sort": 1,
+
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
+
+    def on_search_changed(self,algo):
+            mapping = {
+            "Linear Search": 2,
+            "Binary Search": 3,
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
 
 
-    def start_sort(self,arr):   #for sorting
+
+    def change_algorithm_page(self, index):
+            self.ui.stackedWidget.setCurrentIndex(index)
+
+
+
+    def start_sort(self):   #for sorting
 
         # Get bubble sort steps
-        self.steps = bubble_sort(self.current_array)
+        self.steps = bubble_sort(self.current_array.copy())
 
         self.current_step = 0
         self.play_step()
@@ -67,13 +96,14 @@ class Widget(QWidget):
         self.current_step += 1
 
         # Controls the speed of the animation
-        QTimer.singleShot(400, self.play_step)
+        QTimer.singleShot(600, self.play_step)
 
 
     def random_array(self):  #Generates random array
         size= int(self.ui.size_array_lineEdit.text())
         print(size)
         arr=[random.randint(1,100) for _ in range(size)]
+        self.visualizer2.ref_drawArray(arr)
         self.visualizer.draw_array(arr)
         self.current_array = arr
 
@@ -97,6 +127,7 @@ class Widget(QWidget):
                 arr = [int(x) for x in parts]
 
                 self.current_array = arr
+                self.visualizer2.ref_drawArray(arr)
                 self.visualizer.draw_array(arr)
 
 

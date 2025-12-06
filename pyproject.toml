@@ -2,4 +2,4 @@
 name = "PySide Widgets Project"
 
 [tool.pyside6-project]
-files = [".gitignore", "algorithms/Searching/Linear_search.py", "algorithms/sorting/Bubble_sort.py", "form.ui", "main.py", "visualizer/Animation_engine.py", "visualizer/Searching_visualizer.py", "visualizer/sorting_visualizer.py", "widget.py"]
+files = [".gitignore", "algorithms/Searching/Linear_search.py", "algorithms/sorting/Bubble_sort.py", "form.ui", "main.py", "ui/Binary_search.ui", "visualizer/Animation_engine.py", "visualizer/Searching_visualizer.py", "visualizer/searching_viz/BinarySearch_visualizer.py", "visualizer/sorting_visualizer.py", "widget.py"]

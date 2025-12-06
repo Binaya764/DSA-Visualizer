@@ -3,7 +3,7 @@ from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
 
 
-class sort_Visualizer:
+class Binary_Visualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
         self.scene = QGraphicsScene()
