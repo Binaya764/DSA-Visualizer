@@ -367,6 +367,16 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_17">
                 <item>
+                 <widget class="QLabel" name="label_10">
+                  <property name="text">
+                   <string>Array Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit"/>
+                </item>
+                <item>
                  <widget class="QLabel" name="label_7">
                   <property name="text">
                    <string>Custom Array</string>
@@ -374,14 +384,28 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QTextEdit" name="textEdit">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>30</height>
-                   </size>
+                 <widget class="QLineEdit" name="lineEdit_2"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="bottomMargin">
+                   <number>8</number>
                   </property>
-                 </widget>
+                  <item>
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                     <string>+Generate</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_2">
+                    <property name="text">
+                     <string>Randomize</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_8">
@@ -391,14 +415,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPlainTextEdit" name="plainTextEdit">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>30</height>
-                   </size>
-                  </property>
-                 </widget>
+                 <widget class="QLineEdit" name="lineEdit_3"/>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_9">

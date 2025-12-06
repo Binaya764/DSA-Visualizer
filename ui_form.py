@@ -17,9 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGraphicsView,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QPlainTextEdit, QPushButton, QSizePolicy, QSlider,
-    QSpacerItem, QStackedWidget, QTextEdit, QVBoxLayout,
-    QWidget)
+    QPushButton, QSizePolicy, QSlider, QSpacerItem,
+    QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -270,27 +269,51 @@ class Ui_Widget(object):
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalLayout_17 = QVBoxLayout()
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_10 = QLabel(self.groupBox_3)
+        self.label_10.setObjectName(u"label_10")
+
+        self.verticalLayout_17.addWidget(self.label_10)
+
+        self.lineEdit = QLineEdit(self.groupBox_3)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.verticalLayout_17.addWidget(self.lineEdit)
+
         self.label_7 = QLabel(self.groupBox_3)
         self.label_7.setObjectName(u"label_7")
 
         self.verticalLayout_17.addWidget(self.label_7)
 
-        self.textEdit = QTextEdit(self.groupBox_3)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setMaximumSize(QSize(16777215, 30))
+        self.lineEdit_2 = QLineEdit(self.groupBox_3)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
 
-        self.verticalLayout_17.addWidget(self.textEdit)
+        self.verticalLayout_17.addWidget(self.lineEdit_2)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(-1, -1, -1, 8)
+        self.pushButton = QPushButton(self.groupBox_3)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.horizontalLayout_4.addWidget(self.pushButton)
+
+        self.pushButton_2 = QPushButton(self.groupBox_3)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+
+        self.horizontalLayout_4.addWidget(self.pushButton_2)
+
+
+        self.verticalLayout_17.addLayout(self.horizontalLayout_4)
 
         self.label_8 = QLabel(self.groupBox_3)
         self.label_8.setObjectName(u"label_8")
 
         self.verticalLayout_17.addWidget(self.label_8)
 
-        self.plainTextEdit = QPlainTextEdit(self.groupBox_3)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setMaximumSize(QSize(16777215, 30))
+        self.lineEdit_3 = QLineEdit(self.groupBox_3)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
 
-        self.verticalLayout_17.addWidget(self.plainTextEdit)
+        self.verticalLayout_17.addWidget(self.lineEdit_3)
 
         self.label_9 = QLabel(self.groupBox_3)
         self.label_9.setObjectName(u"label_9")
@@ -349,7 +372,10 @@ class Ui_Widget(object):
         self.label_5.setText(QCoreApplication.translate("Widget", u"Insertion Sort", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Linear Search", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
+        self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.pushButton.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi

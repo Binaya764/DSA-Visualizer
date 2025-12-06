@@ -12,6 +12,9 @@ from visualizer.sorting_visualizer import sort_Visualizer
 from visualizer.sorting_visualizer import code_Visualizer
 from visualizer.sorting_visualizer import ref_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
+
+#For Binary Search
+from visualizer.searching_viz.BinarySearch_visualizer import Binary_Visualizer
 import random
 
 
@@ -27,6 +30,7 @@ class Widget(QWidget):
         self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
         self.visualizer2 = ref_Visualizer(self.ui.ref_graphicsView)
         self.visualizer3 = code_Visualizer(self.ui.code_graphicsView)
+        self.visualizer_BinarySearch = Binary_Visualizer(self.ui.visualizer_graphicsView)
 
         # Animation variables
         self.steps = []
