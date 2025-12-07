@@ -75,6 +75,10 @@ class Widget(QWidget):
             self.active_algorithm = algo
             self.active_visualizer = self.visualizer
 
+            self.active_visualizer.scene.clear()
+            self.visualizer2.scene.clear()
+            self.visualizer3.scene.clear()
+
     def on_search_changed(self,algo):
             mapping = {
             "Linear Search": 2,
@@ -83,8 +87,11 @@ class Widget(QWidget):
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
             if algo == "Binary Search":
+                self.active_visualizer = self.visualizer
 
-                   self.active_visualizer = self.visualizer
+            self.active_visualizer.scene.clear()
+            self.visualizer2.scene.clear()
+            self.visualizer3.scene.clear()
 
 
       #for sorting
