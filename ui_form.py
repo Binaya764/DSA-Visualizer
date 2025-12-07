@@ -274,10 +274,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_10)
 
-        self.lineEdit = QLineEdit(self.groupBox_3)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.size_array_lineEdit_Bsearch = QLineEdit(self.groupBox_3)
+        self.size_array_lineEdit_Bsearch.setObjectName(u"size_array_lineEdit_Bsearch")
 
-        self.verticalLayout_17.addWidget(self.lineEdit)
+        self.verticalLayout_17.addWidget(self.size_array_lineEdit_Bsearch)
 
         self.label_7 = QLabel(self.groupBox_3)
         self.label_7.setObjectName(u"label_7")
@@ -297,10 +297,10 @@ class Ui_Widget(object):
 
         self.horizontalLayout_4.addWidget(self.pushButton)
 
-        self.pushButton_2 = QPushButton(self.groupBox_3)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.Btnrandomize_Bsearch = QPushButton(self.groupBox_3)
+        self.Btnrandomize_Bsearch.setObjectName(u"Btnrandomize_Bsearch")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_2)
+        self.horizontalLayout_4.addWidget(self.Btnrandomize_Bsearch)
 
 
         self.verticalLayout_17.addLayout(self.horizontalLayout_4)
@@ -310,10 +310,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_8)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox_3)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.target_lineEdit = QLineEdit(self.groupBox_3)
+        self.target_lineEdit.setObjectName(u"target_lineEdit")
 
-        self.verticalLayout_17.addWidget(self.lineEdit_3)
+        self.verticalLayout_17.addWidget(self.target_lineEdit)
 
         self.label_9 = QLabel(self.groupBox_3)
         self.label_9.setObjectName(u"label_9")
@@ -363,7 +363,7 @@ class Ui_Widget(object):
         self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linked List", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Array Configuration", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
@@ -375,7 +375,7 @@ class Ui_Widget(object):
         self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.pushButton.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.Btnrandomize_Bsearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi

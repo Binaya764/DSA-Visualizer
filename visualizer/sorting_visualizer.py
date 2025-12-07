@@ -13,23 +13,25 @@ class sort_Visualizer:
         self.values = []     # stores actual numbers
 
 
+
     def draw_array(self, arr):          #Draws array
+        print("draw_array called")
         self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
         width = 60  # bar width
-        spacing = 1  #spaing betwee the bars
+        spacing = 1  #spacing between the bars
 
 
 
 
         for i, val in enumerate(arr):
             height = 60
-            x = i * (width + spacing)
-            y = 200 - height
+            x = i * (60 + spacing)
+            y = 10
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(Qt.lightGray))
+            bar.setBrush(QBrush(Qt.red))
 
             # Adding  number label
             text = QGraphicsSimpleTextItem(str(val))
@@ -39,6 +41,7 @@ class sort_Visualizer:
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append((bar, text))
+            print("array drawn")
 
     #High lights the color of the bar
     def highlight(self, i, j, color):
