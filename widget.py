@@ -132,10 +132,12 @@ class Widget(QWidget):
                 self.active_visualizer.draw_array(state)
 
                 if step_type == "check":
+                    print("checking")
                     self.active_visualizer.highlight(index, index, Qt.yellow)
 
                 elif step_type == "found":
-                    self.active_visualizer.highlight(index, index, Qt.green)
+                    print("found")
+                    self.active_visualizer.found(index)
 
                 elif step_type == "not_found":
                     for i in range(len(state)):

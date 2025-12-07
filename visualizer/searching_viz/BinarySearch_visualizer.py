@@ -35,7 +35,7 @@ class Binary_Visualizer:
             self.scene.addItem(text)
             self.bars.append(bar)
 
-    def highlight(self, left, mid, right, color_mid=Qt.red, color_others=Qt.yellow):
+    def highlight(self, left, mid, right, color_mid=Qt.yellow, color_others=Qt.yellow):
         """Highlight left, mid, right elements during search."""
         for i, bar in enumerate(self.bars):
             if i == mid:
@@ -51,7 +51,7 @@ class Binary_Visualizer:
         self.bars.clear()
         self.values.clear()
 
-    def mark_found(self, index):
+    def found(self, index):
         """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(Qt.green))
