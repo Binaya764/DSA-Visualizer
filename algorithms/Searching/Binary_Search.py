@@ -1,17 +1,23 @@
-# algorithms/searching/binary_search.py
 def binary_search(arr, target):
     steps = []
-    a = sorted(arr)       # binary search operates on sorted array
-    lo, hi = 0, len(a)-1
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        steps.append(("check", mid, -1, a.copy()))
-        if a[mid] == target:
-            steps.append(("found", mid, -1, a.copy()))
-            break
-        elif a[mid] < target:
-            lo = mid + 1
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        # Step: checking current mid
+        steps.append(("check", mid, arr.copy()))
+
+        if arr[mid] == target:
+            # Step: found
+            steps.append(("found", mid, arr.copy()))
+            return steps
+
+        elif arr[mid] < target:
+            left = mid + 1
         else:
-            hi = mid - 1
-    steps.append(("done", -1, -1, a.copy()))
+            right = mid - 1
+
+    # Step: not found
+    steps.append(("not_found", -1, arr.copy()))
     return steps

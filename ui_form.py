@@ -284,18 +284,18 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_7)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_3)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_Bsearch = QLineEdit(self.groupBox_3)
+        self.lineEdit_Bsearch.setObjectName(u"lineEdit_Bsearch")
 
-        self.verticalLayout_17.addWidget(self.lineEdit_2)
+        self.verticalLayout_17.addWidget(self.lineEdit_Bsearch)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, -1, -1, 8)
-        self.pushButton = QPushButton(self.groupBox_3)
-        self.pushButton.setObjectName(u"pushButton")
+        self.BtnGenerate_Bsearch = QPushButton(self.groupBox_3)
+        self.BtnGenerate_Bsearch.setObjectName(u"BtnGenerate_Bsearch")
 
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_4.addWidget(self.BtnGenerate_Bsearch)
 
         self.Btnrandomize_Bsearch = QPushButton(self.groupBox_3)
         self.Btnrandomize_Bsearch.setObjectName(u"Btnrandomize_Bsearch")
@@ -374,7 +374,7 @@ class Ui_Widget(object):
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
-        self.pushButton.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnGenerate_Bsearch.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.Btnrandomize_Bsearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))

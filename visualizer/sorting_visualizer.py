@@ -41,7 +41,6 @@ class sort_Visualizer:
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append((bar, text))
-            print("array drawn")
 
     #High lights the color of the bar
     def highlight(self, i, j, color):

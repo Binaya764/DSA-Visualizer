@@ -33,7 +33,7 @@ class Widget(QWidget):
         self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
         self.visualizer2 = ref_Visualizer(self.ui.ref_graphicsView)
         self.visualizer3 = code_Visualizer(self.ui.code_graphicsView)
-        #self.binary_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
+
 
         self.active_visualizer= self.visualizer
 
@@ -45,14 +45,16 @@ class Widget(QWidget):
         # Connect Start Button
         #for Bubble sort
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
-        #self.ui.Btnrandomize.clicked.connect(self.random_array) #conncts the randomize button
         self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
 
         self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("sort"))
         self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.random_array("search"))
 
+        self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("sort"))
+        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.custom_array("search"))
 
-        #self.ui.BtnGenerate.clicked.connect(lambda: self.generate_array("search"))
+
+
 
 
         #for Binary search
@@ -87,7 +89,7 @@ class Widget(QWidget):
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
             if algo == "Binary Search":
-                self.active_visualizer = self.visualizer
+                self.active_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
@@ -103,12 +105,45 @@ class Widget(QWidget):
             self.play_step()
 
         elif self.active_algorithm == "Binary Search":
-            self.target = int(self.ui.target_lineEdit.text())
-            steps = binary_search(self.current_array.copy(), self.target)
-            self.play_binary_search(steps)
+                target_text = self.ui.target_lineEdit.text().strip()
+                if target_text == "":
+                        print("Please enter a target value for Binary Search!")
+                        return
+                try:
+                        self.target = int(target_text)
+                except ValueError:
+                        print("Invalid input! Enter a number.")
+                        return
+                steps = binary_search(self.current_array.copy(), self.target)
+                self.current_step = 0
+                self.play_binary_search(steps)
+
 
         else:
             print("No algorithm selected!")
+
+    def play_binary_search(self, steps):
+                if self.current_step >= len(steps):
+                    return
+
+                step_type, index, state = steps[self.current_step]
+
+                # Draw the array
+                self.active_visualizer.draw_array(state)
+
+                if step_type == "check":
+                    self.active_visualizer.highlight(index, index, Qt.yellow)
+
+                elif step_type == "found":
+                    self.active_visualizer.highlight(index, index, Qt.green)
+
+                elif step_type == "not_found":
+                    for i in range(len(state)):
+                        self.active_visualizer.highlight(i, i, Qt.red)
+
+                self.current_step += 1
+                QTimer.singleShot(600, lambda: self.play_binary_search(steps))
+
 
 
 
@@ -151,9 +186,17 @@ class Widget(QWidget):
         self.current_array = arr
 
 
-    def custom_array(self): #Gets array input from the user
-        size_txt = self.ui.size_array_lineEdit.text()  #gets the size of the array
-        custom_arr = self.ui.custom_array_lineEdit.text() #gets the custom array
+    def custom_array(self,source ="sort"): #Gets array input from the user
+
+        if source == "sort":
+                size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                custom_arr = self.ui.custom_array_lineEdit.text()
+        elif source == "search":
+                size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
+                custom_arr = self.ui.lineEdit_Bsearch.text()
+        else:
+                return
+
 
         if size_txt == "" or custom_arr == "":
                 return
