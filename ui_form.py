@@ -350,10 +350,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_9)
 
-        self.graphicsView = QGraphicsView(self.groupBox_3)
-        self.graphicsView.setObjectName(u"graphicsView")
+        self.code_graphicsView_Bsearch = QGraphicsView(self.groupBox_3)
+        self.code_graphicsView_Bsearch.setObjectName(u"code_graphicsView_Bsearch")
 
-        self.verticalLayout_17.addWidget(self.graphicsView)
+        self.verticalLayout_17.addWidget(self.code_graphicsView_Bsearch)
 
 
         self.verticalLayout_18.addLayout(self.verticalLayout_17)

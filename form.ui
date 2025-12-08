@@ -506,7 +506,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QGraphicsView" name="graphicsView"/>
+                 <widget class="QGraphicsView" name="code_graphicsView_Bsearch"/>
                 </item>
                </layout>
               </item>

@@ -16,9 +16,9 @@ class code_Visualizer:
         for line in code_text.split("\n"):
             item = QGraphicsSimpleTextItem(line)
             item.setBrush(Qt.white)
-            item.setPos(0, y)
+            item.setPos(-5, y)
             self.scene.addItem(item)
-            y += 20   # line spacing
+            y += 25   # line spacing
 
 
 # Store your codes in constants or a dictionary
