@@ -67,6 +67,7 @@ class ref_Visualizer:
 
             self.bars = []       # stores QGraphicsRectItem
             self.values = []
+            self.indexes =[]
 
     def ref_drawArray(self,arr):
             self.scene.clear()
@@ -100,8 +101,32 @@ class ref_Visualizer:
 
                 self.scene.addItem(bar)
                 self.scene.addItem(text)
-
                 self.bars.append((bar, text))
+
+
+
+            #Adding index label
+            index_label= QGraphicsSimpleTextItem("Index:")
+            index_label.setBrush(Qt.white)
+            index_label.setPos(-52,-180)
+            self.scene.addItem(index_label)
+
+
+
+
+
+            for i in range(len(arr)):
+                x = i * ( 50+ spacing)
+                y = -230
+
+                index = QGraphicsSimpleTextItem(str(i))
+                index.setBrush(Qt.gray)
+                index.setPos(x+20, y+53)
+                self.scene.addItem(index)
+
+
+
+
 
 
 
