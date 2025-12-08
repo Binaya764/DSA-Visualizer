@@ -9,7 +9,8 @@ from ui_form import Ui_Widget
 
 #For Bubble sort
 from visualizer.sorting_visualizer import sort_Visualizer
-from visualizer.sorting_visualizer import code_Visualizer
+from visualizer.Code_visualizer import code_Visualizer
+from visualizer.Code_visualizer import ALGORITHM_CODES
 from visualizer.sorting_visualizer import ref_Visualizer
 from algorithms.sorting.Bubble_sort import bubble_sort
 
@@ -45,7 +46,6 @@ class Widget(QWidget):
         # Connect Start Button
         #for Bubble sort
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
-        self.ui.BtnGenerate.clicked.connect(self.custom_array) #connects the generate button
 
         self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("sort"))
         self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.random_array("search"))
@@ -56,16 +56,26 @@ class Widget(QWidget):
 
 
 
-
-        #for Binary search
-        self.ui.Btnrandomize_Bsearch.clicked.connect(self.random_array)
-
-
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
+        self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
 
         self.active_algorithm = None
+        self.animation_speed = 500
+
+    def change_speed(self,text):
+            speed_map ={
+            "0.25x" : 1000,
+            "0.50x" : 800,
+            "0.75x" : 600,
+            "1x"  : 500,
+            "1.25x" : 400,
+            "1.5x" : 300,
+            "2x" : 200,
+            "3x" : 100,}
+            self.animation_speed = speed_map.get(text, 500)
+            print("Animation speed set to:", self.animation_speed)
 
     def on_sort_changed(self, algo):
             mapping = {
@@ -76,10 +86,13 @@ class Widget(QWidget):
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
             self.active_algorithm = algo
             self.active_visualizer = self.visualizer
+            if algo in ALGORITHM_CODES:
+                self.visualizer3.show_code(ALGORITHM_CODES[algo])
+
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
-            self.visualizer3.scene.clear()
+            #self.visualizer3.scene.clear()
 
     def on_search_changed(self,algo):
             mapping = {
@@ -88,12 +101,18 @@ class Widget(QWidget):
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
+            if algo in ALGORITHM_CODES:
+                self.visualizer3.show_code(ALGORITHM_CODES[algo])
+
             if algo == "Binary Search":
                 self.active_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
 
+
+
+
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
-            self.visualizer3.scene.clear()
+            #self.visualizer3.scene.clear()
 
 
       #for sorting
@@ -144,7 +163,7 @@ class Widget(QWidget):
                         self.active_visualizer.highlight(i, i, Qt.red)
 
                 self.current_step += 1
-                QTimer.singleShot(600, lambda: self.play_binary_search(steps))
+                QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
 
 
 
@@ -170,7 +189,7 @@ class Widget(QWidget):
         self.current_step += 1
 
         # Controls the speed of the animation
-        QTimer.singleShot(600, self.play_step)
+        QTimer.singleShot(self.animation_speed, self.play_step)
 
 
     def random_array(self,source="sort"):  #Generates random array

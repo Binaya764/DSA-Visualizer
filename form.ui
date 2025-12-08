@@ -154,8 +154,19 @@
             <property name="topMargin">
              <number>10</number>
             </property>
-            <item>
+            <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter">
              <widget class="QPushButton" name="Btnstart">
+              <property name="maximumSize">
+               <size>
+                <width>60</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>Start</string>
               </property>
@@ -173,6 +184,76 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>7</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Speed</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="speed_comboBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>0.25x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>0.5x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>0.75x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1.25x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1.50x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>2x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>3x</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
