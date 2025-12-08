@@ -120,12 +120,42 @@ class Ui_Widget(object):
         self.horizontalLayout.setContentsMargins(-1, 10, -1, -1)
         self.Btnstart = QPushButton(self.widget)
         self.Btnstart.setObjectName(u"Btnstart")
+        self.Btnstart.setMaximumSize(QSize(60, 40))
+        font = QFont()
+        font.setPointSize(10)
+        self.Btnstart.setFont(font)
 
-        self.horizontalLayout.addWidget(self.Btnstart)
+        self.horizontalLayout.addWidget(self.Btnstart, 0, Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setSpacing(7)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(-1, -1, 10, 5)
+        self.label_11 = QLabel(self.widget)
+        self.label_11.setObjectName(u"label_11")
+
+        self.horizontalLayout_3.addWidget(self.label_11)
+
+        self.speed_comboBox = QComboBox(self.widget)
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.addItem("")
+        self.speed_comboBox.setObjectName(u"speed_comboBox")
+        self.speed_comboBox.setMaximumSize(QSize(70, 16777215))
+
+        self.horizontalLayout_3.addWidget(self.speed_comboBox)
+
+
+        self.horizontalLayout.addLayout(self.horizontalLayout_3)
 
 
         self.verticalLayout_12.addLayout(self.horizontalLayout)
@@ -274,33 +304,33 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_10)
 
-        self.lineEdit = QLineEdit(self.groupBox_3)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.size_array_lineEdit_Bsearch = QLineEdit(self.groupBox_3)
+        self.size_array_lineEdit_Bsearch.setObjectName(u"size_array_lineEdit_Bsearch")
 
-        self.verticalLayout_17.addWidget(self.lineEdit)
+        self.verticalLayout_17.addWidget(self.size_array_lineEdit_Bsearch)
 
         self.label_7 = QLabel(self.groupBox_3)
         self.label_7.setObjectName(u"label_7")
 
         self.verticalLayout_17.addWidget(self.label_7)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_3)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_Bsearch = QLineEdit(self.groupBox_3)
+        self.lineEdit_Bsearch.setObjectName(u"lineEdit_Bsearch")
 
-        self.verticalLayout_17.addWidget(self.lineEdit_2)
+        self.verticalLayout_17.addWidget(self.lineEdit_Bsearch)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, -1, -1, 8)
-        self.pushButton = QPushButton(self.groupBox_3)
-        self.pushButton.setObjectName(u"pushButton")
+        self.BtnGenerate_Bsearch = QPushButton(self.groupBox_3)
+        self.BtnGenerate_Bsearch.setObjectName(u"BtnGenerate_Bsearch")
 
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_4.addWidget(self.BtnGenerate_Bsearch)
 
-        self.pushButton_2 = QPushButton(self.groupBox_3)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.Btnrandomize_Bsearch = QPushButton(self.groupBox_3)
+        self.Btnrandomize_Bsearch.setObjectName(u"Btnrandomize_Bsearch")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_2)
+        self.horizontalLayout_4.addWidget(self.Btnrandomize_Bsearch)
 
 
         self.verticalLayout_17.addLayout(self.horizontalLayout_4)
@@ -310,10 +340,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_17.addWidget(self.label_8)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox_3)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.target_lineEdit = QLineEdit(self.groupBox_3)
+        self.target_lineEdit.setObjectName(u"target_lineEdit")
 
-        self.verticalLayout_17.addWidget(self.lineEdit_3)
+        self.verticalLayout_17.addWidget(self.target_lineEdit)
 
         self.label_9 = QLabel(self.groupBox_3)
         self.label_9.setObjectName(u"label_9")
@@ -363,7 +393,17 @@ class Ui_Widget(object):
         self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linked List", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Array Configuration", None))
+        self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
+        self.speed_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"0.25x", None))
+        self.speed_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"0.5x", None))
+        self.speed_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"0.75x", None))
+        self.speed_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"1x", None))
+        self.speed_comboBox.setItemText(4, QCoreApplication.translate("Widget", u"1.25x", None))
+        self.speed_comboBox.setItemText(5, QCoreApplication.translate("Widget", u"1.50x", None))
+        self.speed_comboBox.setItemText(6, QCoreApplication.translate("Widget", u"2x", None))
+        self.speed_comboBox.setItemText(7, QCoreApplication.translate("Widget", u"3x", None))
+
+        self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
@@ -374,8 +414,8 @@ class Ui_Widget(object):
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
-        self.pushButton.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.BtnGenerate_Bsearch.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.Btnrandomize_Bsearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
     # retranslateUi

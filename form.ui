@@ -154,8 +154,19 @@
             <property name="topMargin">
              <number>10</number>
             </property>
-            <item>
+            <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter">
              <widget class="QPushButton" name="Btnstart">
+              <property name="maximumSize">
+               <size>
+                <width>60</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>Start</string>
               </property>
@@ -173,6 +184,76 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>7</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Speed</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="speed_comboBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>0.25x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>0.5x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>0.75x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1.25x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1.50x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>2x</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>3x</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -241,7 +322,7 @@
          <item>
           <widget class="QGroupBox" name="groupBox_2">
            <property name="title">
-            <string>Array Configuration</string>
+            <string>Bubble Sort</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
@@ -374,7 +455,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit"/>
+                 <widget class="QLineEdit" name="size_array_lineEdit_Bsearch"/>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_7">
@@ -384,7 +465,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_2"/>
+                 <widget class="QLineEdit" name="lineEdit_Bsearch"/>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -392,14 +473,14 @@
                    <number>8</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="BtnGenerate_Bsearch">
                     <property name="text">
                      <string>+Generate</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="Btnrandomize_Bsearch">
                     <property name="text">
                      <string>Randomize</string>
                     </property>
@@ -415,7 +496,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_3"/>
+                 <widget class="QLineEdit" name="target_lineEdit"/>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_9">
