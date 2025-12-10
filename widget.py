@@ -68,10 +68,10 @@ class Widget(QWidget):
 
     def change_speed(self,text):
             speed_map ={
-            "0.25x" : 1000,
+            "1x" : 500,
             "0.50x" : 800,
             "0.75x" : 600,
-            "1x"  : 500,
+            "0.25"  : 1000,
             "1.25x" : 400,
             "1.5x" : 300,
             "2x" : 200,
@@ -82,7 +82,7 @@ class Widget(QWidget):
     def on_sort_changed(self, algo):
             mapping = {
                 "Bubble Sort": 0,
-                "Insertion Sort": 1,
+                "Selection Sort": 1,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
@@ -109,7 +109,7 @@ class Widget(QWidget):
             if algo == "Binary Search":
                 self.active_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Bsearch)
-            self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
