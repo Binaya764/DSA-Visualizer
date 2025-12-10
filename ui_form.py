@@ -293,10 +293,10 @@ class Ui_Widget(object):
 
         self.verticalLayout_20.addWidget(self.label_5)
 
-        self.lineEdit = QLineEdit(self.groupBox_4)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.size_array_lineEdit_SelectionSort = QLineEdit(self.groupBox_4)
+        self.size_array_lineEdit_SelectionSort.setObjectName(u"size_array_lineEdit_SelectionSort")
 
-        self.verticalLayout_20.addWidget(self.lineEdit)
+        self.verticalLayout_20.addWidget(self.size_array_lineEdit_SelectionSort)
 
         self.label_12 = QLabel(self.groupBox_4)
         self.label_12.setObjectName(u"label_12")
@@ -304,22 +304,22 @@ class Ui_Widget(object):
 
         self.verticalLayout_20.addWidget(self.label_12)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_4)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.CArray_lineEdit_SelectionSort = QLineEdit(self.groupBox_4)
+        self.CArray_lineEdit_SelectionSort.setObjectName(u"CArray_lineEdit_SelectionSort")
 
-        self.verticalLayout_20.addWidget(self.lineEdit_2)
+        self.verticalLayout_20.addWidget(self.CArray_lineEdit_SelectionSort)
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.pushButton = QPushButton(self.groupBox_4)
-        self.pushButton.setObjectName(u"pushButton")
+        self.BtnGenerate_SelectionSort = QPushButton(self.groupBox_4)
+        self.BtnGenerate_SelectionSort.setObjectName(u"BtnGenerate_SelectionSort")
 
-        self.horizontalLayout_6.addWidget(self.pushButton)
+        self.horizontalLayout_6.addWidget(self.BtnGenerate_SelectionSort)
 
-        self.pushButton_2 = QPushButton(self.groupBox_4)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.BtnRandomize_SelectionSort = QPushButton(self.groupBox_4)
+        self.BtnRandomize_SelectionSort.setObjectName(u"BtnRandomize_SelectionSort")
 
-        self.horizontalLayout_6.addWidget(self.pushButton_2)
+        self.horizontalLayout_6.addWidget(self.BtnRandomize_SelectionSort)
 
 
         self.verticalLayout_20.addLayout(self.horizontalLayout_6)
@@ -330,10 +330,10 @@ class Ui_Widget(object):
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.verticalLayout_22 = QVBoxLayout()
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.graphicsView = QGraphicsView(self.groupBox_5)
-        self.graphicsView.setObjectName(u"graphicsView")
+        self.code_graphicsView_SSort = QGraphicsView(self.groupBox_5)
+        self.code_graphicsView_SSort.setObjectName(u"code_graphicsView_SSort")
 
-        self.verticalLayout_22.addWidget(self.graphicsView)
+        self.verticalLayout_22.addWidget(self.code_graphicsView_SSort)
 
 
         self.verticalLayout_23.addLayout(self.verticalLayout_22)
@@ -353,9 +353,77 @@ class Ui_Widget(object):
         self.stackedWidget.addWidget(self.Selection_sort)
         self.Linear_search = QWidget()
         self.Linear_search.setObjectName(u"Linear_search")
-        self.label_6 = QLabel(self.Linear_search)
+        self.horizontalLayout_7 = QHBoxLayout(self.Linear_search)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.verticalLayout_24 = QVBoxLayout()
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.groupBox_6 = QGroupBox(self.Linear_search)
+        self.groupBox_6.setObjectName(u"groupBox_6")
+        self.verticalLayout_26 = QVBoxLayout(self.groupBox_6)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_25 = QVBoxLayout()
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.label_6 = QLabel(self.groupBox_6)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(20, 10, 161, 20))
+
+        self.verticalLayout_25.addWidget(self.label_6)
+
+        self.size_array_lineEdit_LSearch = QLineEdit(self.groupBox_6)
+        self.size_array_lineEdit_LSearch.setObjectName(u"size_array_lineEdit_LSearch")
+
+        self.verticalLayout_25.addWidget(self.size_array_lineEdit_LSearch)
+
+        self.label_13 = QLabel(self.groupBox_6)
+        self.label_13.setObjectName(u"label_13")
+
+        self.verticalLayout_25.addWidget(self.label_13)
+
+        self.CArray_lineEdit_LSearch = QLineEdit(self.groupBox_6)
+        self.CArray_lineEdit_LSearch.setObjectName(u"CArray_lineEdit_LSearch")
+
+        self.verticalLayout_25.addWidget(self.CArray_lineEdit_LSearch)
+
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.BtnGenerate_LSearch = QPushButton(self.groupBox_6)
+        self.BtnGenerate_LSearch.setObjectName(u"BtnGenerate_LSearch")
+
+        self.horizontalLayout_8.addWidget(self.BtnGenerate_LSearch)
+
+        self.BtnRandomize_LSearch = QPushButton(self.groupBox_6)
+        self.BtnRandomize_LSearch.setObjectName(u"BtnRandomize_LSearch")
+
+        self.horizontalLayout_8.addWidget(self.BtnRandomize_LSearch)
+
+
+        self.verticalLayout_25.addLayout(self.horizontalLayout_8)
+
+        self.groupBox_7 = QGroupBox(self.groupBox_6)
+        self.groupBox_7.setObjectName(u"groupBox_7")
+        self.verticalLayout_28 = QVBoxLayout(self.groupBox_7)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.verticalLayout_27 = QVBoxLayout()
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.code_graphicsView_LSearch = QGraphicsView(self.groupBox_7)
+        self.code_graphicsView_LSearch.setObjectName(u"code_graphicsView_LSearch")
+
+        self.verticalLayout_27.addWidget(self.code_graphicsView_LSearch)
+
+
+        self.verticalLayout_28.addLayout(self.verticalLayout_27)
+
+
+        self.verticalLayout_25.addWidget(self.groupBox_7)
+
+
+        self.verticalLayout_26.addLayout(self.verticalLayout_25)
+
+
+        self.verticalLayout_24.addWidget(self.groupBox_6)
+
+
+        self.horizontalLayout_7.addLayout(self.verticalLayout_24)
+
         self.stackedWidget.addWidget(self.Linear_search)
         self.Binary_search = QWidget()
         self.Binary_search.setObjectName(u"Binary_search")
@@ -444,7 +512,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -482,10 +550,15 @@ class Ui_Widget(object):
         self.groupBox_4.setTitle(QCoreApplication.translate("Widget", u"Selection Sort", None))
         self.label_5.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_12.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
-        self.pushButton.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Randomize", None))
-        self.groupBox_5.setTitle(QCoreApplication.translate("Widget", u"GroupBox", None))
-        self.label_6.setText(QCoreApplication.translate("Widget", u"Linear Search", None))
+        self.BtnGenerate_SelectionSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnRandomize_SelectionSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("Widget", u"Code", None))
+        self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
+        self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label_13.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.BtnGenerate_LSearch.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnRandomize_LSearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.groupBox_7.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
         self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
