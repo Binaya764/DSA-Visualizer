@@ -37,6 +37,7 @@ class Widget(QWidget):
 
 
         self.active_visualizer= self.visualizer
+        self.currCode_visualizer = self.visualizer3
 
         # Animation variables
         self.steps = []
@@ -62,6 +63,7 @@ class Widget(QWidget):
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
 
         self.active_algorithm = None
+        self.currCode_visualizer = None
         self.animation_speed = 500
 
     def change_speed(self,text):
@@ -86,8 +88,9 @@ class Widget(QWidget):
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
             self.active_algorithm = algo
             self.active_visualizer = self.visualizer
-            if algo in ALGORITHM_CODES:
-                self.visualizer3.show_code(ALGORITHM_CODES[algo])
+            if algo == "Bubble Sort":
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
 
             self.active_visualizer.scene.clear()
@@ -101,14 +104,12 @@ class Widget(QWidget):
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
-            if algo in ALGORITHM_CODES:
-                self.visualizer3.show_code(ALGORITHM_CODES[algo])
+
 
             if algo == "Binary Search":
                 self.active_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
-
-
-
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Bsearch)
+            self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
