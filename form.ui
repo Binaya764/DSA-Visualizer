@@ -48,6 +48,9 @@
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="spacing">
+                <number>7</number>
+               </property>
                <item>
                 <widget class="QComboBox" name="sort_comboBox">
                  <property name="editable">
@@ -317,7 +320,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -732,6 +735,67 @@
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
                    <item>
                     <widget class="QGraphicsView" name="graphicsView"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_32">
+           <item>
+            <widget class="QGroupBox" name="groupBox_10">
+             <property name="title">
+              <string>Queue</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_34">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_33">
+                <item>
+                 <widget class="QLabel" name="label_16">
+                  <property name="text">
+                   <string>Input Values</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_Queue"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_13">
+                  <item>
+                   <widget class="QPushButton" name="Btn_Equeue">
+                    <property name="text">
+                     <string>Equeue</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="Btn_Dequeue">
+                    <property name="text">
+                     <string>Dequeue</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_11">
+                  <property name="title">
+                   <string>Code</string>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_16">
+                   <item>
+                    <widget class="QGraphicsView" name="code_graphicsView_Queue"/>
                    </item>
                   </layout>
                  </widget>

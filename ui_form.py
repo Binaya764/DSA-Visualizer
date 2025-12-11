@@ -48,6 +48,7 @@ class Ui_Widget(object):
         self.verticalLayout_5 = QVBoxLayout(self.groupBox)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_4 = QVBoxLayout()
+        self.verticalLayout_4.setSpacing(7)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.sort_comboBox = QComboBox(self.groupBox)
         self.sort_comboBox.addItem("")
