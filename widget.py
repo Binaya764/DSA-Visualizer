@@ -61,6 +61,7 @@ class Widget(QWidget):
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
+        self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
 
         self.active_algorithm = None
         self.currCode_visualizer = None
@@ -71,7 +72,7 @@ class Widget(QWidget):
             "1x" : 500,
             "0.50x" : 800,
             "0.75x" : 600,
-            "0.25"  : 1000,
+            "0.25x"  : 1500,
             "1.25x" : 400,
             "1.5x" : 300,
             "2x" : 200,
@@ -114,6 +115,19 @@ class Widget(QWidget):
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
             #self.visualizer3.scene.clear()
+
+    def on_dataStructure_changed(self,algo):
+            mapping = {
+            "Stack": 4,
+            "Queue": 5,}
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
+            self.active_algorithm = algo
+            if algo == "Stack":
+                    pass
+            elif algo == "Queue":
+                    pass
+            self.active_visualizer.scene.clear()
+            self.visualizer.scene.clear()
 
 
       #for sorting

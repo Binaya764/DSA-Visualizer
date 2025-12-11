@@ -65,12 +65,12 @@ class Ui_Widget(object):
 
         self.verticalLayout_4.addWidget(self.search_comboBox)
 
-        self.comboBox = QComboBox(self.groupBox)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.DS_comboBox = QComboBox(self.groupBox)
+        self.DS_comboBox.addItem("")
+        self.DS_comboBox.addItem("")
+        self.DS_comboBox.setObjectName(u"DS_comboBox")
 
-        self.verticalLayout_4.addWidget(self.comboBox)
+        self.verticalLayout_4.addWidget(self.DS_comboBox)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_4)
@@ -585,6 +585,65 @@ class Ui_Widget(object):
         self.verticalLayout_29.addLayout(self.horizontalLayout_9)
 
         self.stackedWidget.addWidget(self.page)
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.horizontalLayout_10 = QHBoxLayout(self.page_2)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.verticalLayout_32 = QVBoxLayout()
+        self.verticalLayout_32.setObjectName(u"verticalLayout_32")
+        self.groupBox_10 = QGroupBox(self.page_2)
+        self.groupBox_10.setObjectName(u"groupBox_10")
+        self.verticalLayout_34 = QVBoxLayout(self.groupBox_10)
+        self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.verticalLayout_33 = QVBoxLayout()
+        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
+        self.label_16 = QLabel(self.groupBox_10)
+        self.label_16.setObjectName(u"label_16")
+
+        self.verticalLayout_33.addWidget(self.label_16)
+
+        self.lineEdit_Queue = QLineEdit(self.groupBox_10)
+        self.lineEdit_Queue.setObjectName(u"lineEdit_Queue")
+
+        self.verticalLayout_33.addWidget(self.lineEdit_Queue)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.Btn_Equeue = QPushButton(self.groupBox_10)
+        self.Btn_Equeue.setObjectName(u"Btn_Equeue")
+
+        self.horizontalLayout_13.addWidget(self.Btn_Equeue)
+
+        self.Btn_Dequeue = QPushButton(self.groupBox_10)
+        self.Btn_Dequeue.setObjectName(u"Btn_Dequeue")
+
+        self.horizontalLayout_13.addWidget(self.Btn_Dequeue)
+
+
+        self.verticalLayout_33.addLayout(self.horizontalLayout_13)
+
+        self.groupBox_11 = QGroupBox(self.groupBox_10)
+        self.groupBox_11.setObjectName(u"groupBox_11")
+        self.horizontalLayout_16 = QHBoxLayout(self.groupBox_11)
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.code_graphicsView_Queue = QGraphicsView(self.groupBox_11)
+        self.code_graphicsView_Queue.setObjectName(u"code_graphicsView_Queue")
+
+        self.horizontalLayout_16.addWidget(self.code_graphicsView_Queue)
+
+
+        self.verticalLayout_33.addWidget(self.groupBox_11)
+
+
+        self.verticalLayout_34.addLayout(self.verticalLayout_33)
+
+
+        self.verticalLayout_32.addWidget(self.groupBox_10)
+
+
+        self.horizontalLayout_10.addLayout(self.verticalLayout_32)
+
+        self.stackedWidget.addWidget(self.page_2)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
 
@@ -610,8 +669,8 @@ class Ui_Widget(object):
         self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linear Search", None))
         self.search_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search", None))
 
-        self.comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Stack", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Queue", None))
+        self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Stack", None))
+        self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Queue", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
@@ -657,5 +716,10 @@ class Ui_Widget(object):
         self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Pop", None))
         self.pushButton_4.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
+        self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
+        self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values", None))
+        self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Equeue", None))
+        self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
+        self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
     # retranslateUi
 
