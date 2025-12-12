@@ -1,4 +1,4 @@
-# Qt build directories
+# Qt Creator build directories
 build*/
 *.pro.user
 *.qmake.stash
@@ -16,7 +16,7 @@ __pycache__/
 *.pyc
 .venv/
 .env/
-
+.qtcreator/Python_3_11_9venv/
 # Misc
 .DS_Store
 Thumbs.db
