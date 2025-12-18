@@ -320,7 +320,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
