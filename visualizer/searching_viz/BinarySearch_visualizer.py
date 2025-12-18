@@ -55,3 +55,6 @@ class Binary_Visualizer:
         """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(Qt.green))
+
+
+
