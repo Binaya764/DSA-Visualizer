@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>Widget</class>
  <widget class="QWidget" name="Widget">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>613</width>
-    <height>349</height>
+    <width>853</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -312,7 +315,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -421,19 +424,15 @@
         </widget>
        </widget>
        <widget class="QWidget" name="Linear_search">
-        <widget class="QLabel" name="label_6">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>161</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Linear Search</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_19">
+         <item>
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="title">
+            <string>Linear Search</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="Binary_search">
         <layout class="QVBoxLayout" name="verticalLayout_11">
