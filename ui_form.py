@@ -53,6 +53,7 @@ class Ui_Widget(object):
         self.sort_comboBox = QComboBox(self.groupBox)
         self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
+        self.sort_comboBox.addItem("")
         self.sort_comboBox.setObjectName(u"sort_comboBox")
         self.sort_comboBox.setEditable(False)
 
@@ -353,13 +354,13 @@ class Ui_Widget(object):
         self.horizontalLayout_5.addLayout(self.verticalLayout_19)
 
         self.stackedWidget.addWidget(self.Selection_sort)
-        self.page_3 = QWidget()
-        self.page_3.setObjectName(u"page_3")
-        self.horizontalLayout_17 = QHBoxLayout(self.page_3)
+        self.Insertion_Sort = QWidget()
+        self.Insertion_Sort.setObjectName(u"Insertion_Sort")
+        self.horizontalLayout_17 = QHBoxLayout(self.Insertion_Sort)
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.verticalLayout_35 = QVBoxLayout()
         self.verticalLayout_35.setObjectName(u"verticalLayout_35")
-        self.groupBox_12 = QGroupBox(self.page_3)
+        self.groupBox_12 = QGroupBox(self.Insertion_Sort)
         self.groupBox_12.setObjectName(u"groupBox_12")
         self.verticalLayout_37 = QVBoxLayout(self.groupBox_12)
         self.verticalLayout_37.setObjectName(u"verticalLayout_37")
@@ -370,32 +371,32 @@ class Ui_Widget(object):
 
         self.verticalLayout_36.addWidget(self.label_17)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_12)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.size_array_lineEdit_InsertionSort = QLineEdit(self.groupBox_12)
+        self.size_array_lineEdit_InsertionSort.setObjectName(u"size_array_lineEdit_InsertionSort")
 
-        self.verticalLayout_36.addWidget(self.lineEdit_2)
+        self.verticalLayout_36.addWidget(self.size_array_lineEdit_InsertionSort)
 
         self.label_18 = QLabel(self.groupBox_12)
         self.label_18.setObjectName(u"label_18")
 
         self.verticalLayout_36.addWidget(self.label_18)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox_12)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.CArray_lineEdit_InsertionSort = QLineEdit(self.groupBox_12)
+        self.CArray_lineEdit_InsertionSort.setObjectName(u"CArray_lineEdit_InsertionSort")
 
-        self.verticalLayout_36.addWidget(self.lineEdit_3)
+        self.verticalLayout_36.addWidget(self.CArray_lineEdit_InsertionSort)
 
         self.horizontalLayout_18 = QHBoxLayout()
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.pushButton_5 = QPushButton(self.groupBox_12)
-        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.BtnGenerate_InsertionSort = QPushButton(self.groupBox_12)
+        self.BtnGenerate_InsertionSort.setObjectName(u"BtnGenerate_InsertionSort")
 
-        self.horizontalLayout_18.addWidget(self.pushButton_5)
+        self.horizontalLayout_18.addWidget(self.BtnGenerate_InsertionSort)
 
-        self.pushButton_6 = QPushButton(self.groupBox_12)
-        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.BtnRandomize_InsertionSort = QPushButton(self.groupBox_12)
+        self.BtnRandomize_InsertionSort.setObjectName(u"BtnRandomize_InsertionSort")
 
-        self.horizontalLayout_18.addWidget(self.pushButton_6)
+        self.horizontalLayout_18.addWidget(self.BtnRandomize_InsertionSort)
 
 
         self.verticalLayout_36.addLayout(self.horizontalLayout_18)
@@ -406,10 +407,10 @@ class Ui_Widget(object):
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.verticalLayout_38 = QVBoxLayout()
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
-        self.graphicsView_2 = QGraphicsView(self.groupBox_13)
-        self.graphicsView_2.setObjectName(u"graphicsView_2")
+        self.code_graphicsView_InsertionSort = QGraphicsView(self.groupBox_13)
+        self.code_graphicsView_InsertionSort.setObjectName(u"code_graphicsView_InsertionSort")
 
-        self.verticalLayout_38.addWidget(self.graphicsView_2)
+        self.verticalLayout_38.addWidget(self.code_graphicsView_InsertionSort)
 
 
         self.horizontalLayout_19.addLayout(self.verticalLayout_38)
@@ -426,7 +427,7 @@ class Ui_Widget(object):
 
         self.horizontalLayout_17.addLayout(self.verticalLayout_35)
 
-        self.stackedWidget.addWidget(self.page_3)
+        self.stackedWidget.addWidget(self.Insertion_Sort)
         self.Linear_search = QWidget()
         self.Linear_search.setObjectName(u"Linear_search")
         self.horizontalLayout_7 = QHBoxLayout(self.Linear_search)
@@ -589,13 +590,13 @@ class Ui_Widget(object):
         self.verticalLayout_11.addLayout(self.verticalLayout_8)
 
         self.stackedWidget.addWidget(self.Binary_search)
-        self.page = QWidget()
-        self.page.setObjectName(u"page")
-        self.verticalLayout_29 = QVBoxLayout(self.page)
+        self.Stack = QWidget()
+        self.Stack.setObjectName(u"Stack")
+        self.verticalLayout_29 = QVBoxLayout(self.Stack)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.groupBox_8 = QGroupBox(self.page)
+        self.groupBox_8 = QGroupBox(self.Stack)
         self.groupBox_8.setObjectName(u"groupBox_8")
         self.verticalLayout_31 = QVBoxLayout(self.groupBox_8)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
@@ -658,14 +659,14 @@ class Ui_Widget(object):
 
         self.verticalLayout_29.addLayout(self.horizontalLayout_9)
 
-        self.stackedWidget.addWidget(self.page)
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.horizontalLayout_10 = QHBoxLayout(self.page_2)
+        self.stackedWidget.addWidget(self.Stack)
+        self.Queue = QWidget()
+        self.Queue.setObjectName(u"Queue")
+        self.horizontalLayout_10 = QHBoxLayout(self.Queue)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.verticalLayout_32 = QVBoxLayout()
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
-        self.groupBox_10 = QGroupBox(self.page_2)
+        self.groupBox_10 = QGroupBox(self.Queue)
         self.groupBox_10.setObjectName(u"groupBox_10")
         self.verticalLayout_34 = QVBoxLayout(self.groupBox_10)
         self.verticalLayout_34.setObjectName(u"verticalLayout_34")
@@ -717,7 +718,7 @@ class Ui_Widget(object):
 
         self.horizontalLayout_10.addLayout(self.verticalLayout_32)
 
-        self.stackedWidget.addWidget(self.page_2)
+        self.stackedWidget.addWidget(self.Queue)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
 
@@ -738,7 +739,8 @@ class Ui_Widget(object):
         self.label.setText(QCoreApplication.translate("Widget", u"Data Structures", None))
         self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Algorithms", None))
         self.sort_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Selection Sort", None))
-        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Bubble Sort", None))
+        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Insertion Sort", None))
+        self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Bubble Sort", None))
 
         self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linear Search", None))
         self.search_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search", None))
@@ -772,8 +774,8 @@ class Ui_Widget(object):
         self.groupBox_12.setTitle(QCoreApplication.translate("Widget", u"Insertion Sort", None))
         self.label_17.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_18.setText(QCoreApplication.translate("Widget", u"Custom array", None))
-        self.pushButton_5.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.pushButton_6.setText(QCoreApplication.translate("Widget", u"Random", None))
+        self.BtnGenerate_InsertionSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Random", None))
         self.groupBox_13.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))
