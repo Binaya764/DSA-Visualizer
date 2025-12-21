@@ -63,6 +63,11 @@
                  </item>
                  <item>
                   <property name="text">
+                   <string>Insertion Sort</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
                    <string>Bubble Sort</string>
                   </property>
                  </item>
@@ -500,7 +505,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_3">
+       <widget class="QWidget" name="Insertion_Sort">
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_35">
@@ -520,7 +525,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_2"/>
+                 <widget class="QLineEdit" name="size_array_lineEdit_InsertionSort"/>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_18">
@@ -530,19 +535,19 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_3"/>
+                 <widget class="QLineEdit" name="CArray_lineEdit_InsertionSort"/>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_18">
                   <item>
-                   <widget class="QPushButton" name="pushButton_5">
+                   <widget class="QPushButton" name="BtnGenerate_InsertionSort">
                     <property name="text">
                      <string>+Generate</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_6">
+                   <widget class="QPushButton" name="BtnRandomize_InsertionSort">
                     <property name="text">
                      <string>Random</string>
                     </property>
@@ -559,7 +564,7 @@
                    <item>
                     <layout class="QVBoxLayout" name="verticalLayout_38">
                      <item>
-                      <widget class="QGraphicsView" name="graphicsView_2"/>
+                      <widget class="QGraphicsView" name="code_graphicsView_InsertionSort"/>
                      </item>
                     </layout>
                    </item>
@@ -742,7 +747,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page">
+       <widget class="QWidget" name="Stack">
         <layout class="QVBoxLayout" name="verticalLayout_29">
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -823,7 +828,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_2">
+       <widget class="QWidget" name="Queue">
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_32">

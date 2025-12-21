@@ -4,6 +4,15 @@ from PySide6.QtCore import QTimer, Qt
 
 # Import UI
 from ui_form import Ui_Widget
+from PySide6.QtGui import QColor
+
+soft_blue   = QColor(100, 149, 237)   # Cornflower blue
+soft_green  = QColor(144, 238, 144)   # Light green
+soft_red    = QColor(240, 128, 128)   # Light coral
+soft_gray   = QColor(200, 200, 200)   # Light gray
+soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
+
 
 # Import Visualizer and  algorithms
 
@@ -17,6 +26,10 @@ from algorithms.sorting.Bubble_sort import bubble_sort
 #For Binary search
 from algorithms.Searching.Binary_Search import binary_search
 from visualizer.searching_viz.BinarySearch_visualizer import Binary_Visualizer
+
+#For Insertion Sort
+from algorithms.sorting.insertion_sort import Insertion_sort
+from visualizer.Sorting_viz.InsertionSort_visualizer import  insertionSort_Visualizer
 
 
 import random
@@ -48,11 +61,13 @@ class Widget(QWidget):
         #for Bubble sort
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
 
-        self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("sort"))
-        self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.random_array("search"))
+        self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("Bubble_sort"))
+        self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.random_array("Binary_search"))
+        self.ui.BtnRandomize_InsertionSort.clicked.connect(lambda: self.random_array("Insertion_sort"))
 
-        self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("sort"))
-        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.custom_array("search"))
+        self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("Bubble_sort"))
+        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.custom_array("Binary_search"))
+        self.ui.BtnGenerate_InsertionSort.clicked.connect(lambda: self.custom_array("Insertion_sort"))
 
 
 
@@ -84,6 +99,7 @@ class Widget(QWidget):
             mapping = {
                 "Bubble Sort": 0,
                 "Selection Sort": 1,
+                "Insertion Sort": 2,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
@@ -93,6 +109,11 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
+            elif algo =="Insertion Sort":
+                    self.active_visualizer = insertionSort_Visualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_InsertionSort)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
@@ -100,8 +121,8 @@ class Widget(QWidget):
 
     def on_search_changed(self,algo):
             mapping = {
-            "Linear Search": 2,
-            "Binary Search": 3,
+            "Linear Search": 3,
+            "Binary Search": 4,
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
@@ -118,8 +139,8 @@ class Widget(QWidget):
 
     def on_dataStructure_changed(self,algo):
             mapping = {
-            "Stack": 4,
-            "Queue": 5,}
+            "Stack": 5,
+            "Queue": 6,}
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
@@ -138,6 +159,11 @@ class Widget(QWidget):
             self.steps = bubble_sort(self.current_array.copy())
             self.play_step()
 
+        elif self.active_algorithm == "Insertion Sort":
+                print("Insertion sort called")
+                self.steps = Insertion_sort(self.current_array.copy())
+                self.play_Insertion_sort()
+
         elif self.active_algorithm == "Binary Search":
                 target_text = self.ui.target_lineEdit.text().strip()
                 if target_text == "":
@@ -155,6 +181,7 @@ class Widget(QWidget):
 
         else:
             print("No algorithm selected!")
+
 
     def play_binary_search(self, steps):
                 if self.current_step >= len(steps):
@@ -179,6 +206,59 @@ class Widget(QWidget):
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
+
+    def play_Insertion_sort(self):
+                    if self.current_step >= len(self.steps):
+                        self.active_visualizer.completed_sort()
+                        return
+
+                    step_type, i, j, state = self.steps[self.current_step]
+
+                    self.active_visualizer.draw_array(state)
+
+                    if step_type == "compare":
+                        self.active_visualizer.highlight(i, j, soft_yellow)
+
+                    elif step_type == "shift":
+                        self.active_visualizer.highlight(i, j, soft_red)
+
+                    elif step_type == "insert":
+                        self.active_visualizer.highlight(i, i, soft_green)
+
+                    elif step_type == "key":
+                        self.active_visualizer.highlight(i, i, soft_blue)
+
+                    self.current_step += 1
+                    QTimer.singleShot(self.animation_speed, self.play_step)
+
+
+
+
+
+    """def play_Insertion_sort(self):
+        if self.current_step >= len(self.steps):
+           self.active_visualizer.completed_sort()
+           return# animation finished
+
+        step_type, i, j, state = self.steps[self.current_step]
+
+            # Highlight comparisons
+        if step_type == "compare":
+                self.active_visualizer.draw_array(state)
+                self.active_visualizer.highlight(i, j, Qt.green)
+
+            # Swap bars and highlight them
+        elif step_type == "swap":
+                self.active_visualizer.swap_bars(state, i, j)
+                self.active_visualizer.highlight(i, j, Qt.green)
+
+
+        self.current_step += 1
+
+            # Controls the speed of the animation
+        QTimer.singleShot(self.animation_speed, self.play_step)"""
+
+
 
 
 
@@ -207,11 +287,15 @@ class Widget(QWidget):
         QTimer.singleShot(self.animation_speed, self.play_step)
 
 
-    def random_array(self,source="sort"):  #Generates random array
-        if source == "sort":
+    def random_array(self,source="Bubble_sort"):  #Generates random array
+        if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
-        elif source == "search":
-                size = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
+        elif source == "Insertion_sort":
+                print("Random array insertion sort called")
+                size= int(self.ui.size_array_lineEdit_InsertionSort.text())
+        elif source == "Binary_search":
+                size = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input        
+
         else:
                 return
         print(size)
@@ -222,12 +306,12 @@ class Widget(QWidget):
         self.current_array = arr
 
 
-    def custom_array(self,source ="sort"): #Gets array input from the user
+    def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
 
-        if source == "sort":
+        if source == "Bubble_sort":
                 size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
                 custom_arr = self.ui.custom_array_lineEdit.text()
-        elif source == "search":
+        elif source == "Binary_search":
                 size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
                 custom_arr = self.ui.lineEdit_Bsearch.text()
         else:
