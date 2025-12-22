@@ -325,7 +325,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -489,7 +489,7 @@
                    <item>
                     <layout class="QVBoxLayout" name="verticalLayout_22">
                      <item>
-                      <widget class="QGraphicsView" name="code_graphicsView_SSort"/>
+                      <widget class="QGraphicsView" name="code_graphicsView_SelectionSort"/>
                      </item>
                     </layout>
                    </item>

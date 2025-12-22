@@ -333,10 +333,10 @@ class Ui_Widget(object):
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.verticalLayout_22 = QVBoxLayout()
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.code_graphicsView_SSort = QGraphicsView(self.groupBox_5)
-        self.code_graphicsView_SSort.setObjectName(u"code_graphicsView_SSort")
+        self.code_graphicsView_SelectionSort = QGraphicsView(self.groupBox_5)
+        self.code_graphicsView_SelectionSort.setObjectName(u"code_graphicsView_SelectionSort")
 
-        self.verticalLayout_22.addWidget(self.code_graphicsView_SSort)
+        self.verticalLayout_22.addWidget(self.code_graphicsView_SelectionSort)
 
 
         self.verticalLayout_23.addLayout(self.verticalLayout_22)
@@ -728,7 +728,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(5)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Widget)
