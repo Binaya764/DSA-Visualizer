@@ -235,29 +235,6 @@ class Widget(QWidget):
 
 
 
-    """def play_Insertion_sort(self):
-        if self.current_step >= len(self.steps):
-           self.active_visualizer.completed_sort()
-           return# animation finished
-
-        step_type, i, j, state = self.steps[self.current_step]
-
-            # Highlight comparisons
-        if step_type == "compare":
-                self.active_visualizer.draw_array(state)
-                self.active_visualizer.highlight(i, j, Qt.green)
-
-            # Swap bars and highlight them
-        elif step_type == "swap":
-                self.active_visualizer.swap_bars(state, i, j)
-                self.active_visualizer.highlight(i, j, Qt.green)
-
-
-        self.current_step += 1
-
-            # Controls the speed of the animation
-        QTimer.singleShot(self.animation_speed, self.play_step)"""
-
 
 
 
@@ -314,11 +291,16 @@ class Widget(QWidget):
         elif source == "Binary_search":
                 size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
                 custom_arr = self.ui.lineEdit_Bsearch.text()
+
+        elif source == "Insertion_sort":
+                size_txt = int(self.ui.size_array_lineEdit_InsertionSort.text())
+                custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
         else:
                 return
 
 
         if size_txt == "" or custom_arr == "":
+                print("input the required size and value for customr array!")
                 return
 
         size = int(size_txt)
