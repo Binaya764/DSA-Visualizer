@@ -607,33 +607,33 @@ class Ui_Widget(object):
 
         self.verticalLayout_30.addWidget(self.label_15)
 
-        self.lineEdit = QLineEdit(self.groupBox_8)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.Stack_lineEdit = QLineEdit(self.groupBox_8)
+        self.Stack_lineEdit.setObjectName(u"Stack_lineEdit")
 
-        self.verticalLayout_30.addWidget(self.lineEdit)
+        self.verticalLayout_30.addWidget(self.Stack_lineEdit)
 
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, -1, -1)
-        self.pushButton_3 = QPushButton(self.groupBox_8)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.BtnPeek_stack = QPushButton(self.groupBox_8)
+        self.BtnPeek_stack.setObjectName(u"BtnPeek_stack")
 
-        self.gridLayout.addWidget(self.pushButton_3, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.BtnPeek_stack, 1, 0, 1, 1)
 
-        self.pushButton = QPushButton(self.groupBox_8)
-        self.pushButton.setObjectName(u"pushButton")
+        self.BtnPush_stack = QPushButton(self.groupBox_8)
+        self.BtnPush_stack.setObjectName(u"BtnPush_stack")
 
-        self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.BtnPush_stack, 0, 0, 1, 1)
 
-        self.pushButton_2 = QPushButton(self.groupBox_8)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.BtnPop_stack = QPushButton(self.groupBox_8)
+        self.BtnPop_stack.setObjectName(u"BtnPop_stack")
 
-        self.gridLayout.addWidget(self.pushButton_2, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.BtnPop_stack, 0, 2, 1, 1)
 
-        self.pushButton_4 = QPushButton(self.groupBox_8)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.BtnClear_stack = QPushButton(self.groupBox_8)
+        self.BtnClear_stack.setObjectName(u"BtnClear_stack")
 
-        self.gridLayout.addWidget(self.pushButton_4, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.BtnClear_stack, 1, 2, 1, 1)
 
 
         self.verticalLayout_30.addLayout(self.gridLayout)
@@ -642,10 +642,10 @@ class Ui_Widget(object):
         self.groupBox_9.setObjectName(u"groupBox_9")
         self.horizontalLayout_12 = QHBoxLayout(self.groupBox_9)
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.graphicsView = QGraphicsView(self.groupBox_9)
-        self.graphicsView.setObjectName(u"graphicsView")
+        self.code_graphicsView_stack = QGraphicsView(self.groupBox_9)
+        self.code_graphicsView_stack.setObjectName(u"code_graphicsView_stack")
 
-        self.horizontalLayout_12.addWidget(self.graphicsView)
+        self.horizontalLayout_12.addWidget(self.code_graphicsView_stack)
 
 
         self.verticalLayout_30.addWidget(self.groupBox_9)
@@ -728,7 +728,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -793,10 +793,10 @@ class Ui_Widget(object):
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("Widget", u"Stack", None))
         self.label_15.setText(QCoreApplication.translate("Widget", u"Input values", None))
-        self.pushButton_3.setText(QCoreApplication.translate("Widget", u"Peek", None))
-        self.pushButton.setText(QCoreApplication.translate("Widget", u"Push", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Widget", u"Pop", None))
-        self.pushButton_4.setText(QCoreApplication.translate("Widget", u"Clear", None))
+        self.BtnPeek_stack.setText(QCoreApplication.translate("Widget", u"Peek", None))
+        self.BtnPush_stack.setText(QCoreApplication.translate("Widget", u"Push", None))
+        self.BtnPop_stack.setText(QCoreApplication.translate("Widget", u"Pop", None))
+        self.BtnClear_stack.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
         self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values", None))

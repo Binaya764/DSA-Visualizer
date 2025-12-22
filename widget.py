@@ -31,6 +31,11 @@ from visualizer.searching_viz.BinarySearch_visualizer import Binary_Visualizer
 from algorithms.sorting.insertion_sort import Insertion_sort
 from visualizer.Sorting_viz.InsertionSort_visualizer import  insertionSort_Visualizer
 
+#For Stack
+from algorithms.Stack import stack_fun
+from visualizer.Stack_visualizer import StackVisualizer
+
+
 
 import random
 
@@ -56,6 +61,7 @@ class Widget(QWidget):
         self.steps = []
         self.current_step = 0
         self.current_array=[] #Stores the current updated array
+        self.stack = stack_fun(capacity=5)
 
         # Connect Start Button
         #for Bubble sort
@@ -68,6 +74,11 @@ class Widget(QWidget):
         self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("Bubble_sort"))
         self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.custom_array("Binary_search"))
         self.ui.BtnGenerate_InsertionSort.clicked.connect(lambda: self.custom_array("Insertion_sort"))
+
+        #Button for Stack
+        self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
+
+
 
 
 
@@ -144,7 +155,9 @@ class Widget(QWidget):
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
-                    pass
+                    self.active_visualizer = StackVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_stack)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
             elif algo == "Queue":
                     pass
             self.active_visualizer.scene.clear()
@@ -317,6 +330,27 @@ class Widget(QWidget):
                 self.current_array = arr
                 self.visualizer2.ref_drawArray(arr)
                 self.active_visualizer.draw_array(arr)
+
+        #for stacks
+    def push_stack(self,source ="Stack"):
+        value_text = self.ui.Stack_lineEdit.text().strip()
+        if not value_text:
+                return
+
+        try:
+                value = int(value_text)
+        except ValueError:
+                print("Invalid input")
+                return
+
+        action, state = self.stack.push(value)
+
+        if action == "overflow":
+                print("Stack overflow!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+        self.ui.Stack_lineEdit.clear()
 
 
 

@@ -59,9 +59,12 @@ def binary_search(arr, target):
 INSERTION_SORT_CODE="""
 """
 
+STACK_CODE="""  """
+
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
     "Binary Search": BINARY_SEARCH_CODE,
     "Insertion Sort":INSERTION_SORT_CODE,
+    "Stack": STACK_CODE,
 
 }
