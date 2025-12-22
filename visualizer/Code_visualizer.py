@@ -36,6 +36,24 @@ def bubble_sort(arr):
 
 """
 
+SELECTION_SORT_CODE = """
+def selection_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        min_index = i
+
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+
+        if min_index != i:
+            arr[i], arr[min_index] = arr[min_index], arr[i]
+
+    return arr
+"""
+
+
 BINARY_SEARCH_CODE = """
 def binary_search(arr, target):
     left = 0
@@ -63,8 +81,9 @@ STACK_CODE="""  """
 
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
+    "Selection Sort": SELECTION_SORT_CODE,
     "Binary Search": BINARY_SEARCH_CODE,
-    "Insertion Sort":INSERTION_SORT_CODE,
+    "Insertion Sort": INSERTION_SORT_CODE,
     "Stack": STACK_CODE,
-
 }
+

@@ -1,6 +1,11 @@
 import sys
 from PySide6.QtWidgets import QApplication, QWidget
 from PySide6.QtCore import QTimer, Qt
+# Selection Sort
+from algorithms.sorting.selection_sort import selection_sort
+from visualizer.Sorting_viz.SelectionSort_visualizer import selectionSort_Visualizer
+
+
 
 # Import UI
 from ui_form import Ui_Widget
@@ -120,6 +125,12 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
+            elif algo == "Selection Sort":
+                        self.active_visualizer = selectionSort_Visualizer(self.ui.visualizer_graphicsView)
+                        self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_SelectionSort)
+                        self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
             elif algo =="Insertion Sort":
                     self.active_visualizer = insertionSort_Visualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_InsertionSort)
@@ -176,6 +187,12 @@ class Widget(QWidget):
                 print("Insertion sort called")
                 self.steps = Insertion_sort(self.current_array.copy())
                 self.play_Insertion_sort()
+
+        elif self.active_algorithm == "Selection Sort":
+                    self.steps = selection_sort(self.current_array.copy())
+                    self.current_step = 0
+                    self.play_selection_sort()
+
 
         elif self.active_algorithm == "Binary Search":
                 target_text = self.ui.target_lineEdit.text().strip()
@@ -243,6 +260,27 @@ class Widget(QWidget):
 
                     self.current_step += 1
                     QTimer.singleShot(self.animation_speed, self.play_step)
+
+
+    def play_selection_sort(self):
+                        if self.current_step >= len(self.steps):
+                            self.active_visualizer.completed_sort()
+                            return
+
+                        step_type, i, j, state = self.steps[self.current_step]
+
+                        self.active_visualizer.draw_array(state)
+
+                        if step_type == "compare":
+                            self.active_visualizer.highlight(i, j, soft_yellow)
+                        elif step_type == "select_min":
+                            self.active_visualizer.highlight(i, j, soft_blue)
+                        elif step_type == "swap":
+                            self.active_visualizer.highlight(i, j, soft_green)
+
+                        self.current_step += 1
+                        QTimer.singleShot(self.animation_speed, self.play_selection_sort)
+
 
 
 
