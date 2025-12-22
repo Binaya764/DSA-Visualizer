@@ -4,6 +4,9 @@ from PySide6.QtCore import QTimer, Qt
 # Selection Sort
 from algorithms.sorting.selection_sort import selection_sort
 from visualizer.Sorting_viz.SelectionSort_visualizer import selectionSort_Visualizer
+from visualizer.Code_visualizer import code_Visualizer
+from visualizer.Code_visualizer import ALGORITHM_CODES
+from visualizer.sorting_visualizer import sort_Visualizer
 
 
 
