@@ -77,6 +77,7 @@ class Widget(QWidget):
 
         #Button for Stack
         self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
+        self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
 
 
 
@@ -351,6 +352,17 @@ class Widget(QWidget):
                 self.active_visualizer.draw_stack(state)
 
         self.ui.Stack_lineEdit.clear()
+
+    def pop_stack(self,source = "Stack"):
+        action, value,state = self.stack.pop()
+
+        if action == "underflow":
+                print("Stack Underflow!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+
+
 
 
 
