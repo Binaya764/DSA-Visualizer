@@ -325,7 +325,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -767,7 +767,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit"/>
+                 <widget class="QLineEdit" name="Stack_lineEdit"/>
                 </item>
                 <item>
                  <layout class="QGridLayout" name="gridLayout">
@@ -778,28 +778,28 @@
                    <number>0</number>
                   </property>
                   <item row="1" column="0">
-                   <widget class="QPushButton" name="pushButton_3">
+                   <widget class="QPushButton" name="BtnPeek_stack">
                     <property name="text">
                      <string>Peek</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="0">
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="BtnPush_stack">
                     <property name="text">
                      <string>Push</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="BtnPop_stack">
                     <property name="text">
                      <string>Pop</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QPushButton" name="pushButton_4">
+                   <widget class="QPushButton" name="BtnClear_stack">
                     <property name="text">
                      <string>Clear</string>
                     </property>
@@ -814,7 +814,7 @@
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
                    <item>
-                    <widget class="QGraphicsView" name="graphicsView"/>
+                    <widget class="QGraphicsView" name="code_graphicsView_stack"/>
                    </item>
                   </layout>
                  </widget>
