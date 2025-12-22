@@ -61,10 +61,13 @@ INSERTION_SORT_CODE="""
 
 STACK_CODE="""  """
 
+SELECTION_SORT_CODE= """ """
+
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
     "Binary Search": BINARY_SEARCH_CODE,
     "Insertion Sort":INSERTION_SORT_CODE,
+    "Selection Sort": SELECTION_SORT_CODE,
     "Stack": STACK_CODE,
 
 }

@@ -35,6 +35,11 @@ from visualizer.Sorting_viz.InsertionSort_visualizer import  insertionSort_Visua
 from algorithms.Stack import stack_fun
 from visualizer.Stack_visualizer import StackVisualizer
 
+#For selection sort
+from algorithms.sorting.Selection_sort import selection_sort
+from visualizer.Sorting_viz.SelectionSort_visualizer import SelectionSortVisualizer
+
+
 
 
 import random
@@ -77,6 +82,12 @@ class Widget(QWidget):
 
         #Button for Stack
         self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
+        self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
+        self.ui.BtnPeek_stack.clicked.connect(lambda: self.peek_stack("Stack"))
+
+        #Button for Selection sort
+        self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
+        self.ui.BtnRandomize_SelectionSort.clicked.connect(lambda: self.random_array("Selection_sort"))
 
 
 
@@ -124,6 +135,13 @@ class Widget(QWidget):
                     self.active_visualizer = insertionSort_Visualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_InsertionSort)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+            elif algo == "Selection Sort":
+                    self.active_visualizer = SelectionSortVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_SelectionSort)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
 
 
             self.active_visualizer.scene.clear()
@@ -177,6 +195,10 @@ class Widget(QWidget):
                 self.steps = Insertion_sort(self.current_array.copy())
                 self.play_Insertion_sort()
 
+        elif self.active_algorithm == "Selection Sort":
+                self.steps = selection_sort(self.current_array.copy())
+                self.play_selection_sort()
+
         elif self.active_algorithm == "Binary Search":
                 target_text = self.ui.target_lineEdit.text().strip()
                 if target_text == "":
@@ -194,6 +216,30 @@ class Widget(QWidget):
 
         else:
             print("No algorithm selected!")
+
+    def play_selection_sort(self):
+            if self.current_step >= len(self.steps):
+               self.active_visualizer.completed_sort()
+               return# animation finished
+
+            step_type, i, j, state = self.steps[self.current_step]
+
+            # Highlight comparisons
+            if step_type == "compare":
+                self.active_visualizer.draw_array(state)
+                self.active_visualizer.highlight(i, j, Qt.green)
+
+            # Swap bars and highlight them
+            elif step_type == "swap":
+                self.active_visualizer.swap_bars(state, i, j)
+                self.active_visualizer.highlight(i, j, Qt.green)
+
+
+            self.current_step += 1
+
+            # Controls the speed of the animation
+            QTimer.singleShot(self.animation_speed, self.play_step)
+
 
 
     def play_binary_search(self, steps):
@@ -280,11 +326,17 @@ class Widget(QWidget):
     def random_array(self,source="Bubble_sort"):  #Generates random array
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+
         elif source == "Insertion_sort":
                 print("Random array insertion sort called")
                 size= int(self.ui.size_array_lineEdit_InsertionSort.text())
+
         elif source == "Binary_search":
-                size = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input        
+                size = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
+
+        elif source == "Selection_sort":
+                size = int(self.ui.size_array_lineEdit_SelectionSort.text())
+
 
         else:
                 return
@@ -308,6 +360,12 @@ class Widget(QWidget):
         elif source == "Insertion_sort":
                 size_txt = int(self.ui.size_array_lineEdit_InsertionSort.text())
                 custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
+
+        elif source == "Selection_sort":
+                size_txt = int(self.ui.size_array_lineEdit_SelectiontionSort.text())
+                custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
+
+
         else:
                 return
 
@@ -351,6 +409,25 @@ class Widget(QWidget):
                 self.active_visualizer.draw_stack(state)
 
         self.ui.Stack_lineEdit.clear()
+
+    def pop_stack(self,source = "Stack"):
+        action, value,state = self.stack.pop()
+
+        if action == "underflow":
+                print("Stack Underflow!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+    def peek_stack(self,source = "Stack"):
+        action, value, state = self.stack.peek()
+        if action == "underflow":
+                print("Stack is empty!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+
+
+
 
 
 
