@@ -57,6 +57,31 @@ def binary_search(arr, target):
 
 """
 INSERTION_SORT_CODE="""
+def Insertion_sort(arr):
+    steps = []
+    n = len(arr)
+
+    for i in range(1, n):
+        key = arr[i]
+        j = i - 1
+
+        # Highlight key
+        steps.append(("key", i, j, arr.copy()))
+
+        while j >= 0 and arr[j] > key:
+            # Compare
+            steps.append(("compare", j, j + 1, arr.copy()))
+
+            arr[j + 1] = arr[j]  # shift
+            steps.append(("shift", j, j + 1, arr.copy()))
+
+            j -= 1
+
+        arr[j + 1] = key
+        steps.append(("insert", j + 1, i, arr.copy()))
+
+    return steps
+
 """
 
 STACK_CODE="""
@@ -88,7 +113,25 @@ class stack_fun:
 
 """
 
-SELECTION_SORT_CODE= """ """
+SELECTION_SORT_CODE= """
+def selection_sort(arr):
+    steps = []
+    n = len(arr)
+
+    for i in range(n):
+        min_idx = i
+        for j in range(i+1, n):
+            steps.append(("compare", min_idx, j, arr.copy()))
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+
+        if min_idx != i:
+            arr[i], arr[min_idx] = arr[min_idx], arr[i]
+            steps.append(("swap", i, min_idx, arr.copy()))
+
+    return steps
+
+"""
 
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
