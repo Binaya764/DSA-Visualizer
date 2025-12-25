@@ -24,6 +24,7 @@ class code_Visualizer:
 # Store your codes in constants or a dictionary
 
 BUBBLE_SORT_CODE = """
+Time complexity = O(n²)
 def bubble_sort(arr):
     n = len(arr)
 
@@ -37,6 +38,7 @@ def bubble_sort(arr):
 """
 
 BINARY_SEARCH_CODE = """
+Time complexity = O(log n)
 def binary_search(arr, target):
     left = 0
     right = len(arr) - 1
@@ -57,6 +59,7 @@ def binary_search(arr, target):
 
 """
 INSERTION_SORT_CODE="""
+Time complexity = O(n²)
 def Insertion_sort(arr):
     steps = []
     n = len(arr)
@@ -114,6 +117,7 @@ class stack_fun:
 """
 
 SELECTION_SORT_CODE= """
+Time complexity = O(n²)
 def selection_sort(arr):
     steps = []
     n = len(arr)
