@@ -37,13 +37,16 @@ class Ui_Widget(object):
         self.verticalLayout_3 = QVBoxLayout(self.frame)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label = QLabel(self.frame)
-        self.label.setObjectName(u"label")
-
-        self.verticalLayout_2.addWidget(self.label)
-
-        self.groupBox = QGroupBox(self.frame)
+        self.groupBox_16 = QGroupBox(self.frame)
+        self.groupBox_16.setObjectName(u"groupBox_16")
+        self.verticalLayout_39 = QVBoxLayout(self.groupBox_16)
+        self.verticalLayout_39.setSpacing(15)
+        self.verticalLayout_39.setObjectName(u"verticalLayout_39")
+        self.verticalLayout_44 = QVBoxLayout()
+        self.verticalLayout_44.setObjectName(u"verticalLayout_44")
+        self.groupBox = QGroupBox(self.groupBox_16)
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout_5 = QVBoxLayout(self.groupBox)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -59,32 +62,63 @@ class Ui_Widget(object):
 
         self.verticalLayout_4.addWidget(self.sort_comboBox)
 
-        self.search_comboBox = QComboBox(self.groupBox)
-        self.search_comboBox.addItem("")
-        self.search_comboBox.addItem("")
-        self.search_comboBox.setObjectName(u"search_comboBox")
-
-        self.verticalLayout_4.addWidget(self.search_comboBox)
-
-        self.DS_comboBox = QComboBox(self.groupBox)
-        self.DS_comboBox.addItem("")
-        self.DS_comboBox.addItem("")
-        self.DS_comboBox.setObjectName(u"DS_comboBox")
-
-        self.verticalLayout_4.addWidget(self.DS_comboBox)
-
 
         self.verticalLayout_5.addLayout(self.verticalLayout_4)
 
 
-        self.verticalLayout_2.addWidget(self.groupBox)
+        self.verticalLayout_44.addWidget(self.groupBox)
 
 
-        self.verticalLayout_3.addLayout(self.verticalLayout_2)
+        self.verticalLayout_39.addLayout(self.verticalLayout_44)
+
+        self.groupBox_14 = QGroupBox(self.groupBox_16)
+        self.groupBox_14.setObjectName(u"groupBox_14")
+        self.verticalLayout_41 = QVBoxLayout(self.groupBox_14)
+        self.verticalLayout_41.setObjectName(u"verticalLayout_41")
+        self.verticalLayout_40 = QVBoxLayout()
+        self.verticalLayout_40.setObjectName(u"verticalLayout_40")
+        self.search_comboBox = QComboBox(self.groupBox_14)
+        self.search_comboBox.addItem("")
+        self.search_comboBox.addItem("")
+        self.search_comboBox.setObjectName(u"search_comboBox")
+
+        self.verticalLayout_40.addWidget(self.search_comboBox)
+
+
+        self.verticalLayout_41.addLayout(self.verticalLayout_40)
+
+
+        self.verticalLayout_39.addWidget(self.groupBox_14)
+
+        self.groupBox_15 = QGroupBox(self.groupBox_16)
+        self.groupBox_15.setObjectName(u"groupBox_15")
+        self.verticalLayout_43 = QVBoxLayout(self.groupBox_15)
+        self.verticalLayout_43.setSpacing(15)
+        self.verticalLayout_43.setObjectName(u"verticalLayout_43")
+        self.verticalLayout_42 = QVBoxLayout()
+        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
+        self.DS_comboBox = QComboBox(self.groupBox_15)
+        self.DS_comboBox.addItem("")
+        self.DS_comboBox.addItem("")
+        self.DS_comboBox.setObjectName(u"DS_comboBox")
+
+        self.verticalLayout_42.addWidget(self.DS_comboBox)
+
+
+        self.verticalLayout_43.addLayout(self.verticalLayout_42)
+
+
+        self.verticalLayout_39.addWidget(self.groupBox_15)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.verticalLayout_3.addItem(self.verticalSpacer)
+        self.verticalLayout_39.addItem(self.verticalSpacer)
+
+
+        self.verticalLayout_2.addWidget(self.groupBox_16)
+
+
+        self.verticalLayout_3.addLayout(self.verticalLayout_2)
 
 
         self.horizontalLayout_11.addWidget(self.frame)
@@ -728,7 +762,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -736,15 +770,17 @@ class Ui_Widget(object):
 
     def retranslateUi(self, Widget):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"Widget", None))
-        self.label.setText(QCoreApplication.translate("Widget", u"Data Structures", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Algorithms", None))
+        self.groupBox_16.setTitle(QCoreApplication.translate("Widget", u"Data Structures", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Sorting", None))
         self.sort_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Selection Sort", None))
         self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Insertion Sort", None))
         self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Bubble Sort", None))
 
+        self.groupBox_14.setTitle(QCoreApplication.translate("Widget", u"Searching", None))
         self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linear Search", None))
         self.search_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search", None))
 
+        self.groupBox_15.setTitle(QCoreApplication.translate("Widget", u" Linear Data Structure", None))
         self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Queue", None))
 
