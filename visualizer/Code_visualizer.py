@@ -137,11 +137,28 @@ def selection_sort(arr):
 
 """
 
+LINEAR_SEARCH_CODE= """
+def linear_search(arr, target):
+    steps = []
+
+    for i in range(len(arr)):
+        steps.append(("check", arr.copy()))
+
+
+        if arr[i] == target:
+            steps.append(("found",arr.copy()))
+            return steps, True  # found
+
+    steps.append(("not found",arr.copy()))
+
+    return steps, False  # not found"""
+
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
     "Binary Search": BINARY_SEARCH_CODE,
     "Insertion Sort":INSERTION_SORT_CODE,
     "Selection Sort": SELECTION_SORT_CODE,
     "Stack": STACK_CODE,
+    "Linear Search":   LINEAR_SEARCH_CODE,
 
 }

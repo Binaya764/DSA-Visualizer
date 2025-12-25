@@ -39,6 +39,10 @@ from visualizer.Stack_visualizer import StackVisualizer
 from algorithms.sorting.Selection_sort import selection_sort
 from visualizer.Sorting_viz.SelectionSort_visualizer import SelectionSortVisualizer
 
+#For Linear search
+from algorithms.Searching.Linear_search import linear_search
+from visualizer.searching_viz.LinearSearch_Visualizer import Linear_Visualizer
+
 
 
 
@@ -88,6 +92,11 @@ class Widget(QWidget):
         #Button for Selection sort
         self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
         self.ui.BtnRandomize_SelectionSort.clicked.connect(lambda: self.random_array("Selection_sort"))
+
+        #Button for linear search
+        self.ui.BtnRandomize_LSearch.clicked.connect(lambda: self.random_array("Linear_search"))
+        self.ui.BtnGenerate_LSearch.clicked.connect(lambda: self.custom_array("Linear_search"))
+
 
 
 
@@ -162,6 +171,12 @@ class Widget(QWidget):
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Bsearch)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
+            if algo == "Linear Search":
+                self.active_visualizer = Linear_Visualizer(self.ui.visualizer_graphicsView )
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_LSearch)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
             #self.visualizer3.scene.clear()
@@ -213,9 +228,48 @@ class Widget(QWidget):
                 self.current_step = 0
                 self.play_binary_search(steps)
 
+        elif self.active_algorithm == "Linear Search":
+                target_text = self.ui.target_lineEdit_LSearch.text().strip()
+                if target_text == "":
+                        print("Please enter a target value for linear Search!")
+                        return
+                try:
+                        self.target = int(target_text)
+                except ValueError:
+                        print("Invalid input! Enter a number.")
+                        return
+                steps, found = linear_search(self.current_array.copy(),self.target)
+                self.current_step = 0
+                self.play_linear_search(steps)
+
 
         else:
             print("No algorithm selected!")
+
+    def play_linear_search(self,steps):
+            if self.current_step >= len(steps):
+                return
+
+            step_type, index ,state= steps[self.current_step]
+
+            # Draw the array
+            self.active_visualizer.draw_array(state)
+
+            if step_type == "check":
+                print("checking")
+                self.active_visualizer.highlight(index)
+
+            elif step_type == "found":
+                print("found")
+                self.active_visualizer.found(index)
+
+            elif step_type == "not_found":
+                for i in range(len(state)):
+                    self.active_visualizer.highlight(i)
+
+            self.current_step += 1
+            QTimer.singleShot(self.animation_speed, lambda: self.play_linear_search(steps))
+
 
     def play_selection_sort(self):
             if self.current_step >= len(self.steps):
@@ -337,6 +391,11 @@ class Widget(QWidget):
         elif source == "Selection_sort":
                 size = int(self.ui.size_array_lineEdit_SelectionSort.text())
 
+        elif source == "Binary_search":
+                size = int(self.ui.size_array_lineEdit_BSearch.text())
+        elif source == "Linear_search":
+                size = int(self.ui.size_array_lineEdit_LSearch.text())
+
 
         else:
                 return
@@ -364,6 +423,10 @@ class Widget(QWidget):
         elif source == "Selection_sort":
                 size_txt = int(self.ui.size_array_lineEdit_SelectiontionSort.text())
                 custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
+
+        elif source == "Linear_search":
+                size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
+                custom_arr = self.ui.CArray_lineEdit_LSearch.text()
 
 
         else:

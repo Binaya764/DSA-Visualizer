@@ -1,15 +1,20 @@
-def linear_search_steps(arr, target):
+def linear_search(arr, target):
     steps = []
 
     for i in range(len(arr)):
-        step = {
-            "index": i,
-            "value": arr[i],
-            "is_match": arr[i] == target
-        }
-        steps.append(step)
+        steps.append(("check", i,arr.copy()))
+
 
         if arr[i] == target:
+            steps.append(("found",i,arr.copy()))
             return steps, True  # found
 
+    steps.append(("not found",-1,arr.copy()))
+
     return steps, False  # not found
+""" step = {
+     "index": i,
+     "value": arr[i],
+     "is_match": arr[i] == target
+ }
+ steps.append(step)"""
