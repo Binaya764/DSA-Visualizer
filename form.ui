@@ -65,17 +65,22 @@
                       </property>
                       <item>
                        <property name="text">
+                        <string>--Select Algorithm --</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Bubble Sort</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
                         <string>Selection Sort</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
                         <string>Insertion Sort</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Bubble Sort</string>
                        </property>
                       </item>
                      </widget>
@@ -97,6 +102,11 @@
                  <layout class="QVBoxLayout" name="verticalLayout_40">
                   <item>
                    <widget class="QComboBox" name="search_comboBox">
+                    <item>
+                     <property name="text">
+                      <string>--Select Algorithm--</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Linear Search</string>
@@ -127,6 +137,11 @@
                  <layout class="QVBoxLayout" name="verticalLayout_42">
                   <item>
                    <widget class="QComboBox" name="DS_comboBox">
+                    <item>
+                     <property name="text">
+                      <string>--Select --</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Stack</string>

@@ -120,9 +120,20 @@ class Widget(QWidget):
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
         self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
 
+        #initializing default algorithm
+        self.initialize_defaults()
+
         self.active_algorithm = None
         self.currCode_visualizer = None
         self.animation_speed = 500
+
+    def initialize_defaults(self):
+            self.ui.sort_comboBox.setCurrentIndex(0)
+            self.on_sort_changed(self.ui.sort_comboBox.currentText())
+
+
+
+
 
     def change_speed(self,text):
             speed_map ={
@@ -137,7 +148,26 @@ class Widget(QWidget):
             self.animation_speed = speed_map.get(text, 500)
             print("Animation speed set to:", self.animation_speed)
 
+
+    def reset_all_comboboxes(self, except_box=None):
+        comboboxes = [
+            self.ui.sort_comboBox,
+            self.ui.search_comboBox,
+            self.ui.DS_comboBox,
+            # add more here later (stack, queue, tree...)
+        ]
+
+        for box in comboboxes:
+            if box is except_box:
+                continue
+            box.blockSignals(True)
+            box.setCurrentIndex(0)  # reset to placeholder
+            box.blockSignals(False)
+
+
     def on_sort_changed(self, algo):
+            self.reset_all_comboboxes(except_box=self.ui.sort_comboBox)
+
             mapping = {
                 "Bubble Sort": 0,
                 "Selection Sort": 1,
@@ -169,6 +199,7 @@ class Widget(QWidget):
             #self.visualizer3.scene.clear()
 
     def on_search_changed(self,algo):
+            self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
             mapping = {
             "Linear Search": 3,
             "Binary Search": 4,
@@ -193,6 +224,7 @@ class Widget(QWidget):
             #self.visualizer3.scene.clear()
 
     def on_dataStructure_changed(self,algo):
+            self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
             mapping = {
             "Stack": 5,
             "Queue": 6,}
