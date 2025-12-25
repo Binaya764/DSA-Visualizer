@@ -35,6 +35,10 @@ from visualizer.Sorting_viz.InsertionSort_visualizer import  insertionSort_Visua
 from algorithms.Stack import stack_fun
 from visualizer.Stack_visualizer import StackVisualizer
 
+#For Queue
+from algorithms.Queue.Queue_algo import queue_fun
+from visualizer.queue_viz.Queue_visualizer import QueueVisualizer
+
 #For selection sort
 from algorithms.sorting.Selection_sort import selection_sort
 from visualizer.Sorting_viz.SelectionSort_visualizer import SelectionSortVisualizer
@@ -71,6 +75,7 @@ class Widget(QWidget):
         self.current_step = 0
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
+        self.queue = queue_fun(capacity = 10)
 
         # Connect Start Button
         #for Bubble sort
@@ -89,6 +94,10 @@ class Widget(QWidget):
         self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
         self.ui.BtnPeek_stack.clicked.connect(lambda: self.peek_stack("Stack"))
 
+        #Button for Queue
+        self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
+        self.ui.Btn_Dequeue.clicked.connect(lambda: self.dequeue_queue("Queue"))
+
         #Button for Selection sort
         self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
         self.ui.BtnRandomize_SelectionSort.clicked.connect(lambda: self.random_array("Selection_sort"))
@@ -96,6 +105,8 @@ class Widget(QWidget):
         #Button for linear search
         self.ui.BtnRandomize_LSearch.clicked.connect(lambda: self.random_array("Linear_search"))
         self.ui.BtnGenerate_LSearch.clicked.connect(lambda: self.custom_array("Linear_search"))
+
+
 
 
 
@@ -192,7 +203,9 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_stack)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
             elif algo == "Queue":
-                    pass
+                    self.active_visualizer = QueueVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
             self.active_visualizer.scene.clear()
             self.visualizer.scene.clear()
 
@@ -487,6 +500,36 @@ class Widget(QWidget):
                 print("Stack is empty!")
         else:
                 self.active_visualizer.draw_stack(state)
+
+        #Functions for Queue
+    def enqueue_queue(self,source = "Queue"):
+            value_text = self.ui.lineEdit_Queue.text().strip()
+            if not value_text:
+                    return
+
+            try:
+                    value = int(value_text)
+            except ValueError:
+                    print("Invalid input")
+                    return
+
+            action, state = self.queue.enqueue(value)
+
+            if action == "overflow":
+                    print("Queue overflow!")
+            else:
+                    self.active_visualizer.draw_queue(state)
+
+            self.ui.lineEdit_Queue.clear()
+
+    def dequeue_queue(self, source = "Queue"):
+                action,value, state = self.queue.dequeue()
+                if action == "underflow":
+                        print("Queue underflow!")
+                else:
+                        self.active_visualizer.draw_queue(state)
+
+
 
 
 

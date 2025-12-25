@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(615, 349)
+        Widget.resize(646, 335)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -762,7 +762,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(6)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -836,7 +836,7 @@ class Ui_Widget(object):
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
         self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values", None))
-        self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Equeue", None))
+        self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
     # retranslateUi

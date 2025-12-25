@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>349</height>
+    <width>646</width>
+    <height>335</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -366,7 +366,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>6</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -896,7 +896,7 @@
                   <item>
                    <widget class="QPushButton" name="Btn_Equeue">
                     <property name="text">
-                     <string>Equeue</string>
+                     <string>Enqueue</string>
                     </property>
                    </widget>
                   </item>
