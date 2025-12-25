@@ -172,6 +172,7 @@ class Widget(QWidget):
                 "Bubble Sort": 0,
                 "Selection Sort": 1,
                 "Insertion Sort": 2,
+                "Merge Sort":3,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
@@ -201,8 +202,8 @@ class Widget(QWidget):
     def on_search_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
             mapping = {
-            "Linear Search": 3,
-            "Binary Search": 4,
+            "Linear Search": 4,
+            "Binary Search": 5,
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
@@ -226,8 +227,8 @@ class Widget(QWidget):
     def on_dataStructure_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
             mapping = {
-            "Stack": 5,
-            "Queue": 6,}
+            "Stack": 6,
+            "Queue": 7,}
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
