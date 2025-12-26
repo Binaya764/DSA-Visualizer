@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(615, 349)
+        Widget.resize(646, 335)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -57,6 +57,7 @@ class Ui_Widget(object):
         self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
+        self.sort_comboBox.addItem("")
         self.sort_comboBox.setObjectName(u"sort_comboBox")
         self.sort_comboBox.setEditable(False)
 
@@ -80,6 +81,7 @@ class Ui_Widget(object):
         self.search_comboBox = QComboBox(self.groupBox_14)
         self.search_comboBox.addItem("")
         self.search_comboBox.addItem("")
+        self.search_comboBox.addItem("")
         self.search_comboBox.setObjectName(u"search_comboBox")
 
         self.verticalLayout_40.addWidget(self.search_comboBox)
@@ -98,6 +100,7 @@ class Ui_Widget(object):
         self.verticalLayout_42 = QVBoxLayout()
         self.verticalLayout_42.setObjectName(u"verticalLayout_42")
         self.DS_comboBox = QComboBox(self.groupBox_15)
+        self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
         self.DS_comboBox.setObjectName(u"DS_comboBox")
@@ -762,7 +765,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(6)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -772,17 +775,20 @@ class Ui_Widget(object):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"Widget", None))
         self.groupBox_16.setTitle(QCoreApplication.translate("Widget", u"Data Structures", None))
         self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Sorting", None))
-        self.sort_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Selection Sort", None))
-        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Insertion Sort", None))
-        self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Bubble Sort", None))
+        self.sort_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select Algorithm --", None))
+        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Bubble Sort", None))
+        self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Selection Sort", None))
+        self.sort_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Insertion Sort", None))
 
         self.groupBox_14.setTitle(QCoreApplication.translate("Widget", u"Searching", None))
-        self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Linear Search", None))
-        self.search_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search", None))
+        self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select Algorithm--", None))
+        self.search_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Linear Search", None))
+        self.search_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Binary Search", None))
 
         self.groupBox_15.setTitle(QCoreApplication.translate("Widget", u" Linear Data Structure", None))
-        self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"Stack", None))
-        self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Queue", None))
+        self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select --", None))
+        self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
+        self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
@@ -836,7 +842,7 @@ class Ui_Widget(object):
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
         self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values", None))
-        self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Equeue", None))
+        self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
     # retranslateUi

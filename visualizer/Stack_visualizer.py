@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimpleTextItem
-from PySide6.QtGui import QBrush
+from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
+
+soft_blue   = QColor(100, 149, 237)
 
 
 class StackVisualizer:

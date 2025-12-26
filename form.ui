@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>349</height>
+    <width>646</width>
+    <height>335</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,17 +65,22 @@
                       </property>
                       <item>
                        <property name="text">
+                        <string>--Select Algorithm --</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Bubble Sort</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
                         <string>Selection Sort</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
                         <string>Insertion Sort</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Bubble Sort</string>
                        </property>
                       </item>
                      </widget>
@@ -97,6 +102,11 @@
                  <layout class="QVBoxLayout" name="verticalLayout_40">
                   <item>
                    <widget class="QComboBox" name="search_comboBox">
+                    <item>
+                     <property name="text">
+                      <string>--Select Algorithm--</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Linear Search</string>
@@ -127,6 +137,11 @@
                  <layout class="QVBoxLayout" name="verticalLayout_42">
                   <item>
                    <widget class="QComboBox" name="DS_comboBox">
+                    <item>
+                     <property name="text">
+                      <string>--Select --</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>Stack</string>
@@ -366,7 +381,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>6</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -896,7 +911,7 @@
                   <item>
                    <widget class="QPushButton" name="Btn_Equeue">
                     <property name="text">
-                     <string>Equeue</string>
+                     <string>Enqueue</string>
                     </property>
                    </widget>
                   </item>
