@@ -31,11 +31,20 @@ class Linear_Visualizer:
 
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 20, y - height - 20)
+            text.setPos(x + 20, y - height +20)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append(bar)
+
+        for i in range(len(arr)):
+                    x = i * ( 60+ spacing)
+                    y = 140
+
+                    index = QGraphicsSimpleTextItem(str(i))
+                    index.setBrush(Qt.gray)
+                    index.setPos(x+20, y+60)
+                    self.scene.addItem(index)
 
     def highlight(self, index):
         """
