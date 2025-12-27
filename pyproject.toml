@@ -2,4 +2,4 @@
 name = "PySide Widgets Project"
 
 [tool.pyside6-project]
-files = ["../../Users/LENOVO/OneDrive/문서/hello/insertion_sort.py", "../../Users/LENOVO/OneDrive/문서/hello/selection_sort.py", "../../Users/LENOVO/OneDrive/문서/hello/selection_sort_anim.py", ".gitignore", "algorithms/sorting/Bubble_sort.py", "main.py", "visualizer/Animation_engine.py", "widget.py","algorithms/sorting/insertion_sort.py","visualizer/insertion_sort_anim.py"]
+files = [".gitignore", "algorithms/sorting/_init_.py", "algorithms/sorting/insertion_sort.py", "algorithms/sorting/merge_sort.py", "form.ui", "main.py", "ui_form.py", "visualizer/code_visualizer.py", "visualizer/sorting_visualizer.py", "visualizer/sorting_viz/_init_.py", "visualizer/sorting_viz/insertionSort_visualizer.py", "visualizer/sorting_viz/mergeSort_visualizer.py", "widget.py"]

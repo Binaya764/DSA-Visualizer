@@ -1,41 +1,24 @@
-# algorithms/insertion_sort.py
+# insertion_sort.py
 
-def insertion_sort_steps(arr):
-    """
-    Insertion sort logic that generates step-by-step states for visualization.
-    Each step contains:
-        - 'array': current array state
-        - 'highlight': indices being compared or moved
-        - 'key': index of current key element
-    """
-    array = arr.copy()
+def insertion_sort(arr):
     steps = []
-    steps.append({"array": array.copy(), "highlight": {}, "key": None})  # Initial state
 
-    for i in range(1, len(array)):
-        key = array[i]
+    for i in range(1, len(arr)):
+        key = arr[i]
         j = i - 1
 
-        steps.append({
-            "array": array.copy(),
-            "highlight": {i: True},  # Key element
-            "key": i
-        })
+        # highlight key
+        steps.append(("key", i, i, arr.copy()))
 
-        while j >= 0 and array[j] > key:
-            array[j + 1] = array[j]
-            steps.append({
-                "array": array.copy(),
-                "highlight": {j: True, j+1: True},  # Comparing/swapping
-                "key": i
-            })
+        while j >= 0 and arr[j] > key:
+            steps.append(("compare", j, j + 1, arr.copy()))
+
+            arr[j + 1] = arr[j]
+            steps.append(("shift", j, j + 1, arr.copy()))
+
             j -= 1
 
-        array[j + 1] = key
-        steps.append({
-            "array": array.copy(),
-            "highlight": {j+1: True},  # Key inserted
-            "key": j+1
-        })
+        arr[j + 1] = key
+        steps.append(("insert", j + 1, j + 1, arr.copy()))
 
     return steps
