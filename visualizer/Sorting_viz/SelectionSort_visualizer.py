@@ -37,6 +37,15 @@ class SelectionSortVisualizer:
             self.scene.addItem(text)
             self.bars.append((bar, text))
 
+            for i in range(len(arr)):
+                    x = i * ( 60+ spacing)
+                    y = 10
+
+                    index = QGraphicsSimpleTextItem(str(i))
+                    index.setBrush(Qt.gray)
+                    index.setPos(x+20, y+60)
+                    self.scene.addItem(index)
+
     def highlight(self, i, j, color):
         if 0 <= i < len(self.bars):
             self.bars[i][0].setBrush(QBrush(color))

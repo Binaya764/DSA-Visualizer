@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
+    <width>662</width>
     <height>335</height>
    </rect>
   </property>
@@ -81,6 +81,11 @@
                       <item>
                        <property name="text">
                         <string>Insertion Sort</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Merge Sort</string>
                        </property>
                       </item>
                      </widget>
@@ -381,7 +386,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>6</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="Bubble_sort">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -605,7 +610,7 @@
                   <item>
                    <widget class="QPushButton" name="BtnRandomize_InsertionSort">
                     <property name="text">
-                     <string>Random</string>
+                     <string>Randomize</string>
                     </property>
                    </widget>
                   </item>
@@ -621,6 +626,81 @@
                     <layout class="QVBoxLayout" name="verticalLayout_38">
                      <item>
                       <widget class="QGraphicsView" name="code_graphicsView_InsertionSort"/>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="Merge_sort">
+        <layout class="QVBoxLayout" name="verticalLayout_46">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_45">
+           <item>
+            <widget class="QGroupBox" name="groupBox_17">
+             <property name="title">
+              <string>Merge Sort</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_48">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_47">
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>Array Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="size_array_lineEdit_MergeSort"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_19">
+                  <property name="text">
+                   <string>Custom Array</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="CArray_lineEdit_MergeSort"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_20">
+                  <item>
+                   <widget class="QPushButton" name="BtnGenerate_MergeSort">
+                    <property name="text">
+                     <string>+Generate</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnRandomize_MergeSort">
+                    <property name="text">
+                     <string>Randomize</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_18">
+                  <property name="title">
+                   <string>Code</string>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_22">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_21">
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_MergeSort"/>
                      </item>
                     </layout>
                    </item>

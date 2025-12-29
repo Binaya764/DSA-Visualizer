@@ -14,8 +14,10 @@ def binary_search(arr, target):
             return steps
 
         elif arr[mid] < target:
+            steps.append(("low",mid,arr.copy()))
             left = mid + 1
         else:
+            steps.append(("high",mid,arr.copy()))
             right = mid - 1
 
     # Step: not found

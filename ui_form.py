@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(646, 335)
+        Widget.resize(662, 335)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -54,6 +54,7 @@ class Ui_Widget(object):
         self.verticalLayout_4.setSpacing(7)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.sort_comboBox = QComboBox(self.groupBox)
+        self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
         self.sort_comboBox.addItem("")
@@ -465,6 +466,80 @@ class Ui_Widget(object):
         self.horizontalLayout_17.addLayout(self.verticalLayout_35)
 
         self.stackedWidget.addWidget(self.Insertion_Sort)
+        self.Merge_sort = QWidget()
+        self.Merge_sort.setObjectName(u"Merge_sort")
+        self.verticalLayout_46 = QVBoxLayout(self.Merge_sort)
+        self.verticalLayout_46.setObjectName(u"verticalLayout_46")
+        self.verticalLayout_45 = QVBoxLayout()
+        self.verticalLayout_45.setObjectName(u"verticalLayout_45")
+        self.groupBox_17 = QGroupBox(self.Merge_sort)
+        self.groupBox_17.setObjectName(u"groupBox_17")
+        self.verticalLayout_48 = QVBoxLayout(self.groupBox_17)
+        self.verticalLayout_48.setObjectName(u"verticalLayout_48")
+        self.verticalLayout_47 = QVBoxLayout()
+        self.verticalLayout_47.setObjectName(u"verticalLayout_47")
+        self.label = QLabel(self.groupBox_17)
+        self.label.setObjectName(u"label")
+
+        self.verticalLayout_47.addWidget(self.label)
+
+        self.size_array_lineEdit_MergeSort = QLineEdit(self.groupBox_17)
+        self.size_array_lineEdit_MergeSort.setObjectName(u"size_array_lineEdit_MergeSort")
+
+        self.verticalLayout_47.addWidget(self.size_array_lineEdit_MergeSort)
+
+        self.label_19 = QLabel(self.groupBox_17)
+        self.label_19.setObjectName(u"label_19")
+
+        self.verticalLayout_47.addWidget(self.label_19)
+
+        self.CArray_lineEdit_MergeSort = QLineEdit(self.groupBox_17)
+        self.CArray_lineEdit_MergeSort.setObjectName(u"CArray_lineEdit_MergeSort")
+
+        self.verticalLayout_47.addWidget(self.CArray_lineEdit_MergeSort)
+
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.BtnGenerate_MergeSort = QPushButton(self.groupBox_17)
+        self.BtnGenerate_MergeSort.setObjectName(u"BtnGenerate_MergeSort")
+
+        self.horizontalLayout_20.addWidget(self.BtnGenerate_MergeSort)
+
+        self.BtnRandomize_MergeSort = QPushButton(self.groupBox_17)
+        self.BtnRandomize_MergeSort.setObjectName(u"BtnRandomize_MergeSort")
+
+        self.horizontalLayout_20.addWidget(self.BtnRandomize_MergeSort)
+
+
+        self.verticalLayout_47.addLayout(self.horizontalLayout_20)
+
+        self.groupBox_18 = QGroupBox(self.groupBox_17)
+        self.groupBox_18.setObjectName(u"groupBox_18")
+        self.horizontalLayout_22 = QHBoxLayout(self.groupBox_18)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.code_graphicsView_MergeSort = QGraphicsView(self.groupBox_18)
+        self.code_graphicsView_MergeSort.setObjectName(u"code_graphicsView_MergeSort")
+
+        self.horizontalLayout_21.addWidget(self.code_graphicsView_MergeSort)
+
+
+        self.horizontalLayout_22.addLayout(self.horizontalLayout_21)
+
+
+        self.verticalLayout_47.addWidget(self.groupBox_18)
+
+
+        self.verticalLayout_48.addLayout(self.verticalLayout_47)
+
+
+        self.verticalLayout_45.addWidget(self.groupBox_17)
+
+
+        self.verticalLayout_46.addLayout(self.verticalLayout_45)
+
+        self.stackedWidget.addWidget(self.Merge_sort)
         self.Linear_search = QWidget()
         self.Linear_search.setObjectName(u"Linear_search")
         self.horizontalLayout_7 = QHBoxLayout(self.Linear_search)
@@ -765,7 +840,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -779,6 +854,7 @@ class Ui_Widget(object):
         self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Bubble Sort", None))
         self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Selection Sort", None))
         self.sort_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Insertion Sort", None))
+        self.sort_comboBox.setItemText(4, QCoreApplication.translate("Widget", u"Merge Sort", None))
 
         self.groupBox_14.setTitle(QCoreApplication.translate("Widget", u"Searching", None))
         self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select Algorithm--", None))
@@ -817,8 +893,14 @@ class Ui_Widget(object):
         self.label_17.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_18.setText(QCoreApplication.translate("Widget", u"Custom array", None))
         self.BtnGenerate_InsertionSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Random", None))
+        self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.groupBox_13.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
+        self.groupBox_17.setTitle(QCoreApplication.translate("Widget", u"Merge Sort", None))
+        self.label.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label_19.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.BtnGenerate_MergeSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.groupBox_18.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_13.setText(QCoreApplication.translate("Widget", u"Custom Array", None))

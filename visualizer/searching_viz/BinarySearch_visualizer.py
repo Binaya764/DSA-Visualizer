@@ -7,7 +7,9 @@ class Binary_Visualizer:
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
+        self.y_offset = 200
 
+        self.row = 0
         self.bars = []       # store bar items
         self.values = []     # store actual numbers
 
@@ -19,7 +21,7 @@ class Binary_Visualizer:
         self.values = arr.copy()
         width = 60
         spacing = 1
-        y = 200
+        y = self.y_offset
 
         for i, val in enumerate(arr):
             height = 60
@@ -29,11 +31,21 @@ class Binary_Visualizer:
 
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 20, y - height - 20)
+            text.setPos(x + 20, y - height + 20)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append(bar)
+        self.y_offset +=70
+
+        for i in range(len(arr)):
+                    x = i * ( 60+ spacing)
+                    y = 140
+
+                    index = QGraphicsSimpleTextItem(str(i))
+                    index.setBrush(Qt.gray)
+                    index.setPos(x+20, y+60)
+                    self.scene.addItem(index)
 
     def highlight(self, left, mid, right, color_mid=Qt.yellow, color_others=Qt.yellow):
         """Highlight left, mid, right elements during search."""
