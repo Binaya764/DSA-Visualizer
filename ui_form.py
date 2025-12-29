@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(646, 335)
+        Widget.resize(662, 335)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -505,10 +505,10 @@ class Ui_Widget(object):
 
         self.horizontalLayout_20.addWidget(self.BtnGenerate_MergeSort)
 
-        self.BthnRandomize_MergeSort = QPushButton(self.groupBox_17)
-        self.BthnRandomize_MergeSort.setObjectName(u"BthnRandomize_MergeSort")
+        self.BtnRandomize_MergeSort = QPushButton(self.groupBox_17)
+        self.BtnRandomize_MergeSort.setObjectName(u"BtnRandomize_MergeSort")
 
-        self.horizontalLayout_20.addWidget(self.BthnRandomize_MergeSort)
+        self.horizontalLayout_20.addWidget(self.BtnRandomize_MergeSort)
 
 
         self.verticalLayout_47.addLayout(self.horizontalLayout_20)
@@ -899,7 +899,7 @@ class Ui_Widget(object):
         self.label.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_19.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate_MergeSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.BthnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.BtnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.groupBox_18.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))

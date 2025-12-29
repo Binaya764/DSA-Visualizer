@@ -47,6 +47,10 @@ from visualizer.Sorting_viz.SelectionSort_visualizer import SelectionSortVisuali
 from algorithms.Searching.Linear_search import linear_search
 from visualizer.searching_viz.LinearSearch_Visualizer import Linear_Visualizer
 
+#For Merge sort
+from algorithms.sorting.merge_sort import merge_Sort
+from visualizer.Sorting_viz.mergeSort_visualizer import mergeSort_Visualizer
+
 
 
 
@@ -105,6 +109,10 @@ class Widget(QWidget):
         #Button for linear search
         self.ui.BtnRandomize_LSearch.clicked.connect(lambda: self.random_array("Linear_search"))
         self.ui.BtnGenerate_LSearch.clicked.connect(lambda: self.custom_array("Linear_search"))
+
+        #Button for Merge sort:
+        self.ui.BtnRandomize_MergeSort.clicked.connect(lambda: self.random_array("Merge_sort"))
+        self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
 
 
 
@@ -192,6 +200,11 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_SelectionSort)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
+            elif algo == "Merge Sort":
+                    self.active_visualizer = mergeSort_Visualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_MergeSort)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
 
 
 
@@ -259,6 +272,11 @@ class Widget(QWidget):
         elif self.active_algorithm == "Selection Sort":
                 self.steps = selection_sort(self.current_array.copy())
                 self.play_selection_sort()
+        elif self.active_algorithm == "Merge Sort":
+                self.steps = merge_Sort(self.current_array.copy())
+                self.play_merge_sort()
+
+
 
         elif self.active_algorithm == "Binary Search":
                 target_text = self.ui.target_lineEdit.text().strip()
@@ -287,10 +305,46 @@ class Widget(QWidget):
                 steps, found = linear_search(self.current_array.copy(),self.target)
                 self.current_step = 0
                 self.play_linear_search(steps)
-
-
         else:
             print("No algorithm selected!")
+
+    def play_merge_sort(self):
+               # Stop any existing animation
+                if hasattr(self, "timer") and self.timer.isActive():
+                   self.timer.stop()
+
+               # Initialize timer
+                self.timer = QTimer()
+
+               # Generate merge sort steps
+                self.steps = merge_Sort(self.active_visualizer.values.copy())
+                self.step_index = 0
+
+               # Draw initial array
+                self.active_visualizer.draw_array(self.active_visualizer.values)
+
+
+                if self.step_index >= len(self.steps):
+                       self.timer.stop()
+                       self.merge_viz.completed_sort()
+                       return
+
+                action, i, j, arr_state = self.steps[self.step_index]
+
+                   # Redraw updated array state
+                self.active_visualizer.swap_bars(arr_state, i, j)
+
+                if action == "compare":
+                       self.active_visualizer.highlight(i, j, soft_blue)
+
+                elif action == "overwrite":
+                       self.active_visualizer.highlight(i, i, soft_red)
+
+                self.step_index += 1
+
+                QTimer.singleShot(self.animation_speed, self.play_step)
+
+
 
     def play_linear_search(self,steps):
             if self.current_step >= len(steps):
@@ -442,6 +496,9 @@ class Widget(QWidget):
         elif source == "Linear_search":
                 size = int(self.ui.size_array_lineEdit_LSearch.text())
 
+        elif source ==  "Merge_sort":
+                size = int(self.ui.size_array_lineEdit_MergeSort.text())
+
 
         else:
                 return
@@ -473,6 +530,10 @@ class Widget(QWidget):
         elif source == "Linear_search":
                 size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
                 custom_arr = self.ui.CArray_lineEdit_LSearch.text()
+
+        elif source == "Linear_search":
+                size_txt = int(self.ui.size_array_lineEdit_MergeSort.text())
+                custom_arr = self.ui.CArray_lineEdit_MergeSort.text()
 
 
         else:
