@@ -7,7 +7,9 @@ class Binary_Visualizer:
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
+        self.y_offset = 200
 
+        self.row = 0
         self.bars = []       # store bar items
         self.values = []     # store actual numbers
 
@@ -19,7 +21,7 @@ class Binary_Visualizer:
         self.values = arr.copy()
         width = 60
         spacing = 1
-        y = 200
+        y = self.y_offset
 
         for i, val in enumerate(arr):
             height = 60
@@ -34,6 +36,7 @@ class Binary_Visualizer:
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append(bar)
+        self.y_offset +=70
 
         for i in range(len(arr)):
                     x = i * ( 60+ spacing)
