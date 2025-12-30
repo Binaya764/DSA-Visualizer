@@ -86,11 +86,11 @@ class Widget(QWidget):
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
 
         self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("Bubble_sort"))
-        self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.random_array("Binary_search"))
+        self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.sorted_array("Binary_search"))
         self.ui.BtnRandomize_InsertionSort.clicked.connect(lambda: self.random_array("Insertion_sort"))
 
         self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("Bubble_sort"))
-        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.custom_array("Binary_search"))
+        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.CArray_Bsearch("Binary_search"))
         self.ui.BtnGenerate_InsertionSort.clicked.connect(lambda: self.custom_array("Insertion_sort"))
 
         #Button for Stack
@@ -114,14 +114,6 @@ class Widget(QWidget):
         self.ui.BtnRandomize_MergeSort.clicked.connect(lambda: self.random_array("Merge_sort"))
         self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
 
-
-
-
-
-
-
-
-
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
@@ -138,9 +130,6 @@ class Widget(QWidget):
     def initialize_defaults(self):
             self.ui.sort_comboBox.setCurrentIndex(0)
             self.on_sort_changed(self.ui.sort_comboBox.currentText())
-
-
-
 
 
     def change_speed(self,text):
@@ -177,10 +166,10 @@ class Widget(QWidget):
             self.reset_all_comboboxes(except_box=self.ui.sort_comboBox)
 
             mapping = {
-                "Bubble Sort": 0,
-                "Selection Sort": 1,
-                "Insertion Sort": 2,
-                "Merge Sort":3,
+                "Bubble Sort": 1,
+                "Selection Sort": 2,
+                "Insertion Sort": 3,
+                "Merge Sort":4,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
@@ -215,8 +204,8 @@ class Widget(QWidget):
     def on_search_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
             mapping = {
-            "Linear Search": 4,
-            "Binary Search": 5,
+            "Linear Search": 5,
+            "Binary Search": 6,
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
@@ -240,8 +229,8 @@ class Widget(QWidget):
     def on_dataStructure_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
             mapping = {
-            "Stack": 6,
-            "Queue": 7,}
+            "Stack": 7,
+            "Queue": 8,}
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
@@ -395,30 +384,57 @@ class Widget(QWidget):
             QTimer.singleShot(self.animation_speed, self.play_step)
 
 
-
     def play_binary_search(self, steps):
+                print("play binary search called")
+
                 if self.current_step >= len(steps):
                     return
 
-                step_type, index, state = steps[self.current_step]
+                step_type, old_left, mid, old_right, sub_arr, new_left, new_right = steps[self.current_step]
 
-                # Draw the array
-                self.active_visualizer.draw_array(state)
+                if step_type == "initial":
+                    print("Drawing initial array")
+                    self.active_visualizer.Bdraw_array(step_type, sub_arr, old_left)
 
-                if step_type == "check":
-                    print("checking")
-                    self.active_visualizer.highlight(index, index, soft_yellow)
+                elif step_type == "check":
+                    # Highlight the mid in current array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1)
+
+                elif step_type == "low":
+                    # Highlight before drawing new array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
+                    # Draw the new smaller array after a moment
+                    QTimer.singleShot(self.animation_speed // 4,
+                                     lambda: self.active_visualizer.Bdraw_array("low", sub_arr, new_left))
+
+                elif step_type == "high":
+
+                    # Highlight before drawing new array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
+                    # Draw the new smaller array after a moment
+                    QTimer.singleShot(self.animation_speed // 4,
+                                     lambda: self.active_visualizer.Bdraw_array("high", sub_arr, new_left))
 
                 elif step_type == "found":
-                    print("found")
-                    self.active_visualizer.found(index)
+
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.found(mid_in_current)
 
                 elif step_type == "not_found":
-                    for i in range(len(state)):
-                        self.active_visualizer.highlight(i, i, soft_red)
+                    print("Not found")
+                    # Show all current bars in red
+                    for bar in self.active_visualizer.bars:
+                        bar.setBrush(QBrush(soft_red))
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
+
+
+
+
 
     def play_Insertion_sort(self):
                     if self.current_step >= len(self.steps):
@@ -443,14 +459,6 @@ class Widget(QWidget):
 
                     self.current_step += 1
                     QTimer.singleShot(self.animation_speed, self.play_step)
-
-
-
-
-
-
-
-
 
 
     def play_step(self):        #plays animation
@@ -478,15 +486,14 @@ class Widget(QWidget):
 
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
+        self.active_visualizer.clear()
+
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
 
         elif source == "Insertion_sort":
                 print("Random array insertion sort called")
                 size= int(self.ui.size_array_lineEdit_InsertionSort.text())
-
-        elif source == "Binary_search":
-                size = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
 
         elif source == "Selection_sort":
                 size = int(self.ui.size_array_lineEdit_SelectionSort.text())
@@ -515,9 +522,7 @@ class Widget(QWidget):
         if source == "Bubble_sort":
                 size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
                 custom_arr = self.ui.custom_array_lineEdit.text()
-        elif source == "Binary_search":
-                size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
-                custom_arr = self.ui.lineEdit_Bsearch.text()
+
 
         elif source == "Insertion_sort":
                 size_txt = int(self.ui.size_array_lineEdit_InsertionSort.text())
@@ -558,6 +563,49 @@ class Widget(QWidget):
                 self.current_array = arr
                 self.visualizer2.ref_drawArray(arr)
                 self.active_visualizer.draw_array(arr)
+
+    def CArray_Bsearch(self,source = "Binary_serach"):
+                self.active_visualizer.clear()
+                if source == "Binary_search":
+                    size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
+                    custom_arr = self.ui.lineEdit_Bsearch.text()
+                if size_txt == "" or custom_arr == "":
+                            print("input the required size and value for customr array!")
+                            return
+
+                size = int(size_txt)
+
+                parts = custom_arr.replace(",", " ").split() #splits the string into individual values
+
+                if len(parts) != size:
+                            print("Array size does not match!")
+                            return
+                else:
+
+                            arr = [int(x) for x in parts]
+
+                            self.current_array = arr
+                            self.current_step = self.steps
+                            self.visualizer2.ref_drawArray(arr)
+                            self.active_visualizer.Bdraw_array(self.steps,arr)
+
+    def sorted_array(self,source = "Binary_search"):
+        self.active_visualizer.clear()
+        size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
+        arr = []
+        start = 1
+        step_max = 10
+        current = start
+        for _ in range(size_text):
+                current += random.randint(1, step_max)
+                arr.append(current)
+        self.current_array =arr
+        self.current_step = self.steps
+        self.active_visualizer.Bdraw_array(self.steps,arr)
+        self.visualizer2.ref_drawArray(arr)
+
+
+
 
         #for stacks
     def push_stack(self,source ="Stack"):
