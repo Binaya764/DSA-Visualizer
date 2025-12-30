@@ -1,6 +1,14 @@
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimpleTextItem
-from PySide6.QtGui import QBrush
+from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
+
+soft_blue   = QColor(100, 149, 237)   # Cornflower blue
+soft_green  =QColor(46, 125, 50)  # Light green
+soft_red    = QColor(240, 128, 128)   # Light coral
+soft_gray   = QColor(200, 200, 200)   # Light gray
+soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
+
 
 
 class Linear_Visualizer:
@@ -47,20 +55,17 @@ class Linear_Visualizer:
                     self.scene.addItem(index)
 
     def highlight(self, index):
-        """
-        Highlight the currently compared element.
-        All previous and next elements remain default.
-        """
+
         for i, bar in enumerate(self.bars):
             if i == index:
-                bar.setBrush(QBrush(Qt.yellow))
+                bar.setBrush(QBrush(soft_yellow))
             else:
                 bar.setBrush(QBrush(Qt.lightGray))
 
     def found(self, index):
         """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
-            self.bars[index].setBrush(QBrush(Qt.green))
+            self.bars[index].setBrush(QBrush(soft_green))
 
     def clear(self):
         """Clear the scene."""

@@ -7,7 +7,7 @@ from ui_form import Ui_Widget
 from PySide6.QtGui import QColor
 
 soft_blue   = QColor(100, 149, 237)   # Cornflower blue
-soft_green  = QColor(144, 238, 144)   # Light green
+soft_green  = QColor(46, 125, 50)  # Light green
 soft_red    = QColor(240, 128, 128)   # Light coral
 soft_gray   = QColor(200, 200, 200)   # Light gray
 soft_purple = QColor(186, 160, 255)
@@ -381,12 +381,12 @@ class Widget(QWidget):
             # Highlight comparisons
             if step_type == "compare":
                 self.active_visualizer.draw_array(state)
-                self.active_visualizer.highlight(i, j, Qt.green)
+                self.active_visualizer.highlight(i, j, soft_green)
 
             # Swap bars and highlight them
             elif step_type == "swap":
                 self.active_visualizer.swap_bars(state, i, j)
-                self.active_visualizer.highlight(i, j, Qt.green)
+                self.active_visualizer.highlight(i, j, soft_green)
 
 
             self.current_step += 1
@@ -407,7 +407,7 @@ class Widget(QWidget):
 
                 if step_type == "check":
                     print("checking")
-                    self.active_visualizer.highlight(index, index, Qt.yellow)
+                    self.active_visualizer.highlight(index, index, soft_yellow)
 
                 elif step_type == "found":
                     print("found")
@@ -415,7 +415,7 @@ class Widget(QWidget):
 
                 elif step_type == "not_found":
                     for i in range(len(state)):
-                        self.active_visualizer.highlight(i, i, Qt.red)
+                        self.active_visualizer.highlight(i, i, soft_red)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
@@ -463,12 +463,12 @@ class Widget(QWidget):
         # Highlight comparisons
         if step_type == "compare":
             self.active_visualizer.draw_array(state)
-            self.active_visualizer.highlight(i, j, Qt.green)
+            self.active_visualizer.highlight(i, j,soft_yellow)
 
         # Swap bars and highlight them
         elif step_type == "swap":
             self.active_visualizer.swap_bars(state, i, j)
-            self.active_visualizer.highlight(i, j, Qt.green)
+            self.active_visualizer.highlight(i, j, soft_yellow)
 
 
         self.current_step += 1

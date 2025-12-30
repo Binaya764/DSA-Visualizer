@@ -2,6 +2,14 @@ from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimple
 from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
 
+soft_blue   = QColor(100, 149, 237)   # Cornflower blue
+soft_green  = QColor(27, 94, 32)   # Light green
+soft_red    = QColor(240, 128, 128)   # Light coral
+soft_gray   = QColor(200, 200, 200)   # Light gray
+soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
+
+
 class Binary_Visualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
@@ -47,7 +55,7 @@ class Binary_Visualizer:
                     index.setPos(x+20, y+60)
                     self.scene.addItem(index)
 
-    def highlight(self, left, mid, right, color_mid=Qt.yellow, color_others=Qt.yellow):
+    def highlight(self, left, mid, right, color_mid=soft_yellow, color_others=soft_yellow):
         """Highlight left, mid, right elements during search."""
         for i, bar in enumerate(self.bars):
             if i == mid:
@@ -66,7 +74,7 @@ class Binary_Visualizer:
     def found(self, index):
         """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
-            self.bars[index].setBrush(QBrush(Qt.green))
+            self.bars[index].setBrush(QBrush(soft_green))
 
 
 

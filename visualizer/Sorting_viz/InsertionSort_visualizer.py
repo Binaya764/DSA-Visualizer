@@ -4,7 +4,7 @@ from PySide6.QtCore import QRectF, Qt
 
 
 soft_blue   = QColor(100, 149, 237)   # Cornflower blue
-soft_green  = QColor(144, 238, 144)   # Light green
+soft_green  = QColor(46, 125, 50)   # Light green
 soft_red    = QColor(240, 128, 128)   # Light coral
 soft_gray   = QColor(200, 200, 200)   # Light gray
 soft_purple = QColor(186, 160, 255)

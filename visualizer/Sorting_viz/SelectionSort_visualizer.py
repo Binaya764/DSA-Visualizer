@@ -3,7 +3,7 @@ from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
 
 soft_blue   = QColor(100, 149, 237)
-soft_green  = QColor(144, 238, 144)
+soft_green  = QColor(46, 125, 50)
 soft_red    = QColor(240, 128, 128)
 soft_gray   = QColor(200, 200, 200)
 
