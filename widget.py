@@ -166,10 +166,10 @@ class Widget(QWidget):
             self.reset_all_comboboxes(except_box=self.ui.sort_comboBox)
 
             mapping = {
-                "Bubble Sort": 0,
-                "Selection Sort": 1,
-                "Insertion Sort": 2,
-                "Merge Sort":3,
+                "Bubble Sort": 1,
+                "Selection Sort": 2,
+                "Insertion Sort": 3,
+                "Merge Sort":4,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
@@ -204,8 +204,8 @@ class Widget(QWidget):
     def on_search_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
             mapping = {
-            "Linear Search": 4,
-            "Binary Search": 5,
+            "Linear Search": 5,
+            "Binary Search": 6,
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
             self.active_algorithm= algo
@@ -229,8 +229,8 @@ class Widget(QWidget):
     def on_dataStructure_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
             mapping = {
-            "Stack": 6,
-            "Queue": 7,}
+            "Stack": 7,
+            "Queue": 8,}
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
@@ -398,6 +398,12 @@ class Widget(QWidget):
                     print("checking")
                     self.active_visualizer.highlight(index, index, soft_yellow)
 
+                elif step_type =="low":
+                        pass
+
+                elif step_type == "high":
+                        pass
+
                 elif step_type == "found":
                     print("found")
                     self.active_visualizer.found(index)
@@ -467,6 +473,8 @@ class Widget(QWidget):
 
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
+        self.active_visualizer.clear()
+
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
 

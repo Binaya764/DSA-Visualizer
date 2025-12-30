@@ -17,16 +17,14 @@ class Binary_Visualizer:
         self.view.setScene(self.scene)
         self.y_offset = 200
 
+
         self.row = 0
         self.bars = []       # store bar items
         self.values = []     # store actual numbers
 
     def draw_array(self, arr):
-        """Draws the full array as bars."""
-        print("Binary search array")
-        self.scene.clear()
-        self.bars.clear()
         self.values = arr.copy()
+        row_bars=[]
         width = 60
         spacing = 1
         y = self.y_offset
@@ -44,16 +42,19 @@ class Binary_Visualizer:
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append(bar)
-        self.y_offset +=70
+
 
         for i in range(len(arr)):
-                    x = i * ( 60+ spacing)
-                    y = 140
+                x = i * ( 60+ spacing)
+                y = 140
 
-                    index = QGraphicsSimpleTextItem(str(i))
-                    index.setBrush(Qt.gray)
-                    index.setPos(x+20, y+60)
-                    self.scene.addItem(index)
+                index = QGraphicsSimpleTextItem(str(i))
+                index.setBrush(Qt.gray)
+                index.setPos(x+20, y+60)
+                self.scene.addItem(index)
+        row_bars.append(row_bars)
+        self.y_offset += 100
+
 
     def highlight(self, left, mid, right, color_mid=soft_yellow, color_others=soft_yellow):
         """Highlight left, mid, right elements during search."""
@@ -70,6 +71,7 @@ class Binary_Visualizer:
         self.scene.clear()
         self.bars.clear()
         self.values.clear()
+        self.y_offset = 200
 
     def found(self, index):
         """Highlight the found element in green."""
