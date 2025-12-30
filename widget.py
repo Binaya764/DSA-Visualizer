@@ -114,14 +114,6 @@ class Widget(QWidget):
         self.ui.BtnRandomize_MergeSort.clicked.connect(lambda: self.random_array("Merge_sort"))
         self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
 
-
-
-
-
-
-
-
-
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
@@ -138,9 +130,6 @@ class Widget(QWidget):
     def initialize_defaults(self):
             self.ui.sort_comboBox.setCurrentIndex(0)
             self.on_sort_changed(self.ui.sort_comboBox.currentText())
-
-
-
 
 
     def change_speed(self,text):

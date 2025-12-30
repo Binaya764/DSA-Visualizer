@@ -18,7 +18,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGraphicsView,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QPushButton, QSizePolicy, QSlider,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+    QSpacerItem, QStackedWidget, QTextBrowser, QVBoxLayout,
+    QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -234,6 +235,33 @@ class Ui_Widget(object):
         self.stackedWidget.setMaximumSize(QSize(300, 16777215))
         self.stackedWidget.setFrameShape(QFrame.Shape.StyledPanel)
         self.stackedWidget.setFrameShadow(QFrame.Shadow.Raised)
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.verticalLayout_50 = QVBoxLayout(self.page)
+        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+        self.verticalLayout_49 = QVBoxLayout()
+        self.verticalLayout_49.setObjectName(u"verticalLayout_49")
+        self.groupBox_19 = QGroupBox(self.page)
+        self.groupBox_19.setObjectName(u"groupBox_19")
+        self.verticalLayout_52 = QVBoxLayout(self.groupBox_19)
+        self.verticalLayout_52.setObjectName(u"verticalLayout_52")
+        self.verticalLayout_51 = QVBoxLayout()
+        self.verticalLayout_51.setObjectName(u"verticalLayout_51")
+        self.textBrowser = QTextBrowser(self.groupBox_19)
+        self.textBrowser.setObjectName(u"textBrowser")
+
+        self.verticalLayout_51.addWidget(self.textBrowser)
+
+
+        self.verticalLayout_52.addLayout(self.verticalLayout_51)
+
+
+        self.verticalLayout_49.addWidget(self.groupBox_19)
+
+
+        self.verticalLayout_50.addLayout(self.verticalLayout_49)
+
+        self.stackedWidget.addWidget(self.page)
         self.Bubble_sort = QWidget()
         self.Bubble_sort.setObjectName(u"Bubble_sort")
         self.horizontalLayout_2 = QHBoxLayout(self.Bubble_sort)
@@ -840,7 +868,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -877,6 +905,20 @@ class Ui_Widget(object):
         self.speed_comboBox.setItemText(6, QCoreApplication.translate("Widget", u"0.5x", None))
         self.speed_comboBox.setItemText(7, QCoreApplication.translate("Widget", u"0.75x", None))
 
+        self.groupBox_19.setTitle(QCoreApplication.translate("Widget", u"DSA Visualizer", None))
+        self.textBrowser.setHtml(QCoreApplication.translate("Widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:700;\">DSA Visualizer</span><span style=\" font-size:11pt;\"> is an interactive learning tool designed to  help  you</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">understand Data Structures and Algorith"
+                        "ms visually,    step  by  step.</span></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">Select an algorithm to continue....</span></p></body></html>", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
         self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
