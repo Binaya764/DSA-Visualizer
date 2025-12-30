@@ -2,6 +2,13 @@ from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimple
 from PySide6.QtGui import QBrush, QColor
 from PySide6.QtCore import QRectF, Qt
 
+soft_blue   = QColor(100, 149, 237)   # Cornflower blue
+soft_green  =QColor(46, 125, 50) # Light green
+soft_red    = QColor(240, 128, 128)   # Light coral
+soft_gray   = QColor(200, 200, 200)   # Light gray
+soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
+
 
 class sort_Visualizer:
     def __init__(self, graphics_view):
@@ -31,7 +38,7 @@ class sort_Visualizer:
             y = 10
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(Qt.red))
+            bar.setBrush(QBrush(soft_red))
 
             # Adding  number label
             text = QGraphicsSimpleTextItem(str(val))
@@ -66,7 +73,7 @@ class sort_Visualizer:
     def completed_sort(self): #colors the bar green once the sorting is completed
         for bar in self.bars:
          rect, text = bar
-         rect.setBrush(Qt.green)
+         rect.setBrush(soft_green)
 
 class ref_Visualizer:
     def __init__(self, graphics_view2):
