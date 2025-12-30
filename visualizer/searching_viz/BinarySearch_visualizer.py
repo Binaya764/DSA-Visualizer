@@ -22,12 +22,16 @@ class Binary_Visualizer:
         self.bars = []       # store bar items
         self.values = []     # store actual numbers
 
-    def draw_array(self, arr):
+
+    def Bdraw_array(self, step_type, arr, start_index=0):
         self.values = arr.copy()
-        row_bars=[]
+        self.bars.clear()  # Clear previous bars for new row
+
         width = 60
         spacing = 1
         y = self.y_offset
+        self.y_offset += 100  # Move down for next row
+
 
         for i, val in enumerate(arr):
             height = 60
@@ -43,26 +47,20 @@ class Binary_Visualizer:
             self.scene.addItem(text)
             self.bars.append(bar)
 
-
+        # Draw indices below (showing original array indices)
         for i in range(len(arr)):
-                x = i * ( 60+ spacing)
-                y = 140
+            x = i * (width + spacing)
+            index = QGraphicsSimpleTextItem(str(start_index + i))
+            index.setBrush(Qt.gray)
+            index.setPos(x + 20, y + 20)
+            self.scene.addItem(index)
 
-                index = QGraphicsSimpleTextItem(str(i))
-                index.setBrush(Qt.gray)
-                index.setPos(x+20, y+60)
-                self.scene.addItem(index)
-        row_bars.append(row_bars)
-        self.y_offset += 100
-
-
-    def highlight(self, left, mid, right, color_mid=soft_yellow, color_others=soft_yellow):
-        """Highlight left, mid, right elements during search."""
+    def highlight(self, left, mid, right, color_mid=soft_yellow, color_bounds=soft_blue):
         for i, bar in enumerate(self.bars):
             if i == mid:
                 bar.setBrush(QBrush(color_mid))
             elif i == left or i == right:
-                bar.setBrush(QBrush(color_others))
+                bar.setBrush(QBrush(color_bounds))
             else:
                 bar.setBrush(QBrush(Qt.lightGray))
 
