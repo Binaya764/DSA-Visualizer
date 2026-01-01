@@ -48,3 +48,6 @@ class StackVisualizer:
     def highlight_top(self):
         if self.blocks:
             self.blocks[-1][0].setBrush(QBrush(Qt.red))
+
+
+

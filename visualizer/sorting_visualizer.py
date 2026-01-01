@@ -75,6 +75,10 @@ class sort_Visualizer:
          rect, text = bar
          rect.setBrush(soft_green)
 
+    #def reset(self):
+            #self.bars.clear()
+            #self.values.clear()
+
 class ref_Visualizer:
     def __init__(self, graphics_view2):
             self.view = graphics_view2
@@ -113,13 +117,9 @@ class ref_Visualizer:
 
                 text.setBrush(Qt.white)
                 text.setPos(x + 20, y + 15)
-
-
                 self.scene.addItem(bar)
                 self.scene.addItem(text)
                 self.bars.append((bar, text))
-
-
 
             #Adding index label
             index_label= QGraphicsSimpleTextItem("Index:")
@@ -139,14 +139,6 @@ class ref_Visualizer:
                 index.setBrush(Qt.gray)
                 index.setPos(x+20, y+53)
                 self.scene.addItem(index)
-
-
-
-
-
-
-
-
 
 
 class code_Visualizer:

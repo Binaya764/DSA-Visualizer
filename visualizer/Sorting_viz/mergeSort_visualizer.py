@@ -41,11 +41,20 @@ class mergeSort_Visualizer:
             # Adding number label
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 20, y - 20)
+            text.setPos(x + 20, y +15)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)
             self.bars.append((bar, text))
+
+            for i in range(len(arr)):
+                    x = i * ( 60+ spacing)
+                    y = 10
+
+                    index = QGraphicsSimpleTextItem(str(i))
+                    index.setBrush(Qt.gray)
+                    index.setPos(x+20, y+60)
+                    self.scene.addItem(index)
 
     def highlight(self, i, j, color):
         if 0 <= i < len(self.bars):

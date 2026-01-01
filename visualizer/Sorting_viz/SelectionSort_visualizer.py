@@ -31,7 +31,7 @@ class SelectionSortVisualizer:
 
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 20, y - 20)
+            text.setPos(x + 20, y +15)
 
             self.scene.addItem(bar)
             self.scene.addItem(text)

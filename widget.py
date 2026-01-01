@@ -1,8 +1,8 @@
 import sys
 from PySide6.QtWidgets import QApplication, QWidget
-from PySide6.QtCore import QTimer, Qt
+from PySide6.QtCore import QTimer
 
-# Import UI
+# Import
 from ui_form import Ui_Widget
 from PySide6.QtGui import QColor
 
@@ -79,7 +79,7 @@ class Widget(QWidget):
         self.current_step = 0
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
-        self.queue = queue_fun(capacity = 10)
+        self.queue = queue_fun(capacity = 5)
 
         # Connect Start Button
         #for Bubble sort
@@ -96,7 +96,7 @@ class Widget(QWidget):
         #Button for Stack
         self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
         self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
-        self.ui.BtnPeek_stack.clicked.connect(lambda: self.peek_stack("Stack"))
+        self.ui.BtnClear_stack.clicked.connect(lambda: self.clear_stack("Stack"))
 
         #Button for Queue
         self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
@@ -176,6 +176,7 @@ class Widget(QWidget):
             self.active_algorithm = algo
             self.active_visualizer = self.visualizer
             if algo == "Bubble Sort":
+                    self.active_visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
@@ -199,7 +200,8 @@ class Widget(QWidget):
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
-            #self.visualizer3.scene.clear()
+
+
 
     def on_search_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
@@ -242,7 +244,7 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
             self.active_visualizer.scene.clear()
-            self.visualizer.scene.clear()
+            self.visualizer2.scene.clear()
 
 
       #for sorting
@@ -427,7 +429,7 @@ class Widget(QWidget):
                     print("Not found")
                     # Show all current bars in red
                     for bar in self.active_visualizer.bars:
-                        bar.setBrush(QBrush(soft_red))
+                        bar.setBrush(soft_red)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
@@ -486,7 +488,10 @@ class Widget(QWidget):
 
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
-        self.active_visualizer.clear()
+        #self.reset_active_algorithm()
+        self.steps = []
+        self.current_step = 0
+
 
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
@@ -511,13 +516,17 @@ class Widget(QWidget):
                 return
         print(size)
         arr=[random.randint(1,100) for _ in range(size)]
+        self.current_array = arr
         self.active_visualizer.draw_array(arr)
         self.visualizer2.ref_drawArray(arr)
 
-        self.current_array = arr
+
 
 
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
+        self.steps = []
+        self.current_step = 0
+
 
         if source == "Bubble_sort":
                 size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
@@ -529,7 +538,7 @@ class Widget(QWidget):
                 custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
 
         elif source == "Selection_sort":
-                size_txt = int(self.ui.size_array_lineEdit_SelectiontionSort.text())
+                size_txt = int(self.ui.size_array_lineEdit_SelectionSort.text())
                 custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
 
         elif source == "Linear_search":
@@ -565,6 +574,9 @@ class Widget(QWidget):
                 self.active_visualizer.draw_array(arr)
 
     def CArray_Bsearch(self,source = "Binary_serach"):
+                self.steps = []
+                self.current_step = 0
+
                 self.active_visualizer.clear()
                 if source == "Binary_search":
                     size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
@@ -590,6 +602,8 @@ class Widget(QWidget):
                             self.active_visualizer.Bdraw_array(self.steps,arr)
 
     def sorted_array(self,source = "Binary_search"):
+        self.steps = []
+        self.current_step = 0
         self.active_visualizer.clear()
         size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
         arr = []
@@ -603,8 +617,6 @@ class Widget(QWidget):
         self.current_step = self.steps
         self.active_visualizer.Bdraw_array(self.steps,arr)
         self.visualizer2.ref_drawArray(arr)
-
-
 
 
         #for stacks
@@ -621,7 +633,7 @@ class Widget(QWidget):
 
         action, state = self.stack.push(value)
 
-        if action == "overflow":
+        if action == "stack overflow":
                 print("Stack overflow!")
         else:
                 self.active_visualizer.draw_stack(state)
@@ -631,17 +643,19 @@ class Widget(QWidget):
     def pop_stack(self,source = "Stack"):
         action, value,state = self.stack.pop()
 
-        if action == "underflow":
+        if action == "stack underflow":
                 print("Stack Underflow!")
         else:
                 self.active_visualizer.draw_stack(state)
 
-    def peek_stack(self,source = "Stack"):
-        action, value, state = self.stack.peek()
-        if action == "underflow":
-                print("Stack is empty!")
-        else:
-                self.active_visualizer.draw_stack(state)
+    def clear_stack(self,source = "Stack"):
+            action, value,state = self.stack.clear()
+            if action == "stack underflow":
+                    print("stack is empty!")
+            else :
+                    self.active_visualizer.draw_stack(state)
+                    self.active_visualizer.scene.clear()
+
 
         #Functions for Queue
     def enqueue_queue(self,source = "Queue"):
@@ -670,6 +684,7 @@ class Widget(QWidget):
                         print("Queue underflow!")
                 else:
                         self.active_visualizer.draw_queue(state)
+
 
 
 
