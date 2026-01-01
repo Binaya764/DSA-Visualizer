@@ -96,7 +96,6 @@ class Widget(QWidget):
         #Button for Stack
         self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
         self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
-        self.ui.BtnPeek_stack.clicked.connect(lambda: self.peek_stack("Stack"))
         self.ui.BtnClear_stack.clicked.connect(lambda: self.clear_stack("Stack"))
 
         #Button for Queue
