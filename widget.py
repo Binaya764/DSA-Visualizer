@@ -79,7 +79,7 @@ class Widget(QWidget):
         self.current_step = 0
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
-        self.queue = queue_fun(capacity = 10)
+        self.queue = queue_fun(capacity = 5)
 
         # Connect Start Button
         #for Bubble sort
@@ -176,6 +176,7 @@ class Widget(QWidget):
             self.active_algorithm = algo
             self.active_visualizer = self.visualizer
             if algo == "Bubble Sort":
+                    self.active_visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
@@ -199,6 +200,7 @@ class Widget(QWidget):
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
+
 
 
     def on_search_changed(self,algo):
@@ -514,10 +516,11 @@ class Widget(QWidget):
                 return
         print(size)
         arr=[random.randint(1,100) for _ in range(size)]
+        self.current_array = arr
         self.active_visualizer.draw_array(arr)
         self.visualizer2.ref_drawArray(arr)
 
-        self.current_array = arr
+
 
 
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
