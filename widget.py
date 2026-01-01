@@ -1,8 +1,8 @@
 import sys
 from PySide6.QtWidgets import QApplication, QWidget
-from PySide6.QtCore import QTimer, Qt
+from PySide6.QtCore import QTimer
 
-# Import UI
+# Import
 from ui_form import Ui_Widget
 from PySide6.QtGui import QColor
 
@@ -199,7 +199,7 @@ class Widget(QWidget):
 
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
-            #self.visualizer3.scene.clear()
+
 
     def on_search_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
@@ -242,7 +242,7 @@ class Widget(QWidget):
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
             self.active_visualizer.scene.clear()
-            self.visualizer.scene.clear()
+            self.visualizer2.scene.clear()
 
 
       #for sorting
@@ -427,7 +427,7 @@ class Widget(QWidget):
                     print("Not found")
                     # Show all current bars in red
                     for bar in self.active_visualizer.bars:
-                        bar.setBrush(QBrush(soft_red))
+                        bar.setBrush(soft_red)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
@@ -486,7 +486,6 @@ class Widget(QWidget):
 
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
-        self.active_visualizer.clear()
 
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input

@@ -113,13 +113,9 @@ class ref_Visualizer:
 
                 text.setBrush(Qt.white)
                 text.setPos(x + 20, y + 15)
-
-
                 self.scene.addItem(bar)
                 self.scene.addItem(text)
                 self.bars.append((bar, text))
-
-
 
             #Adding index label
             index_label= QGraphicsSimpleTextItem("Index:")
