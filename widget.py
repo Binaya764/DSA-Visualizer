@@ -486,6 +486,10 @@ class Widget(QWidget):
 
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
+        #self.reset_active_algorithm()
+        self.steps = []
+        self.current_step = 0
+
 
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
@@ -517,6 +521,9 @@ class Widget(QWidget):
 
 
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
+        self.steps = []
+        self.current_step = 0
+
 
         if source == "Bubble_sort":
                 size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
@@ -528,7 +535,7 @@ class Widget(QWidget):
                 custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
 
         elif source == "Selection_sort":
-                size_txt = int(self.ui.size_array_lineEdit_SelectiontionSort.text())
+                size_txt = int(self.ui.size_array_lineEdit_SelectionSort.text())
                 custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
 
         elif source == "Linear_search":
@@ -564,6 +571,9 @@ class Widget(QWidget):
                 self.active_visualizer.draw_array(arr)
 
     def CArray_Bsearch(self,source = "Binary_serach"):
+                self.steps = []
+                self.current_step = 0
+
                 self.active_visualizer.clear()
                 if source == "Binary_search":
                     size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
@@ -589,6 +599,8 @@ class Widget(QWidget):
                             self.active_visualizer.Bdraw_array(self.steps,arr)
 
     def sorted_array(self,source = "Binary_search"):
+        self.steps = []
+        self.current_step = 0
         self.active_visualizer.clear()
         size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
         arr = []
@@ -602,8 +614,6 @@ class Widget(QWidget):
         self.current_step = self.steps
         self.active_visualizer.Bdraw_array(self.steps,arr)
         self.visualizer2.ref_drawArray(arr)
-
-
 
 
         #for stacks
@@ -671,6 +681,7 @@ class Widget(QWidget):
                         print("Queue underflow!")
                 else:
                         self.active_visualizer.draw_queue(state)
+
 
 
 
