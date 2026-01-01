@@ -9,11 +9,11 @@ class stack_fun:
             return "stack overflow", self.stack.copy()
         self.stack.append(value)
         self.top += 1
-        return "pushed", self.stack.copy()
+        return "pushed",self.stack.copy()
 
     def pop(self):
         if self.top == -1:
-            return "stack underflow", self.stack.copy()
+            return "stack underflow", None, self.stack.copy()
         value = self.stack.pop()
         self.top -= 1
         return "popped", value, self.stack.copy()
@@ -22,3 +22,12 @@ class stack_fun:
         if self.top == -1:
             return "stack is empty", None
         return "peek", self.stack[self.top]
+
+    def clear(self):
+        if not self.stack:
+            return ("clear", None, "empty")
+
+        self.stack.clear()
+        self.top = -1
+        return ("clear", None, "cleared")
+

@@ -97,6 +97,7 @@ class Widget(QWidget):
         self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
         self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
         self.ui.BtnPeek_stack.clicked.connect(lambda: self.peek_stack("Stack"))
+        self.ui.BtnClear_stack.clicked.connect(lambda: self.clear_stack("Stack"))
 
         #Button for Queue
         self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
@@ -620,7 +621,7 @@ class Widget(QWidget):
 
         action, state = self.stack.push(value)
 
-        if action == "overflow":
+        if action == "stack overflow":
                 print("Stack overflow!")
         else:
                 self.active_visualizer.draw_stack(state)
@@ -630,17 +631,19 @@ class Widget(QWidget):
     def pop_stack(self,source = "Stack"):
         action, value,state = self.stack.pop()
 
-        if action == "underflow":
+        if action == "stack underflow":
                 print("Stack Underflow!")
         else:
                 self.active_visualizer.draw_stack(state)
 
-    def peek_stack(self,source = "Stack"):
-        action, value, state = self.stack.peek()
-        if action == "underflow":
-                print("Stack is empty!")
-        else:
-                self.active_visualizer.draw_stack(state)
+    def clear_stack(self,source = "Stack"):
+            action, value,state = self.stack.clear()
+            if action == "stack underflow":
+                    print("stack is empty!")
+            else :
+                    self.active_visualizer.draw_stack(state)
+                    self.active_visualizer.scene.clear()
+
 
         #Functions for Queue
     def enqueue_queue(self,source = "Queue"):
