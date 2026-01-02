@@ -105,6 +105,7 @@ class Ui_Widget(object):
         self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
+        self.DS_comboBox.addItem("")
         self.DS_comboBox.setObjectName(u"DS_comboBox")
 
         self.verticalLayout_42.addWidget(self.DS_comboBox)
@@ -854,6 +855,75 @@ class Ui_Widget(object):
         self.horizontalLayout_10.addLayout(self.verticalLayout_32)
 
         self.stackedWidget.addWidget(self.Queue)
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.verticalLayout_55 = QVBoxLayout(self.page_2)
+        self.verticalLayout_55.setObjectName(u"verticalLayout_55")
+        self.verticalLayout_54 = QVBoxLayout()
+        self.verticalLayout_54.setObjectName(u"verticalLayout_54")
+        self.groupBox_20 = QGroupBox(self.page_2)
+        self.groupBox_20.setObjectName(u"groupBox_20")
+        self.verticalLayout_57 = QVBoxLayout(self.groupBox_20)
+        self.verticalLayout_57.setObjectName(u"verticalLayout_57")
+        self.verticalLayout_56 = QVBoxLayout()
+        self.verticalLayout_56.setObjectName(u"verticalLayout_56")
+        self.label_20 = QLabel(self.groupBox_20)
+        self.label_20.setObjectName(u"label_20")
+
+        self.verticalLayout_56.addWidget(self.label_20)
+
+        self.lineEdit_LinkedList = QLineEdit(self.groupBox_20)
+        self.lineEdit_LinkedList.setObjectName(u"lineEdit_LinkedList")
+
+        self.verticalLayout_56.addWidget(self.lineEdit_LinkedList)
+
+        self.horizontalLayout_23 = QHBoxLayout()
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.BtnInsert_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnInsert_LinkedList.setObjectName(u"BtnInsert_LinkedList")
+
+        self.horizontalLayout_23.addWidget(self.BtnInsert_LinkedList)
+
+        self.BtnRemove_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnRemove_LinkedList.setObjectName(u"BtnRemove_LinkedList")
+
+        self.horizontalLayout_23.addWidget(self.BtnRemove_LinkedList)
+
+
+        self.verticalLayout_56.addLayout(self.horizontalLayout_23)
+
+        self.BtnClear_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnClear_LinkedList.setObjectName(u"BtnClear_LinkedList")
+
+        self.verticalLayout_56.addWidget(self.BtnClear_LinkedList)
+
+        self.groupBox_21 = QGroupBox(self.groupBox_20)
+        self.groupBox_21.setObjectName(u"groupBox_21")
+        self.verticalLayout_59 = QVBoxLayout(self.groupBox_21)
+        self.verticalLayout_59.setObjectName(u"verticalLayout_59")
+        self.verticalLayout_58 = QVBoxLayout()
+        self.verticalLayout_58.setObjectName(u"verticalLayout_58")
+        self.code_graphicsView_LinkedList = QGraphicsView(self.groupBox_21)
+        self.code_graphicsView_LinkedList.setObjectName(u"code_graphicsView_LinkedList")
+
+        self.verticalLayout_58.addWidget(self.code_graphicsView_LinkedList)
+
+
+        self.verticalLayout_59.addLayout(self.verticalLayout_58)
+
+
+        self.verticalLayout_56.addWidget(self.groupBox_21)
+
+
+        self.verticalLayout_57.addLayout(self.verticalLayout_56)
+
+
+        self.verticalLayout_54.addWidget(self.groupBox_20)
+
+
+        self.verticalLayout_55.addLayout(self.verticalLayout_54)
+
+        self.stackedWidget.addWidget(self.page_2)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
 
@@ -863,7 +933,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(9)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -888,6 +958,7 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select --", None))
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
+        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
@@ -963,5 +1034,11 @@ class Ui_Widget(object):
         self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
+        self.groupBox_20.setTitle(QCoreApplication.translate("Widget", u"Linked List", None))
+        self.label_20.setText(QCoreApplication.translate("Widget", u"Input Values:", None))
+        self.BtnInsert_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert", None))
+        self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove", None))
+        self.BtnClear_LinkedList.setText(QCoreApplication.translate("Widget", u"Clear", None))
+        self.groupBox_21.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
     # retranslateUi
 

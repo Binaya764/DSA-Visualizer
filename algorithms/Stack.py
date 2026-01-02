@@ -18,11 +18,6 @@ class stack_fun:
         self.top -= 1
         return "popped", value, self.stack.copy()
 
-    def peek(self):
-        if self.top == -1:
-            return "stack is empty", None
-        return "peek", self.stack[self.top]
-
     def clear(self):
         if not self.stack:
             return ("clear", None, "empty")
