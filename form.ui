@@ -157,6 +157,11 @@
                       <string>Queue</string>
                      </property>
                     </item>
+                    <item>
+                     <property name="text">
+                      <string>Linked List</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                  </layout>
@@ -386,7 +391,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>7</number>
+        <number>9</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -1044,6 +1049,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <layout class="QHBoxLayout" name="horizontalLayout_16">
                    <item>
                     <widget class="QGraphicsView" name="code_graphicsView_Queue"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QVBoxLayout" name="verticalLayout_55">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_54">
+           <item>
+            <widget class="QGroupBox" name="groupBox_20">
+             <property name="title">
+              <string>Linked List</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_57">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_56">
+                <item>
+                 <widget class="QLabel" name="label_20">
+                  <property name="text">
+                   <string>Input Values:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_LinkedList"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_23">
+                  <item>
+                   <widget class="QPushButton" name="BtnInsert_LinkedList">
+                    <property name="text">
+                     <string>Insert</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnRemove_LinkedList">
+                    <property name="text">
+                     <string>Remove</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnClear_LinkedList">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_21">
+                  <property name="title">
+                   <string>Code:</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_59">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_58">
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_LinkedList"/>
+                     </item>
+                    </layout>
                    </item>
                   </layout>
                  </widget>

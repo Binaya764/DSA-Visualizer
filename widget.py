@@ -51,6 +51,10 @@ from visualizer.searching_viz.LinearSearch_Visualizer import Linear_Visualizer
 from algorithms.sorting.merge_sort import merge_Sort
 from visualizer.Sorting_viz.mergeSort_visualizer import mergeSort_Visualizer
 
+#For LinkedList
+from algorithms.Linked_List.singly_LinkedList import LinkedList_fun
+from visualizer.LinkedList_viz.singly_LinkedList_visualizer import NodeVisualizer
+
 
 
 
@@ -80,6 +84,7 @@ class Widget(QWidget):
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
         self.queue = queue_fun(capacity = 5)
+        self.linked_list = LinkedList_fun()
 
         # Connect Start Button
         #for Bubble sort
@@ -113,6 +118,11 @@ class Widget(QWidget):
         #Button for Merge sort:
         self.ui.BtnRandomize_MergeSort.clicked.connect(lambda: self.random_array("Merge_sort"))
         self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
+
+        #Button for Linked List:
+        self.ui.BtnInsert_LinkedList.clicked.connect(lambda: self.Insert_LinkedList("Linked_List"))
+        self.ui.BtnRemove_LinkedList.clicked.connect(lambda: self.Remove_LinkedList("Linked_List"))
+        self.ui.BtnClear_LinkedList.clicked.connect(lambda: self.Clear_LinkedList("Linked_List"))
 
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
@@ -199,7 +209,10 @@ class Widget(QWidget):
 
 
             self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
+
             self.visualizer2.scene.clear()
+            self.visualizer2.view.centerOn(0, 0)
 
 
 
@@ -225,14 +238,19 @@ class Widget(QWidget):
 
 
             self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
             self.visualizer2.scene.clear()
+            self.visualizer3.view.centerOn(0, 0)
             #self.visualizer3.scene.clear()
 
     def on_dataStructure_changed(self,algo):
             self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
             mapping = {
             "Stack": 7,
-            "Queue": 8,}
+            "Queue": 8,
+            "Linked List": 9,
+
+            }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
             self.active_algorithm = algo
             if algo == "Stack":
@@ -243,6 +261,11 @@ class Widget(QWidget):
                     self.active_visualizer = QueueVisualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+            elif algo == "Linked List":
+                    self.active_visualizer = NodeVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_LinkedList)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
             self.active_visualizer.scene.clear()
             self.visualizer2.scene.clear()
 
@@ -253,6 +276,7 @@ class Widget(QWidget):
 
         if self.active_algorithm == "Bubble Sort":
             self.steps = bubble_sort(self.current_array.copy())
+            self.current_step = 0
             self.play_step()
 
         elif self.active_algorithm == "Insertion Sort":
@@ -448,6 +472,7 @@ class Widget(QWidget):
                     self.active_visualizer.draw_array(state)
 
                     if step_type == "compare":
+
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                     elif step_type == "shift":
@@ -467,18 +492,20 @@ class Widget(QWidget):
         if self.current_step >= len(self.steps):
            self.active_visualizer.completed_sort()
            return# animation finished
-
         step_type, i, j, state = self.steps[self.current_step]
 
         # Highlight comparisons
         if step_type == "compare":
+            print("compared")
             self.active_visualizer.draw_array(state)
             self.active_visualizer.highlight(i, j,soft_yellow)
 
         # Swap bars and highlight them
         elif step_type == "swap":
+            print("swapped")
+
             self.active_visualizer.swap_bars(state, i, j)
-            self.active_visualizer.highlight(i, j, soft_yellow)
+            self.active_visualizer.highlight(i, j, soft_blue)
 
 
         self.current_step += 1
@@ -489,8 +516,11 @@ class Widget(QWidget):
 
     def random_array(self,source="Bubble_sort"):  #Generates random array
         #self.reset_active_algorithm()
-        self.steps = []
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.bars.clear()
+
         self.current_step = 0
+        self.steps = []
 
 
         if source == "Bubble_sort":
@@ -524,8 +554,9 @@ class Widget(QWidget):
 
 
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
-        self.steps = []
+
         self.current_step = 0
+        self.steps = []
 
 
         if source == "Bubble_sort":
@@ -602,9 +633,10 @@ class Widget(QWidget):
                             self.active_visualizer.Bdraw_array(self.steps,arr)
 
     def sorted_array(self,source = "Binary_search"):
-        self.steps = []
+
         self.current_step = 0
         self.active_visualizer.clear()
+        self.steps = []
         size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
         arr = []
         start = 1
@@ -685,7 +717,76 @@ class Widget(QWidget):
                 else:
                         self.active_visualizer.draw_queue(state)
 
+    def Insert_LinkedList(self, source ="Linked_List"):
 
+                    value_text = self.ui.lineEdit_LinkedList.text().strip()
+                    if not value_text:
+                            return
+
+                    try:
+                            value = int(value_text)
+                    except ValueError:
+                            print("Invalid input")
+                            return
+
+                    action, state = self.linked_list.append(value)
+
+                    if action == "overflow":
+                            print("Queue overflow!")
+                    else:
+                            self.active_visualizer.draw_list(state)
+
+                    self.ui.lineEdit_LinkedList.clear()
+    def Remove_LinkedList(self,source ="Linked List"):
+            action, value, state = self.linked_list.delete()
+            if action == "empty":
+                    pass
+            else:
+                    self.active_visualizer.draw_list(state)
+
+    def Clear_LinkedList(self,source = "Linked LIst"):
+            pass
+
+
+"""
+    def play_LinkedList(self, steps):
+
+            self.current_step = 0  # reset step index
+
+            def next_step():
+                if self.current_step >= len(steps):
+                    return  # Animation finished
+
+                action, index, value, state = steps[self.current_step]
+
+                # Decide which node to highlight
+                highlight_index = None
+                highlight_color = Qt.yellow
+
+                if action in ["traverse", "check"]:
+                    highlight_index = index
+                    highlight_color = Qt.yellow
+                elif action in ["found"]:
+                    highlight_index = index
+                    highlight_color = Qt.green
+                elif action in ["insert", "append", "prepend"]:
+                    highlight_index = index
+                    highlight_color = Qt.green
+                elif action in ["delete_start", "delete_end"]:
+                    highlight_index = index
+                    highlight_color = Qt.red
+
+                # Draw current linked list state
+                self.linked_list_visualizer.draw_list(state, highlight_index=highlight_index, highlight_color=highlight_color)
+
+                self.current_step += 1
+                # Schedule next step after delay
+                QTimer.singleShot(600, next_step)  # Adjust speed (ms) here
+
+            next_step()
+
+
+"""
 
 
 

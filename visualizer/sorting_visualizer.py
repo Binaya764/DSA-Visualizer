@@ -18,16 +18,19 @@ class sort_Visualizer:
 
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
+        self.y_offset = 10
 
 
 
     def draw_array(self, arr):          #Draws array
         print("draw_array called")
-        self.scene.clear()
+        #self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
         width = 60  # bar width
         spacing = 1  #spacing between the bars
+        y =self.y_offset
+        self.y_offset +=100
 
 
 
@@ -35,7 +38,7 @@ class sort_Visualizer:
         for i, val in enumerate(arr):
             height = 60
             x = i * (60 + spacing)
-            y = 10
+
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(soft_red))
@@ -51,12 +54,13 @@ class sort_Visualizer:
 
         for i in range(len(arr)):
                 x = i * ( 60+ spacing)
-                y = 10
 
                 index = QGraphicsSimpleTextItem(str(i))
                 index.setBrush(Qt.gray)
                 index.setPos(x+20, y+60)
                 self.scene.addItem(index)
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(0, 0)
 
     #High lights the color of the bar
     def highlight(self, i, j, color):
@@ -74,6 +78,9 @@ class sort_Visualizer:
         for bar in self.bars:
          rect, text = bar
          rect.setBrush(soft_green)
+         self.y_offset = 200
+         self.values.clear()
+
 
     #def reset(self):
             #self.bars.clear()

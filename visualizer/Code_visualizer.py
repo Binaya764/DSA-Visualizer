@@ -230,7 +230,9 @@ def merge_Sort(arr):
 
     merge_sort_recursive(0, len(arr) - 1)
     return steps"""
+LINKED_LIST_CODE = """
 
+"""
 
 
 
@@ -243,5 +245,6 @@ ALGORITHM_CODES = {
     "Linear Search":   LINEAR_SEARCH_CODE,
     "Queue" : QUEUE_CODE,
     "Merge Sort": MERGE_SORT_CODE,
+    "Linked List": LINKED_LIST_CODE,
 
 }
