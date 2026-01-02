@@ -60,7 +60,7 @@ class sort_Visualizer:
                 index.setPos(x+20, y+60)
                 self.scene.addItem(index)
         self.view.setSceneRect(self.scene.itemsBoundingRect())
-        self.view.centerOn(0, 0)
+        self.view.centerOn(self.bars[0][0])
 
     #High lights the color of the bar
     def highlight(self, i, j, color):
