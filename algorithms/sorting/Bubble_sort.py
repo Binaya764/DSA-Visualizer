@@ -2,6 +2,7 @@ def bubble_sort(arr):
     steps=[]
     a= arr.copy()
     n=len(a)
+
     for i in range(n-1):
         for j in range(0, n-i-1):
 

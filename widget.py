@@ -545,16 +545,20 @@ class Widget(QWidget):
         else:
                 return
         print(size)
-        arr=[random.randint(1,100) for _ in range(size)]
-        self.current_array = arr
-        self.active_visualizer.draw_array(arr)
-        self.visualizer2.ref_drawArray(arr)
+        if size <6:
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+        else:
+                print("invalid size")
 
 
 
 
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
-
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.bars.clear()
         self.current_step = 0
         self.steps = []
 
@@ -597,12 +601,16 @@ class Widget(QWidget):
                 print("Array size does not match!")
                 return
         else:
+                if size<6:
 
-                arr = [int(x) for x in parts]
+                        arr = [int(x) for x in parts]
 
-                self.current_array = arr
-                self.visualizer2.ref_drawArray(arr)
-                self.active_visualizer.draw_array(arr)
+                        self.current_array = arr
+                        self.visualizer2.ref_drawArray(arr)
+                        self.active_visualizer.draw_array(arr)
+                else:
+                        print("Invalid Size!")
+
 
     def CArray_Bsearch(self,source = "Binary_serach"):
                 self.steps = []

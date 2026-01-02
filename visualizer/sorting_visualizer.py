@@ -82,10 +82,6 @@ class sort_Visualizer:
          self.values.clear()
 
 
-    #def reset(self):
-            #self.bars.clear()
-            #self.values.clear()
-
 class ref_Visualizer:
     def __init__(self, graphics_view2):
             self.view = graphics_view2
