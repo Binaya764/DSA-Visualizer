@@ -68,6 +68,7 @@ class sort_Visualizer:
             width = 20
             height = 20
 
+            #Box label for compare
             compare_box = QGraphicsRectItem(QRectF(350, -150, 20, 20))
             compare_box.setBrush(QBrush(soft_yellow))
             index_label= QGraphicsSimpleTextItem("Compare")
@@ -76,6 +77,7 @@ class sort_Visualizer:
             self.scene.addItem(index_label)
             self.scene.addItem(compare_box)
 
+            #Box label for swap
             swap_box = QGraphicsRectItem(QRectF(350, -120, 20, 20))
             swap_box.setBrush(QBrush(soft_blue))
             swap_label= QGraphicsSimpleTextItem("Swap")
@@ -84,6 +86,7 @@ class sort_Visualizer:
             self.scene.addItem(swap_label)
             self.scene.addItem(swap_box)
 
+            #Box label for sorted
             sorted_box = QGraphicsRectItem(QRectF(350, -90, 20, 20))
             sorted_box.setBrush(QBrush(soft_green))
             sorted_label= QGraphicsSimpleTextItem("Sorted")
@@ -91,7 +94,17 @@ class sort_Visualizer:
             sorted_label.setPos(380,-90)
             self.scene.addItem(sorted_label)
             self.scene.addItem(sorted_box)
+
+            #Box label for unsorted
+            unsorted_box = QGraphicsRectItem(QRectF(350, -60, 20, 20))
+            unsorted_box.setBrush(QBrush(soft_red))
+            unsorted_label= QGraphicsSimpleTextItem("Unsorted")
+            unsorted_label.setBrush(Qt.white)
+            unsorted_label.setPos(380,-60)
+            self.scene.addItem(unsorted_label)
+            self.scene.addItem(unsorted_box)
             self.y_offset = 10
+
 
 
 
