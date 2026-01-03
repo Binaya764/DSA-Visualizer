@@ -267,6 +267,7 @@ class Widget(QWidget):
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
             self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
             self.visualizer2.scene.clear()
 
 
@@ -494,6 +495,7 @@ class Widget(QWidget):
            return# animation finished
         step_type, i, j, state = self.steps[self.current_step]
 
+
         # Highlight comparisons
         if step_type == "compare":
             print("compared")
@@ -517,6 +519,7 @@ class Widget(QWidget):
     def random_array(self,source="Bubble_sort"):  #Generates random array
         #self.reset_active_algorithm()
         self.active_visualizer.scene.clear()
+        self.active_visualizer.view.centerOn(0, 0)
         self.active_visualizer.bars.clear()
 
         self.current_step = 0
@@ -525,33 +528,70 @@ class Widget(QWidget):
 
         if source == "Bubble_sort":
                 size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                if size<6:
+
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+
+                        self.active_visualizer.draw_array(arr)
+                        self.active_visualizer.draw_box_color()
+
+                        self.visualizer2.ref_drawArray(arr)
+
+                else:
+                        print("invalid size")
 
         elif source == "Insertion_sort":
                 print("Random array insertion sort called")
                 size= int(self.ui.size_array_lineEdit_InsertionSort.text())
 
-        elif source == "Selection_sort":
-                size = int(self.ui.size_array_lineEdit_SelectionSort.text())
-
-        elif source == "Binary_search":
-                size = int(self.ui.size_array_lineEdit_BSearch.text())
-        elif source == "Linear_search":
-                size = int(self.ui.size_array_lineEdit_LSearch.text())
-
-        elif source ==  "Merge_sort":
-                size = int(self.ui.size_array_lineEdit_MergeSort.text())
-
-
-        else:
-                return
-        print(size)
-        if size <6:
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
                 self.active_visualizer.draw_array(arr)
                 self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Selection_sort":
+                size = int(self.ui.size_array_lineEdit_SelectionSort.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Binary_search":
+                size = int(self.ui.size_array_lineEdit_BSearch.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Linear_search":
+                size = int(self.ui.size_array_lineEdit_LSearch.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source ==  "Merge_sort":
+                size = int(self.ui.size_array_lineEdit_MergeSort.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+
         else:
-                print("invalid size")
+                return
+        #print(size)
+        """
+
+        arr=[random.randint(1,100) for _ in range(size)]
+        self.current_array = arr
+        self.active_visualizer.draw_array(arr)
+        self.visualizer2.ref_drawArray(arr)"""
 
 
 
@@ -580,7 +620,7 @@ class Widget(QWidget):
                 size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
                 custom_arr = self.ui.CArray_lineEdit_LSearch.text()
 
-        elif source == "Linear_search":
+        elif source == "Merge_Sort":
                 size_txt = int(self.ui.size_array_lineEdit_MergeSort.text())
                 custom_arr = self.ui.CArray_lineEdit_MergeSort.text()
 
@@ -601,15 +641,14 @@ class Widget(QWidget):
                 print("Array size does not match!")
                 return
         else:
-                if size<6:
 
-                        arr = [int(x) for x in parts]
 
-                        self.current_array = arr
-                        self.visualizer2.ref_drawArray(arr)
-                        self.active_visualizer.draw_array(arr)
-                else:
-                        print("Invalid Size!")
+                arr = [int(x) for x in parts]
+
+                self.current_array = arr
+                self.visualizer2.ref_drawArray(arr)
+                self.active_visualizer.draw_array(arr)
+
 
 
     def CArray_Bsearch(self,source = "Binary_serach"):
