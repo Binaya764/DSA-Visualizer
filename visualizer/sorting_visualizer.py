@@ -60,7 +60,41 @@ class sort_Visualizer:
                 index.setPos(x+20, y+60)
                 self.scene.addItem(index)
         self.view.setSceneRect(self.scene.itemsBoundingRect())
-        self.view.centerOn(0, 0)
+        self.view.centerOn(self.bars[0][0])
+
+    def draw_box_color(self):
+            print("draw box called")
+
+            width = 20
+            height = 20
+
+            compare_box = QGraphicsRectItem(QRectF(350, -150, 20, 20))
+            compare_box.setBrush(QBrush(soft_yellow))
+            index_label= QGraphicsSimpleTextItem("Compare")
+            index_label.setBrush(Qt.white)
+            index_label.setPos(380,-150)
+            self.scene.addItem(index_label)
+            self.scene.addItem(compare_box)
+
+            swap_box = QGraphicsRectItem(QRectF(350, -120, 20, 20))
+            swap_box.setBrush(QBrush(soft_blue))
+            swap_label= QGraphicsSimpleTextItem("Swap")
+            swap_label.setBrush(Qt.white)
+            swap_label.setPos(380,-120)
+            self.scene.addItem(swap_label)
+            self.scene.addItem(swap_box)
+
+            sorted_box = QGraphicsRectItem(QRectF(350, -90, 20, 20))
+            sorted_box.setBrush(QBrush(soft_green))
+            sorted_label= QGraphicsSimpleTextItem("Sorted")
+            sorted_label.setBrush(Qt.white)
+            sorted_label.setPos(380,-90)
+            self.scene.addItem(sorted_label)
+            self.scene.addItem(sorted_box)
+            self.y_offset = 10
+
+
+
 
     #High lights the color of the bar
     def highlight(self, i, j, color):
@@ -68,6 +102,7 @@ class sort_Visualizer:
             self.bars[i][0].setBrush(QBrush(color))
         if 0 <= j < len(self.bars):
             self.bars[j][0].setBrush(QBrush(color))
+
 
    #Updates the bar position after swapping
     def swap_bars(self, updated_array, i, j):
@@ -78,13 +113,9 @@ class sort_Visualizer:
         for bar in self.bars:
          rect, text = bar
          rect.setBrush(soft_green)
-         self.y_offset = 200
+         self.y_offset = 10
          self.values.clear()
 
-
-    #def reset(self):
-            #self.bars.clear()
-            #self.values.clear()
 
 class ref_Visualizer:
     def __init__(self, graphics_view2):
@@ -107,6 +138,7 @@ class ref_Visualizer:
             label.setBrush(Qt.white)
             label.setPos(-60, -210)
             self.scene.addItem(label)
+
 
 
 
@@ -135,9 +167,6 @@ class ref_Visualizer:
             self.scene.addItem(index_label)
 
 
-
-
-
             for i in range(len(arr)):
                 x = i * ( 50+ spacing)
                 y = -230
@@ -146,6 +175,12 @@ class ref_Visualizer:
                 index.setBrush(Qt.gray)
                 index.setPos(x+20, y+53)
                 self.scene.addItem(index)
+
+            self.view.setSceneRect(self.scene.itemsBoundingRect())
+            self.view.centerOn(self.bars[0][0])
+
+
+
 
 
 class code_Visualizer:

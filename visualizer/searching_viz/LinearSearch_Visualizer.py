@@ -53,6 +53,9 @@ class Linear_Visualizer:
                     index.setBrush(Qt.gray)
                     index.setPos(x+20, y+60)
                     self.scene.addItem(index)
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(0,0)
+
 
     def highlight(self, index):
 

@@ -933,7 +933,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(9)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -986,8 +986,8 @@ class Ui_Widget(object):
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">Select an algorithm to continue....</span></p></body></html>", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
-        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
-        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size (Max 5)", None))
+        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array (Max 5)", None))
         self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
         self.Btnrandomize.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))

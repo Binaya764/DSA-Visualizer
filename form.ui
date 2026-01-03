@@ -391,7 +391,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>9</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -448,7 +448,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <widget class="QLabel" name="label_2">
                 <property name="text">
-                 <string>Array Size</string>
+                 <string>Array Size (Max 5)</string>
                 </property>
                </widget>
               </item>
@@ -458,7 +458,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <widget class="QLabel" name="label_3">
                 <property name="text">
-                 <string>Custom Array</string>
+                 <string>Custom Array (Max 5)</string>
                 </property>
                </widget>
               </item>
