@@ -335,16 +335,15 @@ class Widget(QWidget):
                 # Get current step
                 action, i, j, arr_state = self.steps[self.current_step]
 
-                # Draw array state for this step
-                self.active_visualizer.draw_array(arr_state)
-
                 # Highlight based on action
                 if action == "compare":
                     print("compare called")
-                    self.active_visualizer.highlight(i, j, soft_blue)
+                    self.active_visualizer.draw_array(arr_state)
+                    self.active_visualizer.highlight(i, j, soft_yellow)
                 elif action == "overwrite":
                     print("overwrite called")
-                    self.active_visualizer.highlight(i, i, soft_yellow)
+                    self.active_visualizer.draw_array(arr_state)
+                    self.active_visualizer.highlight(i, i, soft_blue)
 
                 # Move to next step
                 self.current_step += 1
