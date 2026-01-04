@@ -391,7 +391,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -700,7 +700,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="text">
-                   <string>Array Size</string>
+                   <string>Array Size (Max 6)</string>
                   </property>
                  </widget>
                 </item>

@@ -572,22 +572,18 @@ class Widget(QWidget):
 
         elif source ==  "Merge_sort":
                 size = int(self.ui.size_array_lineEdit_MergeSort.text())
+                if size < 6:
 
-                arr=[random.randint(1,100) for _ in range(size)]
-                self.current_array = arr
-                self.active_visualizer.draw_array(arr)
-                self.visualizer2.ref_drawArray(arr)
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+                        self.active_visualizer.draw_array(arr)
+                        self.visualizer2.ref_drawArray(arr)
+                else:
+                        print("Invalid size")
 
 
         else:
                 return
-        #print(size)
-        """
-
-        arr=[random.randint(1,100) for _ in range(size)]
-        self.current_array = arr
-        self.active_visualizer.draw_array(arr)
-        self.visualizer2.ref_drawArray(arr)"""
 
 
 
