@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.10.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,13 +18,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGraphicsView,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QPushButton, QSizePolicy, QSlider,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+    QSpacerItem, QStackedWidget, QTextBrowser, QVBoxLayout,
+    QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(827, 465)
+        Widget.resize(662, 335)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -101,6 +102,7 @@ class Ui_Widget(object):
         self.verticalLayout_42 = QVBoxLayout()
         self.verticalLayout_42.setObjectName(u"verticalLayout_42")
         self.DS_comboBox = QComboBox(self.groupBox_15)
+        self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
         self.DS_comboBox.addItem("")
@@ -234,6 +236,33 @@ class Ui_Widget(object):
         self.stackedWidget.setMaximumSize(QSize(300, 16777215))
         self.stackedWidget.setFrameShape(QFrame.Shape.StyledPanel)
         self.stackedWidget.setFrameShadow(QFrame.Shadow.Raised)
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.verticalLayout_50 = QVBoxLayout(self.page)
+        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+        self.verticalLayout_49 = QVBoxLayout()
+        self.verticalLayout_49.setObjectName(u"verticalLayout_49")
+        self.groupBox_19 = QGroupBox(self.page)
+        self.groupBox_19.setObjectName(u"groupBox_19")
+        self.verticalLayout_52 = QVBoxLayout(self.groupBox_19)
+        self.verticalLayout_52.setObjectName(u"verticalLayout_52")
+        self.verticalLayout_51 = QVBoxLayout()
+        self.verticalLayout_51.setObjectName(u"verticalLayout_51")
+        self.textBrowser = QTextBrowser(self.groupBox_19)
+        self.textBrowser.setObjectName(u"textBrowser")
+
+        self.verticalLayout_51.addWidget(self.textBrowser)
+
+
+        self.verticalLayout_52.addLayout(self.verticalLayout_51)
+
+
+        self.verticalLayout_49.addWidget(self.groupBox_19)
+
+
+        self.verticalLayout_50.addLayout(self.verticalLayout_49)
+
+        self.stackedWidget.addWidget(self.page)
         self.Bubble_sort = QWidget()
         self.Bubble_sort.setObjectName(u"Bubble_sort")
         self.horizontalLayout_2 = QHBoxLayout(self.Bubble_sort)
@@ -466,6 +495,80 @@ class Ui_Widget(object):
         self.horizontalLayout_17.addLayout(self.verticalLayout_35)
 
         self.stackedWidget.addWidget(self.Insertion_Sort)
+        self.Merge_sort = QWidget()
+        self.Merge_sort.setObjectName(u"Merge_sort")
+        self.verticalLayout_46 = QVBoxLayout(self.Merge_sort)
+        self.verticalLayout_46.setObjectName(u"verticalLayout_46")
+        self.verticalLayout_45 = QVBoxLayout()
+        self.verticalLayout_45.setObjectName(u"verticalLayout_45")
+        self.groupBox_17 = QGroupBox(self.Merge_sort)
+        self.groupBox_17.setObjectName(u"groupBox_17")
+        self.verticalLayout_48 = QVBoxLayout(self.groupBox_17)
+        self.verticalLayout_48.setObjectName(u"verticalLayout_48")
+        self.verticalLayout_47 = QVBoxLayout()
+        self.verticalLayout_47.setObjectName(u"verticalLayout_47")
+        self.label = QLabel(self.groupBox_17)
+        self.label.setObjectName(u"label")
+
+        self.verticalLayout_47.addWidget(self.label)
+
+        self.size_array_lineEdit_MergeSort = QLineEdit(self.groupBox_17)
+        self.size_array_lineEdit_MergeSort.setObjectName(u"size_array_lineEdit_MergeSort")
+
+        self.verticalLayout_47.addWidget(self.size_array_lineEdit_MergeSort)
+
+        self.label_19 = QLabel(self.groupBox_17)
+        self.label_19.setObjectName(u"label_19")
+
+        self.verticalLayout_47.addWidget(self.label_19)
+
+        self.CArray_lineEdit_MergeSort = QLineEdit(self.groupBox_17)
+        self.CArray_lineEdit_MergeSort.setObjectName(u"CArray_lineEdit_MergeSort")
+
+        self.verticalLayout_47.addWidget(self.CArray_lineEdit_MergeSort)
+
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.BtnGenerate_MergeSort = QPushButton(self.groupBox_17)
+        self.BtnGenerate_MergeSort.setObjectName(u"BtnGenerate_MergeSort")
+
+        self.horizontalLayout_20.addWidget(self.BtnGenerate_MergeSort)
+
+        self.BtnRandomize_MergeSort = QPushButton(self.groupBox_17)
+        self.BtnRandomize_MergeSort.setObjectName(u"BtnRandomize_MergeSort")
+
+        self.horizontalLayout_20.addWidget(self.BtnRandomize_MergeSort)
+
+
+        self.verticalLayout_47.addLayout(self.horizontalLayout_20)
+
+        self.groupBox_18 = QGroupBox(self.groupBox_17)
+        self.groupBox_18.setObjectName(u"groupBox_18")
+        self.horizontalLayout_22 = QHBoxLayout(self.groupBox_18)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.code_graphicsView_MergeSort = QGraphicsView(self.groupBox_18)
+        self.code_graphicsView_MergeSort.setObjectName(u"code_graphicsView_MergeSort")
+
+        self.horizontalLayout_21.addWidget(self.code_graphicsView_MergeSort)
+
+
+        self.horizontalLayout_22.addLayout(self.horizontalLayout_21)
+
+
+        self.verticalLayout_47.addWidget(self.groupBox_18)
+
+
+        self.verticalLayout_48.addLayout(self.verticalLayout_47)
+
+
+        self.verticalLayout_45.addWidget(self.groupBox_17)
+
+
+        self.verticalLayout_46.addLayout(self.verticalLayout_45)
+
+        self.stackedWidget.addWidget(self.Merge_sort)
         self.Linear_search = QWidget()
         self.Linear_search.setObjectName(u"Linear_search")
         self.horizontalLayout_7 = QHBoxLayout(self.Linear_search)
@@ -653,28 +756,23 @@ class Ui_Widget(object):
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, -1, -1)
-        self.BtnPeek_stack = QPushButton(self.groupBox_8)
-        self.BtnPeek_stack.setObjectName(u"BtnPeek_stack")
+        self.BtnPop_stack = QPushButton(self.groupBox_8)
+        self.BtnPop_stack.setObjectName(u"BtnPop_stack")
 
-        self.gridLayout.addWidget(self.BtnPeek_stack, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.BtnPop_stack, 0, 2, 1, 1)
 
         self.BtnPush_stack = QPushButton(self.groupBox_8)
         self.BtnPush_stack.setObjectName(u"BtnPush_stack")
 
         self.gridLayout.addWidget(self.BtnPush_stack, 0, 0, 1, 1)
 
-        self.BtnPop_stack = QPushButton(self.groupBox_8)
-        self.BtnPop_stack.setObjectName(u"BtnPop_stack")
 
-        self.gridLayout.addWidget(self.BtnPop_stack, 0, 2, 1, 1)
+        self.verticalLayout_30.addLayout(self.gridLayout)
 
         self.BtnClear_stack = QPushButton(self.groupBox_8)
         self.BtnClear_stack.setObjectName(u"BtnClear_stack")
 
-        self.gridLayout.addWidget(self.BtnClear_stack, 1, 2, 1, 1)
-
-
-        self.verticalLayout_30.addLayout(self.gridLayout)
+        self.verticalLayout_30.addWidget(self.BtnClear_stack)
 
         self.groupBox_9 = QGroupBox(self.groupBox_8)
         self.groupBox_9.setObjectName(u"groupBox_9")
@@ -757,6 +855,75 @@ class Ui_Widget(object):
         self.horizontalLayout_10.addLayout(self.verticalLayout_32)
 
         self.stackedWidget.addWidget(self.Queue)
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.verticalLayout_55 = QVBoxLayout(self.page_2)
+        self.verticalLayout_55.setObjectName(u"verticalLayout_55")
+        self.verticalLayout_54 = QVBoxLayout()
+        self.verticalLayout_54.setObjectName(u"verticalLayout_54")
+        self.groupBox_20 = QGroupBox(self.page_2)
+        self.groupBox_20.setObjectName(u"groupBox_20")
+        self.verticalLayout_57 = QVBoxLayout(self.groupBox_20)
+        self.verticalLayout_57.setObjectName(u"verticalLayout_57")
+        self.verticalLayout_56 = QVBoxLayout()
+        self.verticalLayout_56.setObjectName(u"verticalLayout_56")
+        self.label_20 = QLabel(self.groupBox_20)
+        self.label_20.setObjectName(u"label_20")
+
+        self.verticalLayout_56.addWidget(self.label_20)
+
+        self.lineEdit_LinkedList = QLineEdit(self.groupBox_20)
+        self.lineEdit_LinkedList.setObjectName(u"lineEdit_LinkedList")
+
+        self.verticalLayout_56.addWidget(self.lineEdit_LinkedList)
+
+        self.horizontalLayout_23 = QHBoxLayout()
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.BtnInsert_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnInsert_LinkedList.setObjectName(u"BtnInsert_LinkedList")
+
+        self.horizontalLayout_23.addWidget(self.BtnInsert_LinkedList)
+
+        self.BtnRemove_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnRemove_LinkedList.setObjectName(u"BtnRemove_LinkedList")
+
+        self.horizontalLayout_23.addWidget(self.BtnRemove_LinkedList)
+
+
+        self.verticalLayout_56.addLayout(self.horizontalLayout_23)
+
+        self.BtnClear_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnClear_LinkedList.setObjectName(u"BtnClear_LinkedList")
+
+        self.verticalLayout_56.addWidget(self.BtnClear_LinkedList)
+
+        self.groupBox_21 = QGroupBox(self.groupBox_20)
+        self.groupBox_21.setObjectName(u"groupBox_21")
+        self.verticalLayout_59 = QVBoxLayout(self.groupBox_21)
+        self.verticalLayout_59.setObjectName(u"verticalLayout_59")
+        self.verticalLayout_58 = QVBoxLayout()
+        self.verticalLayout_58.setObjectName(u"verticalLayout_58")
+        self.code_graphicsView_LinkedList = QGraphicsView(self.groupBox_21)
+        self.code_graphicsView_LinkedList.setObjectName(u"code_graphicsView_LinkedList")
+
+        self.verticalLayout_58.addWidget(self.code_graphicsView_LinkedList)
+
+
+        self.verticalLayout_59.addLayout(self.verticalLayout_58)
+
+
+        self.verticalLayout_56.addWidget(self.groupBox_21)
+
+
+        self.verticalLayout_57.addLayout(self.verticalLayout_56)
+
+
+        self.verticalLayout_54.addWidget(self.groupBox_20)
+
+
+        self.verticalLayout_55.addLayout(self.verticalLayout_54)
+
+        self.stackedWidget.addWidget(self.page_2)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
 
@@ -766,7 +933,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -777,10 +944,10 @@ class Ui_Widget(object):
         self.groupBox_16.setTitle(QCoreApplication.translate("Widget", u"Data Structures", None))
         self.groupBox.setTitle(QCoreApplication.translate("Widget", u"Sorting", None))
         self.sort_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select Algorithm --", None))
-        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"merge Sort", None))
-        self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Bubble Sort", None))
-        self.sort_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Selection Sort", None))
-        self.sort_comboBox.setItemText(4, QCoreApplication.translate("Widget", u"Insertion Sort", None))
+        self.sort_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Bubble Sort", None))
+        self.sort_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Selection Sort", None))
+        self.sort_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Insertion Sort", None))
+        self.sort_comboBox.setItemText(4, QCoreApplication.translate("Widget", u"Merge Sort", None))
 
         self.groupBox_14.setTitle(QCoreApplication.translate("Widget", u"Searching", None))
         self.search_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select Algorithm--", None))
@@ -791,6 +958,7 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select --", None))
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
+        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
@@ -803,9 +971,23 @@ class Ui_Widget(object):
         self.speed_comboBox.setItemText(6, QCoreApplication.translate("Widget", u"0.5x", None))
         self.speed_comboBox.setItemText(7, QCoreApplication.translate("Widget", u"0.75x", None))
 
+        self.groupBox_19.setTitle(QCoreApplication.translate("Widget", u"DSA Visualizer", None))
+        self.textBrowser.setHtml(QCoreApplication.translate("Widget", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:700;\">DSA Visualizer</span><span style=\" font-size:11pt;\"> is an interactive learning tool designed to  help  you</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">understand Data Structures and Algorith"
+                        "ms visually,    step  by  step.</span></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">Select an algorithm to continue....</span></p></body></html>", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
-        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size", None))
-        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size (Max 5)", None))
+        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array (Max 5)", None))
         self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
         self.Btnrandomize.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))
@@ -819,8 +1001,14 @@ class Ui_Widget(object):
         self.label_17.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_18.setText(QCoreApplication.translate("Widget", u"Custom array", None))
         self.BtnGenerate_InsertionSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
-        self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Random", None))
+        self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.groupBox_13.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
+        self.groupBox_17.setTitle(QCoreApplication.translate("Widget", u"Merge Sort", None))
+        self.label.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label_19.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
+        self.BtnGenerate_MergeSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
+        self.BtnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
+        self.groupBox_18.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
         self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))
         self.label_13.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
@@ -837,9 +1025,8 @@ class Ui_Widget(object):
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("Widget", u"Stack", None))
         self.label_15.setText(QCoreApplication.translate("Widget", u"Input values", None))
-        self.BtnPeek_stack.setText(QCoreApplication.translate("Widget", u"Peek", None))
-        self.BtnPush_stack.setText(QCoreApplication.translate("Widget", u"Push", None))
         self.BtnPop_stack.setText(QCoreApplication.translate("Widget", u"Pop", None))
+        self.BtnPush_stack.setText(QCoreApplication.translate("Widget", u"Push", None))
         self.BtnClear_stack.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
@@ -847,5 +1034,11 @@ class Ui_Widget(object):
         self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
+        self.groupBox_20.setTitle(QCoreApplication.translate("Widget", u"Linked List", None))
+        self.label_20.setText(QCoreApplication.translate("Widget", u"Input Values:", None))
+        self.BtnInsert_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert", None))
+        self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove", None))
+        self.BtnClear_LinkedList.setText(QCoreApplication.translate("Widget", u"Clear", None))
+        self.groupBox_21.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
     # retranslateUi
 

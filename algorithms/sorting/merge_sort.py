@@ -1,8 +1,9 @@
+
 # This Python file uses the following encoding: utf-8
 
 # if __name__ == "__main__":
 #     pass
-def merge_sort(arr):
+def merge_Sort(arr):
     """
     Performs merge sort and returns steps for visualization.
     Each step is a tuple: ('compare'/'overwrite', i, j, current_array_state)

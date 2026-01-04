@@ -1,183 +1,824 @@
 import sys
-import random
 from PySide6.QtWidgets import QApplication, QWidget
-from PySide6.QtCore import QTimer, Qt
+from PySide6.QtCore import QTimer
+
+# Import
+from ui_form import Ui_Widget
 from PySide6.QtGui import QColor
 
-# UI
-from ui_form import Ui_Widget
-
-# Colors
-soft_blue   = QColor(100, 149, 237)
-soft_green  = QColor(144, 238, 144)
-soft_red    = QColor(240, 128, 128)
+soft_blue   = QColor(100, 149, 237)   # Cornflower blue
+soft_green  = QColor(46, 125, 50)  # Light green
+soft_red    = QColor(240, 128, 128)   # Light coral
+soft_gray   = QColor(200, 200, 200)   # Light gray
+soft_purple = QColor(186, 160, 255)
 soft_yellow = QColor(240, 200, 120)
 
-# =========================
-# Visualizers & Algorithms
-# =========================
-from visualizer.sorting_viz.insertionSort_visualizer import InsertionSortVisualizer
-from visualizer.sorting_viz.mergeSort_visualizer import mergeSort_Visualizer
-from visualizer.code_visualizer import code_Visualizer, ALGORITHM_CODES
 
-from algorithms.sorting.insertion_sort import insertion_sort
-from algorithms.sorting.merge_sort import merge_sort
+# Import Visualizer and  algorithms
 
-# =========================
-# Main Widget Class
-# =========================
+#For Bubble sort
+from visualizer.sorting_visualizer import sort_Visualizer
+from visualizer.Code_visualizer import code_Visualizer
+from visualizer.Code_visualizer import ALGORITHM_CODES
+from visualizer.sorting_visualizer import ref_Visualizer
+from algorithms.sorting.Bubble_sort import bubble_sort
+
+#For Binary search
+from algorithms.Searching.Binary_Search import binary_search
+from visualizer.searching_viz.BinarySearch_visualizer import Binary_Visualizer
+
+#For Insertion Sort
+from algorithms.sorting.insertion_sort import Insertion_sort
+from visualizer.Sorting_viz.InsertionSort_visualizer import  insertionSort_Visualizer
+
+#For Stack
+from algorithms.Stack import stack_fun
+from visualizer.Stack_visualizer import StackVisualizer
+
+#For Queue
+from algorithms.Queue.Queue_algo import queue_fun
+from visualizer.queue_viz.Queue_visualizer import QueueVisualizer
+
+#For selection sort
+from algorithms.sorting.Selection_sort import selection_sort
+from visualizer.Sorting_viz.SelectionSort_visualizer import SelectionSortVisualizer
+
+#For Linear search
+from algorithms.Searching.Linear_search import linear_search
+from visualizer.searching_viz.LinearSearch_Visualizer import Linear_Visualizer
+
+#For Merge sort
+from algorithms.sorting.merge_sort import merge_Sort
+from visualizer.Sorting_viz.mergeSort_visualizer import mergeSortVisualizer
+
+#For LinkedList
+from algorithms.Linked_List.singly_LinkedList import LinkedList_fun
+from visualizer.LinkedList_viz.singly_LinkedList_visualizer import NodeVisualizer
+
+
+
+
+import random
+
+
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
+
+        # Load UI
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
-        # Visualizers
-        self.active_visualizer = None
-        self.visualizer2 = None  # Reference view, make sure you add graphicsView for it in UI
-        self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
+        # Create visualizer for the graphicsView
+        self.visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
+        self.visualizer2 = ref_Visualizer(self.ui.ref_graphicsView)
+        self.visualizer3 = code_Visualizer(self.ui.code_graphicsView)
+
+
+        self.active_visualizer= self.visualizer
+        self.currCode_visualizer = self.visualizer3
 
         # Animation variables
         self.steps = []
         self.current_step = 0
-        self.current_array = []
-        self.active_algorithm = None
-        self.animation_speed = 500
+        self.current_array=[] #Stores the current updated array
+        self.stack = stack_fun(capacity=5)
+        self.queue = queue_fun(capacity = 5)
+        self.linked_list = LinkedList_fun()
 
-        # =========================
-        # Connect Buttons
-        # =========================
-        self.ui.Btnstart.clicked.connect(self.start_sort)
-        # Reuse Insertion Sort buttons for both algorithms
-        self.ui.BtnRandomize_InsertionSort.clicked.connect(lambda: self.random_array())
-        self.ui.BtnGenerate_InsertionSort.clicked.connect(lambda: self.custom_array())
+        # Connect Start Button
+        #for Bubble sort
+        self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
 
-        # Combobox
+        self.ui.Btnrandomize.clicked.connect(lambda: self.random_array("Bubble_sort"))
+        self.ui.Btnrandomize_Bsearch.clicked.connect(lambda: self.sorted_array("Binary_search"))
+        self.ui.BtnRandomize_InsertionSort.clicked.connect(lambda: self.random_array("Insertion_sort"))
+
+        self.ui.BtnGenerate.clicked.connect(lambda: self.custom_array("Bubble_sort"))
+        self.ui.BtnGenerate_Bsearch.clicked.connect(lambda: self.CArray_Bsearch("Binary_search"))
+        self.ui.BtnGenerate_InsertionSort.clicked.connect(lambda: self.custom_array("Insertion_sort"))
+
+        #Button for Stack
+        self.ui.BtnPush_stack.clicked.connect(lambda: self.push_stack("Stack"))
+        self.ui.BtnPop_stack.clicked.connect(lambda: self.pop_stack("Stack"))
+        self.ui.BtnClear_stack.clicked.connect(lambda: self.clear_stack("Stack"))
+
+        #Button for Queue
+        self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
+        self.ui.Btn_Dequeue.clicked.connect(lambda: self.dequeue_queue("Queue"))
+
+        #Button for Selection sort
+        self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
+        self.ui.BtnRandomize_SelectionSort.clicked.connect(lambda: self.random_array("Selection_sort"))
+
+        #Button for linear search
+        self.ui.BtnRandomize_LSearch.clicked.connect(lambda: self.random_array("Linear_search"))
+        self.ui.BtnGenerate_LSearch.clicked.connect(lambda: self.custom_array("Linear_search"))
+
+        #Button for Merge sort:
+        self.ui.BtnRandomize_MergeSort.clicked.connect(lambda: self.random_array("Merge_sort"))
+        self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
+
+        #Button for Linked List:
+        self.ui.BtnInsert_LinkedList.clicked.connect(lambda: self.Insert_LinkedList("Linked_List"))
+        self.ui.BtnRemove_LinkedList.clicked.connect(lambda: self.Remove_LinkedList("Linked_List"))
+        self.ui.BtnClear_LinkedList.clicked.connect(lambda: self.Clear_LinkedList("Linked_List"))
+
+        #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
+        self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
+        self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
 
-        # Initialize defaults
+        #initializing default algorithm
         self.initialize_defaults()
 
-    # =========================
-    # Initialization & Speed
-    # =========================
+        self.active_algorithm = None
+        self.currCode_visualizer = None
+        self.animation_speed = 500
+
     def initialize_defaults(self):
-        self.ui.sort_comboBox.setCurrentIndex(0)
-        self.on_sort_changed(self.ui.sort_comboBox.currentText())
+            self.ui.sort_comboBox.setCurrentIndex(0)
+            self.on_sort_changed(self.ui.sort_comboBox.currentText())
 
-    def change_speed(self, text):
-        speed_map = {"1x":500, "0.50x":800, "0.75x":600, "0.25x":1500,
-                     "1.25x":400, "1.5x":300, "2x":200, "3x":100}
-        self.animation_speed = speed_map.get(text, 500)
 
-    # =========================
-    # Sort selection
-    # =========================
+    def change_speed(self,text):
+            speed_map ={
+            "1x" : 500,
+            "0.50x" : 800,
+            "0.75x" : 600,
+            "0.25x"  : 1500,
+            "1.25x" : 400,
+            "1.5x" : 300,
+            "2x" : 200,
+            "3x" : 100,}
+            self.animation_speed = speed_map.get(text, 500)
+            print("Animation speed set to:", self.animation_speed)
+
+
+    def reset_all_comboboxes(self, except_box=None):
+        comboboxes = [
+            self.ui.sort_comboBox,
+            self.ui.search_comboBox,
+            self.ui.DS_comboBox,
+            # add more here later (stack, queue, tree...)
+        ]
+
+        for box in comboboxes:
+            if box is except_box:
+                continue
+            box.blockSignals(True)
+            box.setCurrentIndex(0)  # reset to placeholder
+            box.blockSignals(False)
+
+
     def on_sort_changed(self, algo):
-        algo = algo.strip().title()
-        self.active_algorithm = algo
-        print("Sort selected:", self.active_algorithm)
+            self.reset_all_comboboxes(except_box=self.ui.sort_comboBox)
 
-        if algo == "Insertion Sort":
-            self.active_visualizer = InsertionSortVisualizer(self.ui.visualizer_graphicsView)
-            self.currCode_visualizer.show_code(ALGORITHM_CODES.get(algo, ""))
-        elif algo == "Merge Sort":
-            self.active_visualizer = mergeSort_Visualizer(self.ui.visualizer_graphicsView)
-            self.currCode_visualizer.show_code(ALGORITHM_CODES.get(algo, ""))
-        else:
-            print("No valid algorithm selected")
-            return
+            mapping = {
+                "Bubble Sort": 1,
+                "Selection Sort": 2,
+                "Insertion Sort": 3,
+                "Merge Sort":4,
 
-        # Clear scene
-        self.active_visualizer.scene.clear()
-        if self.visualizer2:
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 0))
+            self.active_algorithm = algo
+            self.active_visualizer = self.visualizer
+            if algo == "Bubble Sort":
+                    self.active_visualizer = sort_Visualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+            elif algo =="Insertion Sort":
+                    self.active_visualizer = insertionSort_Visualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_InsertionSort)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+            elif algo == "Selection Sort":
+                    self.active_visualizer = SelectionSortVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_SelectionSort)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+                    # Inside Widget.__init__, when initializing Merge Sort visualizer
+            elif algo == "Merge Sort":
+                        self.active_visualizer = mergeSortVisualizer(self.ui.visualizer_graphicsView)
+                        self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView)
+                        self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
+            self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
+
+            self.visualizer2.scene.clear()
+            self.visualizer2.view.centerOn(0, 0)
+
+
+
+    def on_search_changed(self,algo):
+            self.reset_all_comboboxes(except_box=self.ui.search_comboBox)
+            mapping = {
+            "Linear Search": 5,
+            "Binary Search": 6,
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo, 2))
+            self.active_algorithm= algo
+
+
+            if algo == "Binary Search":
+                self.active_visualizer = Binary_Visualizer(self.ui.visualizer_graphicsView )
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Bsearch)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+            if algo == "Linear Search":
+                self.active_visualizer = Linear_Visualizer(self.ui.visualizer_graphicsView )
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_LSearch)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
+            self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
+            self.visualizer2.scene.clear()
+            self.visualizer3.view.centerOn(0, 0)
+            #self.visualizer3.scene.clear()
+
+    def on_dataStructure_changed(self,algo):
+            self.reset_all_comboboxes(except_box=self.ui.DS_comboBox)
+            mapping = {
+            "Stack": 7,
+            "Queue": 8,
+            "Linked List": 9,
+
+            }
+            self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
+            self.active_algorithm = algo
+            if algo == "Stack":
+                    self.active_visualizer = StackVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_stack)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+            elif algo == "Queue":
+                    self.active_visualizer = QueueVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+            elif algo == "Linked List":
+                    self.active_visualizer = NodeVisualizer(self.ui.visualizer_graphicsView)
+                    self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_LinkedList)
+                    self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+            self.active_visualizer.scene.clear()
+            self.active_visualizer.view.centerOn(0, 0)
             self.visualizer2.scene.clear()
 
-    # =========================
-    # Sorting
-    # =========================
+
+      #for sorting
+
     def start_sort(self):
-        if not self.current_array:
-            print("Array is empty!")
-            return
 
-        if self.active_algorithm == "Insertion Sort":
-            self.steps = insertion_sort(self.current_array.copy())
+        if self.active_algorithm == "Bubble Sort":
+            self.steps = bubble_sort(self.current_array.copy())
             self.current_step = 0
-            self.play_insertion_sort()
+            self.play_step()
+
+        elif self.active_algorithm == "Insertion Sort":
+                print("Insertion sort called")
+                self.steps = Insertion_sort(self.current_array.copy())
+                self.play_Insertion_sort()
+
+        elif self.active_algorithm == "Selection Sort":
+                self.steps = selection_sort(self.current_array.copy())
+                self.play_selection_sort()
         elif self.active_algorithm == "Merge Sort":
-            self.steps = merge_sort(self.current_array.copy())
-            self.current_step = 0
-            self.play_merge_sort()
+                    if not self.current_array:
+                        print("No array to sort!")
+                        return
+                    self.active_visualizer.start_sort(self.current_array)
 
-    # =========================
-    # Animation Functions
-    # =========================
-    def play_insertion_sort(self):
+
+
+
+        elif self.active_algorithm == "Binary Search":
+                target_text = self.ui.target_lineEdit.text().strip()
+                if target_text == "":
+                        print("Please enter a target value for Binary Search!")
+                        return
+                try:
+                        self.target = int(target_text)
+                except ValueError:
+                        print("Invalid input! Enter a number.")
+                        return
+                steps = binary_search(self.current_array.copy(), self.target)
+                self.current_step = 0
+                self.play_binary_search(steps)
+
+        elif self.active_algorithm == "Linear Search":
+                target_text = self.ui.target_lineEdit_LSearch.text().strip()
+                if target_text == "":
+                        print("Please enter a target value for linear Search!")
+                        return
+                try:
+                        self.target = int(target_text)
+                except ValueError:
+                        print("Invalid input! Enter a number.")
+                        return
+                steps, found = linear_search(self.current_array.copy(),self.target)
+                self.current_step = 0
+                self.play_linear_search(steps)
+        else:
+            print("No algorithm selected!")
+
+            def play_merge_sort(self):
+                # Stop any existing animation
+                if hasattr(self, "timer") and self.timer.isActive():
+                    self.timer.stop()
+
+                # Initialize timer
+                self.timer = QTimer()
+                self.step_index = 0
+
+                # Generate merge sort steps
+                self.steps = merge_Sort(self.active_visualizer.values.copy())
+
+                # Draw initial array
+                self.active_visualizer.draw_array(self.active_visualizer.values)
+
+                # Play steps recursively
+                self._play_merge_step()
+
+            def _play_merge_step(self):
+                if self.step_index >= len(self.steps):
+                    self.active_visualizer.completed_sort()
+                    return
+
+                action, i, j, arr_state = self.steps[self.step_index]
+
+                # Redraw updated array state
+                self.active_visualizer.swap_bars(arr_state, i, j)
+
+                if action == "compare":
+                    self.active_visualizer.highlight(i, j, soft_blue)
+                elif action == "overwrite":
+                    self.active_visualizer.highlight(i, i, soft_red)
+
+                self.step_index += 1
+                QTimer.singleShot(self.animation_speed, self._play_merge_step)
+
+    def play_selection_sort(self):
+            if self.current_step >= len(self.steps):
+               self.active_visualizer.completed_sort()
+               return# animation finished
+
+            step_type, i, j, state = self.steps[self.current_step]
+
+            # Highlight comparisons
+            if step_type == "compare":
+                self.active_visualizer.draw_array(state)
+                self.active_visualizer.highlight(i, j, soft_green)
+
+            # Swap bars and highlight them
+            elif step_type == "swap":
+                self.active_visualizer.swap_bars(state, i, j)
+                self.active_visualizer.highlight(i, j, soft_green)
+
+
+            self.current_step += 1
+
+            # Controls the speed of the animation
+            QTimer.singleShot(self.animation_speed, self.play_step)
+
+
+    def play_binary_search(self, steps):
+                print("play binary search called")
+
+                if self.current_step >= len(steps):
+                    return
+
+                step_type, old_left, mid, old_right, sub_arr, new_left, new_right = steps[self.current_step]
+
+                if step_type == "initial":
+                    print("Drawing initial array")
+                    self.active_visualizer.Bdraw_array(step_type, sub_arr, old_left)
+
+                elif step_type == "check":
+                    # Highlight the mid in current array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1)
+
+                elif step_type == "low":
+                    # Highlight before drawing new array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
+                    # Draw the new smaller array after a moment
+                    QTimer.singleShot(self.animation_speed // 4,
+                                     lambda: self.active_visualizer.Bdraw_array("low", sub_arr, new_left))
+
+                elif step_type == "high":
+
+                    # Highlight before drawing new array
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
+                    # Draw the new smaller array after a moment
+                    QTimer.singleShot(self.animation_speed // 4,
+                                     lambda: self.active_visualizer.Bdraw_array("high", sub_arr, new_left))
+
+                elif step_type == "found":
+
+                    mid_in_current = mid - old_left
+                    self.active_visualizer.found(mid_in_current)
+
+                elif step_type == "not_found":
+                    print("Not found")
+                    # Show all current bars in red
+                    for bar in self.active_visualizer.bars:
+                        bar.setBrush(soft_red)
+
+                self.current_step += 1
+                QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
+
+
+
+
+
+    def play_Insertion_sort(self):
+                    if self.current_step >= len(self.steps):
+                        self.active_visualizer.completed_sort()
+                        return
+
+                    step_type, i, j, state = self.steps[self.current_step]
+
+                    self.active_visualizer.draw_array(state)
+
+                    if step_type == "compare":
+
+                        self.active_visualizer.highlight(i, j, soft_yellow)
+
+                    elif step_type == "shift":
+                        self.active_visualizer.highlight(i, j, soft_red)
+
+                    elif step_type == "insert":
+                        self.active_visualizer.highlight(i, i, soft_green)
+
+                    elif step_type == "key":
+                        self.active_visualizer.highlight(i, i, soft_blue)
+
+                    self.current_step += 1
+                    QTimer.singleShot(self.animation_speed, self.play_step)
+
+
+    def play_step(self):        #plays animation
         if self.current_step >= len(self.steps):
-            self.active_visualizer.completed_sort()
-            return
+           self.active_visualizer.completed_sort()
+           return# animation finished
         step_type, i, j, state = self.steps[self.current_step]
-        self.active_visualizer.draw_array(state)
-        if step_type == "compare":
-            self.active_visualizer.highlight(i, j, soft_yellow)
-        elif step_type == "shift":
-            self.active_visualizer.highlight(i, j, soft_red)
-        elif step_type == "insert":
-            self.active_visualizer.highlight(i, i, soft_green)
-        elif step_type == "key":
-            self.active_visualizer.highlight(i, i, soft_blue)
-        self.current_step += 1
-        QTimer.singleShot(self.animation_speed, self.play_insertion_sort)
 
-    def play_merge_sort(self):
-        if self.current_step >= len(self.steps):
-            self.active_visualizer.completed_sort()
-            return
-        step_type, i, j, state = self.steps[self.current_step]
-        self.active_visualizer.draw_array(state)
-        if step_type == "compare":
-            self.active_visualizer.highlight(i, j, Qt.yellow)
-        elif step_type == "overwrite":
-            self.active_visualizer.highlight(i, j, Qt.blue)
-        self.current_step += 1
-        QTimer.singleShot(self.animation_speed, self.play_merge_sort)
 
-    # =========================
-    # Array Generation
-    # =========================
-    def random_array(self):
-        size_txt = self.ui.size_array_lineEdit_InsertionSort.text()
-        if not size_txt:
-            print("Enter size!")
-            return
-        size = int(size_txt)
-        arr = [random.randint(1, 100) for _ in range(size)]
+        # Highlight comparisons
+        if step_type == "compare":
+            print("compared")
+            self.active_visualizer.draw_array(state)
+            self.active_visualizer.highlight(i, j,soft_yellow)
+
+        # Swap bars and highlight them
+        elif step_type == "swap":
+            print("swapped")
+
+            self.active_visualizer.swap_bars(state, i, j)
+            self.active_visualizer.highlight(i, j, soft_blue)
+
+
+        self.current_step += 1
+
+        # Controls the speed of the animation
+        QTimer.singleShot(self.animation_speed, self.play_step)
+
+
+    def random_array(self,source="Bubble_sort"):  #Generates random array
+        #self.reset_active_algorithm()
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.view.centerOn(0, 0)
+        self.active_visualizer.bars.clear()
+
+        self.current_step = 0
+        self.steps = []
+
+
+        if source == "Bubble_sort":
+                size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                if size<6:
+
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+
+                        self.active_visualizer.draw_array(arr)
+                        self.active_visualizer.draw_box_color()
+
+                        self.visualizer2.ref_drawArray(arr)
+
+                else:
+                        print("invalid size")
+
+        elif source == "Insertion_sort":
+                print("Random array insertion sort called")
+                size= int(self.ui.size_array_lineEdit_InsertionSort.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Selection_sort":
+                size = int(self.ui.size_array_lineEdit_SelectionSort.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Binary_search":
+                size = int(self.ui.size_array_lineEdit_BSearch.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Linear_search":
+                size = int(self.ui.size_array_lineEdit_LSearch.text())
+
+                arr=[random.randint(1,100) for _ in range(size)]
+                self.current_array = arr
+                self.active_visualizer.draw_array(arr)
+                self.visualizer2.ref_drawArray(arr)
+
+        elif source == "Merge_sort":
+                    size = int(self.ui.size_array_lineEdit_MergeSort.text())
+                    arr = [random.randint(1,100) for _ in range(size)]
+                    self.current_array = arr
+                    # Draw the whole array as initial top-level array
+                    self.active_visualizer.clear()
+                    self.active_visualizer.draw_subarray(arr, 0, 10)
+                    self.visualizer2.ref_drawArray(arr)
+
+        else:
+                return
+        #print(size)
+        """
+
+        arr=[random.randint(1,100) for _ in range(size)]
         self.current_array = arr
         self.active_visualizer.draw_array(arr)
-        if self.visualizer2:
-            self.visualizer2.ref_drawArray(arr)
+        self.visualizer2.ref_drawArray(arr)"""
 
-    def custom_array(self):
-        size_txt = self.ui.size_array_lineEdit_InsertionSort.text()
-        custom_arr_txt = self.ui.CArray_lineEdit_InsertionSort.text()
-        if not size_txt or not custom_arr_txt:
-            print("Enter size and array!")
-            return
+
+
+
+    def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.bars.clear()
+        self.current_step = 0
+        self.steps = []
+
+
+        if source == "Bubble_sort":
+                size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                custom_arr = self.ui.custom_array_lineEdit.text()
+
+
+        elif source == "Insertion_sort":
+                size_txt = int(self.ui.size_array_lineEdit_InsertionSort.text())
+                custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
+
+        elif source == "Selection_sort":
+                size_txt = int(self.ui.size_array_lineEdit_SelectionSort.text())
+                custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
+
+        elif source == "Linear_search":
+                size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
+                custom_arr = self.ui.CArray_lineEdit_LSearch.text()
+
+        elif source == "Merge_Sort":
+                size_txt = int(self.ui.size_array_lineEdit_MergeSort.text())
+                custom_arr = self.ui.CArray_lineEdit_MergeSort.text()
+
+
+        else:
+                return
+
+
+        if size_txt == "" or custom_arr == "":
+                print("input the required size and value for customr array!")
+                return
+
         size = int(size_txt)
-        arr = [int(x) for x in custom_arr_txt.replace(",", " ").split()]
-        if len(arr) != size:
-            print("Array size does not match!")
-            return
-        self.current_array = arr
-        self.active_visualizer.draw_array(arr)
-        if self.visualizer2:
-            self.visualizer2.ref_drawArray(arr)
 
-# =========================
-# Run Application
-# =========================
+        parts = custom_arr.replace(",", " ").split() #splits the string into individual values
+
+        if len(parts) != size:
+                print("Array size does not match!")
+                return
+        else:
+
+
+                arr = [int(x) for x in parts]
+
+                self.current_array = arr
+                self.visualizer2.ref_drawArray(arr)
+                self.active_visualizer.draw_array(arr)
+
+
+
+    def CArray_Bsearch(self,source = "Binary_serach"):
+                self.steps = []
+                self.current_step = 0
+
+                self.active_visualizer.clear()
+                if source == "Binary_search":
+                    size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
+                    custom_arr = self.ui.lineEdit_Bsearch.text()
+                if size_txt == "" or custom_arr == "":
+                            print("input the required size and value for customr array!")
+                            return
+
+                size = int(size_txt)
+
+                parts = custom_arr.replace(",", " ").split() #splits the string into individual values
+
+                if len(parts) != size:
+                            print("Array size does not match!")
+                            return
+                else:
+
+                            arr = [int(x) for x in parts]
+
+                            self.current_array = arr
+                            self.current_step = self.steps
+                            self.visualizer2.ref_drawArray(arr)
+                            self.active_visualizer.Bdraw_array(self.steps,arr)
+
+    def sorted_array(self,source = "Binary_search"):
+
+        self.current_step = 0
+        self.active_visualizer.clear()
+        self.steps = []
+        size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
+        arr = []
+        start = 1
+        step_max = 10
+        current = start
+        for _ in range(size_text):
+                current += random.randint(1, step_max)
+                arr.append(current)
+        self.current_array =arr
+        self.current_step = self.steps
+        self.active_visualizer.Bdraw_array(self.steps,arr)
+        self.visualizer2.ref_drawArray(arr)
+
+
+        #for stacks
+    def push_stack(self,source ="Stack"):
+        value_text = self.ui.Stack_lineEdit.text().strip()
+        if not value_text:
+                return
+
+        try:
+                value = int(value_text)
+        except ValueError:
+                print("Invalid input")
+                return
+
+        action, state = self.stack.push(value)
+
+        if action == "stack overflow":
+                print("Stack overflow!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+        self.ui.Stack_lineEdit.clear()
+
+    def pop_stack(self,source = "Stack"):
+        action, value,state = self.stack.pop()
+
+        if action == "stack underflow":
+                print("Stack Underflow!")
+        else:
+                self.active_visualizer.draw_stack(state)
+
+    def clear_stack(self,source = "Stack"):
+            action, value,state = self.stack.clear()
+            if action == "stack underflow":
+                    print("stack is empty!")
+            else :
+                    self.active_visualizer.draw_stack(state)
+                    self.active_visualizer.scene.clear()
+
+
+        #Functions for Queue
+    def enqueue_queue(self,source = "Queue"):
+            value_text = self.ui.lineEdit_Queue.text().strip()
+            if not value_text:
+                    return
+
+            try:
+                    value = int(value_text)
+            except ValueError:
+                    print("Invalid input")
+                    return
+
+            action, state = self.queue.enqueue(value)
+
+            if action == "overflow":
+                    print("Queue overflow!")
+            else:
+                    self.active_visualizer.draw_queue(state)
+
+            self.ui.lineEdit_Queue.clear()
+
+    def dequeue_queue(self, source = "Queue"):
+                action,value, state = self.queue.dequeue()
+                if action == "underflow":
+                        print("Queue underflow!")
+                else:
+                        self.active_visualizer.draw_queue(state)
+
+    def Insert_LinkedList(self, source ="Linked_List"):
+
+                    value_text = self.ui.lineEdit_LinkedList.text().strip()
+                    if not value_text:
+                            return
+
+                    try:
+                            value = int(value_text)
+                    except ValueError:
+                            print("Invalid input")
+                            return
+
+                    action, state = self.linked_list.append(value)
+
+                    if action == "overflow":
+                            print("Queue overflow!")
+                    else:
+                            self.active_visualizer.draw_list(state)
+
+                    self.ui.lineEdit_LinkedList.clear()
+    def Remove_LinkedList(self,source ="Linked List"):
+            action, value, state = self.linked_list.delete()
+            if action == "empty":
+                    pass
+            else:
+                    self.active_visualizer.draw_list(state)
+
+    def Clear_LinkedList(self,source = "Linked LIst"):
+            pass
+
+
+"""
+    def play_LinkedList(self, steps):
+
+            self.current_step = 0  # reset step index
+
+            def next_step():
+                if self.current_step >= len(steps):
+                    return  # Animation finished
+
+                action, index, value, state = steps[self.current_step]
+
+                # Decide which node to highlight
+                highlight_index = None
+                highlight_color = Qt.yellow
+
+                if action in ["traverse", "check"]:
+                    highlight_index = index
+                    highlight_color = Qt.yellow
+                elif action in ["found"]:
+                    highlight_index = index
+                    highlight_color = Qt.green
+                elif action in ["insert", "append", "prepend"]:
+                    highlight_index = index
+                    highlight_color = Qt.green
+                elif action in ["delete_start", "delete_end"]:
+                    highlight_index = index
+                    highlight_color = Qt.red
+
+                # Draw current linked list state
+                self.linked_list_visualizer.draw_list(state, highlight_index=highlight_index, highlight_color=highlight_color)
+
+                self.current_step += 1
+                # Schedule next step after delay
+                QTimer.singleShot(600, next_step)  # Adjust speed (ms) here
+
+            next_step()
+
+
+"""
+
+
+
+
+
+
+
+
+
+#Run application
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = Widget()

@@ -1,128 +1,105 @@
-# This Python file uses the following encoding: utf-8
-
-# if __name__ == "__main__":
-#     pass
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimpleTextItem
 from PySide6.QtGui import QBrush, QColor
-from PySide6.QtCore import QRectF, Qt
+from PySide6.QtCore import QRectF, Qt, QTimer
 
 # Colors
 soft_blue   = QColor(100, 149, 237)
-soft_green  = QColor(144, 238, 144)
+soft_green  = QColor(46, 125, 50)
 soft_red    = QColor(240, 128, 128)
 soft_gray   = QColor(200, 200, 200)
-soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
 
-
-class mergeSort_Visualizer:
+class mergeSortVisualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
+        self.bars = []          # main list of all bars
+        self.timer_delay = 500
+        self.max_width = 800    # max horizontal space for bars
 
-        self.bars = []       # stores QGraphicsRectItem
-        self.values = []     # stores actual numbers
-
-    def draw_array(self, arr):          # Draws array
+    def clear(self):
         self.scene.clear()
         self.bars.clear()
-        self.values = arr.copy()
-        width = 60
-        spacing = 1
 
+    def draw_subarray(self, arr, x_start=0, y_start=0):
+        n = len(arr)
+        if n == 0:
+            return []
+
+        total_space = self.max_width
+        spacing = 5
+        width = min(50, (total_space - spacing*(n-1)) / n)
+
+        sub_bars = []
         for i, val in enumerate(arr):
-            height = 60
-            x = i * (width + spacing)
-            y = 10
-
-            bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(soft_red))
-
-            # Adding number label
+            x = x_start + i * (width + spacing)
+            y = y_start
+            rect = QGraphicsRectItem(QRectF(x, y, width, 50))
+            rect.setBrush(QBrush(soft_red))
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 20, y - 20)
-
-            self.scene.addItem(bar)
+            text.setPos(x + width/4, y + 15)
+            self.scene.addItem(rect)
             self.scene.addItem(text)
-            self.bars.append((bar, text))
+            sub_bars.append((rect, text))
 
-    def highlight(self, i, j, color):
-        if 0 <= i < len(self.bars):
-            self.bars[i][0].setBrush(QBrush(color))
-        if 0 <= j < len(self.bars):
-            self.bars[j][0].setBrush(QBrush(color))
+        # Keep reference in self.bars to prevent deletion
+        self.bars.extend(sub_bars)
+        return sub_bars
 
-    def swap_bars(self, updated_array, i, j):
-        """Redraws bars using new array state."""
-        self.draw_array(updated_array)
+    def highlight(self, bar_tuple, color):
+        rect, _ = bar_tuple
+        rect.setBrush(QBrush(color))
 
-    def completed_sort(self):  # colors the bar green once sorting is done
-        for bar in self.bars:
-            rect, text = bar
-            rect.setBrush(soft_green)
+    def start_sort(self, arr):
+        self.clear()
+        self._merge_sort_step(arr, 0, 0, lambda _: None)
 
+    def _merge_sort_step(self, arr, x_start, y_start, callback):
+        if len(arr) <= 1:
+            bars = self.draw_subarray(arr, x_start, y_start)
+            QTimer.singleShot(self.timer_delay, lambda: callback(arr))
+            return
 
-class ref_Visualizer:
-    def __init__(self, graphics_view2):
-        self.view = graphics_view2
-        self.scene = QGraphicsScene()
-        self.view.setScene(self.scene)
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
 
-        self.bars = []
-        self.values = []
+        def left_done(left_sorted):
+            def right_done(right_sorted):
+                total_len = len(left_sorted) + len(right_sorted)
+                merged = [0] * total_len
+                merged_bars = self.draw_subarray(merged, x_start, y_start)
 
-    def ref_drawArray(self, arr):
-        self.scene.clear()
-        self.bars.clear()
-        self.values = arr.copy()
-        width = 50
-        spacing = 1
+                i = j = k = 0
 
-        label = QGraphicsSimpleTextItem("Original:")
-        label.setBrush(Qt.white)
-        label.setPos(-60, -210)
-        self.scene.addItem(label)
+                def merge_step():
+                    nonlocal i, j, k
+                    if k >= total_len:
+                        for rect, text in merged_bars:
+                            self.highlight((rect, text), soft_green)
+                        callback(merged)
+                        return
 
-        for i, val in enumerate(arr):
-            height = 50
-            x = i * (width + spacing)
-            y = -230
+                    if i < len(left_sorted) and (j >= len(right_sorted) or left_sorted[i] <= right_sorted[j]):
+                        val = left_sorted[i]
+                        i += 1
+                    else:
+                        val = right_sorted[j]
+                        j += 1
 
-            bar = QGraphicsRectItem(QRectF(x, y, width, height))
-            bar.setBrush(QBrush(Qt.darkGray))
+                    merged[k] = val
+                    rect, text = merged_bars[k]
+                    text.setText(str(val))
+                    self.highlight((rect, text), soft_blue)
+                    k += 1
+                    QTimer.singleShot(self.timer_delay, merge_step)
 
-            text = QGraphicsSimpleTextItem(str(val))
-            text.setBrush(Qt.white)
-            text.setPos(x + 20, y + 15)
+                merge_step()
 
-            self.scene.addItem(bar)
-            self.scene.addItem(text)
-            self.bars.append((bar, text))
+            # Adjust x_start for right subarray
+            right_x = x_start + mid * (min(50, (self.max_width - 5*(len(right)-1))/len(right)) + 5)
+            self._merge_sort_step(right, right_x, y_start + 80, right_done)
 
-        # Index labels
-        index_label = QGraphicsSimpleTextItem("Index:")
-        index_label.setBrush(Qt.white)
-        index_label.setPos(-52, -180)
-        self.scene.addItem(index_label)
-
-        for i in range(len(arr)):
-            x = i * (width + spacing)
-            y = -230
-            index = QGraphicsSimpleTextItem(str(i))
-            index.setBrush(Qt.gray)
-            index.setPos(x + 20, y + 53)
-            self.scene.addItem(index)
-
-
-class code_Visualizer:
-    def __init__(self, graphics_view3):
-        self.view = graphics_view3
-        self.scene = QGraphicsScene()
-        self.view.setScene(self.scene)
-        self.codes = []
-
-        # Example placeholder text
-        text = QGraphicsSimpleTextItem("Merge Sort Code Will Appear Here")
-        text.setBrush(Qt.white)
-        self.scene.addItem(text)
+        self._merge_sort_step(left, x_start, y_start + 80, left_done)

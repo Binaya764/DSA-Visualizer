@@ -1,0 +1,46 @@
+[33mcommit dfab7952dbdc147755655c4275965d0493703fcb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mBinaya[m[33m, [m[1;31morigin/Binaya[m[33m)[m
+Author: sudha-256 <karkisudha21@gmail.com>
+Date:   Tue Dec 23 10:57:12 2025 +0545
+
+    Time complexities added for algorithms
+
+[1mdiff --git a/visualizer/Code_visualizer.py b/visualizer/Code_visualizer.py[m
+[1mindex 1424661..8206254 100644[m
+[1m--- a/visualizer/Code_visualizer.py[m
+[1m+++ b/visualizer/Code_visualizer.py[m
+[36m@@ -24,6 +24,8 @@[m [mclass code_Visualizer:[m
+ # Store your codes in constants or a dictionary[m
+ [m
+ BUBBLE_SORT_CODE = """[m
+[32m+[m[32mTime Complexity = O(n²)[m
+[32m+[m
+ def bubble_sort(arr):[m
+     n = len(arr)[m
+ [m
+[36m@@ -37,6 +39,8 @@[m [mdef bubble_sort(arr):[m
+ """[m
+ [m
+ BINARY_SEARCH_CODE = """[m
+[32m+[m[32mTime Complexity = O(log n)[m
+[32m+[m
+ def binary_search(arr, target):[m
+     left = 0[m
+     right = len(arr) - 1[m
+[36m@@ -57,6 +61,8 @@[m [mdef binary_search(arr, target):[m
+ [m
+ """[m
+ INSERTION_SORT_CODE="""[m
+[32m+[m[32mTime Complexity = O(n²)[m
+[32m+[m
+ def Insertion_sort(arr):[m
+     steps = [][m
+     n = len(arr)[m
+[36m@@ -114,6 +120,8 @@[m [mclass stack_fun:[m
+ """[m
+ [m
+ SELECTION_SORT_CODE= """[m
+[32m+[m[32mTime Complexity = O(n²)[m
+[32m+[m
+ def selection_sort(arr):[m
+ [m
+     steps = [][m
