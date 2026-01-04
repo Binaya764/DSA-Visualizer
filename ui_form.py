@@ -161,10 +161,6 @@ class Ui_Widget(object):
         self.horizontalLayout.setSpacing(20)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, 10, -1, 30)
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
         self.Btnstart = QPushButton(self.widget)
         self.Btnstart.setObjectName(u"Btnstart")
         self.Btnstart.setMaximumSize(QSize(60, 40))

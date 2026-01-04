@@ -576,6 +576,7 @@ class Widget(QWidget):
 
                         arr=[random.randint(1,100) for _ in range(size)]
                         self.current_array = arr
+                        self.active_visualizer.draw_box_color()
                         self.active_visualizer.draw_array(arr)
                         self.visualizer2.ref_drawArray(arr)
                 else:

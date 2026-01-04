@@ -12,6 +12,7 @@ soft_green  = QColor(46, 125, 50)
 soft_red    = QColor(240, 128, 128)
 soft_gray   = QColor(200, 200, 200)
 soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
 
 
 class mergeSort_Visualizer:
@@ -30,13 +31,13 @@ class mergeSort_Visualizer:
         self.values = arr.copy()
         width = 60
         spacing = 1
-        y =self.y_offset
+        y =self.y_offset-120 #controls the vertical height of the array
         self.y_offset +=100
 
 
         for i, val in enumerate(arr):
             height = 60
-            x = i * (width + spacing)
+            x = i * (width + spacing)+110  #controls the horizontal height of the array
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(soft_red))
@@ -51,7 +52,7 @@ class mergeSort_Visualizer:
             self.bars.append((bar, text))
 
         for i in range(len(arr)):
-                    x = i * ( 60+ spacing)
+                    x = i * ( 60+ spacing)+110
                     #y = 10
 
                     index = QGraphicsSimpleTextItem(str(i))
@@ -61,6 +62,51 @@ class mergeSort_Visualizer:
 
         self.view.setSceneRect(self.scene.itemsBoundingRect())
         self.view.centerOn(self.bars[0][0])
+
+    def draw_box_color(self):
+            print("draw box called")
+
+            width = 20
+            height = 20
+            x=130
+            y=-80
+
+            #Box label for compare
+            compare_box = QGraphicsRectItem(QRectF(x+350, -150+y, 20, 20))
+            compare_box.setBrush(QBrush(soft_yellow))
+            index_label= QGraphicsSimpleTextItem("Compare")
+            index_label.setBrush(Qt.white)
+            index_label.setPos(x+380,-150+y)
+            self.scene.addItem(index_label)
+            self.scene.addItem(compare_box)
+
+            #Box label for swap
+            overwrite_box = QGraphicsRectItem(QRectF(x+350, -120+y, 20, 20))
+            overwrite_box.setBrush(QBrush(soft_purple))
+            overwrite_label= QGraphicsSimpleTextItem("Overwrite")
+            overwrite_label.setBrush(Qt.white)
+            overwrite_label.setPos(x+380,-120+y)
+            self.scene.addItem(overwrite_label)
+            self.scene.addItem(overwrite_box)
+
+            #Box label for sorted
+            sorted_box = QGraphicsRectItem(QRectF(x+350, -90+y, 20, 20))
+            sorted_box.setBrush(QBrush(soft_green))
+            sorted_label= QGraphicsSimpleTextItem("Sorted")
+            sorted_label.setBrush(Qt.white)
+            sorted_label.setPos(x+380,-90+y)
+            self.scene.addItem(sorted_label)
+            self.scene.addItem(sorted_box)
+
+            #Box label for unsorted
+            unsorted_box = QGraphicsRectItem(QRectF(x+350, -60+y, 20, 20))
+            unsorted_box.setBrush(QBrush(soft_red))
+            unsorted_label= QGraphicsSimpleTextItem("Unsorted")
+            unsorted_label.setBrush(Qt.white)
+            unsorted_label.setPos(x+380,-60+y)
+            self.scene.addItem(unsorted_label)
+            self.scene.addItem(unsorted_box)
+            self.y_offset = 10
 
 
     def highlight(self, i, j, color):
