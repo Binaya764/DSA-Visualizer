@@ -17,9 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGraphicsView,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QSlider,
-    QSpacerItem, QStackedWidget, QTextBrowser, QVBoxLayout,
-    QWidget)
+    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -159,8 +158,13 @@ class Ui_Widget(object):
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(20)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(-1, 10, -1, -1)
+        self.horizontalLayout.setContentsMargins(-1, 10, -1, 30)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
         self.Btnstart = QPushButton(self.widget)
         self.Btnstart.setObjectName(u"Btnstart")
         self.Btnstart.setMaximumSize(QSize(60, 40))
@@ -169,10 +173,6 @@ class Ui_Widget(object):
         self.Btnstart.setFont(font)
 
         self.horizontalLayout.addWidget(self.Btnstart, 0, Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setSpacing(7)
@@ -197,33 +197,15 @@ class Ui_Widget(object):
 
         self.horizontalLayout_3.addWidget(self.speed_comboBox)
 
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
+
 
         self.horizontalLayout.addLayout(self.horizontalLayout_3)
 
 
         self.verticalLayout_12.addLayout(self.horizontalLayout)
-
-        self.frame_5 = QFrame(self.widget)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setMaximumSize(QSize(16777215, 50))
-        self.frame_5.setSizeIncrement(QSize(0, 50))
-        self.frame_5.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_16 = QVBoxLayout(self.frame_5)
-        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.verticalLayout_13 = QVBoxLayout()
-        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.horizontalSlider = QSlider(self.frame_5)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setOrientation(Qt.Orientation.Horizontal)
-
-        self.verticalLayout_13.addWidget(self.horizontalSlider)
-
-
-        self.verticalLayout_16.addLayout(self.verticalLayout_13)
-
-
-        self.verticalLayout_12.addWidget(self.frame_5)
 
 
         self.verticalLayout_6.addLayout(self.verticalLayout_12)
@@ -933,7 +915,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1004,7 +986,7 @@ class Ui_Widget(object):
         self.BtnRandomize_InsertionSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.groupBox_13.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
         self.groupBox_17.setTitle(QCoreApplication.translate("Widget", u"Merge Sort", None))
-        self.label.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label.setText(QCoreApplication.translate("Widget", u"Array Size (Max 5)", None))
         self.label_19.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate_MergeSort.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.BtnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))

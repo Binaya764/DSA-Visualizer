@@ -343,7 +343,7 @@ class Widget(QWidget):
                 elif action == "overwrite":
                     print("overwrite called")
                     self.active_visualizer.draw_array(arr_state)
-                    self.active_visualizer.highlight(i, i, soft_blue)
+                    self.active_visualizer.highlight(i, i, soft_purple)
 
                 # Move to next step
                 self.current_step += 1
@@ -787,45 +787,7 @@ class Widget(QWidget):
             pass
 
 
-"""
-    def play_LinkedList(self, steps):
 
-            self.current_step = 0  # reset step index
-
-            def next_step():
-                if self.current_step >= len(steps):
-                    return  # Animation finished
-
-                action, index, value, state = steps[self.current_step]
-
-                # Decide which node to highlight
-                highlight_index = None
-                highlight_color = Qt.yellow
-
-                if action in ["traverse", "check"]:
-                    highlight_index = index
-                    highlight_color = Qt.yellow
-                elif action in ["found"]:
-                    highlight_index = index
-                    highlight_color = Qt.green
-                elif action in ["insert", "append", "prepend"]:
-                    highlight_index = index
-                    highlight_color = Qt.green
-                elif action in ["delete_start", "delete_end"]:
-                    highlight_index = index
-                    highlight_color = Qt.red
-
-                # Draw current linked list state
-                self.linked_list_visualizer.draw_list(state, highlight_index=highlight_index, highlight_color=highlight_color)
-
-                self.current_step += 1
-                # Schedule next step after delay
-                QTimer.singleShot(600, next_step)  # Adjust speed (ms) here
-
-            next_step()
-
-
-"""
 
 
 
