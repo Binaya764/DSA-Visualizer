@@ -47,7 +47,7 @@ class mergeSort_Visualizer:
             self.scene.addItem(text)
             self.bars.append((bar, text))
 
-            for i in range(len(arr)):
+        for i in range(len(arr)):
                     x = i * ( 60+ spacing)
                     y = 10
 
@@ -62,7 +62,7 @@ class mergeSort_Visualizer:
         if 0 <= j < len(self.bars):
             self.bars[j][0].setBrush(QBrush(color))
 
-    def swap_bars(self, updated_array, i, j):
+    def overwrite(self, updated_array, i, j):
         """Redraws bars using new array state."""
         self.draw_array(updated_array)
 
