@@ -331,6 +331,9 @@ class Widget(QWidget):
 
                # Initialize timer
                 self.timer = QTimer()
+                self.timer.timeout.connect(self.play_merge_sort)
+                self.timer.start(self.animation_speed)
+
 
                # Generate merge sort steps
                 self.steps = merge_Sort(self.active_visualizer.values.copy())
@@ -342,13 +345,13 @@ class Widget(QWidget):
 
                 if self.step_index >= len(self.steps):
                        self.timer.stop()
-                       self.merge_viz.completed_sort()
+                       self.active_visualizer.completed_sort()
                        return
 
                 action, i, j, arr_state = self.steps[self.step_index]
 
                    # Redraw updated array state
-                self.active_visualizer.swap_bars(arr_state, i, j)
+                self.active_visualizer.overwrite(arr_state,i,j)
 
                 if action == "compare":
                        self.active_visualizer.highlight(i, j, soft_blue)
@@ -357,8 +360,6 @@ class Widget(QWidget):
                        self.active_visualizer.highlight(i, i, soft_red)
 
                 self.step_index += 1
-
-                QTimer.singleShot(self.animation_speed, self.play_step)
 
 
 
@@ -379,9 +380,9 @@ class Widget(QWidget):
                 print("found")
                 self.active_visualizer.found(index)
 
-            elif step_type == "not_found":
+            elif step_type == "not found":
                 for i in range(len(state)):
-                    self.active_visualizer.highlight(i)
+                    self.active_visualizer.not_found(i)
 
             self.current_step += 1
             QTimer.singleShot(self.animation_speed, lambda: self.play_linear_search(steps))
@@ -408,7 +409,7 @@ class Widget(QWidget):
             self.current_step += 1
 
             # Controls the speed of the animation
-            QTimer.singleShot(self.animation_speed, self.play_step)
+            QTimer.singleShot(self.animation_speed, self.play_selection_sort)
 
 
     def play_binary_search(self, steps):
@@ -440,7 +441,7 @@ class Widget(QWidget):
 
                     # Highlight before drawing new array
                     mid_in_current = mid - old_left
-                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)+1, soft_blue, soft_yellow)
                     # Draw the new smaller array after a moment
                     QTimer.singleShot(self.animation_speed // 4,
                                      lambda: self.active_visualizer.Bdraw_array("high", sub_arr, new_left))
@@ -452,9 +453,8 @@ class Widget(QWidget):
 
                 elif step_type == "not_found":
                     print("Not found")
-                    # Show all current bars in red
-                    for bar in self.active_visualizer.bars:
-                        bar.setBrush(soft_red)
+                    for i in range(len(sub_arr)):
+                        self.active_visualizer.not_found(i)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
@@ -464,29 +464,36 @@ class Widget(QWidget):
 
 
     def play_Insertion_sort(self):
-                    if self.current_step >= len(self.steps):
+                if self.current_step >= len(self.steps):
                         self.active_visualizer.completed_sort()
                         return
 
-                    step_type, i, j, state = self.steps[self.current_step]
+                    #step_type, i, j, state = self.steps[self.current_step]
+                    # Safe unpacking
+                step = self.steps[self.current_step]
+                step_type = step[0]
+                i = step[1]
+                j = step[2]
+                state = step[3]
+                key = step[4] if len(step) > 4 else None
 
-                    self.active_visualizer.draw_array(state)
+                self.active_visualizer.draw_array(state)
 
-                    if step_type == "compare":
+                if step_type == "compare":
 
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
-                    elif step_type == "shift":
+                elif step_type == "shift":
                         self.active_visualizer.highlight(i, j, soft_red)
 
-                    elif step_type == "insert":
+                elif step_type == "insert":
                         self.active_visualizer.highlight(i, i, soft_green)
 
-                    elif step_type == "key":
+                elif step_type == "key":
                         self.active_visualizer.highlight(i, i, soft_blue)
 
-                    self.current_step += 1
-                    QTimer.singleShot(self.animation_speed, self.play_step)
+                self.current_step += 1
+                QTimer.singleShot(self.animation_speed, self.play_Insertion_sort)
 
 
     def play_step(self):        #plays animation

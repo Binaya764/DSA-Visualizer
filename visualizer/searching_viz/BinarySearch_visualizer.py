@@ -76,5 +76,11 @@ class Binary_Visualizer:
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(soft_green))
 
+    def not_found(self,index):
+        for i, bar in enumerate(self.bars):
+            if i == index:
+                bar.setBrush(QBrush(soft_red))
+            else:
+                pass
 
 
