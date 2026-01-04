@@ -288,6 +288,7 @@ class Widget(QWidget):
         elif self.active_algorithm == "Selection Sort":
                 self.steps = selection_sort(self.current_array.copy())
                 self.play_selection_sort()
+
         elif self.active_algorithm == "Merge Sort":
                 self.steps = merge_Sort(self.current_array.copy())
                 self.play_merge_sort()
@@ -325,42 +326,31 @@ class Widget(QWidget):
             print("No algorithm selected!")
 
     def play_merge_sort(self):
-               # Stop any existing animation
-                if hasattr(self, "timer") and self.timer.isActive():
-                   self.timer.stop()
+                # Check if all steps are done
+                if self.current_step >= len(self.steps):
+                    print("Merge sort completed")
+                    self.active_visualizer.completed_sort()
+                    return
 
-               # Initialize timer
-                self.timer = QTimer()
-                self.timer.timeout.connect(self.play_merge_sort)
-                self.timer.start(self.animation_speed)
+                # Get current step
+                action, i, j, arr_state = self.steps[self.current_step]
 
+                # Draw array state for this step
+                self.active_visualizer.draw_array(arr_state)
 
-               # Generate merge sort steps
-                self.steps = merge_Sort(self.active_visualizer.values.copy())
-                self.step_index = 0
-
-               # Draw initial array
-                self.active_visualizer.draw_array(self.active_visualizer.values)
-
-
-                if self.step_index >= len(self.steps):
-                       self.timer.stop()
-                       self.active_visualizer.completed_sort()
-                       return
-
-                action, i, j, arr_state = self.steps[self.step_index]
-
-                   # Redraw updated array state
-                self.active_visualizer.overwrite(arr_state,i,j)
-
+                # Highlight based on action
                 if action == "compare":
-                       self.active_visualizer.highlight(i, j, soft_blue)
-
+                    print("compare called")
+                    self.active_visualizer.highlight(i, j, soft_blue)
                 elif action == "overwrite":
-                       self.active_visualizer.highlight(i, i, soft_red)
+                    print("overwrite called")
+                    self.active_visualizer.highlight(i, i, soft_yellow)
 
-                self.step_index += 1
+                # Move to next step
+                self.current_step += 1
 
+                # Schedule next step
+                QTimer.singleShot(self.animation_speed, self.play_merge_sort)
 
 
     def play_linear_search(self,steps):
