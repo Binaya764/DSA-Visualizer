@@ -19,21 +19,24 @@ class mergeSort_Visualizer:
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
+        self.y_offset =10
 
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
 
     def draw_array(self, arr):          # Draws array
-        self.scene.clear()
+        #self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
         width = 60
         spacing = 1
+        y =self.y_offset
+        self.y_offset +=100
+
 
         for i, val in enumerate(arr):
             height = 60
             x = i * (width + spacing)
-            y = 10
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(soft_red))
@@ -49,12 +52,16 @@ class mergeSort_Visualizer:
 
         for i in range(len(arr)):
                     x = i * ( 60+ spacing)
-                    y = 10
+                    #y = 10
 
                     index = QGraphicsSimpleTextItem(str(i))
                     index.setBrush(Qt.gray)
                     index.setPos(x+20, y+60)
                     self.scene.addItem(index)
+
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(self.bars[0][0])
+
 
     def highlight(self, i, j, color):
         if 0 <= i < len(self.bars):
