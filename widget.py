@@ -331,7 +331,7 @@ class Widget(QWidget):
 
                # Initialize timer
                 self.timer = QTimer()
-                self.timer.timeout.connect(self.play_step)
+                self.timer.timeout.connect(self.play_merge_sort)
                 self.timer.start(self.animation_speed)
 
 
@@ -409,7 +409,7 @@ class Widget(QWidget):
             self.current_step += 1
 
             # Controls the speed of the animation
-            QTimer.singleShot(self.animation_speed, self.play_step)
+            QTimer.singleShot(self.animation_speed, self.play_selection_sort)
 
 
     def play_binary_search(self, steps):
@@ -464,29 +464,36 @@ class Widget(QWidget):
 
 
     def play_Insertion_sort(self):
-                    if self.current_step >= len(self.steps):
+                if self.current_step >= len(self.steps):
                         self.active_visualizer.completed_sort()
                         return
 
-                    step_type, i, j, state = self.steps[self.current_step]
+                    #step_type, i, j, state = self.steps[self.current_step]
+                    # Safe unpacking
+                step = self.steps[self.current_step]
+                step_type = step[0]
+                i = step[1]
+                j = step[2]
+                state = step[3]
+                key = step[4] if len(step) > 4 else None
 
-                    self.active_visualizer.draw_array(state)
+                self.active_visualizer.draw_array(state)
 
-                    if step_type == "compare":
+                if step_type == "compare":
 
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
-                    elif step_type == "shift":
+                elif step_type == "shift":
                         self.active_visualizer.highlight(i, j, soft_red)
 
-                    elif step_type == "insert":
+                elif step_type == "insert":
                         self.active_visualizer.highlight(i, i, soft_green)
 
-                    elif step_type == "key":
+                elif step_type == "key":
                         self.active_visualizer.highlight(i, i, soft_blue)
 
-                    self.current_step += 1
-                    QTimer.singleShot(self.animation_speed, self.play_step)
+                self.current_step += 1
+                QTimer.singleShot(self.animation_speed, self.play_Insertion_sort)
 
 
     def play_step(self):        #plays animation
