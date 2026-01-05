@@ -27,6 +27,8 @@ class BST_Visualizer:
         self.horizontal_gap = 40
 
         self.nodes = {}  # value -> (circle, text)
+
+        #smoothes the outline of the circle
         self.view.setRenderHint(QPainter.Antialiasing, True)
         self.view.setRenderHint(QPainter.TextAntialiasing, True)
 
@@ -112,6 +114,12 @@ class BST_Visualizer:
 
     def found(self, value):
         self.highlight(value, Qt.green)
+
+    def animate_steps(self, steps):
+            self.steps = steps
+            self.step_index = 0
+            #self.timer.start(700)
+
 
     def highlight_node(self, node, action):
             if node not in self.nodes:
