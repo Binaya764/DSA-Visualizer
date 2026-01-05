@@ -130,9 +130,9 @@ class Widget(QWidget):
         self.ui.BtnClear_LinkedList.clicked.connect(lambda: self.Clear_LinkedList("Linked_List"))
 
         #Button for BST:
-        self.ui.BtnInsert_BST.clicked.connect(lambda: self.Insert_BST("Binary_Search_Tree"))
-        self.ui.BtnRemove_BST.clicked.connect(lambda: self.Remove_BST("Linked_List"))
-        self.ui.BtnClear_BST.clicked.connect(lambda: self.Clear_BST("Linked_List"))
+        self.ui.BtnInsert_BST.clicked.connect(self.Insert_BST)
+        self.ui.BtnRemove_BST.clicked.connect( self.Remove_BST)
+        self.ui.BtnClear_BST.clicked.connect(self.Clear_BST)
 
 
 
@@ -824,7 +824,7 @@ class Widget(QWidget):
 
 
 
-    def Insert_BST(self,source = "Binary_Search_Tree"):
+    def Insert_BST(self):
                 value_text = self.ui.lineEdit_BST.text().strip()
 
                 value = int(value_text)
@@ -845,11 +845,28 @@ class Widget(QWidget):
                 self.ui.lineEdit_BST.clear()
 
 
-    def Remove_BST(self,source= "Binary_Search_Tree"):
-                pass
+    def Remove_BST(self):
+            value_text= self.ui.lineEdit_BST.text().strip()
+            value= int(value_text)
+            steps = self.BST.delete(value)
 
-    def Clear_BST(self,source = "Binary_Search_Tree"):
-                pass
+            self.active_visualizer.draw_tree(self.BST.root)
+            self.active_visualizer.animate_steps(steps)
+            self.ui.lineEdit_BST.clear()
+
+
+    def Clear_BST(self):
+            self.steps=[]
+            self.step_index = 0
+
+            self.BST.root = None
+            self.left=None
+            self.right=None
+            self.active_visualizer.scene.clear()
+            self.active_visualizer.nodes.clear()
+            if hasattr(self, "timer") and self.timer.isActive():
+                   self.timer.stop()
+
 
 
 
