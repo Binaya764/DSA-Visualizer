@@ -234,7 +234,8 @@ LINKED_LIST_CODE = """
 
 """
 
-
+BST_CODE = """
+"""
 
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
@@ -246,5 +247,6 @@ ALGORITHM_CODES = {
     "Queue" : QUEUE_CODE,
     "Merge Sort": MERGE_SORT_CODE,
     "Linked List": LINKED_LIST_CODE,
+    "Binary Search Tree": BST_CODE,
 
 }
