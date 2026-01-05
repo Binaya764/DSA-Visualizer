@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>335</height>
+    <width>666</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,6 +160,33 @@
                     <item>
                      <property name="text">
                       <string>Linked List</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox_22">
+               <property name="title">
+                <string>Hierarchical Data Structure</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <item>
+                   <widget class="QComboBox" name="HDS_comboBox">
+                    <item>
+                     <property name="text">
+                      <string>--Select--</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Binary Search Tree</string>
                      </property>
                     </item>
                    </widget>
@@ -362,9 +389,9 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>10</number>
        </property>
-       <widget class="QWidget" name="page">
+       <widget class="QWidget" name="Intro_page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -1033,7 +1060,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_2">
+       <widget class="QWidget" name="Linked_list">
         <layout class="QVBoxLayout" name="verticalLayout_55">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_54">
@@ -1090,6 +1117,119 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <layout class="QVBoxLayout" name="verticalLayout_58">
                      <item>
                       <widget class="QGraphicsView" name="code_graphicsView_LinkedList"/>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="Binary_Search_Tree">
+        <layout class="QVBoxLayout" name="verticalLayout_60">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_53">
+           <item>
+            <widget class="QGroupBox" name="groupBox_23">
+             <property name="title">
+              <string>Binary Search Tree</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_62">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_61">
+                <item>
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>Input values:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_BST"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_24">
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="BtnInsert_BST">
+                  <property name="text">
+                   <string>Insert</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnRemove_BST">
+                  <property name="text">
+                   <string>Remove</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_66">
+                <property name="bottomMargin">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>Target</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="Target_lineEdit_BST"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_25">
+                <property name="bottomMargin">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="BtnSearch_BST">
+                  <property name="text">
+                   <string>Search</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnClear_BST">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_63">
+                <item>
+                 <widget class="QGroupBox" name="groupBox_24">
+                  <property name="title">
+                   <string>Code</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_65">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_64">
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_BST"/>
                      </item>
                     </layout>
                    </item>

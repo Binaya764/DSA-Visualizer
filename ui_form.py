@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(662, 335)
+        Widget.resize(666, 379)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -114,6 +114,25 @@ class Ui_Widget(object):
 
 
         self.verticalLayout_39.addWidget(self.groupBox_15)
+
+        self.groupBox_22 = QGroupBox(self.groupBox_16)
+        self.groupBox_22.setObjectName(u"groupBox_22")
+        self.verticalLayout_16 = QVBoxLayout(self.groupBox_22)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.verticalLayout_13 = QVBoxLayout()
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.HDS_comboBox = QComboBox(self.groupBox_22)
+        self.HDS_comboBox.addItem("")
+        self.HDS_comboBox.addItem("")
+        self.HDS_comboBox.setObjectName(u"HDS_comboBox")
+
+        self.verticalLayout_13.addWidget(self.HDS_comboBox)
+
+
+        self.verticalLayout_16.addLayout(self.verticalLayout_13)
+
+
+        self.verticalLayout_39.addWidget(self.groupBox_22)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -214,13 +233,13 @@ class Ui_Widget(object):
         self.stackedWidget.setMaximumSize(QSize(300, 16777215))
         self.stackedWidget.setFrameShape(QFrame.Shape.StyledPanel)
         self.stackedWidget.setFrameShadow(QFrame.Shadow.Raised)
-        self.page = QWidget()
-        self.page.setObjectName(u"page")
-        self.verticalLayout_50 = QVBoxLayout(self.page)
+        self.Intro_page = QWidget()
+        self.Intro_page.setObjectName(u"Intro_page")
+        self.verticalLayout_50 = QVBoxLayout(self.Intro_page)
         self.verticalLayout_50.setObjectName(u"verticalLayout_50")
         self.verticalLayout_49 = QVBoxLayout()
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
-        self.groupBox_19 = QGroupBox(self.page)
+        self.groupBox_19 = QGroupBox(self.Intro_page)
         self.groupBox_19.setObjectName(u"groupBox_19")
         self.verticalLayout_52 = QVBoxLayout(self.groupBox_19)
         self.verticalLayout_52.setObjectName(u"verticalLayout_52")
@@ -240,7 +259,7 @@ class Ui_Widget(object):
 
         self.verticalLayout_50.addLayout(self.verticalLayout_49)
 
-        self.stackedWidget.addWidget(self.page)
+        self.stackedWidget.addWidget(self.Intro_page)
         self.Bubble_sort = QWidget()
         self.Bubble_sort.setObjectName(u"Bubble_sort")
         self.horizontalLayout_2 = QHBoxLayout(self.Bubble_sort)
@@ -833,13 +852,13 @@ class Ui_Widget(object):
         self.horizontalLayout_10.addLayout(self.verticalLayout_32)
 
         self.stackedWidget.addWidget(self.Queue)
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.verticalLayout_55 = QVBoxLayout(self.page_2)
+        self.Linked_list = QWidget()
+        self.Linked_list.setObjectName(u"Linked_list")
+        self.verticalLayout_55 = QVBoxLayout(self.Linked_list)
         self.verticalLayout_55.setObjectName(u"verticalLayout_55")
         self.verticalLayout_54 = QVBoxLayout()
         self.verticalLayout_54.setObjectName(u"verticalLayout_54")
-        self.groupBox_20 = QGroupBox(self.page_2)
+        self.groupBox_20 = QGroupBox(self.Linked_list)
         self.groupBox_20.setObjectName(u"groupBox_20")
         self.verticalLayout_57 = QVBoxLayout(self.groupBox_20)
         self.verticalLayout_57.setObjectName(u"verticalLayout_57")
@@ -901,7 +920,110 @@ class Ui_Widget(object):
 
         self.verticalLayout_55.addLayout(self.verticalLayout_54)
 
-        self.stackedWidget.addWidget(self.page_2)
+        self.stackedWidget.addWidget(self.Linked_list)
+        self.Binary_Search_Tree = QWidget()
+        self.Binary_Search_Tree.setObjectName(u"Binary_Search_Tree")
+        self.verticalLayout_60 = QVBoxLayout(self.Binary_Search_Tree)
+        self.verticalLayout_60.setObjectName(u"verticalLayout_60")
+        self.verticalLayout_53 = QVBoxLayout()
+        self.verticalLayout_53.setObjectName(u"verticalLayout_53")
+        self.groupBox_23 = QGroupBox(self.Binary_Search_Tree)
+        self.groupBox_23.setObjectName(u"groupBox_23")
+        self.verticalLayout_62 = QVBoxLayout(self.groupBox_23)
+        self.verticalLayout_62.setObjectName(u"verticalLayout_62")
+        self.verticalLayout_61 = QVBoxLayout()
+        self.verticalLayout_61.setObjectName(u"verticalLayout_61")
+        self.label_21 = QLabel(self.groupBox_23)
+        self.label_21.setObjectName(u"label_21")
+
+        self.verticalLayout_61.addWidget(self.label_21)
+
+
+        self.verticalLayout_62.addLayout(self.verticalLayout_61)
+
+        self.lineEdit_BST = QLineEdit(self.groupBox_23)
+        self.lineEdit_BST.setObjectName(u"lineEdit_BST")
+
+        self.verticalLayout_62.addWidget(self.lineEdit_BST)
+
+        self.horizontalLayout_24 = QHBoxLayout()
+        self.horizontalLayout_24.setSpacing(4)
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.horizontalLayout_24.setContentsMargins(-1, -1, -1, 0)
+        self.BtnInsert_BST = QPushButton(self.groupBox_23)
+        self.BtnInsert_BST.setObjectName(u"BtnInsert_BST")
+
+        self.horizontalLayout_24.addWidget(self.BtnInsert_BST)
+
+        self.BtnRemove_BST = QPushButton(self.groupBox_23)
+        self.BtnRemove_BST.setObjectName(u"BtnRemove_BST")
+
+        self.horizontalLayout_24.addWidget(self.BtnRemove_BST)
+
+
+        self.verticalLayout_62.addLayout(self.horizontalLayout_24)
+
+        self.verticalLayout_66 = QVBoxLayout()
+        self.verticalLayout_66.setObjectName(u"verticalLayout_66")
+        self.verticalLayout_66.setContentsMargins(-1, -1, -1, 10)
+        self.label_22 = QLabel(self.groupBox_23)
+        self.label_22.setObjectName(u"label_22")
+
+        self.verticalLayout_66.addWidget(self.label_22)
+
+        self.Target_lineEdit_BST = QLineEdit(self.groupBox_23)
+        self.Target_lineEdit_BST.setObjectName(u"Target_lineEdit_BST")
+
+        self.verticalLayout_66.addWidget(self.Target_lineEdit_BST)
+
+
+        self.verticalLayout_62.addLayout(self.verticalLayout_66)
+
+        self.horizontalLayout_25 = QHBoxLayout()
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.horizontalLayout_25.setContentsMargins(-1, -1, -1, 10)
+        self.BtnSearch_BST = QPushButton(self.groupBox_23)
+        self.BtnSearch_BST.setObjectName(u"BtnSearch_BST")
+
+        self.horizontalLayout_25.addWidget(self.BtnSearch_BST)
+
+        self.BtnClear_BST = QPushButton(self.groupBox_23)
+        self.BtnClear_BST.setObjectName(u"BtnClear_BST")
+
+        self.horizontalLayout_25.addWidget(self.BtnClear_BST)
+
+
+        self.verticalLayout_62.addLayout(self.horizontalLayout_25)
+
+        self.verticalLayout_63 = QVBoxLayout()
+        self.verticalLayout_63.setObjectName(u"verticalLayout_63")
+        self.groupBox_24 = QGroupBox(self.groupBox_23)
+        self.groupBox_24.setObjectName(u"groupBox_24")
+        self.verticalLayout_65 = QVBoxLayout(self.groupBox_24)
+        self.verticalLayout_65.setObjectName(u"verticalLayout_65")
+        self.verticalLayout_64 = QVBoxLayout()
+        self.verticalLayout_64.setObjectName(u"verticalLayout_64")
+        self.code_graphicsView_BST = QGraphicsView(self.groupBox_24)
+        self.code_graphicsView_BST.setObjectName(u"code_graphicsView_BST")
+
+        self.verticalLayout_64.addWidget(self.code_graphicsView_BST)
+
+
+        self.verticalLayout_65.addLayout(self.verticalLayout_64)
+
+
+        self.verticalLayout_63.addWidget(self.groupBox_24)
+
+
+        self.verticalLayout_62.addLayout(self.verticalLayout_63)
+
+
+        self.verticalLayout_53.addWidget(self.groupBox_23)
+
+
+        self.verticalLayout_60.addLayout(self.verticalLayout_53)
+
+        self.stackedWidget.addWidget(self.Binary_Search_Tree)
 
         self.horizontalLayout_11.addWidget(self.stackedWidget)
 
@@ -911,7 +1033,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(10)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -937,6 +1059,10 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
         self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List", None))
+
+        self.groupBox_22.setTitle(QCoreApplication.translate("Widget", u"Hierarchical Data Structure", None))
+        self.HDS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
+        self.HDS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search Tree", None))
 
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
@@ -1018,5 +1144,13 @@ class Ui_Widget(object):
         self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove", None))
         self.BtnClear_LinkedList.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_21.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
+        self.groupBox_23.setTitle(QCoreApplication.translate("Widget", u"Binary Search Tree", None))
+        self.label_21.setText(QCoreApplication.translate("Widget", u"Input values:", None))
+        self.BtnInsert_BST.setText(QCoreApplication.translate("Widget", u"Insert", None))
+        self.BtnRemove_BST.setText(QCoreApplication.translate("Widget", u"Remove", None))
+        self.label_22.setText(QCoreApplication.translate("Widget", u"Target", None))
+        self.BtnSearch_BST.setText(QCoreApplication.translate("Widget", u"Search", None))
+        self.BtnClear_BST.setText(QCoreApplication.translate("Widget", u"Clear", None))
+        self.groupBox_24.setTitle(QCoreApplication.translate("Widget", u"Code", None))
     # retranslateUi
 

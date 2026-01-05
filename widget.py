@@ -55,6 +55,10 @@ from visualizer.Sorting_viz.mergeSort_visualizer import mergeSort_Visualizer
 from algorithms.Linked_List.singly_LinkedList import LinkedList_fun
 from visualizer.LinkedList_viz.singly_LinkedList_visualizer import NodeVisualizer
 
+#For BST
+from algorithms.BST.Binary_Search_Tree import BinarySearchTree
+from visualizer.BST_viz.BST_visualizer import BST_Visualizer
+
 
 
 
@@ -85,6 +89,7 @@ class Widget(QWidget):
         self.stack = stack_fun(capacity=5)
         self.queue = queue_fun(capacity = 5)
         self.linked_list = LinkedList_fun()
+        self.BST = BinarySearchTree()
 
         # Connect Start Button
         #for Bubble sort
@@ -124,11 +129,19 @@ class Widget(QWidget):
         self.ui.BtnRemove_LinkedList.clicked.connect(lambda: self.Remove_LinkedList("Linked_List"))
         self.ui.BtnClear_LinkedList.clicked.connect(lambda: self.Clear_LinkedList("Linked_List"))
 
+        #Button for BST:
+        self.ui.BtnInsert_BST.clicked.connect(lambda: self.Insert_BST("Binary_Search_Tree"))
+        self.ui.BtnRemove_BST.clicked.connect(lambda: self.Remove_BST("Linked_List"))
+        self.ui.BtnClear_BST.clicked.connect(lambda: self.Clear_BST("Linked_List"))
+
+
+
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
         self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
+        self.ui.HDS_comboBox.currentTextChanged.connect(self.on_HDataStucture_changed)
 
         #initializing default algorithm
         self.initialize_defaults()
@@ -161,6 +174,7 @@ class Widget(QWidget):
             self.ui.sort_comboBox,
             self.ui.search_comboBox,
             self.ui.DS_comboBox,
+            self.ui.HDS_comboBox,
             # add more here later (stack, queue, tree...)
         ]
 
@@ -271,6 +285,23 @@ class Widget(QWidget):
             self.visualizer2.scene.clear()
 
 
+    def on_HDataStucture_changed(self,algo):
+        self.reset_all_comboboxes(except_box = self.ui.HDS_comboBox)
+        mapping = {
+        "Binary Search Tree": 10,}
+        self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
+        self.active_algorithm = algo
+        if algo == "Binary Search Tree":
+                self.active_visualizer = BST_Visualizer(self.ui.visualizer_graphicsView)
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BST)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.view.centerOn(0,0)
+        self.visualizer2.scene.clear()
+
+
       #for sorting
 
     def start_sort(self):
@@ -322,8 +353,11 @@ class Widget(QWidget):
                 steps, found = linear_search(self.current_array.copy(),self.target)
                 self.current_step = 0
                 self.play_linear_search(steps)
+
         else:
             print("No algorithm selected!")
+
+
 
     def play_merge_sort(self):
                 # Check if all steps are done
@@ -787,6 +821,35 @@ class Widget(QWidget):
     def Clear_LinkedList(self,source = "Linked LIst"):
             pass
 
+
+
+
+    def Insert_BST(self,source = "Binary_Search_Tree"):
+                value_text = self.ui.lineEdit_BST.text().strip()
+
+                value = int(value_text)
+
+                steps = self.BST.insert(value)
+
+                if not steps:
+                        return
+
+                self.active_visualizer.draw_tree(self.BST.root)
+
+                for action, node in steps:
+                        if action == "visit":
+                            self.active_visualizer.highlight_node(node, "visit")
+
+                        elif action in ("insert_left", "insert_right"):
+                            self.active_visualizer.highlight_node(node, "insert")
+                self.ui.lineEdit_BST.clear()
+
+
+    def Remove_BST(self,source= "Binary_Search_Tree"):
+                pass
+
+    def Clear_BST(self,source = "Binary_Search_Tree"):
+                pass
 
 
 
