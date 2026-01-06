@@ -340,14 +340,12 @@ class Widget(QWidget):
 
         elif self.active_algorithm == "Linear Search":
                 target_text = self.ui.target_lineEdit_LSearch.text().strip()
-                if target_text == "":
-                        print("Please enter a target value for linear Search!")
-                        return
-                try:
-                        self.target = int(target_text)
-                except ValueError:
-                        print("Invalid input! Enter a number.")
-                        return
+                if not target_text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
+
+                self.target = int(target_text)
+
                 steps, found = linear_search(self.current_array.copy(),self.target)
                 self.current_step = 0
                 self.play_linear_search(steps)
