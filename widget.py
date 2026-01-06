@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget,QMessageBox
 from PySide6.QtCore import QTimer
 
 # Import
@@ -825,48 +825,26 @@ class Widget(QWidget):
 
 
     def Insert_BST(self):
-                value_text = self.ui.lineEdit_BST.text().strip()
+                text = self.ui.lineEdit_BST.text().strip()
 
-                value = int(value_text)
+                if not text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
 
-                steps = self.BST.insert(value)
-
-                if not steps:
-                        return
-
-                self.active_visualizer.draw_tree(self.BST.root)
-
-                for action, node in steps:
-                        if action == "visit":
-                            self.active_visualizer.highlight_node(node, "visit")
-
-                        elif action in ("insert_left", "insert_right"):
-                            self.active_visualizer.highlight_node(node, "insert")
+                value = int(text)
+                self.active_visualizer.animate_insert(value)
                 self.ui.lineEdit_BST.clear()
 
 
     def Remove_BST(self):
             value_text= self.ui.lineEdit_BST.text().strip()
             value= int(value_text)
-            steps = self.BST.delete(value)
-
-            self.active_visualizer.draw_tree(self.BST.root)
-            self.active_visualizer.animate_steps(steps)
+            self.active_visualizer.animate_delete(value)
             self.ui.lineEdit_BST.clear()
 
 
     def Clear_BST(self):
-            self.steps=[]
-            self.step_index = 0
-
-            self.BST.root = None
-            self.left=None
-            self.right=None
-            self.active_visualizer.scene.clear()
-            self.active_visualizer.nodes.clear()
-            if hasattr(self, "timer") and self.timer.isActive():
-                   self.timer.stop()
-
+            self.active_visualizer.clear()
 
 
 

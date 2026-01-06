@@ -2,18 +2,92 @@ from PySide6.QtWidgets import (
     QGraphicsScene,
     QGraphicsEllipseItem,
     QGraphicsSimpleTextItem,
-    QGraphicsLineItem
+    QGraphicsLineItem,
 )
-from PySide6.QtGui import QBrush, QPen,QColor,QPainter
-from PySide6.QtCore import Qt
+from PySide6.QtGui import QPen, QColor, QPainter
+from PySide6.QtCore import Qt, QTimer
 import math
 
-soft_blue   = QColor(100, 149, 237)   # Cornflower blue
-soft_green  = QColor(46, 125, 50)  # Light green
-soft_red    = QColor(240, 128, 128)   # Light coral
-soft_gray   = QColor(200, 200, 200)   # Light gray
-soft_purple = QColor(186, 160, 255)
+
+soft_blue   = QColor(100, 149, 237)
+soft_green  = QColor(76, 175, 80)
+soft_red    = QColor(244, 67, 54)
 soft_yellow = QColor(240, 200, 120)
+
+
+# defining tree node
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+#step generation
+def bst_insert_steps(root, value):
+    steps = []
+    current = root
+    parent = None
+
+    while current:
+        steps.append(("visit", current))
+        parent = current
+
+        if value < current.value:
+            current = current.left
+        elif value > current.value:
+            current = current.right
+        else:
+            steps.append(("duplicate", current))
+            return steps
+
+    steps.append(("insert", parent, value))
+    return steps
+
+def bst_delete_steps(root, value):
+    steps = []
+    parent = None
+    current = root
+
+    #Search
+    while current and current.value != value:
+        steps.append(("visit", current))
+        parent = current
+        if value < current.value:
+            current = current.left
+        else:
+            current = current.right
+
+    if not current:
+        return steps  # value not found
+
+    steps.append(("found", current))
+
+    #  CASE 1: Leaf
+    if not current.left and not current.right:
+        steps.append(("remove_leaf", current, parent))
+        return steps
+
+    #  CASE 2: One child
+    if not current.left or not current.right:
+        child = current.left if current.left else current.right
+        steps.append(("replace_child", current, parent, child))
+        return steps
+
+    #  CASE 3: Two children
+    succ_parent = current
+    successor = current.right
+
+    while successor.left:
+        steps.append(("visit", successor))
+        succ_parent = successor
+        successor = successor.left
+
+    steps.append(("successor", successor))
+    steps.append(("swap", current, successor))
+    steps.append(("final_remove", successor, succ_parent))
+
+    return steps
 
 
 class BST_Visualizer:
@@ -24,84 +98,65 @@ class BST_Visualizer:
 
         self.node_radius = 20
         self.level_gap = 80
-        self.horizontal_gap = 40
 
-        self.nodes = {}  # value -> (circle, text)
+        self.nodes = {}            # TreeNode -> (circle, text)
+        self.root = None
+        self.steps = []
+        self.step_index = 0
 
-        #smoothes the outline of the circle
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.next_step)
+
         self.view.setRenderHint(QPainter.Antialiasing, True)
         self.view.setRenderHint(QPainter.TextAntialiasing, True)
 
+    #Drawing tree
     def draw_tree(self, root):
         self.scene.clear()
         self.nodes.clear()
+        self.root = root
 
-        if root is None:
+        if not root:
             return
 
-
-        start_x = 0
-        start_y = 0
-        self.draw_node(root, start_x, start_y, 200)
+        self.draw_node(root, 0, 0, 200)
 
     def draw_node(self, node, x, y, spread):
-        if node is None:
-            return
-        x = round(x)
-        y = round(y)
-
-        # Draw node circle
         circle = QGraphicsEllipseItem(
             x - self.node_radius,
             y - self.node_radius,
             self.node_radius * 2,
-            self.node_radius * 2
+            self.node_radius * 2,
         )
-        pen = QPen(Qt.white)
-        pen.setWidth(2)
-        pen.setCosmetic(False)
         circle.setBrush(soft_blue)
-        circle.setPen(pen)
+        circle.setPen(QPen(Qt.white, 2))
 
-
-        # Draw value
         text = QGraphicsSimpleTextItem(str(node.value))
         text.setBrush(Qt.white)
-        text.setPos(x - 4, y - 10)
+        text.setPos(x - 6, y - 10)
 
         self.scene.addItem(circle)
         self.scene.addItem(text)
 
-        self.nodes[node.value] = (circle, text)
+        self.nodes[node] = (circle, text)
 
-        # Left child
         if node.left:
-            lx = x - spread
-            ly = y + self.level_gap
+            lx, ly = x - spread, y + self.level_gap
             self.draw_edge(x, y, lx, ly)
             self.draw_node(node.left, lx, ly, spread // 2)
 
-        # Right child
         if node.right:
-            rx = x + spread
-            ry = y + self.level_gap
+            rx, ry = x + spread, y + self.level_gap
             self.draw_edge(x, y, rx, ry)
             self.draw_node(node.right, rx, ry, spread // 2)
 
-
     def draw_edge(self, x1, y1, x2, y2):
-        dx = x2 - x1
-        dy = y2 - y1
+        dx, dy = x2 - x1, y2 - y1
         length = math.hypot(dx, dy)
-
         if length == 0:
             return
 
-        # Normalize
-        ux = dx / length
-        uy = dy / length
-
-        # Start/end at circle border
+        ux, uy = dx / length, dy / length
         start_x = x1 + ux * self.node_radius
         start_y = y1 + uy * self.node_radius
         end_x   = x2 - ux * self.node_radius
@@ -111,27 +166,128 @@ class BST_Visualizer:
         line.setPen(QPen(Qt.white, 2))
         self.scene.addItem(line)
 
+    #animation part
+    def animate_insert(self, value):
+        if not self.root:
+            self.root = TreeNode(value)
+            self.draw_tree(self.root)
+            return
 
-    def found(self, value):
-        self.highlight(value, Qt.green)
+        self.steps = bst_insert_steps(self.root, value)
+        self.step_index = 0
+        self.timer.start(300)
 
-    def animate_steps(self, steps):
-            self.steps = steps
-            self.step_index = 0
-            #self.timer.start(700)
+    def animate_delete(self, value):
+        if not self.root:
+            return
+
+        self.steps = bst_delete_steps(self.root, value)
+        self.step_index = 0
+        self.timer.start(300)
 
 
-    def highlight_node(self, node, action):
-            if node not in self.nodes:
-                return
+    def next_step(self):
+        if self.step_index >= len(self.steps):
+            self.timer.stop()
+            return
 
-            circle = self.nodes[node]
+        # reset visuals
+        for circle, _ in self.nodes.values():
+            circle.setBrush(soft_blue)
+            circle.setPen(QPen(Qt.white, 2))
 
-            if action == "visit":
-                circle.setBrush(QBrush(QColor(255, 193, 7)))   # soft yellow
+        step = self.steps[self.step_index]
+        action = step[0]
 
-            elif action == "insert":
-                circle.setBrush(QBrush(QColor(76, 175, 80)))   # soft green
+        if action == "visit":
+            self.highlight(step[1], soft_yellow)
 
-            elif action == "duplicate":
-                circle.setBrush(QBrush(QColor(244, 67, 54)))   # soft red
+        elif action == "insert":
+            parent, value = step[1], step[2]
+            new_node = TreeNode(value)
+
+            if value < parent.value:
+                parent.left = new_node
+            else:
+                parent.right = new_node
+
+            self.draw_tree(self.root)
+            self.highlight(new_node, soft_blue)
+
+        elif action == "delete":
+            parent, value = step[1], step[2]
+            delete_node= TreeNode(value)
+            self.draw_tree(self.root)
+
+        elif action == "duplicate":
+            self.highlight(step[1], soft_red)
+
+        elif action == "found":
+            self.highlight(step[1], soft_blue)
+
+        elif action == "remove_leaf":
+            node, parent = step[1], step[2]
+
+            if parent is None:
+                self.root = None
+            elif parent.left == node:
+                parent.left = None
+            else:
+                parent.right = None
+
+            self.draw_tree(self.root)
+
+        elif action == "replace_child":
+            node, parent, child = step[1], step[2], step[3]
+
+            if parent is None:
+                self.root = child
+            elif parent.left == node:
+                parent.left = child
+            else:
+                parent.right = child
+
+            self.draw_tree(self.root)
+
+        elif action == "successor":
+            self.highlight(step[1], QColor(186, 160, 255))  # purple
+
+        elif action == "swap":
+            node, succ = step[1], step[2]
+            node.value, succ.value = succ.value, node.value
+            self.draw_tree(self.root)
+
+        elif action == "final_remove":
+            succ, parent = step[1], step[2]
+
+            if parent.left == succ:
+                parent.left = succ.right
+            else:
+                parent.right = succ.right
+
+            self.draw_tree(self.root)
+
+
+        self.step_index += 1
+
+    def highlight(self, node, color):
+        if node not in self.nodes:
+            return
+        circle, _ = self.nodes[node]
+        circle.setBrush(color)
+        circle.setPen(QPen(Qt.yellow, 2))
+
+    def clear(self):
+        # Stop animation
+        if self.timer.isActive():
+            self.timer.stop()
+
+        # Clear graphics
+        self.scene.clear()
+
+        # Clear data
+        self.nodes.clear()
+        self.root = None
+        self.steps = []
+        self.step_index = 0
+
