@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget,QMessageBox
 from PySide6.QtCore import QTimer
 
 # Import
@@ -825,23 +825,19 @@ class Widget(QWidget):
 
 
     def Insert_BST(self):
-                value_text = self.ui.lineEdit_BST.text().strip()
+                text = self.ui.lineEdit_BST.text().strip()
 
-                value = int(value_text)
+                #steps = self.BST.insert(value)
 
-                steps = self.BST.insert(value)
 
-                if not steps:
-                        return
+                if not text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
 
-                self.active_visualizer.draw_tree(self.BST.root)
+                value = int(text)
 
-                for action, node in steps:
-                        if action == "visit":
-                            self.active_visualizer.highlight_node(node, "visit")
 
-                        elif action in ("insert_left", "insert_right"):
-                            self.active_visualizer.highlight_node(node, "insert")
+                self.active_visualizer.animate_insert(value)
                 self.ui.lineEdit_BST.clear()
 
 
