@@ -827,16 +827,11 @@ class Widget(QWidget):
     def Insert_BST(self):
                 text = self.ui.lineEdit_BST.text().strip()
 
-                #steps = self.BST.insert(value)
-
-
                 if not text.isdigit():
                     QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
                     return
 
                 value = int(text)
-
-
                 self.active_visualizer.animate_insert(value)
                 self.ui.lineEdit_BST.clear()
 
@@ -844,25 +839,12 @@ class Widget(QWidget):
     def Remove_BST(self):
             value_text= self.ui.lineEdit_BST.text().strip()
             value= int(value_text)
-            steps = self.BST.delete(value)
-
-            self.active_visualizer.draw_tree(self.BST.root)
-            self.active_visualizer.animate_steps(steps)
+            self.active_visualizer.animate_delete(value)
             self.ui.lineEdit_BST.clear()
 
 
     def Clear_BST(self):
-            self.steps=[]
-            self.step_index = 0
-
-            self.BST.root = None
-            self.left=None
-            self.right=None
-            self.active_visualizer.scene.clear()
-            self.active_visualizer.nodes.clear()
-            if hasattr(self, "timer") and self.timer.isActive():
-                   self.timer.stop()
-
+            self.active_visualizer.clear()
 
 
 

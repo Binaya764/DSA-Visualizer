@@ -44,6 +44,52 @@ def bst_insert_steps(root, value):
     steps.append(("insert", parent, value))
     return steps
 
+def bst_delete_steps(root, value):
+    steps = []
+    parent = None
+    current = root
+
+    #Search
+    while current and current.value != value:
+        steps.append(("visit", current))
+        parent = current
+        if value < current.value:
+            current = current.left
+        else:
+            current = current.right
+
+    if not current:
+        return steps  # value not found
+
+    steps.append(("found", current))
+
+    #  CASE 1: Leaf
+    if not current.left and not current.right:
+        steps.append(("remove_leaf", current, parent))
+        return steps
+
+    #  CASE 2: One child
+    if not current.left or not current.right:
+        child = current.left if current.left else current.right
+        steps.append(("replace_child", current, parent, child))
+        return steps
+
+    #  CASE 3: Two children
+    succ_parent = current
+    successor = current.right
+
+    while successor.left:
+        steps.append(("visit", successor))
+        succ_parent = successor
+        successor = successor.left
+
+    steps.append(("successor", successor))
+    steps.append(("swap", current, successor))
+    steps.append(("final_remove", successor, succ_parent))
+
+    return steps
+
+
 class BST_Visualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
@@ -129,7 +175,16 @@ class BST_Visualizer:
 
         self.steps = bst_insert_steps(self.root, value)
         self.step_index = 0
-        self.timer.start(700)
+        self.timer.start(300)
+
+    def animate_delete(self, value):
+        if not self.root:
+            return
+
+        self.steps = bst_delete_steps(self.root, value)
+        self.step_index = 0
+        self.timer.start(300)
+
 
     def next_step(self):
         if self.step_index >= len(self.steps):
@@ -159,8 +214,59 @@ class BST_Visualizer:
             self.draw_tree(self.root)
             self.highlight(new_node, soft_blue)
 
+        elif action == "delete":
+            parent, value = step[1], step[2]
+            delete_node= TreeNode(value)
+            self.draw_tree(self.root)
+
         elif action == "duplicate":
             self.highlight(step[1], soft_red)
+
+        elif action == "found":
+            self.highlight(step[1], soft_blue)
+
+        elif action == "remove_leaf":
+            node, parent = step[1], step[2]
+
+            if parent is None:
+                self.root = None
+            elif parent.left == node:
+                parent.left = None
+            else:
+                parent.right = None
+
+            self.draw_tree(self.root)
+
+        elif action == "replace_child":
+            node, parent, child = step[1], step[2], step[3]
+
+            if parent is None:
+                self.root = child
+            elif parent.left == node:
+                parent.left = child
+            else:
+                parent.right = child
+
+            self.draw_tree(self.root)
+
+        elif action == "successor":
+            self.highlight(step[1], QColor(186, 160, 255))  # purple
+
+        elif action == "swap":
+            node, succ = step[1], step[2]
+            node.value, succ.value = succ.value, node.value
+            self.draw_tree(self.root)
+
+        elif action == "final_remove":
+            succ, parent = step[1], step[2]
+
+            if parent.left == succ:
+                parent.left = succ.right
+            else:
+                parent.right = succ.right
+
+            self.draw_tree(self.root)
+
 
         self.step_index += 1
 
@@ -170,3 +276,18 @@ class BST_Visualizer:
         circle, _ = self.nodes[node]
         circle.setBrush(color)
         circle.setPen(QPen(Qt.yellow, 2))
+
+    def clear(self):
+        # Stop animation
+        if self.timer.isActive():
+            self.timer.stop()
+
+        # Clear graphics
+        self.scene.clear()
+
+        # Clear data
+        self.nodes.clear()
+        self.root = None
+        self.steps = []
+        self.step_index = 0
+
