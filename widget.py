@@ -133,6 +133,7 @@ class Widget(QWidget):
         self.ui.BtnInsert_BST.clicked.connect(self.Insert_BST)
         self.ui.BtnRemove_BST.clicked.connect( self.Remove_BST)
         self.ui.BtnClear_BST.clicked.connect(self.Clear_BST)
+        self.ui.BtnSearch_BST.clicked.connect(self.Search_BST)
 
 
 
@@ -841,6 +842,12 @@ class Widget(QWidget):
             value= int(value_text)
             self.active_visualizer.animate_delete(value)
             self.ui.lineEdit_BST.clear()
+
+    def Search_BST(self):
+            value_text= self.ui.Target_lineEdit_BST.text().strip()
+            value= int(value_text)
+            self.active_visualizer.animate_search(value)
+            self.ui.Target_lineEdit_BST.clear()
 
 
     def Clear_BST(self):
