@@ -4,7 +4,7 @@ from PySide6.QtCore import QTimer
 
 # Import
 from ui_form import Ui_Widget
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor,QIntValidator
 
 soft_blue   = QColor(100, 149, 237)   # Cornflower blue
 soft_green  = QColor(46, 125, 50)  # Light green
@@ -329,14 +329,11 @@ class Widget(QWidget):
 
         elif self.active_algorithm == "Binary Search":
                 target_text = self.ui.target_lineEdit.text().strip()
-                if target_text == "":
-                        print("Please enter a target value for Binary Search!")
-                        return
-                try:
-                        self.target = int(target_text)
-                except ValueError:
-                        print("Invalid input! Enter a number.")
-                        return
+                if not target_text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
+                self.target = int(target_text)
+
                 steps = binary_search(self.current_array.copy(), self.target)
                 self.current_step = 0
                 self.play_binary_search(steps)
@@ -599,6 +596,10 @@ class Widget(QWidget):
 
         elif source == "Linear_search":
                 size = int(self.ui.size_array_lineEdit_LSearch.text())
+                #self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-100 only")
+                #self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 100))
+
+
 
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
@@ -647,6 +648,7 @@ class Widget(QWidget):
         elif source == "Linear_search":
                 size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
                 custom_arr = self.ui.CArray_lineEdit_LSearch.text()
+
 
         elif source == "Merge_Sort":
                 size_txt = int(self.ui.size_array_lineEdit_MergeSort.text())
