@@ -511,7 +511,7 @@ class Widget(QWidget):
                         print("insertion sort shift called")
                         self.active_visualizer.draw_array(state)
 
-                        self.active_visualizer.highlight(i, j, soft_red)
+                        self.active_visualizer.highlight(i, j, soft_blue)
 
                 elif step_type == "insert":
                         print("insertion sort insert called")
@@ -523,7 +523,7 @@ class Widget(QWidget):
                         print("insertion sort insert called")
                         self.active_visualizer.draw_array(state)
 
-                        self.active_visualizer.highlight(i, i, soft_blue)
+                        self.active_visualizer.highlight(i, i, soft_gray)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, self.play_Insertion_sort)
@@ -588,6 +588,7 @@ class Widget(QWidget):
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
                 self.active_visualizer.draw_array(arr)
+                self.active_visualizer.draw_box_color()
                 self.visualizer2.ref_drawArray(arr)
 
         elif source == "Selection_sort":
@@ -597,6 +598,7 @@ class Widget(QWidget):
                 self.current_array = arr
                 self.active_visualizer.draw_array(arr)
                 self.visualizer2.ref_drawArray(arr)
+                self.active_visualizer.draw_box_color()
 
         elif source == "Binary_search":
                 size = int(self.ui.size_array_lineEdit_BSearch.text())
@@ -608,8 +610,8 @@ class Widget(QWidget):
 
         elif source == "Linear_search":
                 size = int(self.ui.size_array_lineEdit_LSearch.text())
-                #self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-100 only")
-                #self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 100))
+                self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
+                self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
 
 
 
