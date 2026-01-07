@@ -64,10 +64,6 @@ class sort_Visualizer:
 
     def draw_box_color(self):
             print("draw box called")
-
-            width = 20
-            height = 20
-
             #Box label for compare
             compare_box = QGraphicsRectItem(QRectF(350, -150, 20, 20))
             compare_box.setBrush(QBrush(soft_yellow))

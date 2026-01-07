@@ -315,6 +315,7 @@ class Widget(QWidget):
         elif self.active_algorithm == "Insertion Sort":
                 print("Insertion sort called")
                 self.steps = Insertion_sort(self.current_array.copy())
+                self.current_step =0
                 self.play_Insertion_sort()
 
         elif self.active_algorithm == "Selection Sort":
@@ -328,6 +329,7 @@ class Widget(QWidget):
 
 
         elif self.active_algorithm == "Binary Search":
+
                 target_text = self.ui.target_lineEdit.text().strip()
                 if not target_text.isdigit():
                     QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
@@ -417,12 +419,12 @@ class Widget(QWidget):
             # Highlight comparisons
             if step_type == "compare":
                 self.active_visualizer.draw_array(state)
-                self.active_visualizer.highlight(i, j, soft_green)
+                self.active_visualizer.highlight(i, j, soft_yellow)
 
             # Swap bars and highlight them
             elif step_type == "swap":
                 self.active_visualizer.swap_bars(state, i, j)
-                self.active_visualizer.highlight(i, j, soft_green)
+                self.active_visualizer.highlight(i, j, soft_blue)
 
 
             self.current_step += 1
@@ -496,19 +498,31 @@ class Widget(QWidget):
                 state = step[3]
                 key = step[4] if len(step) > 4 else None
 
-                self.active_visualizer.draw_array(state)
+                #self.active_visualizer.draw_array(state)
 
                 if step_type == "compare":
+                        print("insertion sort compared called")
+                        self.active_visualizer.draw_array(state)
+
 
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                 elif step_type == "shift":
+                        print("insertion sort shift called")
+                        self.active_visualizer.draw_array(state)
+
                         self.active_visualizer.highlight(i, j, soft_red)
 
                 elif step_type == "insert":
+                        print("insertion sort insert called")
+                        self.active_visualizer.draw_array(state)
+
                         self.active_visualizer.highlight(i, i, soft_green)
 
                 elif step_type == "key":
+                        print("insertion sort insert called")
+                        self.active_visualizer.draw_array(state)
+
                         self.active_visualizer.highlight(i, i, soft_blue)
 
                 self.current_step += 1
