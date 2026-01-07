@@ -4,7 +4,7 @@ from PySide6.QtCore import QTimer
 
 # Import
 from ui_form import Ui_Widget
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor,QIntValidator
 
 soft_blue   = QColor(100, 149, 237)   # Cornflower blue
 soft_green  = QColor(46, 125, 50)  # Light green
@@ -133,6 +133,7 @@ class Widget(QWidget):
         self.ui.BtnInsert_BST.clicked.connect(self.Insert_BST)
         self.ui.BtnRemove_BST.clicked.connect( self.Remove_BST)
         self.ui.BtnClear_BST.clicked.connect(self.Clear_BST)
+        self.ui.BtnSearch_BST.clicked.connect(self.Search_BST)
 
 
 
@@ -314,6 +315,7 @@ class Widget(QWidget):
         elif self.active_algorithm == "Insertion Sort":
                 print("Insertion sort called")
                 self.steps = Insertion_sort(self.current_array.copy())
+                self.current_step =0
                 self.play_Insertion_sort()
 
         elif self.active_algorithm == "Selection Sort":
@@ -327,29 +329,25 @@ class Widget(QWidget):
 
 
         elif self.active_algorithm == "Binary Search":
+
                 target_text = self.ui.target_lineEdit.text().strip()
-                if target_text == "":
-                        print("Please enter a target value for Binary Search!")
-                        return
-                try:
-                        self.target = int(target_text)
-                except ValueError:
-                        print("Invalid input! Enter a number.")
-                        return
+                if not target_text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
+                self.target = int(target_text)
+
                 steps = binary_search(self.current_array.copy(), self.target)
                 self.current_step = 0
                 self.play_binary_search(steps)
 
         elif self.active_algorithm == "Linear Search":
                 target_text = self.ui.target_lineEdit_LSearch.text().strip()
-                if target_text == "":
-                        print("Please enter a target value for linear Search!")
-                        return
-                try:
-                        self.target = int(target_text)
-                except ValueError:
-                        print("Invalid input! Enter a number.")
-                        return
+                if not target_text.isdigit():
+                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    return
+
+                self.target = int(target_text)
+
                 steps, found = linear_search(self.current_array.copy(),self.target)
                 self.current_step = 0
                 self.play_linear_search(steps)
@@ -421,12 +419,12 @@ class Widget(QWidget):
             # Highlight comparisons
             if step_type == "compare":
                 self.active_visualizer.draw_array(state)
-                self.active_visualizer.highlight(i, j, soft_green)
+                self.active_visualizer.highlight(i, j, soft_yellow)
 
             # Swap bars and highlight them
             elif step_type == "swap":
                 self.active_visualizer.swap_bars(state, i, j)
-                self.active_visualizer.highlight(i, j, soft_green)
+                self.active_visualizer.highlight(i, j, soft_blue)
 
 
             self.current_step += 1
@@ -500,20 +498,32 @@ class Widget(QWidget):
                 state = step[3]
                 key = step[4] if len(step) > 4 else None
 
-                self.active_visualizer.draw_array(state)
+                #self.active_visualizer.draw_array(state)
 
                 if step_type == "compare":
+                        print("insertion sort compared called")
+                        self.active_visualizer.draw_array(state)
+
 
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                 elif step_type == "shift":
-                        self.active_visualizer.highlight(i, j, soft_red)
+                        print("insertion sort shift called")
+                        self.active_visualizer.draw_array(state)
+
+                        self.active_visualizer.highlight(i, j, soft_blue)
 
                 elif step_type == "insert":
+                        print("insertion sort insert called")
+                        self.active_visualizer.draw_array(state)
+
                         self.active_visualizer.highlight(i, i, soft_green)
 
                 elif step_type == "key":
-                        self.active_visualizer.highlight(i, i, soft_blue)
+                        print("insertion sort insert called")
+                        self.active_visualizer.draw_array(state)
+
+                        self.active_visualizer.highlight(i, i, soft_gray)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, self.play_Insertion_sort)
@@ -578,6 +588,7 @@ class Widget(QWidget):
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
                 self.active_visualizer.draw_array(arr)
+                self.active_visualizer.draw_box_color()
                 self.visualizer2.ref_drawArray(arr)
 
         elif source == "Selection_sort":
@@ -587,6 +598,7 @@ class Widget(QWidget):
                 self.current_array = arr
                 self.active_visualizer.draw_array(arr)
                 self.visualizer2.ref_drawArray(arr)
+                self.active_visualizer.draw_box_color()
 
         elif source == "Binary_search":
                 size = int(self.ui.size_array_lineEdit_BSearch.text())
@@ -598,6 +610,10 @@ class Widget(QWidget):
 
         elif source == "Linear_search":
                 size = int(self.ui.size_array_lineEdit_LSearch.text())
+                self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
+                self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
+
+
 
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
@@ -646,6 +662,7 @@ class Widget(QWidget):
         elif source == "Linear_search":
                 size_txt = int(self.ui.size_array_lineEdit_LSearch.text())
                 custom_arr = self.ui.CArray_lineEdit_LSearch.text()
+
 
         elif source == "Merge_Sort":
                 size_txt = int(self.ui.size_array_lineEdit_MergeSort.text())
@@ -841,6 +858,12 @@ class Widget(QWidget):
             value= int(value_text)
             self.active_visualizer.animate_delete(value)
             self.ui.lineEdit_BST.clear()
+
+    def Search_BST(self):
+            value_text= self.ui.Target_lineEdit_BST.text().strip()
+            value= int(value_text)
+            self.active_visualizer.animate_search(value)
+            self.ui.Target_lineEdit_BST.clear()
 
 
     def Clear_BST(self):

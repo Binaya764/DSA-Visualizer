@@ -89,6 +89,26 @@ def bst_delete_steps(root, value):
 
     return steps
 
+def bst_search_steps(root, value):
+    steps = []
+    current = root
+
+    while current:
+        steps.append(("visit", current))
+
+        if value == current.value:
+            steps.append(("found", current))
+            return steps
+        elif value < current.value:
+            current = current.left
+        else:
+            current = current.right
+
+    # If we exit loop, value not found
+    steps.append(("not_found", value))
+    return steps
+
+
 
 class BST_Visualizer:
     def __init__(self, graphics_view):
@@ -185,6 +205,13 @@ class BST_Visualizer:
         self.step_index = 0
         self.timer.start(300)
 
+    def animate_search(self,value):
+        if not self.root:
+            return
+        self.steps= bst_search_steps(self.root,value)
+        self.step_index=0
+        self.timer.start(300)
+
 
     def next_step(self):
         if self.step_index >= len(self.steps):
@@ -223,7 +250,7 @@ class BST_Visualizer:
             self.highlight(step[1], soft_red)
 
         elif action == "found":
-            self.highlight(step[1], soft_blue)
+            self.highlight(step[1], soft_green)
 
         elif action == "remove_leaf":
             node, parent = step[1], step[2]

@@ -8,6 +8,7 @@ soft_green  = QColor(46, 125, 50)   # Light green
 soft_red    = QColor(240, 128, 128)   # Light coral
 soft_gray   = QColor(200, 200, 200)   # Light gray
 soft_purple = QColor(186, 160, 255)
+soft_yellow = QColor(240, 200, 120)
 
 
 
@@ -19,16 +20,19 @@ class insertionSort_Visualizer:
 
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
+        self.y_offset=10
 
 
 
     def draw_array(self, arr):          #Draws array
         print("draw_array called")
-        self.scene.clear()
+        #self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
         width = 60  # bar width
         spacing = 1  #spacing between the bars
+        y= self.y_offset
+        self.y_offset += 100
 
 
 
@@ -36,7 +40,7 @@ class insertionSort_Visualizer:
         for i, val in enumerate(arr):
             height = 60
             x = i * (60 + spacing)
-            y = 10
+
 
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush( soft_red))
@@ -52,12 +56,65 @@ class insertionSort_Visualizer:
 
         for i in range(len(arr)):
                     x = i * ( 60+ spacing)
-                    y = 10
+
 
                     index = QGraphicsSimpleTextItem(str(i))
                     index.setBrush(Qt.gray)
                     index.setPos(x+20, y+60)
                     self.scene.addItem(index)
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(self.bars[0][0])
+
+    def draw_box_color(self):
+                print("draw box called")
+                #Box label for compare
+                compare_box = QGraphicsRectItem(QRectF(350, -150, 20, 20))
+                compare_box.setBrush(QBrush(soft_yellow))
+                index_label= QGraphicsSimpleTextItem("Compare")
+                index_label.setBrush(Qt.white)
+                index_label.setPos(380,-150)
+                self.scene.addItem(index_label)
+                self.scene.addItem(compare_box)
+
+                #Box label for swap
+                swap_box = QGraphicsRectItem(QRectF(350, -120, 20, 20))
+                swap_box.setBrush(QBrush(soft_blue))
+                swap_label= QGraphicsSimpleTextItem("Swap")
+                swap_label.setBrush(Qt.white)
+                swap_label.setPos(380,-120)
+                self.scene.addItem(swap_label)
+                self.scene.addItem(swap_box)
+
+                #Box label for sorted
+                sorted_box = QGraphicsRectItem(QRectF(350, -90, 20, 20))
+                sorted_box.setBrush(QBrush(soft_green))
+                sorted_label= QGraphicsSimpleTextItem("Sorted")
+                sorted_label.setBrush(Qt.white)
+                sorted_label.setPos(380,-90)
+                self.scene.addItem(sorted_label)
+                self.scene.addItem(sorted_box)
+
+                #Box label for unsorted
+                unsorted_box = QGraphicsRectItem(QRectF(350, -60, 20, 20))
+                unsorted_box.setBrush(QBrush(soft_red))
+                unsorted_label= QGraphicsSimpleTextItem("Unsorted")
+                unsorted_label.setBrush(Qt.white)
+                unsorted_label.setPos(380,-60)
+                self.scene.addItem(unsorted_label)
+                self.scene.addItem(unsorted_box)
+
+
+                key_box = QGraphicsRectItem(QRectF(350, -30, 20, 20))
+                key_box.setBrush(QBrush(soft_gray))
+                key_label= QGraphicsSimpleTextItem("Key")
+                key_label.setBrush(Qt.white)
+                key_label.setPos(380,-30)
+                self.scene.addItem(key_label)
+                self.scene.addItem(key_box)
+                self.y_offset = 10
+
+
+
 
     #High lights the color of the bar
     def highlight(self, i, j, color):

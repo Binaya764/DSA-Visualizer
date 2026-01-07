@@ -75,6 +75,9 @@ class Binary_Visualizer:
         """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(soft_green))
+        self.values.clear()
+        self.y_offset=10
+        self.bars.clear()
 
     def not_found(self,index):
         for i, bar in enumerate(self.bars):
@@ -82,5 +85,8 @@ class Binary_Visualizer:
                 bar.setBrush(QBrush(soft_red))
             else:
                 pass
+        self.values.clear()
+        self.y_offset=10
+        self.bars.clear()
 
 
