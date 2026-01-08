@@ -332,7 +332,7 @@ class Widget(QWidget):
 
                 target_text = self.ui.target_lineEdit.text().strip()
                 if not target_text.isdigit():
-                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    QMessageBox.warning(self, "Invalid Input", "Set a target value!")
                     return
                 self.target = int(target_text)
 
@@ -735,7 +735,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size_text = int(text)
+                    size_text = int(size)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -757,7 +757,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size_text = int(text)
+                    size_text = int(size)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -778,7 +778,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size_text = int(text)
+                    size_text = int(size)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -799,7 +799,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size_text = int(text)
+                    size_text = int(size)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -821,7 +821,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size_text = int(text)
+                    size_text = int(size)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -836,8 +836,12 @@ class Widget(QWidget):
                 return
 
 
-        if size_txt == "" or custom_arr == "":
-                print("input the required size and value for customr array!")
+        if size_text == "" or custom_arr == "":
+                print("input the required size and value for custom array!")
+                QMessageBox.warning(
+                self,
+                "Input Error",
+                "Enter value for custom array!")
                 return
 
         size = int(size_txt)
@@ -867,8 +871,12 @@ class Widget(QWidget):
                     size_txt = int(self.ui.size_array_lineEdit_Bsearch.text())  # Searching size input
                     custom_arr = self.ui.lineEdit_Bsearch.text()
                 if size_txt == "" or custom_arr == "":
-                            print("input the required size and value for customr array!")
-                            return
+                        QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Enter value for custom array!")
+                        print("input the required size and value for customr array!")
+                        return
 
                 size = int(size_txt)
 
