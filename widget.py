@@ -567,7 +567,24 @@ class Widget(QWidget):
 
 
         if source == "Bubble_sort":
-                size= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                size_text= self.ui.size_array_lineEdit.text() # Sorting size input
+                if not size_text:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
                 if size<6:
 
                         arr=[random.randint(1,100) for _ in range(size)]
@@ -583,7 +600,24 @@ class Widget(QWidget):
 
         elif source == "Insertion_sort":
                 print("Random array insertion sort called")
-                size= int(self.ui.size_array_lineEdit_InsertionSort.text())
+                size_text= self.ui.size_array_lineEdit_InsertionSort.text()
+                if not size_text:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
 
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
@@ -592,7 +626,24 @@ class Widget(QWidget):
                 self.visualizer2.ref_drawArray(arr)
 
         elif source == "Selection_sort":
-                size = int(self.ui.size_array_lineEdit_SelectionSort.text())
+                size_text = self.ui.size_array_lineEdit_SelectionSort.text()
+                if not size_text:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
 
                 arr=[random.randint(1,100) for _ in range(size)]
                 self.current_array = arr
@@ -602,7 +653,24 @@ class Widget(QWidget):
 
 
         elif source == "Linear_search":
-                size = int(self.ui.size_array_lineEdit_LSearch.text())
+                size_text = self.ui.size_array_lineEdit_LSearch.text()
+                if not size_text:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
                 if size < 10:
                         self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
                         self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
@@ -614,7 +682,24 @@ class Widget(QWidget):
                         print("Invalid size")
 
         elif source ==  "Merge_sort":
-                size = int(self.ui.size_array_lineEdit_MergeSort.text())
+                size_text = self.ui.size_array_lineEdit_MergeSort.text()
+                if not size_text:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
                 if size < 6:
 
                         arr=[random.randint(1,100) for _ in range(size)]
@@ -640,7 +725,24 @@ class Widget(QWidget):
 
 
         if source == "Bubble_sort":
-                size_txt= int(self.ui.size_array_lineEdit.text())  # Sorting size input
+                size= self.ui.size_array_lineEdit.text()  # Sorting size input
+                if not size:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Please enter the array size first."
+                    )
+                    return
+
+                try:
+                    size_text = int(text)
+                except ValueError:
+                    QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Array size must be a valid number."
+                    )
+                    return
                 custom_arr = self.ui.custom_array_lineEdit.text()
 
 
