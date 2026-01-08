@@ -600,25 +600,18 @@ class Widget(QWidget):
                 self.visualizer2.ref_drawArray(arr)
                 self.active_visualizer.draw_box_color()
 
-        elif source == "Binary_search":
-                size = int(self.ui.size_array_lineEdit_BSearch.text())
-
-                arr=[random.randint(1,100) for _ in range(size)]
-                self.current_array = arr
-                self.active_visualizer.draw_array(arr)
-                self.visualizer2.ref_drawArray(arr)
 
         elif source == "Linear_search":
                 size = int(self.ui.size_array_lineEdit_LSearch.text())
-                self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
-                self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
-
-
-
-                arr=[random.randint(1,100) for _ in range(size)]
-                self.current_array = arr
-                self.active_visualizer.draw_array(arr)
-                self.visualizer2.ref_drawArray(arr)
+                if size < 10:
+                        self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
+                        self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+                        self.active_visualizer.draw_array(arr)
+                        self.visualizer2.ref_drawArray(arr)
+                else:
+                        print("Invalid size")
 
         elif source ==  "Merge_sort":
                 size = int(self.ui.size_array_lineEdit_MergeSort.text())
@@ -728,18 +721,46 @@ class Widget(QWidget):
         self.current_step = 0
         self.active_visualizer.clear()
         self.steps = []
-        size_text = int(self.ui.size_array_lineEdit_Bsearch.text())
-        arr = []
-        start = 1
-        step_max = 10
-        current = start
-        for _ in range(size_text):
-                current += random.randint(1, step_max)
-                arr.append(current)
-        self.current_array =arr
-        self.current_step = self.steps
-        self.active_visualizer.Bdraw_array(self.steps,arr)
-        self.visualizer2.ref_drawArray(arr)
+        text = self.ui.size_array_lineEdit_Bsearch.text().strip()
+
+        if not text:
+            QMessageBox.warning(
+                self,
+                "Input Error",
+                "Please enter the array size first."
+            )
+            return
+
+        try:
+            size_text = int(text)
+        except ValueError:
+            QMessageBox.warning(
+                self,
+                "Input Error",
+                "Array size must be a valid number."
+            )
+            return
+        if size_text < 10:
+
+                arr = []
+                start = 1
+                step_max = 10
+                current = start
+                for _ in range(size_text):
+                        current += random.randint(1, step_max)
+                        arr.append(current)
+                self.current_array =arr
+                self.current_step = self.steps
+                self.active_visualizer.Bdraw_array(self.steps,arr)
+                self.visualizer2.ref_drawArray(arr)
+        else:
+                print("Invalid size")
+                QMessageBox.warning(
+                    self,
+                    "Input Error",
+                    "Max array size 10!"
+                )
+                return
 
 
         #for stacks
