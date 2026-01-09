@@ -561,6 +561,7 @@ class Widget(QWidget):
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0, 0)
         self.active_visualizer.bars.clear()
+        self.visualizer2.scene.clear()
 
         self.current_step = 0
         self.steps = []
@@ -577,7 +578,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -610,7 +611,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -636,7 +637,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -663,7 +664,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -692,7 +693,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
