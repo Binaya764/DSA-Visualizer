@@ -1058,7 +1058,7 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select --", None))
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
-        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List", None))
+        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List (singly)", None))
 
         self.groupBox_22.setTitle(QCoreApplication.translate("Widget", u"Hierarchical Data Structure", None))
         self.HDS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))

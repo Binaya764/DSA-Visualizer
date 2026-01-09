@@ -159,7 +159,7 @@
                     </item>
                     <item>
                      <property name="text">
-                      <string>Linked List</string>
+                      <string>Linked List (singly)</string>
                      </property>
                     </item>
                    </widget>

@@ -1,153 +1,283 @@
 from PySide6.QtWidgets import (
-    QGraphicsScene,
-    QGraphicsRectItem,
-    QGraphicsSimpleTextItem
+    QGraphicsScene, QGraphicsRectItem, QGraphicsSimpleTextItem,
+    QGraphicsLineItem, QGraphicsPolygonItem, QGraphicsEllipseItem
 )
-from PySide6.QtGui import QBrush, QColor, QPen
-from PySide6.QtCore import QRectF, Qt
+from PySide6.QtGui import QBrush, QPen, QColor, QPainter, QPolygonF, QFont
+from PySide6.QtCore import Qt, QTimer, QPointF, QRectF
+import math
 
-# ================= COLORS =================
-NODE_COLOR = QColor(100, 149, 237)   # Cornflower blue
-TEXT_COLOR = Qt.white
-ARROW_COLOR = Qt.white
-LABEL_COLOR = Qt.lightGray
+# ---------------- COLORS ----------------
+soft_blue = QColor(100, 149, 237)
+soft_green = QColor(76, 175, 80)
+soft_red = QColor(244, 67, 54)
+soft_yellow = QColor(240, 200, 120)
+soft_gray = QColor(200, 200, 200)
+soft_purple = QColor(156, 39, 176)
+soft_orange = QColor(255, 152, 0)
 
-ADDRESS_START = 0x1000
-ADDRESS_STEP = 0x10
+# ---------------- NODE ----------------
+class ListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
+def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
+    """Draw an arrow from (x1, y1) to (x2, y2)"""
+    # Draw the main line
+    line = QGraphicsLineItem(x1, y1, x2, y2)
+    line.setPen(QPen(color, width))
+    scene.addItem(line)
 
+    # Calculate angle of the line
+    angle = math.atan2(y2 - y1, x2 - x1)
 
-class NodeVisualizer:
+    # Arrowhead size
+    arrow_size = 10
+
+    # Calculate two points for the arrowhead triangle
+    p1 = QPointF(
+        x2 - arrow_size * math.cos(angle - math.pi / 6),
+        y2 - arrow_size * math.sin(angle - math.pi / 6)
+    )
+    p2 = QPointF(
+        x2 - arrow_size * math.cos(angle + math.pi / 6),
+        y2 - arrow_size * math.sin(angle + math.pi / 6)
+    )
+
+    # Create the triangle polygon
+    arrow_head = QPolygonF([QPointF(x2, y2), p1, p2])
+    arrow_item = QGraphicsPolygonItem(arrow_head)
+    arrow_item.setBrush(QBrush(color))
+    arrow_item.setPen(QPen(color))
+    scene.addItem(arrow_item)
+
+# ---------------- VISUALIZER ----------------
+class LinkedListVisualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
 
+        # Node dimensions
         self.node_width = 60
         self.node_height = 50
-        self.spacing = 30
-        self.top_margin = 40
+        self.gap = 40
+        self.start_x = 30
+        self.start_y = 80
 
-    # ======================================
-    def draw_list(self, data_list, highlight_index=None):
+        # Data structures
+        self.nodes = []  # list of ListNode
+        self.graphics_nodes = {}  # node -> {'rect': rect, 'text': text, 'null_indicator': circle}
+        self.head = None
 
-        """
-        Draws a singly linked list with:
-        - HEAD label
-        - TAIL label
-        - Arrows
-        - NULL pointer
-        """
+        # Animation
+        self.steps = []
+        self.step_index = 0
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.next_step)
+        self.animation_speed = 700  # milliseconds
+
+        # Labels for pointers
+        self.pointer_labels = {}  # node -> label_text_item
+
+        # Render settings
+        self.view.setRenderHint(QPainter.Antialiasing, True)
+        self.view.setRenderHint(QPainter.TextAntialiasing, True)
+        self.view.setBackgroundBrush(QBrush(QColor(30, 30, 40)))
+
+        # Status text
+        self.status_text = None
+
+    # ---------------- DRAW ----------------
+    def draw_list(self):
+        """Redraw the entire linked list"""
         self.scene.clear()
+        self.graphics_nodes.clear()
+        self.pointer_labels.clear()
 
-        if not data_list:
-            return
+        # Draw "HEAD" label
+        if self.head:
+            head_label = QGraphicsSimpleTextItem("HEAD")
+            head_label.setBrush(soft_yellow)
+            font = QFont("Arial", 10, QFont.Bold)
+            head_label.setFont(font)
+            head_label.setPos(self.start_x, self.start_y - 30)
+            self.scene.addItem(head_label)
 
-        nodes = []
-
-        # ---------- DRAW NODES ----------
-        for i, val in enumerate(data_list):
-            x = i * (self.node_width + self.spacing)
-            y = self.top_margin
-
-            # NODE RECT
-            rect = QGraphicsRectItem(
-                QRectF(x, y, self.node_width, self.node_height)
+            # Draw arrow from HEAD to first node
+            draw_arrow(
+                self.scene,
+                self.start_x + 20, self.start_y - 10,
+                self.start_x + self.node_width / 2, self.start_y,
+                soft_yellow, 2
             )
-            if highlight_index is not None:
-                if i == highlight_index:
-                    rect.setBrush(QBrush(QColor(220, 53, 69)))  # RED
-                elif i == highlight_index - 1:
-                    rect.setBrush(QBrush(QColor(255, 193, 7)))  # YELLOW (prev)
-                else:
-                    rect.setBrush(QBrush(NODE_COLOR))
-            else:
-                rect.setBrush(QBrush(NODE_COLOR))
 
+        x = self.start_x
+        y = self.start_y
+        node = self.head
+        order = []
 
-            rect.setPen(QPen(Qt.black))
+        # ---------- PASS 1: draw nodes ----------
+        while node:
+            # Draw node rectangle (divided into value | next)
+            rect = QGraphicsRectItem(x, y, self.node_width, self.node_height)
+            rect.setBrush(soft_blue)
+            rect.setPen(QPen(Qt.white, 2))
             self.scene.addItem(rect)
 
-            # VALUE TEXT
-            value_text = QGraphicsSimpleTextItem(str(val))
-            value_text.setBrush(QBrush(TEXT_COLOR))
-            value_text.setPos(
-                x + self.node_width / 3,
-                y + self.node_height / 4
+            # Draw divider line between value and next pointer
+            divider = QGraphicsLineItem(
+                x + self.node_width * 0.6, y,
+                x + self.node_width * 0.6, y + self.node_height
             )
-            self.scene.addItem(value_text)
+            divider.setPen(QPen(Qt.white, 1))
+            self.scene.addItem(divider)
 
-            # -------- MEMORY ADDRESS --------
-            address = ADDRESS_START + i * ADDRESS_STEP
-            addr_text = QGraphicsSimpleTextItem(hex(address))
-            addr_text.setBrush(QBrush(QColor(180, 180, 180)))
-            addr_text.setPos(
-                x + self.node_width / 6,
-                y + self.node_height + 5
-            )
-            self.scene.addItem(addr_text)
+            # Draw value text
+            text = QGraphicsSimpleTextItem(str(node.value))
+            text.setBrush(Qt.white)
+            font = QFont("Arial", 12, QFont.Bold)
+            text.setFont(font)
 
-            nodes.append(rect)
+            # Center the text in the value section
+            text_rect = text.boundingRect()
+            text_x = x + (self.node_width * 0.6 - text_rect.width()) / 2
+            text_y = y + (self.node_height - text_rect.height()) / 2
+            text.setPos(text_x, text_y)
+            self.scene.addItem(text)
 
-            # ARROW TO NEXT
-            if i < len(data_list) - 1:
-                self.scene.addLine(
-                    x + self.node_width,
-                    y + self.node_height / 2,
-                    x + self.node_width + self.spacing,
-                    y + self.node_height / 2,
-                    QPen(ARROW_COLOR, 2)
-                )
+            # Draw null indicator or arrow start point
+            null_indicator = None
+            if node.next is None:
+                # Draw "NULL" or "X" in the next section
+                null_text = QGraphicsSimpleTextItem("✗")
+                null_text.setBrush(soft_red)
+                null_font = QFont("Arial", 14, QFont.Bold)
+                null_text.setFont(null_font)
+                null_rect = null_text.boundingRect()
+                null_x = x + self.node_width * 0.6 + (self.node_width * 0.4 - null_rect.width()) / 2
+                null_y = y + (self.node_height - null_rect.height()) / 2
+                null_text.setPos(null_x, null_y)
+                self.scene.addItem(null_text)
+                null_indicator = null_text
+
+            self.graphics_nodes[node] = {
+                'rect': rect,
+                'text': text,
+                'null_indicator': null_indicator
+            }
+            order.append(node)
+
+            x += self.node_width + self.gap
+            node = node.next
+
+        # ---------- PASS 2: draw arrows ----------
+        for node in order:
+            if node.next:
+                rect = self.graphics_nodes[node]['rect']
+                next_rect = self.graphics_nodes[node.next]['rect']
+
+                # Arrow starts from the "next" section of current node
+                x1 = rect.x() + self.node_width-100
+                y1 = rect.y() + self.node_height / 2
+
+                # Arrow ends just before the next node
+                x2 = next_rect.x() + 10
+                y2 = next_rect.y() + self.node_height / 2
+
+                draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2)
+
+        # Adjust scene rect
+        self.scene.setSceneRect(self.scene.itemsBoundingRect().adjusted(-20, -20, 20, 20))
+
+    # ---------------- ANIMATION ----------------
+    def animate_steps(self, steps, speed=700):
+        """Start animating through the provided steps"""
+        self.steps = steps
+        self.step_index = 0
+        self.animation_speed = speed
+        self.timer.start(self.animation_speed)
+
+    def next_step(self):
+        """Execute the next animation step"""
+        if self.step_index >= len(self.steps):
+            self.timer.stop()
+
+            return
+
+        step = self.steps[self.step_index]
+        action = step[0]
+
+        # Reset all node colors
+        for node_graphics in self.graphics_nodes.values():
+            node_graphics['rect'].setBrush(soft_blue)
+
+        if action == "visit":
+            node = step[1]
+            message = step[2] if len(step) > 2 else "Visiting node"
+            self.highlight(node, soft_yellow)
+
+        elif action == "compare":
+            node, target = step[1], step[2]
+            self.highlight(node, soft_orange)
+
+        elif action == "insert":
+            node, value = step[1], step[2]
+            new_node = ListNode(value)
+            if node is None:  # Insert at head
+                new_node.next = self.head
+                self.head = new_node
+            else:
+                new_node.next = node.next
+                node.next = new_node
+            self.draw_list()
+            self.highlight(new_node, soft_green)
+
+        elif action == "delete":
+            node, prev = step[1], step[2]
+            self.highlight(node, soft_red)
+
+            # Actual deletion happens in next step
+
+        elif action == "remove":
+            node, prev = step[1], step[2]
+            if prev is None:
+                self.head = node.next
+            else:
+                prev.next = node.next
+            self.draw_list()
 
 
-            # ---------- ARROW TO NEXT ----------
-            if i < len(data_list) - 1:
-                self.scene.addLine(
-                    x + self.node_width,
-                    y + self.node_height / 2,
-                    x + self.node_width + self.spacing,
-                    y + self.node_height / 2,
-                    QPen(ARROW_COLOR, 2)
-                )
+        elif action == "found":
+            node = step[1]
+            self.highlight(node, soft_green)
 
-        # ---------- HEAD LABEL ----------
-        head = nodes[0]
-        head_label = QGraphicsSimpleTextItem("HEAD")
-        head_label.setBrush(QBrush(LABEL_COLOR))
-        head_label.setPos(
-            head.rect().x() + 5,
-            head.rect().y() - 25
-        )
-        self.scene.addItem(head_label)
 
-        # ---------- TAIL LABEL ----------
-        tail = nodes[-1]
-        tail_label = QGraphicsSimpleTextItem("TAIL")
-        tail_label.setBrush(QBrush(LABEL_COLOR))
-        tail_label.setPos(
-            tail.rect().x() + 40,
-            tail.rect().y() - 25
-        )
-        self.scene.addItem(tail_label)
+        elif action == "not_found":
+            value = step[1]
 
-        # ---------- ARROW TO NULL ----------
-        null_x = tail.rect().x() + self.node_width + self.spacing
-        null_y = tail.rect().y() + self.node_height / 2
 
-        self.scene.addLine(
-            tail.rect().x() + self.node_width,
-            null_y,
-            null_x - 5,
-            null_y,
-            QPen(ARROW_COLOR, 2)
-        )
+        elif action == "message":
+            message = step[1]
+            color = step[2] if len(step) > 2 else Qt.white
 
-        # ---------- NULL LABEL ----------
-        null_text = QGraphicsSimpleTextItem("NULL")
-        null_text.setBrush(QBrush(LABEL_COLOR))
-        null_text.setPos(null_x, null_y - 10)
-        self.scene.addItem(null_text)
+        self.step_index += 1
 
-        # ---------- FINAL VIEW ADJUST ----------
-        self.view.setSceneRect(self.scene.itemsBoundingRect())
-        self.view.centerOn(nodes[0])
+    # ---------------- HIGHLIGHT ----------------
+    def highlight(self, node, color):
+        """Highlight a specific node with a color"""
+        if node not in self.graphics_nodes:
+            return
+        self.graphics_nodes[node]['rect'].setBrush(color)
+
+
+    def clear(self):
+        """Clear all data and reset visualizer"""
+        self.timer.stop()
+        self.scene.clear()
+        self.graphics_nodes.clear()
+        self.pointer_labels.clear()
+        self.head = None
+        self.steps = []
+        self.step_index = 0
+        self.status_text = None

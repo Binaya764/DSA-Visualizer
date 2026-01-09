@@ -246,7 +246,7 @@ ALGORITHM_CODES = {
     "Linear Search":   LINEAR_SEARCH_CODE,
     "Queue" : QUEUE_CODE,
     "Merge Sort": MERGE_SORT_CODE,
-    "Linked List": LINKED_LIST_CODE,
+    "Linked List (singly)": LINKED_LIST_CODE,
     "Binary Search Tree": BST_CODE,
 
 }
