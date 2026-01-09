@@ -52,8 +52,8 @@ from algorithms.sorting.merge_sort import merge_Sort
 from visualizer.Sorting_viz.mergeSort_visualizer import mergeSort_Visualizer
 
 #For LinkedList
-from algorithms.Linked_List.singly_LinkedList import LinkedList_fun
-from visualizer.LinkedList_viz.singly_LinkedList_visualizer import NodeVisualizer
+from algorithms.Linked_List.singly_LinkedList import linkedList_fun
+from visualizer.LinkedList_viz.singly_LinkedList_visualizer import LinkedListVisualizer
 
 #For BST
 from algorithms.BST.Binary_Search_Tree import BinarySearchTree
@@ -88,7 +88,7 @@ class Widget(QWidget):
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
         self.queue = queue_fun(capacity = 5)
-        self.linked_list = LinkedList_fun()
+        self.linked_list = linkedList_fun()
         self.BST = BinarySearchTree()
 
         # Connect Start Button
@@ -263,7 +263,7 @@ class Widget(QWidget):
             mapping = {
             "Stack": 7,
             "Queue": 8,
-            "Linked List": 9,
+            "Linked List (singly)": 9,
 
             }
             self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,4))
@@ -276,8 +276,9 @@ class Widget(QWidget):
                     self.active_visualizer = QueueVisualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
-            elif algo == "Linked List":
-                    self.active_visualizer = NodeVisualizer(self.ui.visualizer_graphicsView)
+            elif algo == "Linked List (singly)":
+                    self.active_visualizer = LinkedListVisualizer(self.ui.visualizer_graphicsView)
+                    print(self.active_visualizer)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_LinkedList)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
@@ -561,6 +562,7 @@ class Widget(QWidget):
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0, 0)
         self.active_visualizer.bars.clear()
+        self.visualizer2.scene.clear()
 
         self.current_step = 0
         self.steps = []
@@ -577,7 +579,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -610,7 +612,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -636,7 +638,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -663,7 +665,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -692,7 +694,7 @@ class Widget(QWidget):
                     return
 
                 try:
-                    size = int(text)
+                    size = int(size_text)
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -844,7 +846,7 @@ class Widget(QWidget):
                 "Enter value for custom array!")
                 return
 
-        size = int(size_txt)
+        #size = int(size_txt)
 
         parts = custom_arr.replace(",", " ").split() #splits the string into individual values
 
@@ -1019,12 +1021,14 @@ class Widget(QWidget):
                             print("Invalid input")
                             return
 
-                    action, state = self.linked_list.append(value)
+                    steps = self.linked_list.insert(self.active_visualizer,value)
+                    self.active_visualizer.animate_steps(steps)
 
-                    if action == "overflow":
+                    """if action == "overflow":
                             print("Queue overflow!")
                     else:
-                            self.active_visualizer.draw_list(state)
+                        pass
+                            #self.active_visualizer.draw_list(state)"""
 
                     self.ui.lineEdit_LinkedList.clear()
     def Remove_LinkedList(self,source ="Linked List"):

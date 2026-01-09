@@ -1033,7 +1033,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(10)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1058,7 +1058,7 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select --", None))
         self.DS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Stack", None))
         self.DS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Queue", None))
-        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List", None))
+        self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List (singly)", None))
 
         self.groupBox_22.setTitle(QCoreApplication.translate("Widget", u"Hierarchical Data Structure", None))
         self.HDS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
@@ -1083,9 +1083,9 @@ class Ui_Widget(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:700;\">DSA Visualizer</span><span style=\" font-size:11pt;\"> is an interactive learning tool designed to  help  you</span></p>\n"
-"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">understand Data Structures and Algorith"
-                        "ms visually,    step  by  step.</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:700;\">DSA Visualizer</span><span style=\" font-size:11pt;\"> is an interactive learning tool designed to help you</span></p>\n"
+"<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">understand Data Structures and Algorithms"
+                        " visually, step by step.</span></p>\n"
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">Select an algorithm to continue....</span></p></body></html>", None))
@@ -1114,27 +1114,27 @@ class Ui_Widget(object):
         self.BtnRandomize_MergeSort.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.groupBox_18.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("Widget", u"Linear Search", None))
-        self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label_6.setText(QCoreApplication.translate("Widget", u"Array Size (Max 10)", None))
         self.label_13.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate_LSearch.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.BtnRandomize_LSearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_14.setText(QCoreApplication.translate("Widget", u"Target", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("Widget", u"Binary Search", None))
-        self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size", None))
+        self.label_10.setText(QCoreApplication.translate("Widget", u"Array Size (Max 10)", None))
         self.label_7.setText(QCoreApplication.translate("Widget", u"Custom Array", None))
         self.BtnGenerate_Bsearch.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.Btnrandomize_Bsearch.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_8.setText(QCoreApplication.translate("Widget", u"Target Value:", None))
         self.label_9.setText(QCoreApplication.translate("Widget", u"code", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("Widget", u"Stack", None))
-        self.label_15.setText(QCoreApplication.translate("Widget", u"Input values", None))
+        self.label_15.setText(QCoreApplication.translate("Widget", u"Input values (Max 5)", None))
         self.BtnPop_stack.setText(QCoreApplication.translate("Widget", u"Pop", None))
         self.BtnPush_stack.setText(QCoreApplication.translate("Widget", u"Push", None))
         self.BtnClear_stack.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
-        self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values", None))
+        self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values (Max 10)", None))
         self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
