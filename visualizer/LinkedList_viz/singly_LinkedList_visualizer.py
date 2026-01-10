@@ -36,7 +36,7 @@ def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
 
     # Calculate two points for the arrowhead triangle
     p1 = QPointF(
-        x2 - arrow_size * math.cos(angle - math.pi / 6),
+        x2 - (arrow_size * math.cos(angle - math.pi / 6)),
         y2 - arrow_size * math.sin(angle - math.pi / 6)
     )
     p2 = QPointF(
@@ -107,7 +107,7 @@ class LinkedListVisualizer:
             # Draw arrow from HEAD to first node
             draw_arrow(
                 self.scene,
-                self.start_x + 20, self.start_y - 10,
+                self.start_x + 20, self.start_y -10,
                 self.start_x + self.node_width / 2, self.start_y,
                 soft_yellow, 2
             )
@@ -179,11 +179,11 @@ class LinkedListVisualizer:
 
                 # Arrow starts from the "next" section of current node
                 x1 = rect.x() + self.node_width-100
-                y1 = rect.y() + self.node_height / 2
+                y1 = rect.y() + self.node_height / 2+80
 
                 # Arrow ends just before the next node
-                x2 = next_rect.x() + 10
-                y2 = next_rect.y() + self.node_height / 2
+                x2 = next_rect.x() + 100
+                y2 = next_rect.y() + self.node_height / 2+80
 
                 draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2)
 
