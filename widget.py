@@ -1022,6 +1022,7 @@ class Widget(QWidget):
                             return
 
                     steps = self.linked_list.insert(self.active_visualizer,value)
+                    print("linked list widget steps called")
                     self.active_visualizer.animate_steps(steps)
 
                     """if action == "overflow":
