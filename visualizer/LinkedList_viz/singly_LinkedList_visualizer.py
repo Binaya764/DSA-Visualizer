@@ -114,6 +114,7 @@ class LinkedListVisualizer:
 
         x = self.start_x
         y = self.start_y
+        self.x_offset=0
         node = self.head
         order = []
 
@@ -174,18 +175,21 @@ class LinkedListVisualizer:
         # ---------- PASS 2: draw arrows ----------
         for node in order:
             if node.next:
+                print("Drawing arrow called")
                 rect = self.graphics_nodes[node]['rect']
                 next_rect = self.graphics_nodes[node.next]['rect']
 
                 # Arrow starts from the "next" section of current node
-                x1 = rect.x() + self.node_width+32
+                x1 = rect.x() + self.node_width+32+self.x_offset
                 y1 = rect.y() + self.node_height / 2+80
 
                 # Arrow ends just before the next node
-                x2 = next_rect.x() + 130
+                x2 = next_rect.x() + 130+self.x_offset
                 y2 = next_rect.y() + self.node_height / 2+80
 
                 draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2)
+                self.x_offset += 100
+
 
         # Adjust scene rect
         self.scene.setSceneRect(self.scene.itemsBoundingRect().adjusted(-20, -20, 20, 20))
@@ -196,6 +200,7 @@ class LinkedListVisualizer:
         self.steps = steps
         self.step_index = 0
         self.animation_speed = speed
+        self.timer.stop
         self.timer.start(self.animation_speed)
 
     def next_step(self):
