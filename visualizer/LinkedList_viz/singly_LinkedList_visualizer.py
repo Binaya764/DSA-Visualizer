@@ -178,11 +178,11 @@ class LinkedListVisualizer:
                 next_rect = self.graphics_nodes[node.next]['rect']
 
                 # Arrow starts from the "next" section of current node
-                x1 = rect.x() + self.node_width-100
+                x1 = rect.x() + self.node_width+32
                 y1 = rect.y() + self.node_height / 2+80
 
                 # Arrow ends just before the next node
-                x2 = next_rect.x() + 100
+                x2 = next_rect.x() + 130
                 y2 = next_rect.y() + self.node_height / 2+80
 
                 draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2)
