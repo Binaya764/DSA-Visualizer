@@ -59,7 +59,7 @@ class LinkedListVisualizer:
         self.view.setScene(self.scene)
 
         # Node dimensions
-        self.node_width = 60
+        self.node_width = 90
         self.node_height = 50
         self.gap = 40
         self.start_x = 30
@@ -67,7 +67,7 @@ class LinkedListVisualizer:
 
         # Data structures
         self.nodes = []  # list of ListNode
-        self.graphics_nodes = {}  # node -> {'rect': rect, 'text': text, 'null_indicator': circle}
+        self.graphics_nodes = {}
         self.head = None
 
         # Animation
@@ -75,39 +75,33 @@ class LinkedListVisualizer:
         self.step_index = 0
         self.timer = QTimer()
         self.timer.timeout.connect(self.next_step)
-        self.animation_speed = 700  # milliseconds
-
-        # Labels for pointers
-        self.pointer_labels = {}  # node -> label_text_item
+        self.animation_speed = 500
 
         # Render settings
         self.view.setRenderHint(QPainter.Antialiasing, True)
         self.view.setRenderHint(QPainter.TextAntialiasing, True)
-        self.view.setBackgroundBrush(QBrush(QColor(30, 30, 40)))
 
-        # Status text
-        self.status_text = None
 
-    # ---------------- DRAW ----------------
+
     def draw_list(self):
         """Redraw the entire linked list"""
         self.scene.clear()
         self.graphics_nodes.clear()
-        self.pointer_labels.clear()
 
-        # Draw "HEAD" label
+
+        # Draw head label
         if self.head:
             head_label = QGraphicsSimpleTextItem("HEAD")
             head_label.setBrush(soft_yellow)
             font = QFont("Arial", 10, QFont.Bold)
             head_label.setFont(font)
-            head_label.setPos(self.start_x, self.start_y - 30)
+            head_label.setPos(self.start_x-20+self.node_width/2, self.start_y - 40)
             self.scene.addItem(head_label)
 
             # Draw arrow from HEAD to first node
             draw_arrow(
                 self.scene,
-                self.start_x + 20, self.start_y -10,
+                self.start_x +self.node_width/2, self.start_y -25,
                 self.start_x + self.node_width / 2, self.start_y,
                 soft_yellow, 2
             )
@@ -118,7 +112,7 @@ class LinkedListVisualizer:
         node = self.head
         order = []
 
-        # ---------- PASS 1: draw nodes ----------
+        # Draw nodes
         while node:
             # Draw node rectangle (divided into value | next)
             rect = QGraphicsRectItem(x, y, self.node_width, self.node_height)
@@ -128,8 +122,8 @@ class LinkedListVisualizer:
 
             # Draw divider line between value and next pointer
             divider = QGraphicsLineItem(
-                x + self.node_width * 0.6, y,
-                x + self.node_width * 0.6, y + self.node_height
+                x -10+ self.node_width * 0.6, y,
+                x -10+ self.node_width * 0.6, y + self.node_height
             )
             divider.setPen(QPen(Qt.white, 1))
             self.scene.addItem(divider)
@@ -142,7 +136,7 @@ class LinkedListVisualizer:
 
             # Center the text in the value section
             text_rect = text.boundingRect()
-            text_x = x + (self.node_width * 0.6 - text_rect.width()) / 2
+            text_x = x-3 + (self.node_width * 0.6 - text_rect.width()) / 2
             text_y = y + (self.node_height - text_rect.height()) / 2
             text.setPos(text_x, text_y)
             self.scene.addItem(text)
@@ -151,12 +145,12 @@ class LinkedListVisualizer:
             null_indicator = None
             if node.next is None:
                 # Draw "NULL" or "X" in the next section
-                null_text = QGraphicsSimpleTextItem("✗")
+                null_text = QGraphicsSimpleTextItem("NULL")
                 null_text.setBrush(soft_red)
-                null_font = QFont("Arial", 14, QFont.Bold)
+                null_font = QFont("Arial", 9, QFont.Bold)
                 null_text.setFont(null_font)
                 null_rect = null_text.boundingRect()
-                null_x = x + self.node_width * 0.6 + (self.node_width * 0.4 - null_rect.width()) / 2
+                null_x = x-3 + self.node_width * 0.6 + (self.node_width * 0.4 - null_rect.width()) / 2
                 null_y = y + (self.node_height - null_rect.height()) / 2
                 null_text.setPos(null_x, null_y)
                 self.scene.addItem(null_text)
@@ -172,31 +166,30 @@ class LinkedListVisualizer:
             x += self.node_width + self.gap
             node = node.next
 
-        # ---------- PASS 2: draw arrows ----------
+        #Draws the arrow beteen two nodes
         for node in order:
             if node.next:
                 print("Drawing arrow called")
                 rect = self.graphics_nodes[node]['rect']
                 next_rect = self.graphics_nodes[node.next]['rect']
 
-                # Arrow starts from the "next" section of current node
+                # Position of the start of the arrow
                 x1 = rect.x() + self.node_width+32+self.x_offset
                 y1 = rect.y() + self.node_height / 2+80
 
-                # Arrow ends just before the next node
-                x2 = next_rect.x() + 130+self.x_offset
+                # Position at the end of the arrrow
+                x2 = next_rect.x() + 160+self.x_offset
                 y2 = next_rect.y() + self.node_height / 2+80
 
-                draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2)
-                self.x_offset += 100
+                draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2) #calls the draw arrow function for head
+                self.x_offset += 130 #offset the arrow to new position when a new node is added
 
 
         # Adjust scene rect
         self.scene.setSceneRect(self.scene.itemsBoundingRect().adjusted(-20, -20, 20, 20))
 
-    # ---------------- ANIMATION ----------------
-    def animate_steps(self, steps, speed=700):
-        """Start animating through the provided steps"""
+    # Animation
+    def animate_steps(self, steps, speed=500):
         self.steps = steps
         self.step_index = 0
         self.animation_speed = speed
@@ -204,7 +197,6 @@ class LinkedListVisualizer:
         self.timer.start(self.animation_speed)
 
     def next_step(self):
-        """Execute the next animation step"""
         if self.step_index >= len(self.steps):
             self.timer.stop()
 
@@ -242,7 +234,7 @@ class LinkedListVisualizer:
             node, prev = step[1], step[2]
             self.highlight(node, soft_red)
 
-            # Actual deletion happens in next step
+
 
         elif action == "remove":
             node, prev = step[1], step[2]
@@ -262,13 +254,9 @@ class LinkedListVisualizer:
             value = step[1]
 
 
-        elif action == "message":
-            message = step[1]
-            color = step[2] if len(step) > 2 else Qt.white
-
         self.step_index += 1
 
-    # ---------------- HIGHLIGHT ----------------
+
     def highlight(self, node, color):
         """Highlight a specific node with a color"""
         if node not in self.graphics_nodes:
