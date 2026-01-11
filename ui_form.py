@@ -1033,7 +1033,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(9)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1140,8 +1140,8 @@ class Ui_Widget(object):
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_20.setTitle(QCoreApplication.translate("Widget", u"Linked List", None))
         self.label_20.setText(QCoreApplication.translate("Widget", u"Input Values:", None))
-        self.BtnInsert_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert", None))
-        self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove", None))
+        self.BtnInsert_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert (Head)", None))
+        self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove (Head)", None))
         self.BtnClear_LinkedList.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_21.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
         self.groupBox_23.setTitle(QCoreApplication.translate("Widget", u"Binary Search Tree", None))

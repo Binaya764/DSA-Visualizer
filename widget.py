@@ -88,7 +88,7 @@ class Widget(QWidget):
         self.current_array=[] #Stores the current updated array
         self.stack = stack_fun(capacity=5)
         self.queue = queue_fun(capacity = 5)
-        self.linked_list = linkedList_fun()
+        self.linked_list = linkedList_fun(capacity =5)
         self.BST = BinarySearchTree()
 
         # Connect Start Button
@@ -1033,11 +1033,9 @@ class Widget(QWidget):
 
                     self.ui.lineEdit_LinkedList.clear()
     def Remove_LinkedList(self,source ="Linked List"):
-            action, value, state = self.linked_list.delete()
-            if action == "empty":
-                    pass
-            else:
-                    self.active_visualizer.draw_list(state)
+             print("Remove linkedlist called")
+             steps = self.linked_list.delete(self.active_visualizer)
+             self.active_visualizer.animate_steps(steps)
 
     def Clear_LinkedList(self,source = "Linked LIst"):
             pass
