@@ -22,7 +22,7 @@ class ListNode:
         self.next = None
 
 def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
-    """Draw an arrow from (x1, y1) to (x2, y2)"""
+    #Draw an arrow from (x1, y1) to (x2, y2)
     # Draw the main line
     line = QGraphicsLineItem(x1, y1, x2, y2)
     line.setPen(QPen(color, width))
@@ -85,8 +85,6 @@ class LinkedListVisualizer:
 
 
     def draw_list(self):
-        """Redraw the entire linked list"""
-
         self.scene.clear()
         self.graphics_nodes.clear()
 
@@ -304,14 +302,12 @@ class LinkedListVisualizer:
 
 
     def highlight(self, node, color):
-        """Highlight a specific node with a color"""
         if node not in self.graphics_nodes:
             return
         self.graphics_nodes[node]['rect'].setBrush(color)
 
 
     def clear(self):
-        """Clear all data and reset visualizer"""
         self.timer.stop()
         self.scene.clear()
         self.graphics_nodes.clear()

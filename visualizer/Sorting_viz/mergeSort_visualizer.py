@@ -65,9 +65,6 @@ class mergeSort_Visualizer:
 
     def draw_box_color(self):
             print("draw box called")
-
-            width = 20
-            height = 20
             x=130
             y=-80
 

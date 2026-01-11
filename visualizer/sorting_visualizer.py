@@ -110,7 +110,6 @@ class sort_Visualizer:
 
    #Updates the bar position after swapping
     def swap_bars(self, updated_array, i, j):
-        """Redraws bars using new array state."""
         self.draw_array(updated_array)
 
     def completed_sort(self): #colors the bar green once the sorting is completed
