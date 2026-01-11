@@ -8,27 +8,47 @@ soft_purple = QColor(186, 160, 255)
 soft_yellow = QColor(240, 200, 120)
 
 class linkedList_fun:
-    def __init__(self, capacity=5):
-        self.capacity = capacity
+        def __init__(self, capacity=5):
+                self.capacity = capacity
 
 
 
 
-    @staticmethod
-    def insert(visualizer, value):
-        steps = []
-        steps.append(("insert", None, value))  # None means insert at head
+        @staticmethod
+        def insert_head(visualizer, value):
+                steps = []
+                steps.append(("insertHead", None, value))  # None means insert at head
 
-        return steps
+                return steps
 
-    @staticmethod
-    def delete(visualizer):
-        steps = []
+        @staticmethod
+        def delete_head(visualizer):
+                steps = []
 
-        if visualizer.head is None:
+                if visualizer.head is None:
+                    return steps
+
+                old_head = visualizer.head
+                steps.append(("deleteHead", old_head, None))  # Mark for deletion
+                steps.append(("removeHead", old_head, None))  # Actually remove it
+                return steps
+
+
+        @staticmethod
+        def insert_tail(visualizer, value):
+            steps = []
+            steps.append(("insertTail", None, value))  # None means insert at head
+
             return steps
 
-        old_head = visualizer.head
-        steps.append(("delete", old_head, None))  # Mark for deletion
-        steps.append(("remove", old_head, None))  # Actually remove it
-        return steps
+        @staticmethod
+        def delete_head(visualizer):
+            steps = []
+
+            if visualizer.head is None:
+                return steps
+
+            old_head = visualizer.head
+            steps.append(("deleteTail", old_head, None))  # Mark for deletion
+            steps.append(("removeTail", old_head, None))  # Actually remove it
+            return steps

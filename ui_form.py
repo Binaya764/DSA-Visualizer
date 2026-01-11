@@ -889,6 +889,22 @@ class Ui_Widget(object):
 
         self.verticalLayout_56.addLayout(self.horizontalLayout_23)
 
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.horizontalLayout_26.setContentsMargins(-1, -1, -1, 0)
+        self.BtnInsertTail_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnInsertTail_LinkedList.setObjectName(u"BtnInsertTail_LinkedList")
+
+        self.horizontalLayout_26.addWidget(self.BtnInsertTail_LinkedList)
+
+        self.BtnRemoveTail_LinkedList = QPushButton(self.groupBox_20)
+        self.BtnRemoveTail_LinkedList.setObjectName(u"BtnRemoveTail_LinkedList")
+
+        self.horizontalLayout_26.addWidget(self.BtnRemoveTail_LinkedList)
+
+
+        self.verticalLayout_56.addLayout(self.horizontalLayout_26)
+
         self.BtnClear_LinkedList = QPushButton(self.groupBox_20)
         self.BtnClear_LinkedList.setObjectName(u"BtnClear_LinkedList")
 
@@ -1142,6 +1158,8 @@ class Ui_Widget(object):
         self.label_20.setText(QCoreApplication.translate("Widget", u"Input Values:", None))
         self.BtnInsert_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert (Head)", None))
         self.BtnRemove_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove (Head)", None))
+        self.BtnInsertTail_LinkedList.setText(QCoreApplication.translate("Widget", u"Insert (Tail)", None))
+        self.BtnRemoveTail_LinkedList.setText(QCoreApplication.translate("Widget", u"Remove (Tail)", None))
         self.BtnClear_LinkedList.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_21.setTitle(QCoreApplication.translate("Widget", u"Code:", None))
         self.groupBox_23.setTitle(QCoreApplication.translate("Widget", u"Binary Search Tree", None))

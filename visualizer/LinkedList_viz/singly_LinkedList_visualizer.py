@@ -69,6 +69,7 @@ class LinkedListVisualizer:
         self.nodes = []  # list of ListNode
         self.graphics_nodes = {}
         self.head = None
+        self.tail = None
 
         # Animation
         self.steps = []
@@ -85,6 +86,7 @@ class LinkedListVisualizer:
 
     def draw_list(self):
         """Redraw the entire linked list"""
+
         self.scene.clear()
         self.graphics_nodes.clear()
 
@@ -170,6 +172,7 @@ class LinkedListVisualizer:
         for node in order:
             if node.next:
                 print("Drawing arrow called")
+                print(node)
                 rect = self.graphics_nodes[node]['rect']
                 next_rect = self.graphics_nodes[node.next]['rect']
 
@@ -183,6 +186,22 @@ class LinkedListVisualizer:
 
                 draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2) #calls the draw arrow function for head
                 self.x_offset += 130 #offset the arrow to new position when a new node is added
+
+        if self.tail:
+            head_label = QGraphicsSimpleTextItem("TAIL")
+            head_label.setBrush(soft_yellow)
+            font = QFont("Arial", 10, QFont.Bold)
+            head_label.setFont(font)
+            head_label.setPos(self.start_x-60+self.node_width/2, self.start_y - 40)
+            self.scene.addItem(head_label)
+
+            # Draw arrow from HEAD to first node
+            draw_arrow(
+                self.scene,
+                self.start_x +self.node_width/2, self.start_y -25,
+                self.start_x + self.node_width / 2, self.start_y,
+                soft_yellow, 2
+            )
 
 
         # Adjust scene rect
@@ -218,7 +237,7 @@ class LinkedListVisualizer:
             node, target = step[1], step[2]
             self.highlight(node, soft_orange)
 
-        elif action == "insert":
+        elif action == "insertHead":
             node, value = step[1], step[2]
             new_node = ListNode(value)
             if node is None:  # Insert at head
@@ -230,13 +249,40 @@ class LinkedListVisualizer:
             self.draw_list()
             self.highlight(new_node, soft_green)
 
-        elif action == "delete":
+        elif action == "deleteHead":
             node, prev = step[1], step[2]
             self.highlight(node, soft_red)
 
 
 
-        elif action == "remove":
+        elif action == "removeHead":
+            node, prev = step[1], step[2]
+            if prev is None:
+                self.head = node.next
+            else:
+                prev.next = node.next
+            self.draw_list()
+
+
+        elif action == "insertTail":
+            node, value = step[1], step[2]
+            new_node = ListNode(value)
+            if node is None:
+                print("cannot insert a tail")
+                return
+            else:
+                new_node.next = self.tail
+                self.tail= new_node
+            self.draw_list()
+            self.highlight(new_node, soft_green)
+
+        elif action == "deleteTail":
+            node, prev = step[1], step[2]
+            self.highlight(node, soft_red)
+
+
+
+        elif action == "removeTail":
             node, prev = step[1], step[2]
             if prev is None:
                 self.head = node.next
@@ -269,8 +315,7 @@ class LinkedListVisualizer:
         self.timer.stop()
         self.scene.clear()
         self.graphics_nodes.clear()
-        self.pointer_labels.clear()
         self.head = None
         self.steps = []
         self.step_index = 0
-        self.status_text = None
+

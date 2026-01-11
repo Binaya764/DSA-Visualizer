@@ -1101,6 +1101,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </layout>
                 </item>
                 <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="BtnInsertTail_LinkedList">
+                    <property name="text">
+                     <string>Insert (Tail)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnRemoveTail_LinkedList">
+                    <property name="text">
+                     <string>Remove (Tail)</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
                  <widget class="QPushButton" name="BtnClear_LinkedList">
                   <property name="text">
                    <string>Clear</string>

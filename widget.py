@@ -125,9 +125,11 @@ class Widget(QWidget):
         self.ui.BtnGenerate_MergeSort.clicked.connect(lambda: self.custom_array("Merge_sort"))
 
         #Button for Linked List:
-        self.ui.BtnInsert_LinkedList.clicked.connect(lambda: self.Insert_LinkedList("Linked_List"))
-        self.ui.BtnRemove_LinkedList.clicked.connect(lambda: self.Remove_LinkedList("Linked_List"))
+        self.ui.BtnInsert_LinkedList.clicked.connect(lambda: self.InsertHead_LinkedList("Linked_List"))
+        self.ui.BtnRemove_LinkedList.clicked.connect(lambda: self.RemoveHead_LinkedList("Linked_List"))
         self.ui.BtnClear_LinkedList.clicked.connect(lambda: self.Clear_LinkedList("Linked_List"))
+        self.ui.BtnInsertTail_LinkedList.clicked.connect(lambda: self.InsertTail_LinkedList("Linked_List"))
+        self.ui.BtnRemoveTail_LinkedList.clicked.connect(lambda: self.RemoveTail_LinkedList("Linked_List"))
 
         #Button for BST:
         self.ui.BtnInsert_BST.clicked.connect(self.Insert_BST)
@@ -600,6 +602,13 @@ class Widget(QWidget):
                 else:
                         print("invalid size")
 
+                        QMessageBox.warning(
+                                self,
+                                "Input Error",
+                                "Max size 5!"
+                            )
+
+
         elif source == "Insertion_sort":
                 print("Random array insertion sort called")
                 size_text= self.ui.size_array_lineEdit_InsertionSort.text()
@@ -683,6 +692,13 @@ class Widget(QWidget):
                 else:
                         print("Invalid size")
 
+                        QMessageBox.warning(
+                                self,
+                                "Input Error",
+                                "Max size 10!"
+                            )
+
+
         elif source ==  "Merge_sort":
                 size_text = self.ui.size_array_lineEdit_MergeSort.text()
                 if not size_text:
@@ -738,6 +754,7 @@ class Widget(QWidget):
 
                 try:
                     size_text = int(size)
+
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -745,6 +762,7 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
+
                 custom_arr = self.ui.custom_array_lineEdit.text()
 
 
@@ -1009,7 +1027,7 @@ class Widget(QWidget):
                 else:
                         self.active_visualizer.draw_queue(state)
 
-    def Insert_LinkedList(self, source ="Linked_List"):
+    def InsertHead_LinkedList(self, source ="Linked_List"):
 
                     value_text = self.ui.lineEdit_LinkedList.text().strip()
                     if not value_text:
@@ -1021,24 +1039,43 @@ class Widget(QWidget):
                             print("Invalid input")
                             return
 
-                    steps = self.linked_list.insert(self.active_visualizer,value)
+                    steps = self.linked_list.insert_head(self.active_visualizer,value)
                     print("linked list widget steps called")
                     self.active_visualizer.animate_steps(steps)
-
-                    """if action == "overflow":
-                            print("Queue overflow!")
-                    else:
-                        pass
-                            #self.active_visualizer.draw_list(state)"""
-
                     self.ui.lineEdit_LinkedList.clear()
-    def Remove_LinkedList(self,source ="Linked List"):
-             print("Remove linkedlist called")
-             steps = self.linked_list.delete(self.active_visualizer)
+
+    def RemoveHead_LinkedList(self,source ="Linked List"):
+             print("Remove linkedlist At head called")
+             steps = self.linked_list.delete_head(self.active_visualizer)
              self.active_visualizer.animate_steps(steps)
 
+
+    def InsertTail_LinkedList(self, source ="Linked_List"):
+
+                     value_text = self.ui.lineEdit_LinkedList.text().strip()
+                     if not value_text:
+                             return
+
+                     try:
+                             value = int(value_text)
+                     except ValueError:
+                             print("Invalid input")
+                             return
+
+                     steps = self.linked_list.insert_tail(self.active_visualizer,value)
+                     print("linked list widget steps called")
+                     self.active_visualizer.animate_steps(steps)
+
+
+                     self.ui.lineEdit_LinkedList.clear()
+
+    def RemoveTail_LinkedList(self,source ="Linked List"):
+              print("Remove linkedlist at Tail  called")
+              steps = self.linked_list.delete_tail(self.active_visualizer)
+              self.active_visualizer.animate_steps(steps)
+
     def Clear_LinkedList(self,source = "Linked LIst"):
-            pass
+            self.active_visualizer.clear()
 
 
 
