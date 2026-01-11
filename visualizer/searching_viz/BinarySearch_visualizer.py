@@ -54,6 +54,8 @@ class Binary_Visualizer:
             index.setBrush(Qt.gray)
             index.setPos(x + 20, y + 20)
             self.scene.addItem(index)
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(0,0)
 
     def highlight(self, left, mid, right, color_mid=soft_yellow, color_bounds=soft_blue):
         for i, bar in enumerate(self.bars):

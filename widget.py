@@ -332,6 +332,8 @@ class Widget(QWidget):
 
 
         elif self.active_algorithm == "Binary Search":
+                self.active_visualizer.scene.clear()
+                self.active_visualizer.view.centerOn(0, 0)
 
                 target_text = self.ui.target_lineEdit.text().strip()
                 if not target_text.isdigit():

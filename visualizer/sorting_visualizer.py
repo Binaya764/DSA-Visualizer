@@ -32,14 +32,9 @@ class sort_Visualizer:
         y =self.y_offset
         self.y_offset +=100
 
-
-
-
         for i, val in enumerate(arr):
             height = 60
             x = i * (60 + spacing)
-
-
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(soft_red))
 
