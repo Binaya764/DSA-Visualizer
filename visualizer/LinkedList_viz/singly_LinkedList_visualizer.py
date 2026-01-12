@@ -21,7 +21,7 @@ class ListNode:
     def __init__(self, value):
         self.value = value
         self.next = None
-        self.address = random.randint(1000, 9999)
+        self.address = random.randint(1000,9999)
 
 def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
     #Draw an arrow from (x1, y1) to (x2, y2)
@@ -53,7 +53,7 @@ def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
     arrow_item.setPen(QPen(color))
     scene.addItem(arrow_item)
 
-# ---------------- VISUALIZER ----------------
+
 class LinkedListVisualizer:
     def __init__(self, graphics_view):
         self.view = graphics_view
@@ -66,6 +66,7 @@ class LinkedListVisualizer:
         self.gap = 40
         self.start_x = 30
         self.start_y = 80
+
 
         # Data structures
         self.nodes = []  # list of ListNode
@@ -135,19 +136,26 @@ class LinkedListVisualizer:
             text.setBrush(Qt.white)
             font = QFont("Arial", 12, QFont.Bold)
             text.setFont(font)
-
-            #address
-            addr_text = QGraphicsSimpleTextItem(str(node.address))
-            addr_text.setBrush(Qt.white)
-            addr_text.setPos(x + 5, y + 10)
-            self.scene.addItem(addr_text)
-
             # Center the text in the value section
             text_rect = text.boundingRect()
-            text_x = x-3 + (self.node_width * 0.6 - text_rect.width()) / 2
+            text_x = x + (self.node_width * 0.6 - text_rect.width()) / 2
             text_y = y + (self.node_height - text_rect.height()) / 2
             text.setPos(text_x, text_y)
             self.scene.addItem(text)
+
+            #address
+
+            addr_text = QGraphicsSimpleTextItem(str(node.address))
+            addr_text.setBrush(Qt.white)
+            addr_text.setPos(x +self.x_offset+28, y + 53)
+            self.scene.addItem(addr_text)
+
+
+
+
+
+
+
 
             # Draw null indicator or arrow start point
             null_indicator = None
@@ -179,19 +187,33 @@ class LinkedListVisualizer:
             if node.next:
                 print("Drawing arrow called")
                 print(node)
+
                 rect = self.graphics_nodes[node]['rect']
-                next_rect = self.graphics_nodes[node.next]['rect']
+                next_rect_item = self.graphics_nodes[node.next]['rect']
 
                 # Position of the start of the arrow
                 x1 = rect.x() + self.node_width+32+self.x_offset
                 y1 = rect.y() + self.node_height / 2+80
 
                 # Position at the end of the arrrow
-                x2 = next_rect.x() + 160+self.x_offset
-                y2 = next_rect.y() + self.node_height / 2+80
+                x2 = next_rect_item.x() + 160+self.x_offset
+                y2 = next_rect_item.y() + self.node_height / 2+80
 
                 draw_arrow(self.scene, x1, y1, x2, y2, Qt.white, 2) #calls the draw arrow function for head
-                self.x_offset += 130 #offset the arrow to new position when a new node is added
+
+                next_text = QGraphicsSimpleTextItem(str(node.next.address), rect)
+                next_text.setBrush(Qt.white if node.next else soft_red)
+                next_text.setFont(QFont("Arial", 9))
+                next_rect = next_text.boundingRect()
+                local_x = self.node_width * 0.6 + \
+                                 (self.node_width * 0.4 - next_rect.width()) / 2
+                local_y = (self.node_height - next_rect.height()) / 2
+
+                next_text.setPos(local_x+self.x_offset +25, local_y+77)
+
+
+            self.x_offset += 130 #offset the arrow to new position when a new node is added
+
 
         if self.tail:
             head_label = QGraphicsSimpleTextItem("TAIL")
