@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import QBrush, QPen, QColor, QPainter, QPolygonF, QFont
 from PySide6.QtCore import Qt, QTimer, QPointF, QRectF
 import math
+import random
 
 # ---------------- COLORS ----------------
 soft_blue = QColor(100, 149, 237)
@@ -20,6 +21,7 @@ class ListNode:
     def __init__(self, value):
         self.value = value
         self.next = None
+        self.address = random.randint(1000, 9999)
 
 def draw_arrow(scene, x1, y1, x2, y2, color=Qt.white, width=2):
     #Draw an arrow from (x1, y1) to (x2, y2)
@@ -133,6 +135,12 @@ class LinkedListVisualizer:
             text.setBrush(Qt.white)
             font = QFont("Arial", 12, QFont.Bold)
             text.setFont(font)
+
+            #address
+            addr_text = QGraphicsSimpleTextItem(str(node.address))
+            addr_text.setBrush(Qt.white)
+            addr_text.setPos(x + 5, y + 10)
+            self.scene.addItem(addr_text)
 
             # Center the text in the value section
             text_rect = text.boundingRect()

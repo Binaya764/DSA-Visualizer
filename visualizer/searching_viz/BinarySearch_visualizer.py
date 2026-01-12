@@ -67,14 +67,12 @@ class Binary_Visualizer:
                 bar.setBrush(QBrush(Qt.lightGray))
 
     def clear(self):
-        """Clear the scene."""
         self.scene.clear()
         self.bars.clear()
         self.values.clear()
         self.y_offset = 200
 
     def found(self, index):
-        """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(soft_green))
         self.values.clear()
