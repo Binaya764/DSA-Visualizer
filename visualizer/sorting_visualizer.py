@@ -32,14 +32,9 @@ class sort_Visualizer:
         y =self.y_offset
         self.y_offset +=100
 
-
-
-
         for i, val in enumerate(arr):
             height = 60
             x = i * (60 + spacing)
-
-
             bar = QGraphicsRectItem(QRectF(x, y, width, height))
             bar.setBrush(QBrush(soft_red))
 
@@ -115,7 +110,6 @@ class sort_Visualizer:
 
    #Updates the bar position after swapping
     def swap_bars(self, updated_array, i, j):
-        """Redraws bars using new array state."""
         self.draw_array(updated_array)
 
     def completed_sort(self): #colors the bar green once the sorting is completed

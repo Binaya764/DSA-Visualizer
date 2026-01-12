@@ -389,7 +389,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>9</number>
        </property>
        <widget class="QWidget" name="Intro_page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -1087,14 +1087,35 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <item>
                    <widget class="QPushButton" name="BtnInsert_LinkedList">
                     <property name="text">
-                     <string>Insert</string>
+                     <string>Insert (Head)</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QPushButton" name="BtnRemove_LinkedList">
                     <property name="text">
-                     <string>Remove</string>
+                     <string>Remove (Head)</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="BtnInsertTail_LinkedList">
+                    <property name="text">
+                     <string>Insert (Tail)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnRemoveTail_LinkedList">
+                    <property name="text">
+                     <string>Remove (Tail)</string>
                     </property>
                    </widget>
                   </item>

@@ -54,6 +54,8 @@ class Binary_Visualizer:
             index.setBrush(Qt.gray)
             index.setPos(x + 20, y + 20)
             self.scene.addItem(index)
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(0,0)
 
     def highlight(self, left, mid, right, color_mid=soft_yellow, color_bounds=soft_blue):
         for i, bar in enumerate(self.bars):
@@ -65,14 +67,12 @@ class Binary_Visualizer:
                 bar.setBrush(QBrush(Qt.lightGray))
 
     def clear(self):
-        """Clear the scene."""
         self.scene.clear()
         self.bars.clear()
         self.values.clear()
         self.y_offset = 200
 
     def found(self, index):
-        """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(soft_green))
         self.values.clear()

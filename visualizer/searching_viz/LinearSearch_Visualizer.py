@@ -21,7 +21,6 @@ class Linear_Visualizer:
         self.values = []    # store actual values
 
     def draw_array(self, arr):
-        """Draw the full array as bars (same look as Binary_Visualizer)."""
         self.scene.clear()
         self.bars.clear()
         self.values = arr.copy()
@@ -66,7 +65,6 @@ class Linear_Visualizer:
                 bar.setBrush(QBrush(Qt.lightGray))
 
     def found(self, index):
-        """Highlight the found element in green."""
         if 0 <= index < len(self.bars):
             self.bars[index].setBrush(QBrush(soft_green))
 
@@ -79,7 +77,6 @@ class Linear_Visualizer:
 
 
     def clear(self):
-        """Clear the scene."""
         self.scene.clear()
         self.bars.clear()
         self.values.clear()
