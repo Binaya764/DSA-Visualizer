@@ -78,6 +78,7 @@ class Binary_Visualizer:
         self.values.clear()
         self.y_offset=10
         self.bars.clear()
+        self.view.centerOn(0,0)
 
     def not_found(self,index):
         for i, bar in enumerate(self.bars):
