@@ -26,13 +26,18 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 - Searching Algorithms
   - Linear Search
   - Binary Search
-  ![Binary_search Animation](assets/gifs/Binary_search.gif)
+ 
+    
+  ![Binary_search Animation](assets/gif/Binary_search.gif)
 
 
 ### Linear Data Structures
 - Linked List
 - Stack
 - Queue
+
+  ![Stack Animation](assets/gif/stack.gif)
+
   
 ### Hierarchical Data structures
 - Binary Search Tree
