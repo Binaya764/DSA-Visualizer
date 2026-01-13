@@ -271,6 +271,7 @@ class Widget(QWidget):
                     self.active_visualizer = StackVisualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_stack)
                     self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+                    self.clear_stack()
             elif algo == "Queue":
                     self.active_visualizer = QueueVisualizer(self.ui.visualizer_graphicsView)
                     self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_Queue)
@@ -339,6 +340,7 @@ class Widget(QWidget):
                 steps = binary_search(self.current_array.copy(), self.target)
                 self.current_step = 0
                 self.play_binary_search(steps)
+                self.ui.target_lineEdit.clear()
 
         elif self.active_algorithm == "Linear Search":
                 target_text = self.ui.target_lineEdit_LSearch.text().strip()
@@ -742,7 +744,9 @@ class Widget(QWidget):
 
 
         if source == "Bubble_sort":
-                size= self.ui.size_array_lineEdit.text()  # Sorting size input
+
+                size_lineEdit = self.ui.size_array_lineEdit
+                size= size_lineEdit.text()  # Sorting size input
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -761,12 +765,14 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
+                lineEdit= self.ui.custom_array_lineEdit
 
-                custom_arr = self.ui.custom_array_lineEdit.text()
+                custom_arr = lineEdit.text()
 
 
         elif source == "Insertion_sort":
-                size = self.ui.size_array_lineEdit_InsertionSort.text()
+                size_lineEdit = self.ui.size_array_lineEdit_InsertionSort
+                size = size_array_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -784,10 +790,12 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                custom_arr = self.ui.CArray_lineEdit_InsertionSort.text()
+                lineEdit = self.ui.CArray_lineEdit_InsertionSort
+                custom_arr = lineEdit.text()
 
         elif source == "Selection_sort":
-                size = self.ui.size_array_lineEdit_SelectionSort.text()
+                size_lineEdit = self.ui.size_array_lineEdit_SelectionSort
+                size = size_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -805,10 +813,12 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                custom_arr = self.ui.CArray_lineEdit_SelectionSort.text()
+                lineEdit = self.ui.CArray_lineEdit_SelectionSort
+                custom_arr = lineEdit.text()
 
         elif source == "Linear_search":
-                size = self.ui.size_array_lineEdit_LSearch.text()
+                size_lineEdit = self.ui.size_array_lineEdit_LSearch
+                size = size_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -826,11 +836,13 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                custom_arr = self.ui.CArray_lineEdit_LSearch.text()
+                lineEdit = self.ui.CArray_lineEdit_LSearch
+                custom_arr = lineEdit.text()
 
 
         elif source == "Merge_Sort":
-                size = self.ui.size_array_lineEdit_MergeSort.text()
+                size_lineEdit = self.ui.size_array_lineEdit_MergeSort
+                size = size_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -848,7 +860,8 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                custom_arr = self.ui.CArray_lineEdit_MergeSort.text()
+                lineEdit = self.ui.CArray_lineEdit_MergeSort
+                custom_arr = lineEdit.text()
 
 
         else:
@@ -867,7 +880,7 @@ class Widget(QWidget):
 
         parts = custom_arr.replace(",", " ").split() #splits the string into individual values
 
-        if len(parts) != size:
+        if len(parts) != size_text:
                 print("Array size does not match!")
                 return
         else:
@@ -877,7 +890,10 @@ class Widget(QWidget):
 
                 self.current_array = arr
                 self.visualizer2.ref_drawArray(arr)
+                #self.active_visualizer.draw_box_color()
                 self.active_visualizer.draw_array(arr)
+        lineEdit.clear()
+        size_lineEdit.clear()
 
 
 
@@ -912,6 +928,8 @@ class Widget(QWidget):
                             self.current_step = self.steps
                             self.visualizer2.ref_drawArray(arr)
                             self.active_visualizer.Bdraw_array(self.steps,arr)
+                self.ui.size_array_lineEdit_Bsearch.clear()
+                self.ui.lineEdit_Bsearch.clear()
 
     def sorted_array(self,source = "Binary_search"):
 
@@ -937,7 +955,7 @@ class Widget(QWidget):
                 "Array size must be a valid number."
             )
             return
-        if size_text < 10:
+        if size_text < 11:
 
                 arr = []
                 start = 1
@@ -950,6 +968,7 @@ class Widget(QWidget):
                 self.current_step = self.steps
                 self.active_visualizer.Bdraw_array(self.steps,arr)
                 self.visualizer2.ref_drawArray(arr)
+
         else:
                 print("Invalid size")
                 QMessageBox.warning(
@@ -958,6 +977,7 @@ class Widget(QWidget):
                     "Max array size 10!"
                 )
                 return
+        self.ui.size_array_lineEdit_Bsearch.clear()
 
 
         #for stacks

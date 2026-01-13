@@ -16,6 +16,9 @@ class StackVisualizer:
     def draw_stack(self, stack):
         self.scene.clear()
         self.blocks.clear()
+        self.view.setSceneRect(self.scene.itemsBoundingRect())
+        self.view.centerOn(0,0)
+
 
         width = 80
         height = 40
