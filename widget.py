@@ -1084,8 +1084,6 @@ class Widget(QWidget):
                      steps = self.linked_list.insert_tail(self.active_visualizer,value)
                      print("linked list widget steps called")
                      self.active_visualizer.animate_steps(steps)
-
-
                      self.ui.lineEdit_LinkedList.clear()
 
     def RemoveTail_LinkedList(self,source ="Linked List"):

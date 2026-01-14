@@ -34,21 +34,24 @@ class linkedList_fun:
                 return steps
 
 
+
         @staticmethod
         def insert_tail(visualizer, value):
             steps = []
-            steps.append(("insertTail", None, value))  # None means insert at head
-
+            steps.append(("insertTail", value))
             return steps
+
+
 
         @staticmethod
-        def delete_head(visualizer):
+        def delete_tail(visualizer):
             steps = []
 
-            if visualizer.head is None:
+            if visualizer.tail is None:
                 return steps
 
-            old_head = visualizer.head
-            steps.append(("deleteTail", old_head, None))  # Mark for deletion
-            steps.append(("removeTail", old_head, None))  # Actually remove it
+            old_tail = visualizer.tail
+            steps.append(("deleteTail", old_tail))
+            steps.append(("removeTail",))
             return steps
+
