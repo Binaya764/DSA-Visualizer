@@ -1,1 +1,2 @@
-PySide6
+python = 3.12.6
+PySide6 =  6.10.1
