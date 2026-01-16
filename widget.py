@@ -548,14 +548,11 @@ class Widget(QWidget):
                 if step_type == "compare":
                         print("insertion sort compared called")
                         self.active_visualizer.draw_array(state)
-
-
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                 elif step_type == "shift":
                         print("insertion sort shift called")
-                        self.active_visualizer.draw_array(state)
-
+                        self.active_visualizer.swap_bars(state, i, j)
                         self.active_visualizer.highlight(i, j, soft_blue)
 
                 elif step_type == "insert":

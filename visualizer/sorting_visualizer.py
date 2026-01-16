@@ -107,8 +107,18 @@ class sort_Visualizer:
 
 
    #Updates the bar position after swapping
-    def swap_bars(self, updated_array, i, j):
-        self.draw_array(updated_array)
+    def shift_bar(self, state, from_idx, to_idx):
+
+
+       # redraw array with updated state
+       self.draw_array(state)
+
+       # highlight the shifted bars
+       if 0 <= from_idx < len(self.bars):
+           self.bars[from_idx][0].setBrush(QBrush(soft_blue))
+
+       if 0 <= to_idx < len(self.bars):
+           self.bars[to_idx][0].setBrush(QBrush(soft_blue))
 
     def completed_sort(self): #colors the bar green once the sorting is completed
         for bar in self.bars:

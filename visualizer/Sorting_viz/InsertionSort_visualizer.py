@@ -20,7 +20,6 @@ class insertionSort_Visualizer:
 
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
-        self.y_offset=10
 
 
 
@@ -31,8 +30,7 @@ class insertionSort_Visualizer:
         self.values = arr.copy()
         width = 60  # bar width
         spacing = 1  #spacing between the bars
-        y= self.y_offset
-        self.y_offset += 100
+        y= 10
 
 
 
@@ -62,8 +60,6 @@ class insertionSort_Visualizer:
                     index.setBrush(Qt.gray)
                     index.setPos(x+20, y+60)
                     self.scene.addItem(index)
-        self.view.setSceneRect(self.scene.itemsBoundingRect())
-        self.view.centerOn(self.bars[0][0])
 
     def draw_box_color(self):
                 print("draw box called")
@@ -111,7 +107,6 @@ class insertionSort_Visualizer:
                 key_label.setPos(380,-30)
                 self.scene.addItem(key_label)
                 self.scene.addItem(key_box)
-                self.y_offset = 10
 
 
 
