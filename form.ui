@@ -243,12 +243,34 @@
             <property name="maximumSize">
              <size>
               <width>900</width>
-              <height>450</height>
+              <height>350</height>
              </size>
             </property>
            </widget>
           </item>
          </layout>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QLabel" name="Explanation_label">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>350</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color rgb(255, 249, 69)</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -367,6 +389,13 @@
               </item>
              </layout>
             </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_67">
+            <property name="bottomMargin">
+             <number>10</number>
+            </property>
            </layout>
           </item>
          </layout>
