@@ -166,12 +166,23 @@ class Ui_Widget(object):
         sizePolicy.setVerticalStretch(100)
         sizePolicy.setHeightForWidth(self.visualizer_graphicsView.sizePolicy().hasHeightForWidth())
         self.visualizer_graphicsView.setSizePolicy(sizePolicy)
-        self.visualizer_graphicsView.setMaximumSize(QSize(900, 450))
+        self.visualizer_graphicsView.setMaximumSize(QSize(900, 350))
 
         self.verticalLayout.addWidget(self.visualizer_graphicsView)
 
 
         self.verticalLayout_6.addLayout(self.verticalLayout)
+
+        self.Explanation_label = QLabel(self.widget)
+        self.Explanation_label.setObjectName(u"Explanation_label")
+        self.Explanation_label.setMaximumSize(QSize(16777215, 350))
+        font = QFont()
+        font.setPointSize(11)
+        font.setBold(False)
+        self.Explanation_label.setFont(font)
+        self.Explanation_label.setStyleSheet(u"color rgb(255, 249, 69)")
+
+        self.verticalLayout_6.addWidget(self.Explanation_label, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.verticalLayout_12 = QVBoxLayout()
         self.verticalLayout_12.setSpacing(0)
@@ -183,9 +194,9 @@ class Ui_Widget(object):
         self.Btnstart = QPushButton(self.widget)
         self.Btnstart.setObjectName(u"Btnstart")
         self.Btnstart.setMaximumSize(QSize(60, 40))
-        font = QFont()
-        font.setPointSize(10)
-        self.Btnstart.setFont(font)
+        font1 = QFont()
+        font1.setPointSize(10)
+        self.Btnstart.setFont(font1)
 
         self.horizontalLayout.addWidget(self.Btnstart, 0, Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
@@ -221,6 +232,12 @@ class Ui_Widget(object):
 
 
         self.verticalLayout_12.addLayout(self.horizontalLayout)
+
+        self.verticalLayout_67 = QVBoxLayout()
+        self.verticalLayout_67.setObjectName(u"verticalLayout_67")
+        self.verticalLayout_67.setContentsMargins(-1, -1, -1, 10)
+
+        self.verticalLayout_12.addLayout(self.verticalLayout_67)
 
 
         self.verticalLayout_6.addLayout(self.verticalLayout_12)
@@ -1080,6 +1097,7 @@ class Ui_Widget(object):
         self.HDS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
         self.HDS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search Tree", None))
 
+        self.Explanation_label.setText("")
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))
         self.label_11.setText(QCoreApplication.translate("Widget", u"Speed", None))
         self.speed_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"1x", None))

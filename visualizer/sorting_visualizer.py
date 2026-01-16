@@ -18,7 +18,7 @@ class sort_Visualizer:
 
         self.bars = []       # stores QGraphicsRectItem
         self.values = []     # stores actual numbers
-        self.y_offset = 10
+
 
 
 
@@ -29,8 +29,8 @@ class sort_Visualizer:
         self.values = arr.copy()
         width = 60  # bar width
         spacing = 1  #spacing between the bars
-        y =self.y_offset
-        self.y_offset +=100
+        y =10
+
 
         for i, val in enumerate(arr):
             height = 60
@@ -54,8 +54,6 @@ class sort_Visualizer:
                 index.setBrush(Qt.gray)
                 index.setPos(x+20, y+60)
                 self.scene.addItem(index)
-        self.view.setSceneRect(self.scene.itemsBoundingRect())
-        self.view.centerOn(self.bars[0][0])
 
     def draw_box_color(self):
             print("draw box called")
@@ -94,7 +92,7 @@ class sort_Visualizer:
             unsorted_label.setPos(380,-60)
             self.scene.addItem(unsorted_label)
             self.scene.addItem(unsorted_box)
-            self.y_offset = 10
+
 
 
 
@@ -179,8 +177,6 @@ class ref_Visualizer:
                 index.setPos(x+20, y+53)
                 self.scene.addItem(index)
 
-            self.view.setSceneRect(self.scene.itemsBoundingRect())
-            self.view.centerOn(self.bars[0][0])
 
 
 

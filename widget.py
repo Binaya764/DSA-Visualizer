@@ -87,6 +87,8 @@ class Widget(QWidget):
         self.queue = queue_fun(capacity = 5)
         self.linked_list = linkedList_fun(capacity =5)
         self.BST = BinarySearchTree()
+        self.explain_label = self.ui.Explanation_label
+
 
         # Connect Start Button
         self.ui.Btnstart.clicked.connect(self.start_sort) #connects start button
@@ -148,7 +150,7 @@ class Widget(QWidget):
         self.initialize_defaults()
         self.active_algorithm = None                    #Setting the active algorithm to be None
         self.currCode_visualizer = None
-        self.animation_speed = 500                      #Setting the defaul animatio speed 500ms
+        self.animation_speed = 1500                      #Setting the defaul animatio speed 500ms
 
     def initialize_defaults(self):
             self.ui.sort_comboBox.setCurrentIndex(0)    #Initailzing the default display page
@@ -359,31 +361,45 @@ class Widget(QWidget):
 
 
 
-    def play_step(self):        #plays animation
+
+    def play_step(self):  # plays animation
 
                 if self.current_step >= len(self.steps):
-                   self.active_visualizer.completed_sort()
-                   return# animation finished
+                    self.active_visualizer.completed_sort()
+                    self.explain_label.setText("Sorting completed ")
+                    self.ui.Explanation_label.clear()
+                    return  # animation finished
+
                 step_type, i, j, state = self.steps[self.current_step]
 
+                a = state[i]
+                b = state[j]
 
-                # Highlight comparisons
+                # ---------------- COMPARISON ----------------
                 if step_type == "compare":
                     print("compared")
-                    self.active_visualizer.draw_array(state)
-                    self.active_visualizer.highlight(i, j,soft_yellow)
 
-                # Swap bars and highlight them
+                    self.explain_label.setText(
+                        f"Comparing {a} and {b}\n"
+
+                    )
+
+                    self.active_visualizer.draw_array(state)
+                    self.active_visualizer.highlight(i, j, soft_yellow)
+
+                # ---------------- SWAP ----------------
                 elif step_type == "swap":
                     print("swapped")
+
+                    self.explain_label.setText(
+                        f"Swapping {b} and {a}\n"
+
+                    )
 
                     self.active_visualizer.swap_bars(state, i, j)
                     self.active_visualizer.highlight(i, j, soft_blue)
 
-
                 self.current_step += 1
-
-                # Controls the speed of the animation
                 QTimer.singleShot(self.animation_speed, self.play_step)
 
     def play_merge_sort(self):
