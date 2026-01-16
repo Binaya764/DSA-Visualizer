@@ -532,6 +532,8 @@ class Widget(QWidget):
     def play_Insertion_sort(self):
                 if self.current_step >= len(self.steps):
                         self.active_visualizer.completed_sort()
+                        self.explain_label.setText(f"Completed sorting")
+                        self.ui.Explanation_label.clear()
                         return
 
                     #step_type, i, j, state = self.steps[self.current_step]
@@ -547,22 +549,27 @@ class Widget(QWidget):
 
                 if step_type == "compare":
                         print("insertion sort compared called")
+                        self.explain_label.setText(f"Comparing....")
+
                         self.active_visualizer.draw_array(state)
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                 elif step_type == "shift":
                         print("insertion sort shift called")
+                        self.explain_label.setText(f"shifting.....")
                         self.active_visualizer.swap_bars(state, i, j)
                         self.active_visualizer.highlight(i, j, soft_blue)
 
                 elif step_type == "insert":
                         print("insertion sort insert called")
+                        self.explain_label.setText(f"Inserting.....")
                         self.active_visualizer.draw_array(state)
 
                         self.active_visualizer.highlight(i, i, soft_green)
 
                 elif step_type == "key":
                         print("insertion sort insert called")
+                        self.explain_label.setText(f"Setting key.....")
                         self.active_visualizer.draw_array(state)
 
                         self.active_visualizer.highlight(i, i, soft_gray)
