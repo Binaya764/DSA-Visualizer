@@ -237,6 +237,8 @@ LINKED_LIST_CODE = """
 BST_CODE = """
 """
 
+BFS_CODE = """ """
+
 ALGORITHM_CODES = {
     "Bubble Sort": BUBBLE_SORT_CODE,
     "Binary Search": BINARY_SEARCH_CODE,
@@ -248,5 +250,6 @@ ALGORITHM_CODES = {
     "Merge Sort": MERGE_SORT_CODE,
     "Linked List (singly)": LINKED_LIST_CODE,
     "Binary Search Tree": BST_CODE,
+    "Breadth First Search (BFS)": BFS_CODE,
 
 }

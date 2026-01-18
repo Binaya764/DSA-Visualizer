@@ -107,7 +107,7 @@ class sort_Visualizer:
 
 
    #Updates the bar position after swapping
-    def shift_bar(self, state, from_idx, to_idx):
+    def swap_bars(self, state, from_idx, to_idx):
 
 
        # redraw array with updated state

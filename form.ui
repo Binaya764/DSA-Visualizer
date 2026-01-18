@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
+    <width>679</width>
     <height>393</height>
    </rect>
   </property>
@@ -191,7 +191,7 @@
                     </item>
                     <item>
                      <property name="text">
-                      <string>BFS</string>
+                      <string>Breadth First Search (BFS)</string>
                      </property>
                     </item>
                    </widget>
@@ -248,7 +248,7 @@
             <property name="maximumSize">
              <size>
               <width>900</width>
-              <height>350</height>
+              <height>400</height>
              </size>
             </property>
            </widget>
@@ -1312,6 +1312,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <layout class="QVBoxLayout" name="verticalLayout_71">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_70">
+                <property name="spacing">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_24">
+                  <property name="text">
+                   <string>Vetex:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="vertex_lineEdit_BFS"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnGenerate_BFS">
+                  <property name="text">
+                   <string>+Generate</string>
+                  </property>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QLabel" name="label_23">
                   <property name="text">
@@ -1335,7 +1355,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="BtnClean_BFS">
+                   <widget class="QPushButton" name="BtnClear_BFS">
                     <property name="text">
                      <string>Clear</string>
                     </property>

@@ -59,6 +59,9 @@ from visualizer.LinkedList_viz.singly_LinkedList_visualizer import LinkedListVis
 from algorithms.BST.Binary_Search_Tree import BinarySearchTree
 from visualizer.BST_viz.BST_visualizer import BST_Visualizer
 
+#FOR BFS
+from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer
+
 import random
 
 
@@ -88,6 +91,7 @@ class Widget(QWidget):
         self.linked_list = linkedList_fun(capacity =5)
         self.BST = BinarySearchTree()
         self.explain_label = self.ui.Explanation_label
+        self.extra_edges = 4
 
 
         # Connect Start Button
@@ -138,6 +142,11 @@ class Widget(QWidget):
         self.ui.BtnRemove_BST.clicked.connect( self.Remove_BST)
         self.ui.BtnClear_BST.clicked.connect(self.Clear_BST)
         self.ui.BtnSearch_BST.clicked.connect(self.Search_BST)
+
+        #Button for Breadth first search:
+        self.ui.BtnTraverse_BFS.clicked.connect(self.Traverse_BFS)
+        self.ui.BtnClear_BFS.clicked.connect(self.Clear_BFS)
+        self.ui.BtnGenerate_BFS.clicked.connect(self.GenerateGraph_BFS)
 
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
@@ -292,13 +301,19 @@ class Widget(QWidget):
     def on_HDataStucture_changed(self,algo):
         self.reset_all_comboboxes(except_box = self.ui.HDS_comboBox)
         mapping = {
-        "Binary Search Tree": 10,}
+        "Binary Search Tree": 10,
+        "Breadth First Search (BFS)": 11,}
 
         self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
         self.active_algorithm = algo
         if algo == "Binary Search Tree":
                 self.active_visualizer = BST_Visualizer(self.ui.visualizer_graphicsView)
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BST)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+        elif algo == "Breadth First Search (BFS)":
+                print("BFS called")
+                self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BFS)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
 
@@ -1144,6 +1159,38 @@ class Widget(QWidget):
 
     def Clear_BST(self):
             self.active_visualizer.clear()
+
+    def GenerateGraph_BFS(self):
+        self.active_visualizer.scene.clear()
+        text = self.ui.vertex_lineEdit_BFS.text().strip()
+
+        if not text.isdigit():
+            QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+            return
+
+        node_count = int(text)
+        if node_count <= 3:
+            QMessageBox.warning(
+                self,
+                "Invalid Input",
+                "Number of vertices must be at least 4"
+            )
+            return
+        max_possible_edges = (node_count * (node_count - 1)) // 2
+        extra_edges = min(4, max_possible_edges)
+
+        graph = GraphGenerator.generate_graph(node_count, extra_edges)
+        positions = GraphGenerator.generate_positions(node_count)
+        #self.active_visualizer.animate_insert(value)
+        self.active_visualizer.draw_graph_edges(graph, positions)
+        self.active_visualizer.draw_graph_nodes(positions)
+        self.ui.lineEdit_BST.clear()
+
+
+    def Traverse_BFS(self):
+            pass
+    def Clear_BFS(self):
+            pass
 
 
 
