@@ -1208,7 +1208,7 @@ class Widget(QWidget):
 
 
     def Clear_BFS(self):
-            pass
+            self.active_visualizer.clear()
 
 
 

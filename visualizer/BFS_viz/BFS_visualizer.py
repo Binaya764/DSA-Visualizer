@@ -134,7 +134,7 @@ class BFSvisualizer:
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.animate_bfs_step)
-        self.timer.start(2000)
+        self.timer.start(1500)
 
 
 
@@ -171,6 +171,13 @@ class BFSvisualizer:
 
         self.QueueVisualizerBFS.draw_queue(self.queue)
         self.step_index += 1
+
+    def clear(self):
+        self.scene.clear()
+        self.node_count = 0
+        self.node_items={}
+        self.edge_items={}
+
 
 
 
@@ -223,4 +230,5 @@ class QueueVisualizerBFS:
     def highlight_front(self):
         if self.blocks:
             self.blocks[0][0].setBrush(QBrush(Qt.red))
+
 
