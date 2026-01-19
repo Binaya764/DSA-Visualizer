@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(679, 393)
+        Widget.resize(699, 439)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -121,17 +121,48 @@ class Ui_Widget(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.verticalLayout_13 = QVBoxLayout()
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.HDS_comboBox = QComboBox(self.groupBox_22)
-        self.HDS_comboBox.addItem("")
-        self.HDS_comboBox.addItem("")
-        self.HDS_comboBox.addItem("")
-        self.HDS_comboBox.addItem("")
-        self.HDS_comboBox.setObjectName(u"HDS_comboBox")
+        self.groupBox_29 = QGroupBox(self.groupBox_22)
+        self.groupBox_29.setObjectName(u"groupBox_29")
+        self.verticalLayout_81 = QVBoxLayout(self.groupBox_29)
+        self.verticalLayout_81.setObjectName(u"verticalLayout_81")
+        self.verticalLayout_80 = QVBoxLayout()
+        self.verticalLayout_80.setObjectName(u"verticalLayout_80")
+        self.HDST_comboBox = QComboBox(self.groupBox_29)
+        self.HDST_comboBox.addItem("")
+        self.HDST_comboBox.addItem("")
+        self.HDST_comboBox.setObjectName(u"HDST_comboBox")
 
-        self.verticalLayout_13.addWidget(self.HDS_comboBox)
+        self.verticalLayout_80.addWidget(self.HDST_comboBox)
+
+
+        self.verticalLayout_81.addLayout(self.verticalLayout_80)
+
+
+        self.verticalLayout_13.addWidget(self.groupBox_29)
 
 
         self.verticalLayout_16.addLayout(self.verticalLayout_13)
+
+        self.groupBox_30 = QGroupBox(self.groupBox_22)
+        self.groupBox_30.setObjectName(u"groupBox_30")
+        self.verticalLayout_83 = QVBoxLayout(self.groupBox_30)
+        self.verticalLayout_83.setObjectName(u"verticalLayout_83")
+        self.verticalLayout_82 = QVBoxLayout()
+        self.verticalLayout_82.setObjectName(u"verticalLayout_82")
+        self.verticalLayout_82.setContentsMargins(-1, -1, -1, 5)
+        self.HDSG_comboBox = QComboBox(self.groupBox_30)
+        self.HDSG_comboBox.addItem("")
+        self.HDSG_comboBox.addItem("")
+        self.HDSG_comboBox.addItem("")
+        self.HDSG_comboBox.setObjectName(u"HDSG_comboBox")
+
+        self.verticalLayout_82.addWidget(self.HDSG_comboBox)
+
+
+        self.verticalLayout_83.addLayout(self.verticalLayout_82)
+
+
+        self.verticalLayout_16.addWidget(self.groupBox_30)
 
 
         self.verticalLayout_39.addWidget(self.groupBox_22)
@@ -1261,10 +1292,14 @@ class Ui_Widget(object):
         self.DS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Linked List (singly)", None))
 
         self.groupBox_22.setTitle(QCoreApplication.translate("Widget", u"Hierarchical Data Structure", None))
-        self.HDS_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
-        self.HDS_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search Tree", None))
-        self.HDS_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Breadth First Search (BFS)", None))
-        self.HDS_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"Depth First Search (DFS)", None))
+        self.groupBox_29.setTitle(QCoreApplication.translate("Widget", u"Tree", None))
+        self.HDST_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
+        self.HDST_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Binary Search Tree", None))
+
+        self.groupBox_30.setTitle(QCoreApplication.translate("Widget", u"Graph", None))
+        self.HDSG_comboBox.setItemText(0, QCoreApplication.translate("Widget", u"--Select--", None))
+        self.HDSG_comboBox.setItemText(1, QCoreApplication.translate("Widget", u"Breadth First Search (BFS)", None))
+        self.HDSG_comboBox.setItemText(2, QCoreApplication.translate("Widget", u"Depth First Search (DFS)", None))
 
         self.Explanation_label.setText("")
         self.Btnstart.setText(QCoreApplication.translate("Widget", u"Start", None))

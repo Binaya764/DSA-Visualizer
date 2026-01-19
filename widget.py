@@ -162,7 +162,8 @@ class Widget(QWidget):
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
         self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
-        self.ui.HDS_comboBox.currentTextChanged.connect(self.on_HDataStucture_changed)
+        self.ui.HDST_comboBox.currentTextChanged.connect(self.on_HDataStucture_changed)
+        self.ui.HDSG_comboBox.currentTextChanged.connect(self.on_HDataStuctureGraph_changed)
 
         #initializing default algorithm
         self.initialize_defaults()
@@ -194,7 +195,8 @@ class Widget(QWidget):
             self.ui.sort_comboBox,              #sort combobox
             self.ui.search_comboBox,            #Search combobox
             self.ui.DS_comboBox,                #Linear data structure combobox
-            self.ui.HDS_comboBox,               #Hierarchial data structure combobox
+            self.ui.HDST_comboBox,               #Hierarchial data structure combobox
+            self.ui.HDSG_comboBox,
 
         ]
 
@@ -308,11 +310,9 @@ class Widget(QWidget):
 
 
     def on_HDataStucture_changed(self,algo):
-        self.reset_all_comboboxes(except_box = self.ui.HDS_comboBox)
+        self.reset_all_comboboxes(except_box = self.ui.HDST_comboBox)
         mapping = {
-        "Binary Search Tree": 10,
-        "Breadth First Search (BFS)": 11,
-        "Depth First Search (DFS)": 12,}
+        "Binary Search Tree": 10,}
 
         self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
         self.active_algorithm = algo
@@ -321,7 +321,19 @@ class Widget(QWidget):
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BST)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
-        elif algo == "Breadth First Search (BFS)":
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.view.centerOn(0,0)
+        self.visualizer2.scene.clear()
+
+    def on_HDataStuctureGraph_changed(self,algo):
+        self.reset_all_comboboxes(except_box = self.ui.HDSG_comboBox)
+        mapping = {
+        "Breadth First Search (BFS)": 11,
+        "Depth First Search (DFS)": 12,}
+
+        self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
+        self.active_algorithm = algo
+        if algo == "Breadth First Search (BFS)":
                 print("BFS called")
                 self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
                 self.visualizer2 = QueueVisualizerBFS(self.ui.ref_graphicsView)
@@ -335,6 +347,7 @@ class Widget(QWidget):
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0,0)
         self.visualizer2.scene.clear()
+
 
         #when the start button is clicked it calls this function
     def start_sort(self):

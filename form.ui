@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>679</width>
-    <height>393</height>
+    <width>699</width>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -178,30 +178,68 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_13">
                   <item>
-                   <widget class="QComboBox" name="HDS_comboBox">
-                    <item>
-                     <property name="text">
-                      <string>--Select--</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Binary Search Tree</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Breadth First Search (BFS)</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Depth First Search (DFS)</string>
-                     </property>
-                    </item>
+                   <widget class="QGroupBox" name="groupBox_29">
+                    <property name="title">
+                     <string>Tree</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_81">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_80">
+                       <item>
+                        <widget class="QComboBox" name="HDST_comboBox">
+                         <item>
+                          <property name="text">
+                           <string>--Select--</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Binary Search Tree</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_30">
+                  <property name="title">
+                   <string>Graph</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_83">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_82">
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
+                     <item>
+                      <widget class="QComboBox" name="HDSG_comboBox">
+                       <item>
+                        <property name="text">
+                         <string>--Select--</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Breadth First Search (BFS)</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Depth First Search (DFS)</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
                 </item>
                </layout>
               </widget>
