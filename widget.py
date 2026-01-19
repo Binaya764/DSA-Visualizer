@@ -60,7 +60,7 @@ from algorithms.BST.Binary_Search_Tree import BinarySearchTree
 from visualizer.BST_viz.BST_visualizer import BST_Visualizer
 
 #FOR BFS
-from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer
+from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer,QueueVisualizerBFS
 
 import random
 
@@ -117,6 +117,7 @@ class Widget(QWidget):
         #Button for Queue
         self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
         self.ui.Btn_Dequeue.clicked.connect(lambda: self.dequeue_queue("Queue"))
+        self.ui.BtnClear_Queue.clicked.connect(lambda: self.clear_queue("Queue"))
 
         #Button for Selection sort
         self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
@@ -310,9 +311,11 @@ class Widget(QWidget):
                 self.active_visualizer = BST_Visualizer(self.ui.visualizer_graphicsView)
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BST)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
         elif algo == "Breadth First Search (BFS)":
                 print("BFS called")
                 self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
+                self.visualizer2 = QueueVisualizerBFS(self.ui.ref_graphicsView)
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BFS)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
@@ -596,6 +599,7 @@ class Widget(QWidget):
 
 
 
+
     def random_array(self,source="Bubble_sort"):  #Generates random array
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0, 0)
@@ -807,7 +811,7 @@ class Widget(QWidget):
 
         elif source == "Insertion_sort":
                 size_lineEdit = self.ui.size_array_lineEdit_InsertionSort
-                size = size_array_lineEdit.text()
+                size = size_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -1081,6 +1085,15 @@ class Widget(QWidget):
                 else:
                         self.active_visualizer.draw_queue(state)
 
+    def clear_queue(self,source = "Queue"):
+            action, value,state = self.queue.clear()
+            if action == "Queue underflow":
+                    print("Queue is empty!")
+            else :
+                    self.active_visualizer.draw_queue(state)
+                    self.active_visualizer.scene.clear()
+
+
     def InsertHead_LinkedList(self, source ="Linked_List"):
 
                     value_text = self.ui.lineEdit_LinkedList.text().strip()
@@ -1129,9 +1142,6 @@ class Widget(QWidget):
     def Clear_LinkedList(self,source = "Linked LIst"):
             self.active_visualizer.clear()
 
-
-
-
     def Insert_BST(self):
                 text = self.ui.lineEdit_BST.text().strip()
 
@@ -1169,26 +1179,34 @@ class Widget(QWidget):
             return
 
         node_count = int(text)
-        if node_count <= 3:
+        if node_count <= 2:
             QMessageBox.warning(
                 self,
                 "Invalid Input",
-                "Number of vertices must be at least 4"
+                "Number of vertices must be at least 5"
             )
             return
         max_possible_edges = (node_count * (node_count - 1)) // 2
-        extra_edges = min(4, max_possible_edges)
+        max_extra_edges = max_possible_edges - (node_count - 1)
+        edges = random.randint(1,max_extra_edges)
+        extra_edges = min(4, edges)
 
         graph = GraphGenerator.generate_graph(node_count, extra_edges)
         positions = GraphGenerator.generate_positions(node_count)
         #self.active_visualizer.animate_insert(value)
+        self.active_visualizer.graph = graph
         self.active_visualizer.draw_graph_edges(graph, positions)
-        self.active_visualizer.draw_graph_nodes(positions)
+        self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
+        self.active_visualizer.QueueVisualizerBFS = self.visualizer2
         self.ui.lineEdit_BST.clear()
 
 
     def Traverse_BFS(self):
-            pass
+        raw_vertex = self.ui.lineEdit_BFS.text().strip()
+        vertex = int(raw_vertex)
+        self.active_visualizer.start_bfs(vertex)
+
+
     def Clear_BFS(self):
             pass
 

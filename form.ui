@@ -248,7 +248,7 @@
             <property name="maximumSize">
              <size>
               <width>900</width>
-              <height>400</height>
+              <height>450</height>
              </size>
             </property>
            </widget>
@@ -1048,7 +1048,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <widget class="QLabel" name="label_16">
                   <property name="text">
-                   <string>Input Values (Max 10)</string>
+                   <string>Input Values (Max 5)</string>
                   </property>
                  </widget>
                 </item>
@@ -1072,6 +1072,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnClear_Queue">
+                  <property name="text">
+                   <string>clear</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QGroupBox" name="groupBox_11">

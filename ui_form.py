@@ -167,7 +167,7 @@ class Ui_Widget(object):
         sizePolicy.setVerticalStretch(100)
         sizePolicy.setHeightForWidth(self.visualizer_graphicsView.sizePolicy().hasHeightForWidth())
         self.visualizer_graphicsView.setSizePolicy(sizePolicy)
-        self.visualizer_graphicsView.setMaximumSize(QSize(900, 400))
+        self.visualizer_graphicsView.setMaximumSize(QSize(900, 450))
 
         self.verticalLayout.addWidget(self.visualizer_graphicsView)
 
@@ -848,6 +848,11 @@ class Ui_Widget(object):
 
         self.verticalLayout_33.addLayout(self.horizontalLayout_13)
 
+        self.BtnClear_Queue = QPushButton(self.groupBox_10)
+        self.BtnClear_Queue.setObjectName(u"BtnClear_Queue")
+
+        self.verticalLayout_33.addWidget(self.BtnClear_Queue)
+
         self.groupBox_11 = QGroupBox(self.groupBox_10)
         self.groupBox_11.setObjectName(u"groupBox_11")
         self.horizontalLayout_16 = QHBoxLayout(self.groupBox_11)
@@ -1251,9 +1256,10 @@ class Ui_Widget(object):
         self.BtnClear_stack.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_10.setTitle(QCoreApplication.translate("Widget", u"Queue", None))
-        self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values (Max 10)", None))
+        self.label_16.setText(QCoreApplication.translate("Widget", u"Input Values (Max 5)", None))
         self.Btn_Equeue.setText(QCoreApplication.translate("Widget", u"Enqueue", None))
         self.Btn_Dequeue.setText(QCoreApplication.translate("Widget", u"Dequeue", None))
+        self.BtnClear_Queue.setText(QCoreApplication.translate("Widget", u"clear", None))
         self.groupBox_11.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_20.setTitle(QCoreApplication.translate("Widget", u"Linked List", None))
         self.label_20.setText(QCoreApplication.translate("Widget", u"Input Values:", None))
