@@ -62,6 +62,8 @@ from visualizer.BST_viz.BST_visualizer import BST_Visualizer
 #FOR BFS
 from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer,QueueVisualizerBFS
 
+#For DFS
+
 import random
 
 
@@ -148,6 +150,12 @@ class Widget(QWidget):
         self.ui.BtnTraverse_BFS.clicked.connect(self.Traverse_BFS)
         self.ui.BtnClear_BFS.clicked.connect(self.Clear_BFS)
         self.ui.BtnGenerate_BFS.clicked.connect(self.GenerateGraph_BFS)
+
+        #Button for Depth first search
+        self.ui.BtnTraverse_DFS.clicked.connect(self.Traverse_DFS)
+        self.ui.BtnClear_DFS.clicked.connect(self.Clear_DFS)
+        self.ui.BtnGenerate_DFS.clicked.connect(self.GenerateGraph_DFS)
+
 
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
@@ -303,7 +311,8 @@ class Widget(QWidget):
         self.reset_all_comboboxes(except_box = self.ui.HDS_comboBox)
         mapping = {
         "Binary Search Tree": 10,
-        "Breadth First Search (BFS)": 11,}
+        "Breadth First Search (BFS)": 11,
+        "Depth First Search (DFS)": 12,}
 
         self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
         self.active_algorithm = algo
@@ -318,6 +327,9 @@ class Widget(QWidget):
                 self.visualizer2 = QueueVisualizerBFS(self.ui.ref_graphicsView)
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BFS)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+        elif algo == "Depth First Search (DFS)":
+            pass
 
 
         self.active_visualizer.scene.clear()
@@ -1208,7 +1220,14 @@ class Widget(QWidget):
 
 
     def Clear_BFS(self):
-            self.active_visualizer.clear()
+        self.active_visualizer.clear()
+
+    def GenerateGraph_DFS(self):
+        pass
+    def Traverse_DFS(self):
+        pass
+    def Clear_DFS(self):
+        pass
 
 
 
