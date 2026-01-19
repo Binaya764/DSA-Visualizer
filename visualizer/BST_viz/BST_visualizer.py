@@ -317,4 +317,3 @@ class BST_Visualizer:
         self.root = None
         self.steps = []
         self.step_index = 0
-

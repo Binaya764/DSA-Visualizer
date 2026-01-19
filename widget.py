@@ -59,6 +59,11 @@ from visualizer.LinkedList_viz.singly_LinkedList_visualizer import LinkedListVis
 from algorithms.BST.Binary_Search_Tree import BinarySearchTree
 from visualizer.BST_viz.BST_visualizer import BST_Visualizer
 
+#FOR BFS
+from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer,QueueVisualizerBFS
+
+#For DFS
+
 import random
 
 
@@ -88,6 +93,7 @@ class Widget(QWidget):
         self.linked_list = linkedList_fun(capacity =5)
         self.BST = BinarySearchTree()
         self.explain_label = self.ui.Explanation_label
+        self.extra_edges = 4
 
 
         # Connect Start Button
@@ -113,6 +119,7 @@ class Widget(QWidget):
         #Button for Queue
         self.ui.Btn_Equeue.clicked.connect(lambda: self.enqueue_queue("Queue"))
         self.ui.Btn_Dequeue.clicked.connect(lambda: self.dequeue_queue("Queue"))
+        self.ui.BtnClear_Queue.clicked.connect(lambda: self.clear_queue("Queue"))
 
         #Button for Selection sort
         self.ui.BtnGenerate_SelectionSort.clicked.connect(lambda: self.custom_array("Selection_sort"))
@@ -139,12 +146,24 @@ class Widget(QWidget):
         self.ui.BtnClear_BST.clicked.connect(self.Clear_BST)
         self.ui.BtnSearch_BST.clicked.connect(self.Search_BST)
 
+        #Button for Breadth first search:
+        self.ui.BtnTraverse_BFS.clicked.connect(self.Traverse_BFS)
+        self.ui.BtnClear_BFS.clicked.connect(self.Clear_BFS)
+        self.ui.BtnGenerate_BFS.clicked.connect(self.GenerateGraph_BFS)
+
+        #Button for Depth first search
+        self.ui.BtnTraverse_DFS.clicked.connect(self.Traverse_DFS)
+        self.ui.BtnClear_DFS.clicked.connect(self.Clear_DFS)
+        self.ui.BtnGenerate_DFS.clicked.connect(self.GenerateGraph_DFS)
+
+
         #connect combobox
         self.ui.sort_comboBox.currentTextChanged.connect(self.on_sort_changed)
         self.ui.search_comboBox.currentTextChanged.connect(self.on_search_changed)
         self.ui.speed_comboBox.currentTextChanged.connect(self.change_speed)
         self.ui.DS_comboBox.currentTextChanged.connect(self.on_dataStructure_changed)
-        self.ui.HDS_comboBox.currentTextChanged.connect(self.on_HDataStucture_changed)
+        self.ui.HDST_comboBox.currentTextChanged.connect(self.on_HDataStucture_changed)
+        self.ui.HDSG_comboBox.currentTextChanged.connect(self.on_HDataStuctureGraph_changed)
 
         #initializing default algorithm
         self.initialize_defaults()
@@ -176,7 +195,8 @@ class Widget(QWidget):
             self.ui.sort_comboBox,              #sort combobox
             self.ui.search_comboBox,            #Search combobox
             self.ui.DS_comboBox,                #Linear data structure combobox
-            self.ui.HDS_comboBox,               #Hierarchial data structure combobox
+            self.ui.HDST_comboBox,               #Hierarchial data structure combobox
+            self.ui.HDSG_comboBox,
 
         ]
 
@@ -290,7 +310,7 @@ class Widget(QWidget):
 
 
     def on_HDataStucture_changed(self,algo):
-        self.reset_all_comboboxes(except_box = self.ui.HDS_comboBox)
+        self.reset_all_comboboxes(except_box = self.ui.HDST_comboBox)
         mapping = {
         "Binary Search Tree": 10,}
 
@@ -301,10 +321,33 @@ class Widget(QWidget):
                 self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BST)
                 self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
 
+        self.active_visualizer.scene.clear()
+        self.active_visualizer.view.centerOn(0,0)
+        self.visualizer2.scene.clear()
+
+    def on_HDataStuctureGraph_changed(self,algo):
+        self.reset_all_comboboxes(except_box = self.ui.HDSG_comboBox)
+        mapping = {
+        "Breadth First Search (BFS)": 11,
+        "Depth First Search (DFS)": 12,}
+
+        self.ui.stackedWidget.setCurrentIndex(mapping.get(algo,5))
+        self.active_algorithm = algo
+        if algo == "Breadth First Search (BFS)":
+                print("BFS called")
+                self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
+                self.visualizer2 = QueueVisualizerBFS(self.ui.ref_graphicsView)
+                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BFS)
+                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+
+        elif algo == "Depth First Search (DFS)":
+            pass
+
 
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0,0)
         self.visualizer2.scene.clear()
+
 
         #when the start button is clicked it calls this function
     def start_sort(self):
@@ -532,6 +575,8 @@ class Widget(QWidget):
     def play_Insertion_sort(self):
                 if self.current_step >= len(self.steps):
                         self.active_visualizer.completed_sort()
+                        self.explain_label.setText(f"Completed sorting")
+                        self.ui.Explanation_label.clear()
                         return
 
                     #step_type, i, j, state = self.steps[self.current_step]
@@ -547,31 +592,34 @@ class Widget(QWidget):
 
                 if step_type == "compare":
                         print("insertion sort compared called")
+                        self.explain_label.setText(f"Comparing....")
+
                         self.active_visualizer.draw_array(state)
-
-
                         self.active_visualizer.highlight(i, j, soft_yellow)
 
                 elif step_type == "shift":
                         print("insertion sort shift called")
-                        self.active_visualizer.draw_array(state)
-
+                        self.explain_label.setText(f"shifting.....")
+                        self.active_visualizer.swap_bars(state, i, j)
                         self.active_visualizer.highlight(i, j, soft_blue)
 
                 elif step_type == "insert":
                         print("insertion sort insert called")
+                        self.explain_label.setText(f"Inserting.....")
                         self.active_visualizer.draw_array(state)
 
                         self.active_visualizer.highlight(i, i, soft_green)
 
                 elif step_type == "key":
                         print("insertion sort insert called")
+                        self.explain_label.setText(f"Setting key.....")
                         self.active_visualizer.draw_array(state)
 
                         self.active_visualizer.highlight(i, i, soft_gray)
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, self.play_Insertion_sort)
+
 
 
 
@@ -788,7 +836,7 @@ class Widget(QWidget):
 
         elif source == "Insertion_sort":
                 size_lineEdit = self.ui.size_array_lineEdit_InsertionSort
-                size = size_array_lineEdit.text()
+                size = size_lineEdit.text()
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -1062,6 +1110,15 @@ class Widget(QWidget):
                 else:
                         self.active_visualizer.draw_queue(state)
 
+    def clear_queue(self,source = "Queue"):
+            action, value,state = self.queue.clear()
+            if action == "Queue underflow":
+                    print("Queue is empty!")
+            else :
+                    self.active_visualizer.draw_queue(state)
+                    self.active_visualizer.scene.clear()
+
+
     def InsertHead_LinkedList(self, source ="Linked_List"):
 
                     value_text = self.ui.lineEdit_LinkedList.text().strip()
@@ -1110,9 +1167,6 @@ class Widget(QWidget):
     def Clear_LinkedList(self,source = "Linked LIst"):
             self.active_visualizer.clear()
 
-
-
-
     def Insert_BST(self):
                 text = self.ui.lineEdit_BST.text().strip()
 
@@ -1140,6 +1194,53 @@ class Widget(QWidget):
 
     def Clear_BST(self):
             self.active_visualizer.clear()
+
+    def GenerateGraph_BFS(self):
+        self.active_visualizer.scene.clear()
+        text = self.ui.vertex_lineEdit_BFS.text().strip()
+
+        if not text.isdigit():
+            QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+            return
+
+        node_count = int(text)
+        if node_count <= 2:
+            QMessageBox.warning(
+                self,
+                "Invalid Input",
+                "Number of vertices must be at least 5"
+            )
+            return
+        max_possible_edges = (node_count * (node_count - 1)) // 2
+        max_extra_edges = max_possible_edges - (node_count - 1)
+        edges = random.randint(1,max_extra_edges)
+        extra_edges = min(4, edges)
+
+        graph = GraphGenerator.generate_graph(node_count, extra_edges)
+        positions = GraphGenerator.generate_positions(node_count)
+        #self.active_visualizer.animate_insert(value)
+        self.active_visualizer.graph = graph
+        self.active_visualizer.draw_graph_edges(graph, positions)
+        self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
+        self.active_visualizer.QueueVisualizerBFS = self.visualizer2
+        self.ui.lineEdit_BST.clear()
+
+
+    def Traverse_BFS(self):
+        raw_vertex = self.ui.lineEdit_BFS.text().strip()
+        vertex = int(raw_vertex)
+        self.active_visualizer.start_bfs(vertex)
+
+
+    def Clear_BFS(self):
+        self.active_visualizer.clear()
+
+    def GenerateGraph_DFS(self):
+        pass
+    def Traverse_DFS(self):
+        pass
+    def Clear_DFS(self):
+        pass
 
 
 

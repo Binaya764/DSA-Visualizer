@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>379</height>
+    <width>699</width>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -178,20 +178,68 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_13">
                   <item>
-                   <widget class="QComboBox" name="HDS_comboBox">
-                    <item>
-                     <property name="text">
-                      <string>--Select--</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Binary Search Tree</string>
-                     </property>
-                    </item>
+                   <widget class="QGroupBox" name="groupBox_29">
+                    <property name="title">
+                     <string>Tree</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_81">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_80">
+                       <item>
+                        <widget class="QComboBox" name="HDST_comboBox">
+                         <item>
+                          <property name="text">
+                           <string>--Select--</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Binary Search Tree</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_30">
+                  <property name="title">
+                   <string>Graph</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_83">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_82">
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
+                     <item>
+                      <widget class="QComboBox" name="HDSG_comboBox">
+                       <item>
+                        <property name="text">
+                         <string>--Select--</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Breadth First Search (BFS)</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>Depth First Search (DFS)</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -243,7 +291,7 @@
             <property name="maximumSize">
              <size>
               <width>900</width>
-              <height>350</height>
+              <height>450</height>
              </size>
             </property>
            </widget>
@@ -418,7 +466,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>9</number>
+        <number>12</number>
        </property>
        <widget class="QWidget" name="Intro_page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -1043,7 +1091,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <widget class="QLabel" name="label_16">
                   <property name="text">
-                   <string>Input Values (Max 10)</string>
+                   <string>Input Values (Max 5)</string>
                   </property>
                  </widget>
                 </item>
@@ -1067,6 +1115,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnClear_Queue">
+                  <property name="text">
+                   <string>clear</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QGroupBox" name="groupBox_11">
@@ -1280,6 +1335,176 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <layout class="QVBoxLayout" name="verticalLayout_64">
                      <item>
                       <widget class="QGraphicsView" name="code_graphicsView_BST"/>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="BFS">
+        <layout class="QVBoxLayout" name="verticalLayout_69">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_68">
+           <item>
+            <widget class="QGroupBox" name="groupBox_25">
+             <property name="title">
+              <string>Breadth Fist Search (BFS)</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_71">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_70">
+                <property name="spacing">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_24">
+                  <property name="text">
+                   <string>No. of vertex</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="vertex_lineEdit_BFS"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnGenerate_BFS">
+                  <property name="text">
+                   <string>+Generate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_23">
+                  <property name="text">
+                   <string>Start vertex:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_BFS"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_27">
+                  <property name="bottomMargin">
+                   <number>5</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="BtnTraverse_BFS">
+                    <property name="text">
+                     <string>Traverse</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnClear_BFS">
+                    <property name="text">
+                     <string>Clear</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_26">
+                  <property name="title">
+                   <string>code</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_73">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_72">
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_BFS"/>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page">
+        <layout class="QVBoxLayout" name="verticalLayout_75">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_74">
+           <item>
+            <widget class="QGroupBox" name="groupBox_27">
+             <property name="title">
+              <string>Depth first search (DFS)</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_77">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_76">
+                <item>
+                 <widget class="QLabel" name="label_25">
+                  <property name="text">
+                   <string>No.of vertex</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="vertex_lineEdit_DFS"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="BtnGenerate_DFS">
+                  <property name="text">
+                   <string>+Generate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_26">
+                  <property name="text">
+                   <string>Start vertex:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="StartVertex_lineEdit_DFS"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_28">
+                  <item>
+                   <widget class="QPushButton" name="BtnTraverse_DFS">
+                    <property name="text">
+                     <string>Traverse</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="BtnClear_DFS">
+                    <property name="text">
+                     <string>Clear</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_28">
+                  <property name="title">
+                   <string>code</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_79">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_78">
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_DFS"/>
                      </item>
                     </layout>
                    </item>

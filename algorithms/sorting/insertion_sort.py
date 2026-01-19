@@ -7,7 +7,7 @@ def Insertion_sort(arr):
         key = arr[i]
         j = i - 1
 
-        # Highlight key (include key value for visualization)
+        # Highlight key include key value for visualization
         steps.append(("key", i, j, arr.copy(), key))
 
         while j >= 0 and arr[j] > key:
@@ -16,7 +16,7 @@ def Insertion_sort(arr):
 
             # Shift element right
             arr[j + 1] = arr[j]
-            steps.append(("shift", j, j + 1, arr.copy(), key))
+            steps.append(("shift", j, j+1 , arr.copy(), key))
 
             j -= 1
 
