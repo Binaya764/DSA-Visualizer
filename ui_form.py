@@ -1292,7 +1292,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(11)
+        self.stackedWidget.setCurrentIndex(12)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1422,7 +1422,7 @@ class Ui_Widget(object):
         self.BtnClear_BST.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_24.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_25.setTitle(QCoreApplication.translate("Widget", u"Breadth Fist Search (BFS)", None))
-        self.label_24.setText(QCoreApplication.translate("Widget", u"No. of vertex", None))
+        self.label_24.setText(QCoreApplication.translate("Widget", u"No. of vertex (Max 10)", None))
         self.BtnGenerate_BFS.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.label_23.setText(QCoreApplication.translate("Widget", u"Start vertex:", None))
         self.BtnTraverse_BFS.setText(QCoreApplication.translate("Widget", u"Traverse", None))
@@ -1431,7 +1431,7 @@ class Ui_Widget(object):
         self.label_28.setText(QCoreApplication.translate("Widget", u"Traversal Path:", None))
         self.label_Traversal_path.setText("")
         self.groupBox_27.setTitle(QCoreApplication.translate("Widget", u"Depth first search (DFS)", None))
-        self.label_25.setText(QCoreApplication.translate("Widget", u"No.of vertex", None))
+        self.label_25.setText(QCoreApplication.translate("Widget", u"No.of  vertex (Max 10)", None))
         self.BtnGenerate_DFS.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.label_26.setText(QCoreApplication.translate("Widget", u"Start vertex:", None))
         self.BtnTraverse_DFS.setText(QCoreApplication.translate("Widget", u"Traverse", None))

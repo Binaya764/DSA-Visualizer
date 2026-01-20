@@ -804,6 +804,7 @@ class Widget(QWidget):
     def custom_array(self,source ="Bubble_sort"): #Gets array input from the user
         self.active_visualizer.scene.clear()
         self.active_visualizer.bars.clear()
+        self.visualizer2.scene.clear()
         self.current_step = 0
         self.steps = []
 
@@ -812,6 +813,7 @@ class Widget(QWidget):
 
                 size_lineEdit = self.ui.size_array_lineEdit
                 size= size_lineEdit.text()  # Sorting size input
+
                 if not size:
                     QMessageBox.warning(
                         self,
@@ -822,7 +824,6 @@ class Widget(QWidget):
 
                 try:
                     size_text = int(size)
-
                 except ValueError:
                     QMessageBox.warning(
                         self,
@@ -858,6 +859,7 @@ class Widget(QWidget):
                 lineEdit = self.ui.CArray_lineEdit_InsertionSort
                 custom_arr = lineEdit.text()
 
+
         elif source == "Selection_sort":
                 size_lineEdit = self.ui.size_array_lineEdit_SelectionSort
                 size = size_lineEdit.text()
@@ -881,6 +883,7 @@ class Widget(QWidget):
                 lineEdit = self.ui.CArray_lineEdit_SelectionSort
                 custom_arr = lineEdit.text()
 
+
         elif source == "Linear_search":
                 size_lineEdit = self.ui.size_array_lineEdit_LSearch
                 size = size_lineEdit.text()
@@ -903,6 +906,8 @@ class Widget(QWidget):
                     return
                 lineEdit = self.ui.CArray_lineEdit_LSearch
                 custom_arr = lineEdit.text()
+
+
 
 
         elif source == "Merge_Sort":
@@ -929,6 +934,8 @@ class Widget(QWidget):
                 custom_arr = lineEdit.text()
 
 
+
+
         else:
                 return
 
@@ -946,7 +953,10 @@ class Widget(QWidget):
         parts = custom_arr.replace(",", " ").split() #splits the string into individual values
 
         if len(parts) != size_text:
-                print("Array size does not match!")
+                QMessageBox.warning(
+                self,
+                "Input Error",
+                "Size of array does not match!")
                 return
         else:
 
@@ -955,8 +965,8 @@ class Widget(QWidget):
 
                 self.current_array = arr
                 self.visualizer2.ref_drawArray(arr)
-                #self.active_visualizer.draw_box_color()
                 self.active_visualizer.draw_array(arr)
+                self.active_visualizer.draw_box_color()
         lineEdit.clear()
         size_lineEdit.clear()
 
@@ -983,8 +993,11 @@ class Widget(QWidget):
                 parts = custom_arr.replace(",", " ").split() #splits the string into individual values
 
                 if len(parts) != size:
-                            print("Array size does not match!")
-                            return
+                        QMessageBox.warning(
+                        self,
+                        "Input Error",
+                        "Size of array does not match!")
+                        return
                 else:
 
                             arr = [int(x) for x in parts]
@@ -1236,6 +1249,20 @@ class Widget(QWidget):
                    "Please enter a start vertex"
                )
                return
+        if node_count <= 2:
+           QMessageBox.warning(
+               self,
+               "Invalid Input",
+               "Number of vertices must be at least 3"
+           )
+           return
+
+        if node_count >10:
+               QMessageBox.warning(
+               self,
+               "Invalid Input",
+               "Number of veritces must be less than 10")
+               return
         vertex = int(raw_vertex)
         self.active_visualizer.start_bfs(vertex)
         self.ui.lineEdit_BFS.clear()
@@ -1276,7 +1303,6 @@ class Widget(QWidget):
 
         graph = GraphGenerator.generate_graph(node_count, extra_edges)
         positions = GraphGenerator.generate_positions(node_count)
-        #self.active_visualizer.animate_insert(value)
         self.active_visualizer.graph = graph
         self.active_visualizer.draw_graph_edges(graph, positions)
         self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)

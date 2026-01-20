@@ -466,7 +466,7 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>11</number>
+        <number>12</number>
        </property>
        <widget class="QWidget" name="Intro_page">
         <layout class="QVBoxLayout" name="verticalLayout_50">
@@ -1368,7 +1368,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <widget class="QLabel" name="label_24">
                   <property name="text">
-                   <string>No. of vertex</string>
+                   <string>No. of vertex (Max 10)</string>
                   </property>
                  </widget>
                 </item>
@@ -1477,7 +1477,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <item>
                  <widget class="QLabel" name="label_25">
                   <property name="text">
-                   <string>No.of vertex</string>
+                   <string>No.of  vertex (Max 10)</string>
                   </property>
                  </widget>
                 </item>
