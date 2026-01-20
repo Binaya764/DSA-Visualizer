@@ -219,7 +219,7 @@ class QueueVisualizerBFS:
         if queue:
             front_label = QGraphicsSimpleTextItem("FRONT")
             front_label.setBrush(Qt.yellow)
-            front_label.setPos(x + width + 10, base_y)
+            front_label.setPos(x + width + 10, base_y+20)
             self.scene.addItem(front_label)
 
             # REAR label (topmost element)

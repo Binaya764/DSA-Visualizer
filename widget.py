@@ -1224,12 +1224,14 @@ class Widget(QWidget):
         self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
         self.active_visualizer.QueueVisualizerBFS = self.visualizer3
         self.ui.lineEdit_BST.clear()
+        self.ui.vertex_lineEdit_BFS.clear()
 
 
     def Traverse_BFS(self):
         raw_vertex = self.ui.lineEdit_BFS.text().strip()
         vertex = int(raw_vertex)
         self.active_visualizer.start_bfs(vertex)
+        self.ui.lineEdit_BFS.clear()
 
 
     def Clear_BFS(self):
@@ -1266,6 +1268,7 @@ class Widget(QWidget):
         self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
         self.active_visualizer.StackVisualizerDFS = self.visualizer3
         self.ui.lineEdit_BST.clear()
+        self.ui.vertex_lineEdit_DFS.clear()
 
         pass
     def Traverse_DFS(self):
@@ -1279,6 +1282,7 @@ class Widget(QWidget):
                return
         vertex = int(raw_vertex)
         self.active_visualizer.start_dfs(vertex)
+        self.ui.StartVertex_lineEdit_DFS.clear()
 
     def Clear_DFS(self):
         self.active_visualizer.clear()
