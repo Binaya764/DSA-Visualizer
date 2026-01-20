@@ -337,7 +337,7 @@ class Widget(QWidget):
         self.active_algorithm = algo
         if algo == "Breadth First Search (BFS)":
                 print("BFS called")
-                self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
+                self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView, self.ui.label_Traversal_path)
                 self.visualizer3 = QueueVisualizerBFS(self.ui.code_graphicsView_BFS)
 
         elif algo == "Depth First Search (DFS)":
@@ -1197,7 +1197,7 @@ class Widget(QWidget):
             self.active_visualizer.clear()
 
     def GenerateGraph_BFS(self):
-        self.active_visualizer.scene.clear()
+        self.active_visualizer.clear()
         text = self.ui.vertex_lineEdit_BFS.text().strip()
 
         if not text.isdigit():
@@ -1229,6 +1229,13 @@ class Widget(QWidget):
 
     def Traverse_BFS(self):
         raw_vertex = self.ui.lineEdit_BFS.text().strip()
+        if not raw_vertex:
+               QMessageBox.warning(
+                   self,
+                   "Input Error",
+                   "Please enter a start vertex"
+               )
+               return
         vertex = int(raw_vertex)
         self.active_visualizer.start_bfs(vertex)
         self.ui.lineEdit_BFS.clear()
@@ -1252,9 +1259,16 @@ class Widget(QWidget):
             QMessageBox.warning(
                 self,
                 "Invalid Input",
-                "Number of vertices must be at least 5"
+                "Number of vertices must be at least 3"
             )
             return
+
+        if node_count >10:
+                QMessageBox.warning(
+                self,
+                "Invalid Input",
+                "Number of veritces must be less than 10")
+                return
         max_possible_edges = (node_count * (node_count - 1)) // 2
         max_extra_edges = max_possible_edges - (node_count - 1)
         edges = random.randint(1,max_extra_edges)
