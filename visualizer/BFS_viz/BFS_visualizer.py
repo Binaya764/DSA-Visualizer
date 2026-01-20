@@ -196,39 +196,40 @@ class QueueVisualizerBFS:
         width = 70
         height = 40
         spacing = 10
-        start_x = 100
-        y = 180   # fixed horizontal line for queue
 
-        # Draw queue blocks (left → right)
+        x = 100
+        base_y = 350   # FRONT position (fixed at bottom)
+
+        # Draw queue blocks (bottom → top)
         for i, val in enumerate(queue):
-            x = start_x + i * (width + spacing)
+            y = base_y - i * (height + spacing)
 
             rect = QGraphicsRectItem(QRectF(x, y, width, height))
             rect.setBrush(QBrush(Qt.darkCyan))
 
             text = QGraphicsSimpleTextItem(str(val))
             text.setBrush(Qt.white)
-            text.setPos(x + 30, y + 10)
+            text.setPos(x + 25, y + 10)
 
             self.scene.addItem(rect)
             self.scene.addItem(text)
             self.blocks.append((rect, text))
 
-        # Draw FRONT and REAR labels
+        # FRONT label (always bottom)
         if queue:
             front_label = QGraphicsSimpleTextItem("FRONT")
             front_label.setBrush(Qt.yellow)
-            front_label.setPos(start_x, y + height + 10)
+            front_label.setPos(x + width + 10, base_y)
             self.scene.addItem(front_label)
 
-            rear_x = start_x + (len(queue) - 1) * (width + spacing)
+            # REAR label (topmost element)
+            rear_y = base_y - (len(queue) - 1) * (height + spacing)
             rear_label = QGraphicsSimpleTextItem("REAR")
             rear_label.setBrush(Qt.yellow)
-            rear_label.setPos(rear_x + 50, y + height + 10)
+            rear_label.setPos(x + width + 10, rear_y)
             self.scene.addItem(rear_label)
+
 
     def highlight_front(self):
         if self.blocks:
             self.blocks[0][0].setBrush(QBrush(Qt.red))
-
-

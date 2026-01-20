@@ -1502,9 +1502,42 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_79">
                    <item>
+                    <widget class="QLabel" name="label_27">
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Traversal Path:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
                     <layout class="QVBoxLayout" name="verticalLayout_78">
                      <item>
-                      <widget class="QGraphicsView" name="code_graphicsView_DFS"/>
+                      <widget class="QLabel" name="label_traversal_path">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: gray;</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QGraphicsView" name="code_graphicsView_DFS">
+                       <property name="font">
+                        <font>
+                         <pointsize>9</pointsize>
+                        </font>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>

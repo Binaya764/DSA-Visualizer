@@ -4,7 +4,7 @@ from PySide6.QtCore import QTimer
 
 # Import
 from ui_form import Ui_Widget
-from PySide6.QtGui import QColor,QIntValidator
+from PySide6.QtGui import QColor,QIntValidator,QBrush
 
 soft_blue   = QColor(100, 149, 237)
 soft_green  = QColor(46, 125, 50)
@@ -63,6 +63,8 @@ from visualizer.BST_viz.BST_visualizer import BST_Visualizer
 from visualizer.BFS_viz.BFS_visualizer import GraphGenerator,BFSvisualizer,QueueVisualizerBFS
 
 #For DFS
+from algorithms.DFS.DFS_algo import dfs_fun
+from visualizer.DFS_viz.DFS_visualizer import GraphGenerator, DFSvisualizer,StackVisualizerDFS
 
 import random
 
@@ -336,12 +338,11 @@ class Widget(QWidget):
         if algo == "Breadth First Search (BFS)":
                 print("BFS called")
                 self.active_visualizer = BFSvisualizer(self.ui.visualizer_graphicsView)
-                self.visualizer2 = QueueVisualizerBFS(self.ui.ref_graphicsView)
-                self.currCode_visualizer = code_Visualizer(self.ui.code_graphicsView_BFS)
-                self.currCode_visualizer.show_code(ALGORITHM_CODES[algo])
+                self.visualizer3 = QueueVisualizerBFS(self.ui.code_graphicsView_BFS)
 
         elif algo == "Depth First Search (DFS)":
-            pass
+            self.active_visualizer = DFSvisualizer(self.ui.visualizer_graphicsView, self.ui.label_traversal_path)
+            self.visualizer3 = StackVisualizerDFS(self.ui.code_graphicsView_DFS)
 
 
         self.active_visualizer.scene.clear()
@@ -1218,11 +1219,10 @@ class Widget(QWidget):
 
         graph = GraphGenerator.generate_graph(node_count, extra_edges)
         positions = GraphGenerator.generate_positions(node_count)
-        #self.active_visualizer.animate_insert(value)
         self.active_visualizer.graph = graph
         self.active_visualizer.draw_graph_edges(graph, positions)
         self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
-        self.active_visualizer.QueueVisualizerBFS = self.visualizer2
+        self.active_visualizer.QueueVisualizerBFS = self.visualizer3
         self.ui.lineEdit_BST.clear()
 
 
@@ -1234,13 +1234,61 @@ class Widget(QWidget):
 
     def Clear_BFS(self):
         self.active_visualizer.clear()
+        self.visualizer3.scene.clear()
 
     def GenerateGraph_DFS(self):
+        self.active_visualizer.clear()
+        self.visualizer3.scene.clear()
+        text = self.ui.vertex_lineEdit_DFS.text().strip()
+
+        if not text.isdigit():
+            QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+            return
+
+        node_count = int(text)
+        if node_count <= 2:
+            QMessageBox.warning(
+                self,
+                "Invalid Input",
+                "Number of vertices must be at least 5"
+            )
+            return
+        max_possible_edges = (node_count * (node_count - 1)) // 2
+        max_extra_edges = max_possible_edges - (node_count - 1)
+        edges = random.randint(1,max_extra_edges)
+        extra_edges = min(4, edges)
+
+        graph = GraphGenerator.generate_graph(node_count, extra_edges)
+        positions = GraphGenerator.generate_positions(node_count)
+        #self.active_visualizer.animate_insert(value)
+        self.active_visualizer.graph = graph
+        self.active_visualizer.draw_graph_edges(graph, positions)
+        self.active_visualizer.node_items = self.active_visualizer.draw_graph_nodes(positions)
+        self.active_visualizer.StackVisualizerDFS = self.visualizer3
+        self.ui.lineEdit_BST.clear()
+
         pass
     def Traverse_DFS(self):
-        pass
+        raw_vertex = self.ui.StartVertex_lineEdit_DFS.text().strip()
+        if not raw_vertex:
+               QMessageBox.warning(
+                   self,
+                   "Input Error",
+                   "Please enter a start vertex"
+               )
+               return
+        vertex = int(raw_vertex)
+        self.active_visualizer.start_dfs(vertex)
+
     def Clear_DFS(self):
-        pass
+        self.active_visualizer.clear()
+        self.visualizer3.scene.clear()
+
+
+
+
+
+
 
 
 

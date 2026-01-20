@@ -1232,10 +1232,26 @@ class Ui_Widget(object):
         self.groupBox_28.setObjectName(u"groupBox_28")
         self.verticalLayout_79 = QVBoxLayout(self.groupBox_28)
         self.verticalLayout_79.setObjectName(u"verticalLayout_79")
+        self.label_27 = QLabel(self.groupBox_28)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setFont(font1)
+
+        self.verticalLayout_79.addWidget(self.label_27)
+
         self.verticalLayout_78 = QVBoxLayout()
         self.verticalLayout_78.setObjectName(u"verticalLayout_78")
+        self.label_traversal_path = QLabel(self.groupBox_28)
+        self.label_traversal_path.setObjectName(u"label_traversal_path")
+        self.label_traversal_path.setFont(font1)
+        self.label_traversal_path.setStyleSheet(u"background-color: gray;")
+
+        self.verticalLayout_78.addWidget(self.label_traversal_path)
+
         self.code_graphicsView_DFS = QGraphicsView(self.groupBox_28)
         self.code_graphicsView_DFS.setObjectName(u"code_graphicsView_DFS")
+        font2 = QFont()
+        font2.setPointSize(9)
+        self.code_graphicsView_DFS.setFont(font2)
 
         self.verticalLayout_78.addWidget(self.code_graphicsView_DFS)
 
@@ -1407,5 +1423,7 @@ class Ui_Widget(object):
         self.BtnTraverse_DFS.setText(QCoreApplication.translate("Widget", u"Traverse", None))
         self.BtnClear_DFS.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_28.setTitle(QCoreApplication.translate("Widget", u"code", None))
+        self.label_27.setText(QCoreApplication.translate("Widget", u"Traversal Path:", None))
+        self.label_traversal_path.setText("")
     # retranslateUi
 
