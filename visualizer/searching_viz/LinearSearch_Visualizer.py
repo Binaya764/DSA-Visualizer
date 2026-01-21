@@ -80,3 +80,6 @@ class Linear_Visualizer:
         self.scene.clear()
         self.bars.clear()
         self.values.clear()
+
+
+

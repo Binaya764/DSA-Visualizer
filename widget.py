@@ -399,6 +399,7 @@ class Widget(QWidget):
                 steps, found = linear_search(self.current_array.copy(),self.target)
                 self.current_step = 0
                 self.play_linear_search(steps)
+                self.ui.target_lineEdit_LSearch.clear()
 
         else:
             print("No algorithm selected!")
@@ -412,14 +413,14 @@ class Widget(QWidget):
                     self.active_visualizer.completed_sort()
                     self.explain_label.setText("Sorting completed ")
                     self.ui.Explanation_label.clear()
-                    return  # animation finished
+                    return
 
                 step_type, i, j, state = self.steps[self.current_step]
 
                 a = state[i]
                 b = state[j]
 
-                # ---------------- COMPARISON ----------------
+
                 if step_type == "compare":
                     print("compared")
 
@@ -431,7 +432,7 @@ class Widget(QWidget):
                     self.active_visualizer.draw_array(state)
                     self.active_visualizer.highlight(i, j, soft_yellow)
 
-                # ---------------- SWAP ----------------
+
                 elif step_type == "swap":
                     print("swapped")
 
@@ -673,6 +674,7 @@ class Widget(QWidget):
                                 "Input Error",
                                 "Max size 5!"
                             )
+                self.ui.size_array_lineEdit.clear()
 
 
         elif source == "Insertion_sort":
@@ -695,12 +697,22 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
+                if size<10:
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+                        self.active_visualizer.draw_array(arr)
+                        self.active_visualizer.draw_box_color()
+                        self.visualizer2.ref_drawArray(arr)
+                        self.ui.size_array_lineEdit_InsertionSort.clear()
+                else:
 
-                arr=[random.randint(1,100) for _ in range(size)]
-                self.current_array = arr
-                self.active_visualizer.draw_array(arr)
-                self.active_visualizer.draw_box_color()
-                self.visualizer2.ref_drawArray(arr)
+                        print("invalid size")
+
+                        QMessageBox.warning(
+                                self,
+                                "Input Error",
+                                "Max size 10!"
+                            )
 
         elif source == "Selection_sort":
                 size_text = self.ui.size_array_lineEdit_SelectionSort.text()
@@ -721,12 +733,21 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
+                if size<10:
+                        arr=[random.randint(1,100) for _ in range(size)]
+                        self.current_array = arr
+                        self.active_visualizer.draw_array(arr)
+                        self.visualizer2.ref_drawArray(arr)
+                        self.active_visualizer.draw_box_color()
+                        self.ui.size_array_lineEdit_SelectionSort.clear()
+                else:
+                        print("invalid size")
 
-                arr=[random.randint(1,100) for _ in range(size)]
-                self.current_array = arr
-                self.active_visualizer.draw_array(arr)
-                self.visualizer2.ref_drawArray(arr)
-                self.active_visualizer.draw_box_color()
+                        QMessageBox.warning(
+                                self,
+                                "Input Error",
+                                "Max size 10!"
+                            )
 
 
         elif source == "Linear_search":
@@ -755,6 +776,7 @@ class Widget(QWidget):
                         self.current_array = arr
                         self.active_visualizer.draw_array(arr)
                         self.visualizer2.ref_drawArray(arr)
+                        self.ui.size_array_lineEdit_LSearch.clear()
                 else:
                         print("Invalid size")
 
@@ -763,6 +785,7 @@ class Widget(QWidget):
                                 "Input Error",
                                 "Max size 10!"
                             )
+
 
 
         elif source ==  "Merge_sort":
@@ -793,6 +816,7 @@ class Widget(QWidget):
                         self.visualizer2.ref_drawArray(arr)
                 else:
                         print("Invalid size")
+                self.ui.size_array_lineEdit_MergeSort.clear()
 
 
         else:
@@ -966,7 +990,7 @@ class Widget(QWidget):
                 self.current_array = arr
                 self.visualizer2.ref_drawArray(arr)
                 self.active_visualizer.draw_array(arr)
-                self.active_visualizer.draw_box_color()
+                #self.active_visualizer.draw_box_color()
         lineEdit.clear()
         size_lineEdit.clear()
 
@@ -1242,6 +1266,7 @@ class Widget(QWidget):
 
     def Traverse_BFS(self):
         raw_vertex = self.ui.lineEdit_BFS.text().strip()
+        node_count= int(raw_vertex)
         if not raw_vertex:
                QMessageBox.warning(
                    self,
@@ -1249,7 +1274,7 @@ class Widget(QWidget):
                    "Please enter a start vertex"
                )
                return
-        if node_count <= 2:
+        if node_count < 2:
            QMessageBox.warning(
                self,
                "Invalid Input",
