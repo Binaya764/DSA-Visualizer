@@ -590,7 +590,7 @@ class Widget(QWidget):
                 state = step[3]
                 key = step[4] if len(step) > 4 else None
 
-                #self.active_visualizer.draw_array(state)
+                self.active_visualizer.draw_array(state)
 
                 if step_type == "compare":
                         print("insertion sort compared called")
