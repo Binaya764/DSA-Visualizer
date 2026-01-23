@@ -24,7 +24,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(699, 439)
+        Widget.resize(699, 453)
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -1153,8 +1153,20 @@ class Ui_Widget(object):
         self.groupBox_26.setObjectName(u"groupBox_26")
         self.verticalLayout_73 = QVBoxLayout(self.groupBox_26)
         self.verticalLayout_73.setObjectName(u"verticalLayout_73")
+        self.label_28 = QLabel(self.groupBox_26)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setFont(font1)
+
+        self.verticalLayout_73.addWidget(self.label_28)
+
         self.verticalLayout_72 = QVBoxLayout()
         self.verticalLayout_72.setObjectName(u"verticalLayout_72")
+        self.label_Traversal_path = QLabel(self.groupBox_26)
+        self.label_Traversal_path.setObjectName(u"label_Traversal_path")
+        self.label_Traversal_path.setFont(font1)
+
+        self.verticalLayout_72.addWidget(self.label_Traversal_path)
+
         self.code_graphicsView_BFS = QGraphicsView(self.groupBox_26)
         self.code_graphicsView_BFS.setObjectName(u"code_graphicsView_BFS")
 
@@ -1243,7 +1255,7 @@ class Ui_Widget(object):
         self.label_traversal_path = QLabel(self.groupBox_28)
         self.label_traversal_path.setObjectName(u"label_traversal_path")
         self.label_traversal_path.setFont(font1)
-        self.label_traversal_path.setStyleSheet(u"background-color: gray;")
+        self.label_traversal_path.setStyleSheet(u"background-color: black;")
 
         self.verticalLayout_78.addWidget(self.label_traversal_path)
 
@@ -1410,14 +1422,16 @@ class Ui_Widget(object):
         self.BtnClear_BST.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_24.setTitle(QCoreApplication.translate("Widget", u"Code", None))
         self.groupBox_25.setTitle(QCoreApplication.translate("Widget", u"Breadth Fist Search (BFS)", None))
-        self.label_24.setText(QCoreApplication.translate("Widget", u"No. of vertex", None))
+        self.label_24.setText(QCoreApplication.translate("Widget", u"No. of vertex (Max 10)", None))
         self.BtnGenerate_BFS.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.label_23.setText(QCoreApplication.translate("Widget", u"Start vertex:", None))
         self.BtnTraverse_BFS.setText(QCoreApplication.translate("Widget", u"Traverse", None))
         self.BtnClear_BFS.setText(QCoreApplication.translate("Widget", u"Clear", None))
         self.groupBox_26.setTitle(QCoreApplication.translate("Widget", u"code", None))
+        self.label_28.setText(QCoreApplication.translate("Widget", u"Traversal Path:", None))
+        self.label_Traversal_path.setText("")
         self.groupBox_27.setTitle(QCoreApplication.translate("Widget", u"Depth first search (DFS)", None))
-        self.label_25.setText(QCoreApplication.translate("Widget", u"No.of vertex", None))
+        self.label_25.setText(QCoreApplication.translate("Widget", u"No.of  vertex (Max 10)", None))
         self.BtnGenerate_DFS.setText(QCoreApplication.translate("Widget", u"+Generate", None))
         self.label_26.setText(QCoreApplication.translate("Widget", u"Start vertex:", None))
         self.BtnTraverse_DFS.setText(QCoreApplication.translate("Widget", u"Traverse", None))

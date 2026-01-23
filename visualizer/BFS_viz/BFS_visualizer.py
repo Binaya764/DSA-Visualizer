@@ -67,13 +67,15 @@ class GraphGenerator:
         return positions
 
 class BFSvisualizer:
-    def __init__(self, graphics_view):
+    def __init__(self, graphics_view,traversal_label):
         self.view = graphics_view
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
 
         self.node_items = {}
         self.edge_items = {}
+        self.traversal_label = traversal_label
+        self.traversal_path = []
 
         self.view.setRenderHint(QPainter.Antialiasing, True)
         self.view.setRenderHint(QPainter.TextAntialiasing, True)
@@ -128,6 +130,7 @@ class BFSvisualizer:
 
     def start_bfs(self, vertex):
         graph = self.graph
+        self.traversal_path = []
         self.steps = bfs_fun(self,graph, vertex)
         self.step_index = 0
         self.queue = []
@@ -160,6 +163,8 @@ class BFSvisualizer:
 
         elif action == "visit":
             _, node = step
+            self.traversal_path.append(node)
+            self.update_traversal_text()
             self.node_items[node].setBrush(soft_green)
 
         elif action == "edge":
@@ -177,7 +182,12 @@ class BFSvisualizer:
         self.node_count = 0
         self.node_items={}
         self.edge_items={}
+        self.traversal_label.clear()
 
+
+    def update_traversal_text(self):
+        text =  " → ".join(map(str, self.traversal_path))
+        self.traversal_label.setText(text)
 
 
 
@@ -219,7 +229,7 @@ class QueueVisualizerBFS:
         if queue:
             front_label = QGraphicsSimpleTextItem("FRONT")
             front_label.setBrush(Qt.yellow)
-            front_label.setPos(x + width + 10, base_y)
+            front_label.setPos(x + width + 10, base_y+20)
             self.scene.addItem(front_label)
 
             # REAR label (topmost element)
