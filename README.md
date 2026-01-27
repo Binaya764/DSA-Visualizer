@@ -43,5 +43,5 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 #### Tree
 - Binary Search Tree
 #### Graph
-- Breadth First Search (BFS)
+- Breadth First Search (BST)
 - Depth First Search (DFS)
