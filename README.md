@@ -40,4 +40,8 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 
   
 ### Hierarchical Data structures
+#### Tree
 - Binary Search Tree
+#### Graph
+- Breadth First Search (BFS)
+- Depth First Search (DFS)
