@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout_14">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -38,6 +41,9 @@
           </property>
           <item>
            <widget class="QGroupBox" name="groupBox_16">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="title">
              <string>Data Structures</string>
             </property>
@@ -1547,7 +1553,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">background-color: black;</string>
+                        <string notr="true"/>
                        </property>
                        <property name="text">
                         <string/>

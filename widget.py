@@ -186,8 +186,8 @@ class Widget(QWidget):
             "0.25x"  : 1500,
             "1.25x" : 400,
             "1.5x" : 300,
-            "2x" : 200,
-            "3x" : 100,}
+            "2x" : 100,
+            "3x" : 50,}
             self.animation_speed = speed_map.get(text, 500)
             print("Animation speed set to:", self.animation_speed)
 
@@ -391,7 +391,7 @@ class Widget(QWidget):
         elif self.active_algorithm == "Linear Search":
                 target_text = self.ui.target_lineEdit_LSearch.text().strip()
                 if not target_text.isdigit():
-                    QMessageBox.warning(self, "Invalid Input", "Enter an integer value")
+                    QMessageBox.warning(self, "Invalid Input", "Enter a target!")
                     return
 
                 self.target = int(target_text)
@@ -527,7 +527,8 @@ class Widget(QWidget):
                 print("play binary search called")
 
                 if self.current_step >= len(steps):
-                    return
+                        print("completed")
+                        return
 
                 step_type, old_left, mid, old_right, sub_arr, new_left, new_right = steps[self.current_step]
 
@@ -552,7 +553,7 @@ class Widget(QWidget):
 
                     # Highlight before drawing new array
                     mid_in_current = mid - old_left
-                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)+1, soft_blue, soft_yellow)
+                    self.active_visualizer.highlight(0, mid_in_current, len(sub_arr)-1, soft_blue, soft_yellow)
                     # Draw the new smaller array after a moment
                     QTimer.singleShot(self.animation_speed // 4,
                                      lambda: self.active_visualizer.Bdraw_array("high", sub_arr, new_left))
@@ -561,11 +562,12 @@ class Widget(QWidget):
 
                     mid_in_current = mid - old_left
                     self.active_visualizer.found(mid_in_current)
+                    return
 
                 elif step_type == "not_found":
-                    print("Not found")
-                    for i in range(len(sub_arr)):
-                        self.active_visualizer.not_found(i)
+                        print("not found called widget")
+                        self.active_visualizer.not_found()
+                        return
 
                 self.current_step += 1
                 QTimer.singleShot(self.animation_speed, lambda: self.play_binary_search(steps))
@@ -769,7 +771,7 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                if size < 10:
+                if size < 11:
                         self.ui.size_array_lineEdit_LSearch.setToolTip("Enter numbers between 1-10 only")
                         self.ui.size_array_lineEdit_LSearch.setValidator(QIntValidator(1, 10))
                         arr=[random.randint(1,100) for _ in range(size)]
@@ -1037,6 +1039,7 @@ class Widget(QWidget):
 
         self.current_step = 0
         self.active_visualizer.clear()
+        self.visualizer2.scene.clear()
         self.steps = []
         text = self.ui.size_array_lineEdit_Bsearch.text().strip()
 
@@ -1334,8 +1337,9 @@ class Widget(QWidget):
         self.active_visualizer.StackVisualizerDFS = self.visualizer3
         self.ui.lineEdit_BST.clear()
         self.ui.vertex_lineEdit_DFS.clear()
-
         pass
+
+
     def Traverse_DFS(self):
         raw_vertex = self.ui.StartVertex_lineEdit_DFS.text().strip()
         if not raw_vertex:
@@ -1346,7 +1350,7 @@ class Widget(QWidget):
                )
                return
         vertex = int(raw_vertex)
-        self.active_visualizer.start_dfs(vertex)
+        self.active_visualizer.start_dfs(vertex,self.animation_speed)
         self.ui.StartVertex_lineEdit_DFS.clear()
 
     def Clear_DFS(self):

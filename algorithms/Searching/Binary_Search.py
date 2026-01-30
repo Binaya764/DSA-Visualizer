@@ -39,5 +39,5 @@ def binary_search(arr, target):
             steps.append(("low", old_left, old_mid, old_right, new_sub_arr, left, right))
 
     # Step: not found
-    steps.append(("not_found", left, -1, right, [], left, right))
+    steps.append(("not_found", left, None, right, [], left, right))
     return steps

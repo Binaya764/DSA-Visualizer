@@ -25,6 +25,7 @@ class Ui_Widget(object):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
         Widget.resize(699, 453)
+        Widget.setStyleSheet(u"")
         self.horizontalLayout_14 = QHBoxLayout(Widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -41,6 +42,7 @@ class Ui_Widget(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.groupBox_16 = QGroupBox(self.frame)
         self.groupBox_16.setObjectName(u"groupBox_16")
+        self.groupBox_16.setStyleSheet(u"")
         self.verticalLayout_39 = QVBoxLayout(self.groupBox_16)
         self.verticalLayout_39.setSpacing(15)
         self.verticalLayout_39.setObjectName(u"verticalLayout_39")
@@ -1255,7 +1257,7 @@ class Ui_Widget(object):
         self.label_traversal_path = QLabel(self.groupBox_28)
         self.label_traversal_path.setObjectName(u"label_traversal_path")
         self.label_traversal_path.setFont(font1)
-        self.label_traversal_path.setStyleSheet(u"background-color: black;")
+        self.label_traversal_path.setStyleSheet(u"")
 
         self.verticalLayout_78.addWidget(self.label_traversal_path)
 

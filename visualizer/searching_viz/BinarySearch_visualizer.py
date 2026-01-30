@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsRectItem, QGraphicsSimpleTextItem
 from PySide6.QtGui import QBrush, QColor
-from PySide6.QtCore import QRectF, Qt
+from PySide6.QtCore import QRectF, Qt, QTimer
 
 soft_blue   = QColor(100, 149, 237)   # Cornflower blue
 soft_green  = QColor(27, 94, 32)   # Light green
@@ -16,6 +16,7 @@ class Binary_Visualizer:
         self.scene = QGraphicsScene()
         self.view.setScene(self.scene)
         self.y_offset = 200
+        self.finished = False
 
 
         self.row = 0
@@ -26,6 +27,7 @@ class Binary_Visualizer:
     def Bdraw_array(self, step_type, arr, start_index=0):
         self.values = arr.copy()
         self.bars.clear()  # Clear previous bars for new row
+
 
         width = 60
         spacing = 1
@@ -58,13 +60,17 @@ class Binary_Visualizer:
         self.view.centerOn(0,0)
 
     def highlight(self, left, mid, right, color_mid=soft_yellow, color_bounds=soft_blue):
-        for i, bar in enumerate(self.bars):
-            if i == mid:
-                bar.setBrush(QBrush(color_mid))
-            elif i == left or i == right:
-                bar.setBrush(QBrush(color_bounds))
-            else:
-                bar.setBrush(QBrush(Qt.lightGray))
+        if self.finished == True:
+            return
+        else:
+            for i, bar in enumerate(self.bars):
+                if i == mid:
+                    bar.setBrush(QBrush(color_mid))
+                elif i == left or i == right:
+                    bar.setBrush(QBrush(color_bounds))
+
+                else:
+                    bar.setBrush(QBrush(Qt.lightGray))
 
     def clear(self):
         self.scene.clear()
@@ -80,14 +86,20 @@ class Binary_Visualizer:
         self.bars.clear()
         self.view.centerOn(0,0)
 
-    def not_found(self,index):
-        for i, bar in enumerate(self.bars):
-            if i == index:
-                bar.setBrush(QBrush(soft_red))
-            else:
-                pass
-        self.values.clear()
-        self.y_offset=10
-        self.bars.clear()
+
+    def not_found(self):
+        print("not_found in visualizer")
+        self.finished = True
+        QTimer.singleShot(0, self._apply_not_found_color)
+
+
+    def _apply_not_found_color(self):
+        print("APPLY FINAL RED")
+        for bar in self.bars:
+            bar.setBrush(QBrush(soft_red))
+            bar.update()
+
+
+
 
 
