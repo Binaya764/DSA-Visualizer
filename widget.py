@@ -186,8 +186,8 @@ class Widget(QWidget):
             "0.25x"  : 1500,
             "1.25x" : 400,
             "1.5x" : 300,
-            "2x" : 200,
-            "3x" : 100,}
+            "2x" : 100,
+            "3x" : 50,}
             self.animation_speed = speed_map.get(text, 500)
             print("Animation speed set to:", self.animation_speed)
 
@@ -1337,8 +1337,9 @@ class Widget(QWidget):
         self.active_visualizer.StackVisualizerDFS = self.visualizer3
         self.ui.lineEdit_BST.clear()
         self.ui.vertex_lineEdit_DFS.clear()
-
         pass
+
+
     def Traverse_DFS(self):
         raw_vertex = self.ui.StartVertex_lineEdit_DFS.text().strip()
         if not raw_vertex:
@@ -1349,7 +1350,7 @@ class Widget(QWidget):
                )
                return
         vertex = int(raw_vertex)
-        self.active_visualizer.start_dfs(vertex)
+        self.active_visualizer.start_dfs(vertex,self.animation_speed)
         self.ui.StartVertex_lineEdit_DFS.clear()
 
     def Clear_DFS(self):

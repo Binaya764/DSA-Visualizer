@@ -131,7 +131,7 @@ class DFSvisualizer:
         self.node_count = 0
         self.extra_edges = 0
 
-    def start_dfs(self, start):
+    def start_dfs(self, start,animation_speed):
         self.traversal_path = []
 
 
@@ -149,7 +149,7 @@ class DFSvisualizer:
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.animate_dfs_step)
-        self.timer.start(800)
+        self.timer.start(animation_speed)
 
     def animate_dfs_step(self):
         if self.step_index >= len(self.steps):
