@@ -374,7 +374,7 @@ class Widget(QWidget):
 
 
         elif self.active_algorithm == "Binary Search":
-                self.active_visualizer.scene.clear()
+                #self.active_visualizer.scene.clear()
                 self.active_visualizer.view.centerOn(0, 0)
 
                 target_text = self.ui.target_lineEdit.text().strip()
@@ -566,6 +566,10 @@ class Widget(QWidget):
 
                 elif step_type == "not_found":
                         print("not found called widget")
+                        self.explain_label.setText(
+                            f"Not found!"
+
+                        )
                         self.active_visualizer.not_found()
                         return
 
