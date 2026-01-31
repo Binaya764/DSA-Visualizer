@@ -133,8 +133,6 @@ class DFSvisualizer:
 
     def start_dfs(self, start,animation_speed):
         self.traversal_path = []
-
-
         #self.active_visualizer.node_items = node_item
         for node in self.node_items.values():
             node.setBrush(QBrush(soft_blue))

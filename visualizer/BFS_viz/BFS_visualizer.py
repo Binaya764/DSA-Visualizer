@@ -123,12 +123,8 @@ class BFSvisualizer:
 
         return node_items
 
-    def clear(self):
-        self.scene.clear()
-        self.node_count = 0
-        self.extra_edges = 0
 
-    def start_bfs(self, vertex):
+    def start_bfs(self, vertex,animation_speed):
         graph = self.graph
         self.traversal_path = []
         self.steps = bfs_fun(self,graph, vertex)
@@ -137,7 +133,7 @@ class BFSvisualizer:
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.animate_bfs_step)
-        self.timer.start(1500)
+        self.timer.start(animation_speed)
 
 
 
