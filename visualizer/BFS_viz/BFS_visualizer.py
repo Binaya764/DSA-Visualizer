@@ -161,7 +161,7 @@ class BFSvisualizer:
             _, node = step
             self.traversal_path.append(node)
             self.update_traversal_text()
-            self.node_items[node].setBrush(soft_green)
+            self.node_items[node].setBrush(QBrush(soft_green))
 
         elif action == "edge":
             _, u, v = step
@@ -176,8 +176,10 @@ class BFSvisualizer:
     def clear(self):
         self.scene.clear()
         self.node_count = 0
-        self.node_items={}
-        self.edge_items={}
+        self.node_items.clear()
+        self.edge_items.clear()
+        self.steps=[]
+        self.step_index=0
         self.traversal_label.clear()
 
 

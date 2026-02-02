@@ -1281,13 +1281,13 @@ class Widget(QWidget):
                    "Please enter a start vertex"
                )
                return
-        if node_count < 2:
+        '''if node_count < 2:
            QMessageBox.warning(
                self,
                "Invalid Input",
                "Number of vertices must be at least 3"
            )
-           return
+           return'''
 
         if node_count >10:
                QMessageBox.warning(
