@@ -182,10 +182,10 @@ class Widget(QWidget):
             speed_map ={
             "1x" : 500,
             "0.50x" : 800,
-            "0.75x" : 600,
+            "0.75x" : 1000,
             "0.25x"  : 1500,
-            "1.25x" : 400,
-            "1.5x" : 300,
+            "1.25x" : 300,
+            "1.5x" : 200,
             "2x" : 100,
             "3x" : 50,}
             self.animation_speed = speed_map.get(text, 500)
@@ -374,7 +374,7 @@ class Widget(QWidget):
 
 
         elif self.active_algorithm == "Binary Search":
-                self.active_visualizer.scene.clear()
+                #self.active_visualizer.scene.clear()
                 self.active_visualizer.view.centerOn(0, 0)
 
                 target_text = self.ui.target_lineEdit.text().strip()
@@ -566,7 +566,11 @@ class Widget(QWidget):
 
                 elif step_type == "not_found":
                         print("not found called widget")
-                        self.active_visualizer.not_found()
+                        self.explain_label.setText(
+                            f"Not found!"
+
+                        )
+
                         return
 
                 self.current_step += 1
@@ -658,7 +662,7 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                if size<6:
+                if size<11:
 
                         arr=[random.randint(1,100) for _ in range(size)]
                         self.current_array = arr
@@ -1083,6 +1087,7 @@ class Widget(QWidget):
                 )
                 return
         self.ui.size_array_lineEdit_Bsearch.clear()
+        self.ui.Explanation_label.clear()
 
 
         #for stacks
@@ -1269,14 +1274,16 @@ class Widget(QWidget):
 
     def Traverse_BFS(self):
         raw_vertex = self.ui.lineEdit_BFS.text().strip()
-        node_count= int(raw_vertex)
-        if not raw_vertex:
+
+        if not raw_vertex.isdigit():
                QMessageBox.warning(
                    self,
                    "Input Error",
                    "Please enter a start vertex"
                )
                return
+        node_count= int(raw_vertex)
+
         if node_count < 2:
            QMessageBox.warning(
                self,
@@ -1292,7 +1299,7 @@ class Widget(QWidget):
                "Number of veritces must be less than 10")
                return
         vertex = int(raw_vertex)
-        self.active_visualizer.start_bfs(vertex)
+        self.active_visualizer.start_bfs(vertex,self.animation_speed)
         self.ui.lineEdit_BFS.clear()
 
 

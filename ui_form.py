@@ -1294,7 +1294,7 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
 
-        self.stackedWidget.setCurrentIndex(12)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Widget)
@@ -1340,7 +1340,7 @@ class Ui_Widget(object):
         self.speed_comboBox.setItemText(3, QCoreApplication.translate("Widget", u"2x", None))
         self.speed_comboBox.setItemText(4, QCoreApplication.translate("Widget", u"3x", None))
         self.speed_comboBox.setItemText(5, QCoreApplication.translate("Widget", u"0.25x", None))
-        self.speed_comboBox.setItemText(6, QCoreApplication.translate("Widget", u"0.5x", None))
+        self.speed_comboBox.setItemText(6, QCoreApplication.translate("Widget", u"0.50x", None))
         self.speed_comboBox.setItemText(7, QCoreApplication.translate("Widget", u"0.75x", None))
 
         self.groupBox_19.setTitle(QCoreApplication.translate("Widget", u"DSA Visualizer", None))
@@ -1358,8 +1358,8 @@ class Ui_Widget(object):
 "<p align=\"justify\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
 "<p align=\"justify\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">Select an algorithm to continue....</span></p></body></html>", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Widget", u"Bubble Sort", None))
-        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size (Max 5)", None))
-        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array (Max 5)", None))
+        self.label_2.setText(QCoreApplication.translate("Widget", u"Array Size (Max 10)", None))
+        self.label_3.setText(QCoreApplication.translate("Widget", u"Custom Array ", None))
         self.BtnGenerate.setText(QCoreApplication.translate("Widget", u"+ Generate", None))
         self.Btnrandomize.setText(QCoreApplication.translate("Widget", u"Randomize", None))
         self.label_4.setText(QCoreApplication.translate("Widget", u"code", None))

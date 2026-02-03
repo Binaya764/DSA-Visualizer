@@ -123,12 +123,8 @@ class BFSvisualizer:
 
         return node_items
 
-    def clear(self):
-        self.scene.clear()
-        self.node_count = 0
-        self.extra_edges = 0
 
-    def start_bfs(self, vertex):
+    def start_bfs(self, vertex,animation_speed):
         graph = self.graph
         self.traversal_path = []
         self.steps = bfs_fun(self,graph, vertex)
@@ -137,7 +133,7 @@ class BFSvisualizer:
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.animate_bfs_step)
-        self.timer.start(1500)
+        self.timer.start(animation_speed)
 
 
 
@@ -165,7 +161,7 @@ class BFSvisualizer:
             _, node = step
             self.traversal_path.append(node)
             self.update_traversal_text()
-            self.node_items[node].setBrush(soft_green)
+            self.node_items[node].setBrush(QBrush(soft_green))
 
         elif action == "edge":
             _, u, v = step
@@ -180,8 +176,10 @@ class BFSvisualizer:
     def clear(self):
         self.scene.clear()
         self.node_count = 0
-        self.node_items={}
-        self.edge_items={}
+        self.node_items.clear()
+        self.edge_items.clear()
+        self.steps=[]
+        self.step_index=0
         self.traversal_label.clear()
 
 
@@ -225,14 +223,14 @@ class QueueVisualizerBFS:
             self.scene.addItem(text)
             self.blocks.append((rect, text))
 
-        # FRONT label (always bottom)
+        # FRONT label
         if queue:
             front_label = QGraphicsSimpleTextItem("FRONT")
             front_label.setBrush(Qt.yellow)
             front_label.setPos(x + width + 10, base_y+20)
             self.scene.addItem(front_label)
 
-            # REAR label (topmost element)
+            # REAR label
             rear_y = base_y - (len(queue) - 1) * (height + spacing)
             rear_label = QGraphicsSimpleTextItem("REAR")
             rear_label.setBrush(Qt.yellow)

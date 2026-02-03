@@ -87,18 +87,6 @@ class Binary_Visualizer:
         self.view.centerOn(0,0)
 
 
-    def not_found(self):
-        print("not_found in visualizer")
-        self.finished = True
-        QTimer.singleShot(0, self._apply_not_found_color)
-
-
-    def _apply_not_found_color(self):
-        print("APPLY FINAL RED")
-        for bar in self.bars:
-            bar.setBrush(QBrush(soft_red))
-            bar.update()
-
 
 
 
