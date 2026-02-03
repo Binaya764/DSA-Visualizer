@@ -570,7 +570,7 @@ class Widget(QWidget):
                             f"Not found!"
 
                         )
-                        self.active_visualizer.not_found()
+
                         return
 
                 self.current_step += 1
@@ -662,7 +662,7 @@ class Widget(QWidget):
                         "Array size must be a valid number."
                     )
                     return
-                if size<6:
+                if size<11:
 
                         arr=[random.randint(1,100) for _ in range(size)]
                         self.current_array = arr
@@ -1087,6 +1087,7 @@ class Widget(QWidget):
                 )
                 return
         self.ui.size_array_lineEdit_Bsearch.clear()
+        self.ui.Explanation_label.clear()
 
 
         #for stacks

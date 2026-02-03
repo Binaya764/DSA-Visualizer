@@ -425,7 +425,7 @@ class LinkedListVisualizer:
         elif action == "removeHead":
             node, prev = step[1], step[2]
 
-            if self.head == self.tail:
+            if self.head == self.tail:  #when only one node is remaining
                 self.head = None
                 self.tail = None
                 self.clear()
@@ -497,7 +497,7 @@ class LinkedListVisualizer:
 
 
 
-    def draw_list_tail_remove(self):
+    def draw_list_tail_remove(self):        #when remove from tail is called
         self.scene.clear()
         self.graphics_nodes.clear()
 
@@ -637,7 +637,7 @@ class LinkedListVisualizer:
 
 
 
-    def draw_list_head_remove(self):
+    def draw_list_head_remove(self):    #when remove from head is called
         self.scene.clear()
         self.graphics_nodes.clear()
 
