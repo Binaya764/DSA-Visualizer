@@ -42,6 +42,30 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 ### Hierarchical Data structures
 #### Tree
 - Binary Search Tree
+   ![Binary search Tree](assets/gif/BST.gif)
 #### Graph
 - Breadth First Search (BST)
 - Depth First Search (DFS)
+
+---
+
+## ⚙️ Installation & Setup
+
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/yourusername/dsa-visualizer-pyqt.git](https://github.com/yourusername/dsa-visualizer-pyqt.git)
+   cd dsa-visualizer-pyqt
+   ```
+2. **Create Virtual Environment:**<br>
+   `python -m venv venv`
+   
+  * Windows:<br>
+  `venv\Scripts\activate`
+  * macOS/Linux:<br>
+  `source venv/bin/activate`
+  
+2. **Install Dependencies**<br>
+   `pip install PyQt6`
+
+4. **Run the Application:**<br>
+   `python main.py`
