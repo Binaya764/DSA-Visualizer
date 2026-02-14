@@ -46,6 +46,7 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 #### Graph
 - Breadth First Search (BST)
 - Depth First Search (DFS)
+    ![Depth First Search](assets/gif/DFS.gif)
 
 ---
 
