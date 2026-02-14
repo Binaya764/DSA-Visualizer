@@ -182,8 +182,8 @@ class Widget(QWidget):
             speed_map ={
             "1x" : 500,
             "0.50x" : 800,
-            "0.75x" : 1000,
-            "0.25x"  : 1500,
+            "0.75x" : 1500,
+            "0.25x"  : 3000,
             "1.25x" : 300,
             "1.5x" : 200,
             "2x" : 100,
@@ -251,6 +251,7 @@ class Widget(QWidget):
 
             self.visualizer2.scene.clear()                      #clears the original array area
             self.visualizer2.view.centerOn(0, 0)
+            self.ui.Explanation_label.clear()
 
 
 
@@ -279,6 +280,7 @@ class Widget(QWidget):
             self.active_visualizer.view.centerOn(0, 0)
             self.visualizer2.scene.clear()
             self.visualizer3.view.centerOn(0, 0)
+            self.ui.Explanation_label.clear()
             #self.visualizer3.scene.clear()
 
     def on_dataStructure_changed(self,algo):
@@ -309,6 +311,7 @@ class Widget(QWidget):
             self.active_visualizer.scene.clear()
             self.active_visualizer.view.centerOn(0, 0)
             self.visualizer2.scene.clear()
+            self.ui.Explanation_label.clear()
 
 
     def on_HDataStucture_changed(self,algo):
@@ -326,6 +329,7 @@ class Widget(QWidget):
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0,0)
         self.visualizer2.scene.clear()
+        self.ui.Explanation_label.clear()
 
     def on_HDataStuctureGraph_changed(self,algo):
         self.reset_all_comboboxes(except_box = self.ui.HDSG_comboBox)
@@ -348,6 +352,7 @@ class Widget(QWidget):
         self.active_visualizer.scene.clear()
         self.active_visualizer.view.centerOn(0,0)
         self.visualizer2.scene.clear()
+        self.ui.Explanation_label.clear()
 
 
         #when the start button is clicked it calls this function
