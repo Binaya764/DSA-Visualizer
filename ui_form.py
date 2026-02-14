@@ -201,7 +201,7 @@ class Ui_Widget(object):
         sizePolicy.setVerticalStretch(100)
         sizePolicy.setHeightForWidth(self.visualizer_graphicsView.sizePolicy().hasHeightForWidth())
         self.visualizer_graphicsView.setSizePolicy(sizePolicy)
-        self.visualizer_graphicsView.setMaximumSize(QSize(900, 450))
+        self.visualizer_graphicsView.setMaximumSize(QSize(900, 480))
 
         self.verticalLayout.addWidget(self.visualizer_graphicsView)
 
