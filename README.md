@@ -44,7 +44,7 @@ It is an interactive Data Structures and Algorithm visualizer built using PyQt f
 - Binary Search Tree
    ![Binary search Tree](assets/gif/BST.gif)
 #### Graph
-- Breadth First Search (BST)
+- Breadth First Search (BFS)
 - Depth First Search (DFS)
     ![Depth First Search](assets/gif/DFS.gif)
 
